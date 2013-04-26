@@ -22,17 +22,17 @@ public class MainActivity extends Activity {
 		
 		TabSpec specs = th.newTabSpec("tag1");
 		specs.setContent(R.id.comp);
-		specs.setIndicator("Compra");
+		specs.setIndicator("Compra", getResources().getDrawable(R.layout.comp));
 		th.addTab(specs);
 		
 		specs = th.newTabSpec("tag2");
 		specs.setContent(R.id.tran);
-		specs.setIndicator("Transferencia");
+		specs.setIndicator("Transferencia", getResources().getDrawable(R.layout.tran));
 		th.addTab(specs);
 		
 		specs = th.newTabSpec("tag3");
 		specs.setContent(R.id.vent);
-		specs.setIndicator("Venta");
+		specs.setIndicator("Venta", getResources().getDrawable(R.layout.vent));
 		th.addTab(specs);
 		
 	}
