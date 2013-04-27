@@ -1,5 +1,7 @@
 package com.kupay;
 
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.EnumSet;
 import java.util.Map;
 import java.util.Set;
@@ -106,7 +108,9 @@ public class capturaQR extends DecoderActivity{
 		        onPause();
 		        AlertDialog.Builder builder_ = new AlertDialog.Builder(this);	
 		        builder_.setTitle("HEY!");
-	    		builder_.setMessage("SE DETECTO Algo");
+		        
+		        CharSequence displayContents = resultHandler.getDisplayContents();
+	    		builder_.setMessage("SE DETECTO: "+displayContents);
 	        	builder_.setNeutralButton("Aceptar", new DialogInterface.OnClickListener() {
 	                public void onClick(DialogInterface dialog, int id) {
 	                     
@@ -114,6 +118,7 @@ public class capturaQR extends DecoderActivity{
 	            });
 	        	AlertDialog dialog = builder_.create();
 	        	dialog.show();
+		        
 
 		    }
 		}

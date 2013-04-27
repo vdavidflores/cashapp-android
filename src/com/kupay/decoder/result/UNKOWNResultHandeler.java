@@ -16,37 +16,36 @@
 
 package com.kupay.decoder.result;
 
-import org.apache.http.impl.conn.DefaultClientConnection;
-
 import com.google.zxing.Result;
 import com.google.zxing.client.result.ParsedResult;
-import com.google.zxing.client.result.ResultParser;
+import com.google.zxing.client.result.TextParsedResult;
+import com.kupay.R;
+
+
 
 import android.app.Activity;
 
-
 /**
- * Manufactures Android-specific handlers based on the barcode content's type.
+ * This class handles TextParsedResult as well as unknown formats. It's the
+ * fallback handler.
  * 
  * @author dswitkin@google.com (Daniel Switkin)
  */
-public final class ResultHandlerFactory {
+public final class UNKOWNResultHandeler extends ResultHandler {
 
-    private ResultHandlerFactory() {
+    public UNKOWNResultHandeler(Activity activity, ParsedResult result, Result rawResult) {
+        super(activity, result, rawResult);
     }
 
-    public static ResultHandler makeResultHandler(Activity activity, Result rawResult) {
-        ParsedResult result = parseResult(rawResult);
-        switch (result.getType()) {
-     
-        case TEXT:
-            return new TextResultHandler(activity, result, rawResult);
-
-        }
-        return new UNKOWNResultHandeler(activity, result, rawResult);
+    @Override
+    public CharSequence getDisplayContents() {
+   
+        	return "codigo desconosido";
+		
     }
 
-    private static ParsedResult parseResult(Result rawResult) {
-        return ResultParser.parseResult(rawResult);
+    @Override
+    public int getDisplayTitle() {
+        return R.string.result_text;
     }
 }
