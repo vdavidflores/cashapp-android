@@ -6,6 +6,7 @@ package com.kupay;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.graphics.Color;
 import android.view.Menu;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
@@ -24,22 +25,21 @@ public class MainActivity extends Activity {
 		specs.setContent(R.id.comp);
 		specs.setIndicator("Compra", getResources().getDrawable(R.layout.comp));
 		th.addTab(specs);
+		th.getTabWidget().getChildAt(0).setBackgroundResource(R.layout.bgcomp);
 		
 		specs = th.newTabSpec("tag2");
 		specs.setContent(R.id.tran);
 		specs.setIndicator("Transferencia", getResources().getDrawable(R.layout.tran));
 		th.addTab(specs);
+		th.getTabWidget().getChildAt(1).setBackgroundResource(R.layout.bgcomp);
 		
 		specs = th.newTabSpec("tag3");
 		specs.setContent(R.id.vent);
 		specs.setIndicator("Venta", getResources().getDrawable(R.layout.vent));
 		th.addTab(specs);
+		th.getTabWidget().getChildAt(2).setBackgroundResource(R.layout.bgcomp);
 		
 	}
 	
-	
-	
-
-
 
 }
