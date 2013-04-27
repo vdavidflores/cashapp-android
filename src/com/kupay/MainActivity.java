@@ -23,22 +23,24 @@ public class MainActivity extends Activity {
 		
 		TabSpec specs = th.newTabSpec("tag1");
 		specs.setContent(R.id.comp);
-		specs.setIndicator("Compra", getResources().getDrawable(R.layout.comp));
+		specs.setIndicator("", getResources().getDrawable(R.layout.comp));
 		th.addTab(specs);
 		th.getTabWidget().getChildAt(0).setBackgroundResource(R.layout.bgcomp);
+		th.getTabWidget().getChildAt(0).getLayoutParams().height = 80;
 		
 		specs = th.newTabSpec("tag2");
 		specs.setContent(R.id.tran);
-		specs.setIndicator("Transferencia", getResources().getDrawable(R.layout.tran));
+		specs.setIndicator("", getResources().getDrawable(R.layout.tran));
 		th.addTab(specs);
 		th.getTabWidget().getChildAt(1).setBackgroundResource(R.layout.bgcomp);
+		th.getTabWidget().getChildAt(1).getLayoutParams().height = 80;
 		
 		specs = th.newTabSpec("tag3");
 		specs.setContent(R.id.vent);
-		specs.setIndicator("Venta", getResources().getDrawable(R.layout.vent));
+		specs.setIndicator("", getResources().getDrawable(R.layout.vent));
 		th.addTab(specs);
 		th.getTabWidget().getChildAt(2).setBackgroundResource(R.layout.bgcomp);
-		
+		th.getTabWidget().getChildAt(2).getLayoutParams().height = 80;
 	}
 	
 

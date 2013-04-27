@@ -5,12 +5,63 @@
     android:background="#c51e4f"
     tools:context=".MainActivity" >
 
+    <LinearLayout
+        android:id="@+id/headerq"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/ccbg" >
+
+        <LinearLayout
+            android:layout_width="20dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.16" >
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/opciones" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="20dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.69" >
+
+            <TextView
+                android:id="@+id/cantidad"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:text="$1000"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#ffffff" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="55dp"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="True" >
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
+                android:src="@drawable/home" />
+
+        </LinearLayout>
+    </LinearLayout>
+
     <TabHost
         android:id="@+id/tabhost"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true" >
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/headerq" >
 
         <RelativeLayout
             android:layout_width="fill_parent"
@@ -35,7 +86,7 @@
                 <LinearLayout
                     android:id="@+id/comp"
                     android:layout_width="fill_parent"
-                    android:layout_height="match_parent" >
+                    android:layout_height="376dp" >
 
                     <Button
                         android:id="@+id/bStartWatch"
@@ -81,11 +132,5 @@
             </FrameLayout>
         </RelativeLayout>
     </TabHost>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
-    </LinearLayout>
 
 </RelativeLayout>
