@@ -89,6 +89,7 @@ public class DecoderActivity extends Activity implements IDecoderActivity, Surfa
             viewfinderView = (ViewfinderView) findViewById(R.id.viewfinder_view);
             viewfinderView.setCameraManager(cameraManager);
         }
+        
         viewfinderView.setVisibility(View.VISIBLE);
 
         SurfaceView surfaceView = (SurfaceView) findViewById(R.id.preview_view);
@@ -216,13 +217,14 @@ public class DecoderActivity extends Activity implements IDecoderActivity, Surfa
             cameraManager.openDriver(surfaceHolder);
             // Creating the handler starts the preview, which can also throw a
             // RuntimeException.
+            Log.v(TAG, "formatos de codigo: "+decodeFormats);
             if (handler == null) handler = new DecoderActivityHandler(this, decodeFormats, characterSet, cameraManager);
         } catch (IOException ioe) {
-            Log.w(TAG, ioe);
+            Log.v(TAG, ioe.toString());
         } catch (RuntimeException e) {
             // Barcode Scanner has seen crashes in the wild of this variety:
             // java.?lang.?RuntimeException: Fail to connect to camera service
-            Log.w(TAG, "Unexpected error initializing camera", e);
+            Log.v(TAG, "Unexpected error initializing camera", e);
         }
     }
 }

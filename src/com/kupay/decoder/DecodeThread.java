@@ -52,6 +52,7 @@ final class DecodeThread extends Thread {
     DecodeThread(IDecoderActivity activity, Collection<BarcodeFormat> decodeFormats, String characterSet,
             ResultPointCallback resultPointCallback) {
         this.activity = activity;
+        Log.v("app", "Hilo se Decoder Iniciado");
         handlerInitLatch = new CountDownLatch(1);
         hints = new EnumMap<DecodeHintType, Object>(DecodeHintType.class);
 

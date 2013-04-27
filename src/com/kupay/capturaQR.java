@@ -13,6 +13,8 @@ import com.kupay.decoder.result.ResultHandlerFactory;
 
 
 import android.os.Bundle;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
@@ -102,50 +104,16 @@ public class capturaQR extends DecoderActivity{
 		    // Put up our own UI for how to handle the decodBarcodeFormated contents.
 		    private void handleDecodeInternally(Result rawResult, ResultHandler resultHandler, Bitmap barcode) {
 		        onPause();
-		        showResults();
+		        AlertDialog.Builder builder_ = new AlertDialog.Builder(this);	
+		        builder_.setTitle("HEY!");
+	    		builder_.setMessage("SE DETECTO Algo");
+	        	builder_.setNeutralButton("Aceptar", new DialogInterface.OnClickListener() {
+	                public void onClick(DialogInterface dialog, int id) {
+	                     
+	                }
+	            });
+	        	AlertDialog dialog = builder_.create();
+	        	dialog.show();
 
-		        ImageView barcodeImageView = (ImageView) findViewById(R.id.barcode_image_view);
-		        if (barcode == null) {
-		            barcodeImageView.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher));
-		        } else {
-		            barcodeImageView.setImageBitmap(barcode);
-		        }
-
-		        TextView formatTextView = (TextView) findViewById(R.id.format_text_view);
-		        formatTextView.setText(rawResult.getBarcodeFormat().toString());
-
-		        TextView typeTextView = (TextView) findViewById(R.id.type_text_view);
-		        typeTextView.setText(resultHandler.getType().toString());
-
-
-		        TextView timeTextView = (TextView) findViewById(R.id.time_text_view);
-		        timeTextView.setText("djshfka");
-
-		        TextView metaTextView = (TextView) findViewById(R.id.meta_text_view);
-		        View metaTextViewLabel = findViewById(R.id.meta_text_view_label);
-		        metaTextView.setVisibility(View.GONE);
-		        metaTextViewLabel.setVisibility(View.GONE);
-		        Map<ResultMetadataType, Object> metadata = rawResult.getResultMetadata();
-		        if (metadata != null) {
-		            StringBuilder metadataText = new StringBuilder(20);
-		            for (Map.Entry<ResultMetadataType, Object> entry : metadata.entrySet()) {
-		                if (DISPLAYABLE_METADATA_TYPES.contains(entry.getKey())) {
-		                    metadataText.append(entry.getValue()).append('\n');
-		                }
-		            }
-		            if (metadataText.length() > 0) {
-		                metadataText.setLength(metadataText.length() - 1);
-		                metaTextView.setText(metadataText);
-		                metaTextView.setVisibility(View.VISIBLE);
-		                metaTextViewLabel.setVisibility(View.VISIBLE);
-		            }
-		        }
-
-		        TextView contentsTextView = (TextView) findViewById(R.id.contents_text_view);
-		        CharSequence displayContents = resultHandler.getDisplayContents();
-		        contentsTextView.setText(displayContents);
-		        // Crudely scale betweeen 22 and 32 -- bigger font for shorter text
-		        int scaledSize = Math.max(22, 32 - displayContents.length() / 4);
-		        contentsTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, scaledSize);
 		    }
 		}

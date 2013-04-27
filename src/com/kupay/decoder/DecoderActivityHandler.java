@@ -31,7 +31,6 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 import com.kupay.R;
 import com.kupay.decoder.camara.CameraManager;
-import com.google.zxing.Result;
 /**
  * This class handles all the messaging which comprises the state machine for
  * capture.
@@ -53,6 +52,9 @@ public final class DecoderActivityHandler extends Handler {
 
     DecoderActivityHandler(IDecoderActivity activity, Collection<BarcodeFormat> decodeFormats, String characterSet,
             CameraManager cameraManager) {
+    	
+    	
+    	Log.v("app", "Decoder Handeler llamado");
         this.activity = activity;
         decodeThread = new DecodeThread(activity, decodeFormats, characterSet, new ViewfinderResultPointCallback(
                 activity.getViewfinder()));
