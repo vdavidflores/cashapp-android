@@ -89,8 +89,7 @@ public class DecoderActivity extends Activity implements IDecoderActivity, Surfa
             viewfinderView = (ViewfinderView) findViewById(R.id.viewfinder_view);
             viewfinderView.setCameraManager(cameraManager);
         }
-
-        showScanner();
+        viewfinderView.setVisibility(View.VISIBLE);
 
         SurfaceView surfaceView = (SurfaceView) findViewById(R.id.preview_view);
         SurfaceHolder surfaceHolder = surfaceView.getHolder();

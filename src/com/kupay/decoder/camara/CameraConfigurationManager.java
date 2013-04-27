@@ -23,6 +23,7 @@ import android.hardware.Camera;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Display;
+import android.view.Surface;
 import android.view.WindowManager;
 
 import java.util.Collection;
@@ -43,6 +44,7 @@ public final class CameraConfigurationManager {
     private final Context context;
     private Point screenResolution;
     private Point cameraResolution;
+    private Display display;
 
     public CameraConfigurationManager(Context context) {
         this.context = context;
@@ -54,22 +56,22 @@ public final class CameraConfigurationManager {
     void initFromCameraParameters(Camera camera) {
         Camera.Parameters parameters = camera.getParameters();
         WindowManager manager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        Display display = manager.getDefaultDisplay();
+        display = manager.getDefaultDisplay();
         int width = display.getWidth();
         int height = display.getHeight();
         // We're landscape-only, and have apparently seen issues with display
         // thinking it's portrait
         // when waking from sleep. If it's not landscape, assume it's mistaken
         // and reverse them:
-        if (width < height) {
+        /*if (width < height) {
             Log.i(TAG, "Display reports portrait orientation; assuming this is incorrect");
             int temp = width;
             width = height;
             height = temp;
-        }
+        }*/
         screenResolution = new Point(width, height);
         Log.i(TAG, "Screen resolution: " + screenResolution);
-        cameraResolution = findBestPreviewSizeValue(parameters, screenResolution, false);
+        cameraResolution = findBestPreviewSizeValue(parameters, screenResolution, true);
         Log.i(TAG, "Camera resolution: " + cameraResolution);
     }
 
@@ -87,6 +89,28 @@ public final class CameraConfigurationManager {
         String focusMode = findSettableValue(parameters.getSupportedFocusModes(), Camera.Parameters.FOCUS_MODE_AUTO, Camera.Parameters.FOCUS_MODE_MACRO);
         if (focusMode != null) {
             parameters.setFocusMode(focusMode);
+        }
+        
+        if(display.getRotation() == Surface.ROTATION_0)
+        {
+            parameters.setPreviewSize(cameraResolution.y, cameraResolution.x);                           
+            camera.setDisplayOrientation(90);
+        }
+
+        if(display.getRotation() == Surface.ROTATION_90)
+        {
+            parameters.setPreviewSize(cameraResolution.x, cameraResolution.y);                           
+        }
+
+        if(display.getRotation() == Surface.ROTATION_180)
+        {
+            parameters.setPreviewSize(cameraResolution.y, cameraResolution.x);               
+        }
+
+        if(display.getRotation() == Surface.ROTATION_270)
+        {
+            parameters.setPreviewSize(cameraResolution.x, cameraResolution.y);
+            camera.setDisplayOrientation(180);
         }
 
         parameters.setPreviewSize(cameraResolution.x, cameraResolution.y);
