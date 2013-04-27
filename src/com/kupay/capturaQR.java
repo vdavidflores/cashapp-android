@@ -23,11 +23,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
-public class MainActivity extends DecoderActivity{
+public class capturaQR extends DecoderActivity{
 
 	 
 
-		   private static final String TAG = MainActivity.class.getSimpleName();
+		   private static final String TAG = capturaQR.class.getSimpleName();
 		    private static final Set<ResultMetadataType> DISPLAYABLE_METADATA_TYPES = EnumSet.of(ResultMetadataType.ISSUE_NUMBER, ResultMetadataType.SUGGESTED_PRICE,
 		            ResultMetadataType.ERROR_CORRECTION_LEVEL, ResultMetadataType.POSSIBLE_COUNTRY);
 
