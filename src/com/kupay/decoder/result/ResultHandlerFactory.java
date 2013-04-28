@@ -16,8 +16,6 @@
 
 package com.kupay.decoder.result;
 
-import org.apache.http.impl.conn.DefaultClientConnection;
-
 import com.google.zxing.Result;
 import com.google.zxing.client.result.ParsedResult;
 import com.google.zxing.client.result.ResultParser;

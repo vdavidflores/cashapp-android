@@ -71,7 +71,8 @@ public final class CameraConfigurationManager {
         }*/
         screenResolution = new Point(width, height);
         Log.i(TAG, "Screen resolution: " + screenResolution);
-        cameraResolution = findBestPreviewSizeValue(parameters, screenResolution, true);
+        cameraResolution = findBestPreviewSizeValue(parameters, screenResolution, false);
+        Log.v("app", "resolucion es: "+cameraResolution);
         Log.i(TAG, "Camera resolution: " + cameraResolution);
     }
 
@@ -90,30 +91,31 @@ public final class CameraConfigurationManager {
         if (focusMode != null) {
             parameters.setFocusMode(focusMode);
         }
-        
+       
         if(display.getRotation() == Surface.ROTATION_0)
         {
-            parameters.setPreviewSize(cameraResolution.y, cameraResolution.x);                           
+          //  parameters.setPreviewSize(cameraResolution.y, cameraResolution.x);                           
             camera.setDisplayOrientation(90);
         }
 
         if(display.getRotation() == Surface.ROTATION_90)
         {
-            parameters.setPreviewSize(cameraResolution.x, cameraResolution.y);                           
+            //parameters.setPreviewSize(cameraResolution.x, cameraResolution.y);                           
         }
 
         if(display.getRotation() == Surface.ROTATION_180)
         {
-            parameters.setPreviewSize(cameraResolution.y, cameraResolution.x);               
+           // parameters.setPreviewSize(cameraResolution.y, cameraResolution.x);               
         }
 
         if(display.getRotation() == Surface.ROTATION_270)
         {
-            parameters.setPreviewSize(cameraResolution.x, cameraResolution.y);
+          //  parameters.setPreviewSize(cameraResolution.x, cameraResolution.y);
             camera.setDisplayOrientation(180);
         }
 
-       // parameters.setPreviewSize(cameraResolution.x, cameraResolution.y);
+       
+      parameters.setPreviewSize(cameraResolution.x, cameraResolution.y);
         camera.setParameters(parameters);
     }
 
@@ -175,7 +177,7 @@ public final class CameraConfigurationManager {
     }
 
     private static String findSettableValue(Collection<String> supportedValues, String... desiredValues) {
-        Log.i(TAG, "Supported values: " + supportedValues);
+        Log.v(TAG, "Supported values: " + supportedValues);
         String result = null;
         if (supportedValues != null) {
             for (String desiredValue : desiredValues) {
@@ -185,7 +187,7 @@ public final class CameraConfigurationManager {
                 }
             }
         }
-        Log.i(TAG, "Settable value: " + result);
+        Log.v(TAG, "Settable value: " + result);
         return result;
     }
 

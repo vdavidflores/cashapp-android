@@ -113,7 +113,7 @@ public class capturaQR extends DecoderActivity{
 	    		builder_.setMessage("SE DETECTO: "+displayContents);
 	        	builder_.setNeutralButton("Aceptar", new DialogInterface.OnClickListener() {
 	                public void onClick(DialogInterface dialog, int id) {
-	                     
+	                	onResume();
 	                }
 	            });
 	        	AlertDialog dialog = builder_.create();

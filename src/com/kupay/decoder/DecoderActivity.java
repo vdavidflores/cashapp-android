@@ -214,10 +214,9 @@ public class DecoderActivity extends Activity implements IDecoderActivity, Surfa
 
     protected void initCamera(SurfaceHolder surfaceHolder) {
         try {
-            cameraManager.openDriver(surfaceHolder);
             // Creating the handler starts the preview, which can also throw a
             // RuntimeException.
-            Log.v(TAG, "formatos de codigo: "+decodeFormats);
+        	cameraManager.openDriver(surfaceHolder);
             if (handler == null) handler = new DecoderActivityHandler(this, decodeFormats, characterSet, cameraManager);
         } catch (IOException ioe) {
             Log.v(TAG, ioe.toString());
