@@ -1,46 +1,39 @@
 package com.kupay;
 
 
-
-
-
 import android.os.Bundle;
-import android.app.Activity;
-import android.graphics.Color;
-import android.view.Menu;
-import android.widget.TabHost;
-import android.widget.TabHost.TabSpec;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTabHost;
 
-public class MainActivity extends Activity {
+public class MainActivity extends FragmentActivity{
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.activity_main);
-		TabHost th = (TabHost) findViewById (R.id.tabhost);
-		th.setup();
+		 FragmentTabHost mTabHost = (FragmentTabHost) findViewById (android.R.id.tabhost);
+		 mTabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
 		
-		TabSpec specs = th.newTabSpec("tag1");
-		specs.setContent(R.id.comp);
-		specs.setIndicator("", getResources().getDrawable(R.layout.comp));
-		th.addTab(specs);
-		th.getTabWidget().getChildAt(0).setBackgroundResource(R.layout.bgcomp);
-		th.getTabWidget().getChildAt(0).getLayoutParams().height = 80;
-		
-		specs = th.newTabSpec("tag2");
-		specs.setContent(R.id.tran);
-		specs.setIndicator("", getResources().getDrawable(R.layout.tran));
-		th.addTab(specs);
-		th.getTabWidget().getChildAt(1).setBackgroundResource(R.layout.bgcomp);
-		th.getTabWidget().getChildAt(1).getLayoutParams().height = 80;
-		
-		specs = th.newTabSpec("tag3");
-		specs.setContent(R.id.vent);
-		specs.setIndicator("", getResources().getDrawable(R.layout.vent));
-		th.addTab(specs);
-		th.getTabWidget().getChildAt(2).setBackgroundResource(R.layout.bgcomp);
-		th.getTabWidget().getChildAt(2).getLayoutParams().height = 80;
+	
+
+		Bundle b = new Bundle();
+		b.putString("key", "comprar");
+		mTabHost.addTab(mTabHost.newTabSpec("comprar").setIndicator("comprar", getResources().getDrawable(R.layout.tran)),test.class, b);
+		//mTabHost.getChildAt(0).setBackgroundResource(R.layout.bgcomp);
+		//mTabHost.getChildAt(0).getLayoutParams().height = 80;
+		//
+		b = new Bundle();
+		b.putString("key", "transferir");
+		mTabHost.addTab(mTabHost.newTabSpec("transferir").setIndicator("transferir", getResources().getDrawable(R.layout.tran)), test.class, b);
+		//mTabHost.getChildAt(0).setBackgroundResource(R.layout.bgcomp);
+		//mTabHost.getChildAt(0).getLayoutParams().height = 80;
+		b = new Bundle();
+		b.putString("key", "cobrar");
+		mTabHost.addTab(mTabHost.newTabSpec("cobrar").setIndicator("cobrar",getResources().getDrawable(R.layout.vent)),test.class, b);
+		//mTabHost.getChildAt(0).setBackgroundResource(R.layout.bgcomp);
+		//mTabHost.getChildAt(0).getLayoutParams().height = 80;
+
 	}
 	
 
