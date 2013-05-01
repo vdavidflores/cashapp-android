@@ -19,20 +19,23 @@ public class MainActivity extends FragmentActivity{
 
 		Bundle b = new Bundle();
 		b.putString("key", "comprar");
-		mTabHost.addTab(mTabHost.newTabSpec("comprar").setIndicator("comprar", getResources().getDrawable(R.layout.tran)),test.class, b);
-		//mTabHost.getChildAt(0).setBackgroundResource(R.layout.bgcomp);
+		mTabHost.addTab(mTabHost.newTabSpec("comprar").setIndicator("comprar", getResources().getDrawable(R.layout.comp)),test.class, b);
+		mTabHost.getTabWidget().getChildAt(0).setBackgroundResource(R.layout.bgcomp); 
 		//mTabHost.getChildAt(0).getLayoutParams().height = 80;
-		//
+		
+		
 		b = new Bundle();
 		b.putString("key", "transferir");
 		mTabHost.addTab(mTabHost.newTabSpec("transferir").setIndicator("transferir", getResources().getDrawable(R.layout.tran)), test.class, b);
-		//mTabHost.getChildAt(0).setBackgroundResource(R.layout.bgcomp);
-		//mTabHost.getChildAt(0).getLayoutParams().height = 80;
+		mTabHost.getTabWidget().getChildAt(1).setBackgroundResource(R.layout.bgcomp); 
+		//mTabHost.getChildAt(1).getLayoutParams().height = 80;
+		
+		
 		b = new Bundle();
 		b.putString("key", "cobrar");
 		mTabHost.addTab(mTabHost.newTabSpec("cobrar").setIndicator("cobrar",getResources().getDrawable(R.layout.vent)),test.class, b);
-		//mTabHost.getChildAt(0).setBackgroundResource(R.layout.bgcomp);
-		//mTabHost.getChildAt(0).getLayoutParams().height = 80;
+		mTabHost.getTabWidget().getChildAt(2).setBackgroundResource(R.layout.bgcomp); 
+		//mTabHost.getChildAt(2).getLayoutParams().height = 80;
 
 	}
 	
