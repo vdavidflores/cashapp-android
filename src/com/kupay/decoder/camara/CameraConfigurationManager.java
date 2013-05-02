@@ -63,17 +63,17 @@ public final class CameraConfigurationManager {
         // thinking it's portrait
         // when waking from sleep. If it's not landscape, assume it's mistaken
         // and reverse them:
-        /*if (width < height) {
+        /*if (width  height) {
             Log.i(TAG, "Display reports portrait orientation; assuming this is incorrect");
             int temp = width;
             width = height;
             height = temp;
         }*/
-        screenResolution = new Point(width, height);
-        Log.i(TAG, "Screen resolution: " + screenResolution);
+        screenResolution = new Point(width,(int) (height/1.2));
+        Log.v(TAG, "resolutcion ancho: " + width+" , alto:"+height);
         cameraResolution = findBestPreviewSizeValue(parameters, screenResolution, false);
         Log.v("app", "resolucion es: "+cameraResolution);
-        Log.i(TAG, "Camera resolution: " + cameraResolution);
+        Log.v(TAG, "Camera resolution: " + cameraResolution);
     }
 
     void setDesiredCameraParameters(Camera camera) {
@@ -94,18 +94,18 @@ public final class CameraConfigurationManager {
        
         if(display.getRotation() == Surface.ROTATION_0)
         {
-          //  parameters.setPreviewSize(cameraResolution.y, cameraResolution.x);                           
+         //   parameters.setPreviewSize(cameraResolution.y, cameraResolution.x);                           
             camera.setDisplayOrientation(90);
         }
 
         if(display.getRotation() == Surface.ROTATION_90)
         {
-            //parameters.setPreviewSize(cameraResolution.x, cameraResolution.y);                           
+         //   parameters.setPreviewSize(cameraResolution.x, cameraResolution.y);                           
         }
 
         if(display.getRotation() == Surface.ROTATION_180)
         {
-           // parameters.setPreviewSize(cameraResolution.y, cameraResolution.x);               
+         //   parameters.setPreviewSize(cameraResolution.y, cameraResolution.x);               
         }
 
         if(display.getRotation() == Surface.ROTATION_270)
@@ -114,7 +114,7 @@ public final class CameraConfigurationManager {
             camera.setDisplayOrientation(180);
         }
 
-       
+        parameters.set("orientation","portrait");
       parameters.setPreviewSize(cameraResolution.x, cameraResolution.y);
         camera.setParameters(parameters);
     }
