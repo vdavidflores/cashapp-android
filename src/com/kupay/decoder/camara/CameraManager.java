@@ -218,7 +218,9 @@ public final class CameraManager {
                 height = MAX_FRAME_HEIGHT;
             }
             int leftOffset = (screenResolution.x - width) / 2;
-            int topOffset = (screenResolution.y - height) / 2;
+            Log.v("app", "y ROSA: "+ screenResolution.y+" alto: "+height);
+            ///421 315
+            int topOffset = (int) (screenResolution.y - height) / 2;
             framingRect = new Rect(leftOffset, topOffset, leftOffset + width, topOffset + height);
             Log.d(TAG, "Calculated framing rect: " + framingRect);
         }

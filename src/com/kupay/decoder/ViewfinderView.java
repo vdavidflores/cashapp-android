@@ -41,7 +41,6 @@ import com.kupay.decoder.camara.CameraManager;
  */
 public final class ViewfinderView extends View {
 
-    private static final int[] SCANNER_ALPHA = { 0, 64, 128, 192, 255, 192, 128, 64 };
     private static final long ANIMATION_DELAY = 80L;
     private static final int CURRENT_POINT_OPACITY = 0xA0;
     private static final int MAX_RESULT_POINTS = 20;
@@ -53,9 +52,7 @@ public final class ViewfinderView extends View {
     private final int maskColor;
     private final int resultColor;
     private final int frameColor;
-    private final int laserColor;
     private final int resultPointColor;
-    private int scannerAlpha;
     private List<ResultPoint> possibleResultPoints;
     private List<ResultPoint> lastPossibleResultPoints;
 
@@ -70,9 +67,8 @@ public final class ViewfinderView extends View {
         maskColor = resources.getColor(R.color.viewfinder_mask);
         resultColor = resources.getColor(R.color.result_view);
         frameColor = resources.getColor(R.color.viewfinder_frame);
-        laserColor = resources.getColor(R.color.viewfinder_laser);
+        resources.getColor(R.color.viewfinder_laser);
         resultPointColor = resources.getColor(R.color.possible_result_points);
-        scannerAlpha = 0;
         possibleResultPoints = new ArrayList<ResultPoint>(5);
         lastPossibleResultPoints = null;
     }
@@ -109,15 +105,7 @@ public final class ViewfinderView extends View {
             canvas.drawRect(frame.left, frame.top + 2, frame.left + 2, frame.bottom - 1, paint);
             canvas.drawRect(frame.right - 1, frame.top, frame.right + 1, frame.bottom - 1, paint);
             canvas.drawRect(frame.left, frame.bottom - 1, frame.right + 1, frame.bottom + 1, paint);
-            /*
-            // Draw a red "laser scanner" line through the middle to show
-            // decoding is active
-            paint.setColor(laserColor);
-            paint.setAlpha(SCANNER_ALPHA[scannerAlpha]);
-            scannerAlpha = (scannerAlpha + 1) % SCANNER_ALPHA.length;
-            int middle = frame.height() / 2 + frame.top;
-            canvas.drawRect(frame.left + 2, middle - 1, frame.right - 1, middle + 2, paint);
-*/
+
             Rect previewFrame = cameraManager.getFramingRectInPreview();
             float scaleX = frame.width() / (float) previewFrame.width();
             float scaleY = frame.height() / (float) previewFrame.height();

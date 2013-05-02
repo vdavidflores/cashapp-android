@@ -1,13 +1,6 @@
 package com.kupay;
 
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.EnumSet;
-import java.util.Map;
-import java.util.Set;
-
 import com.google.zxing.Result;
-import com.google.zxing.ResultMetadataType;
 import com.kupay.decoder.DecoderActivity;
 import com.kupay.decoder.result.ResultHandler;
 import com.kupay.decoder.result.ResultHandlerFactory;
@@ -18,13 +11,9 @@ import android.os.Bundle;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 
 public class capturaQR extends DecoderActivity{
@@ -32,11 +21,8 @@ public class capturaQR extends DecoderActivity{
 	 
 
 		   private static final String TAG = capturaQR.class.getSimpleName();
-		    private static final Set<ResultMetadataType> DISPLAYABLE_METADATA_TYPES = EnumSet.of(ResultMetadataType.ISSUE_NUMBER, ResultMetadataType.SUGGESTED_PRICE,
-		            ResultMetadataType.ERROR_CORRECTION_LEVEL, ResultMetadataType.POSSIBLE_COUNTRY);
+		
 
-		    private TextView statusView = null;
-		    private View resultView = null;
 		    private boolean inScanMode = false;
 			private View viewfinderView;
 
@@ -45,8 +31,7 @@ public class capturaQR extends DecoderActivity{
 		        setContentView(R.layout.capture);
 		        Log.v(TAG, "onCreate()");
 
-		        resultView = findViewById(R.id.result_view);
-		        statusView = (TextView) findViewById(R.id.status_view);
+
 
 		        inScanMode = false;
 		    }
@@ -68,7 +53,7 @@ public class capturaQR extends DecoderActivity{
 		        Log.v(TAG, "onPause()");
 		    }
 
-		    @Override
+		   /* @Override
 		    public boolean onKeyDown(int keyCode, KeyEvent event) {
 		        if (keyCode == KeyEvent.KEYCODE_BACK) {
 		            if (inScanMode)
@@ -78,7 +63,7 @@ public class capturaQR extends DecoderActivity{
 		            return true;
 		        }
 		        return super.onKeyDown(keyCode, event);
-		    }
+		    }*/
 
 		    @Override
 		    public void handleDecode(Result rawResult, Bitmap barcode) {
@@ -90,18 +75,10 @@ public class capturaQR extends DecoderActivity{
 
 		    public void showScanner() {
 		        inScanMode = true;
-		        resultView.setVisibility(View.GONE);
-		        statusView.setText(R.string.msg_default_status);
-		        statusView.setVisibility(View.VISIBLE);
 		        viewfinderView.setVisibility(View.VISIBLE);
 		    }
 
-		    protected void showResults() {
-		        inScanMode = false;
-		        statusView.setVisibility(View.GONE);
-		        viewfinderView.setVisibility(View.GONE);
-		        resultView.setVisibility(View.VISIBLE);
-		    }
+		    
 
 		    // Put up our own UI for how to handle the decodBarcodeFormated contents.
 		    private void handleDecodeInternally(Result rawResult, ResultHandler resultHandler, Bitmap barcode) {
