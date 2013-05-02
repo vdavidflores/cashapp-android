@@ -13,7 +13,9 @@ import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 
 public class capturaQR extends DecoderActivity{
@@ -28,27 +30,33 @@ public class capturaQR extends DecoderActivity{
 
 		    public void onCreate(Bundle icicle) {
 		        super.onCreate(icicle);
-		        setContentView(R.layout.capture);
+		      //  setContentView(R.layout.capture);
 		        Log.v(TAG, "onCreate()");
 
 
 
 		        inScanMode = false;
 		    }
+		    @Override
+			public View onCreateView(LayoutInflater inflater, ViewGroup container,
+					Bundle savedInstanceState) {
+				View c = View.inflate(getActivity().getApplicationContext(), R.layout.capture,null);
+				return c;
+		    }
 
-		    protected void onDestroy() {
+		    public void onDestroy() {
 		        super.onDestroy();
 		        Log.v(TAG, "onDestroy()");
 		    }
 
 		    @Override
-		    protected void onResume() {
+			public void onResume() {
 		        super.onResume();
 		        Log.v(TAG, "onResume()gitfg");
 		    }
 
 		    @Override
-		    protected void onPause() {
+			public void onPause() {
 		        super.onPause();
 		        Log.v(TAG, "onPause()");
 		    }
@@ -69,7 +77,7 @@ public class capturaQR extends DecoderActivity{
 		    public void handleDecode(Result rawResult, Bitmap barcode) {
 		        drawResultPoints(barcode, rawResult);
 
-		        ResultHandler resultHandler = ResultHandlerFactory.makeResultHandler(this, rawResult);
+		        ResultHandler resultHandler = ResultHandlerFactory.makeResultHandler(getActivity(), rawResult);
 		        handleDecodeInternally(rawResult, resultHandler, barcode);
 		    }
 
@@ -83,7 +91,7 @@ public class capturaQR extends DecoderActivity{
 		    // Put up our own UI for how to handle the decodBarcodeFormated contents.
 		    private void handleDecodeInternally(Result rawResult, ResultHandler resultHandler, Bitmap barcode) {
 		        onPause();
-		        AlertDialog.Builder builder_ = new AlertDialog.Builder(this);	
+		        AlertDialog.Builder builder_ = new AlertDialog.Builder(getActivity());	
 		        builder_.setTitle("HEY!");
 		        
 		        CharSequence displayContents = resultHandler.getDisplayContents();

@@ -27,18 +27,19 @@ import com.kupay.R;
 import com.kupay.decoder.camara.CameraManager;
 
 
-import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -47,7 +48,7 @@ import android.view.WindowManager;
  * 
  * @author Justin Wetherell (phishman3579@gmail.com)
  */
-public class DecoderActivity extends Activity implements IDecoderActivity, SurfaceHolder.Callback {
+public class DecoderActivity extends Fragment implements IDecoderActivity, SurfaceHolder.Callback {
 
     protected static final String TAG = DecoderActivity.class.getSimpleName();
 
@@ -59,12 +60,20 @@ public class DecoderActivity extends Activity implements IDecoderActivity, Surfa
     protected String characterSet = null;
 
     @Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		View c = View.inflate(getActivity().getApplicationContext(), R.layout.decoder,null);
+		viewfinderView = (ViewfinderView) c.findViewById(R.id.viewfinder_view);
+		
+		return c;
+    }
+    @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        setContentView(R.layout.decoder);
+        
         Log.v(TAG, "onCreate()");
 
-        Window window = getWindow();
+       Window window = getActivity().getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         handler = null;
@@ -72,27 +81,27 @@ public class DecoderActivity extends Activity implements IDecoderActivity, Surfa
     }
 
     @Override
-    protected void onDestroy() {
+	public void onDestroy() {
         super.onDestroy();
         Log.v(TAG, "onDestroy()");
     }
 
     @Override
-    protected void onResume() {
+	public void onResume() {
         super.onResume();
         Log.v(TAG, "onResume()");
 
         // CameraManager must be initialized here, not in onCreate().
-        if (cameraManager == null) cameraManager = new CameraManager(getApplication());
+        if (cameraManager == null) cameraManager = new CameraManager(getActivity().getApplicationContext());
 
         if (viewfinderView == null) {
-            viewfinderView = (ViewfinderView) findViewById(R.id.viewfinder_view);
+            viewfinderView = (ViewfinderView) getView().findViewById(R.id.viewfinder_view);
             viewfinderView.setCameraManager(cameraManager);
         }
         
         viewfinderView.setVisibility(View.VISIBLE);
 
-        SurfaceView surfaceView = (SurfaceView) findViewById(R.id.preview_view);
+        SurfaceView surfaceView = (SurfaceView) getView().findViewById(R.id.preview_view);
         SurfaceHolder surfaceHolder = surfaceView.getHolder();
         if (hasSurface) {
             // The activity was paused but not stopped, so the surface still
@@ -108,7 +117,7 @@ public class DecoderActivity extends Activity implements IDecoderActivity, Surfa
     }
 
     @Override
-    protected void onPause() {
+	public void onPause() {
         super.onPause();
         Log.v(TAG, "onPause()");
 
@@ -120,20 +129,13 @@ public class DecoderActivity extends Activity implements IDecoderActivity, Surfa
         cameraManager.closeDriver();
 
         if (!hasSurface) {
-            SurfaceView surfaceView = (SurfaceView) findViewById(R.id.preview_view);
+            SurfaceView surfaceView = (SurfaceView) getView().findViewById(R.id.preview_view);
             SurfaceHolder surfaceHolder = surfaceView.getHolder();
             surfaceHolder.removeCallback(this);
         }
     }
 
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_FOCUS || keyCode == KeyEvent.KEYCODE_CAMERA) {
-            // Handle these events so they don't launch the Camera app
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
-    }
+    
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
