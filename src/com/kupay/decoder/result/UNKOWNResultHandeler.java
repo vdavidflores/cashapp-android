@@ -39,9 +39,7 @@ public final class UNKOWNResultHandeler extends ResultHandler {
 
     @Override
     public CharSequence getDisplayContents() {
-   
         	return "codigo desconosido";
-		
     }
 
     @Override

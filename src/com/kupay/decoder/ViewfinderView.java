@@ -79,7 +79,7 @@ public final class ViewfinderView extends View {
 
     @Override
     public void onDraw(Canvas canvas) {
-       /* Rect frame = cameraManager.getFramingRect();
+     /*   Rect frame = cameraManager.getFramingRect();
         if (frame == null) {
             return;
         }
@@ -140,7 +140,7 @@ public final class ViewfinderView extends View {
             // Request another update at the animation interval, but only
             // repaint the laser line,
             // not the entire viewfinder mask.
-            postInvalidateDelayed(ANIMATION_DELAY, frame.left - POINT_SIZE, frame.top - POINT_SIZE, frame.right + POINT_SIZE, frame.bottom + POINT_SIZE);
+           // postInvalidateDelayed(ANIMATION_DELAY, frame.left - POINT_SIZE, frame.top - POINT_SIZE, frame.right + POINT_SIZE, frame.bottom + POINT_SIZE);
         }*/
     }
 

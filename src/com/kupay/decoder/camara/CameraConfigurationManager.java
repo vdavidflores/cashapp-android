@@ -69,7 +69,7 @@ public final class CameraConfigurationManager {
             width = height;
             height = temp;
         }*/
-        screenResolution = new Point(width,(int) (height/1.2));
+        screenResolution = new Point(width,(int) (height/1.9));
         Log.v(TAG, "resolutcion ancho: " + width+" , alto:"+height);
         cameraResolution = findBestPreviewSizeValue(parameters, screenResolution, false);
         Log.v("app", "resolucion es: "+cameraResolution);
