@@ -26,7 +26,7 @@ public class MainActivity extends FragmentActivity{
 		Log.v("app", "3");
 		b = new Bundle();
 		b.putString("key", "transferir");
-		mTabHost.addTab(mTabHost.newTabSpec("transferir").setIndicator("", getResources().getDrawable(R.layout.tran)), test.class, b);
+		mTabHost.addTab(mTabHost.newTabSpec("transferir").setIndicator("", getResources().getDrawable(R.layout.tran)), transferencia.class, b);
 		mTabHost.getTabWidget().getChildAt(1).setBackgroundResource(R.layout.bgcomp); 
 		//mTabHost.getChildAt(1).getLayoutParams().height = 80;
 		Log.v("app", "4");

@@ -28,13 +28,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+			<activity
+            android:name=".transferencia"
+            android:label="@string/app_name" 
+            android:screenOrientation="portrait"
+             android:clearTaskOnLaunch="true">
+        </activity>
  		<activity
             android:name=".capturaQR"
             android:label="@string/app_name" 
             android:screenOrientation="portrait"
              android:clearTaskOnLaunch="true">
         </activity>
+        
     </application>
 
 </manifest>
