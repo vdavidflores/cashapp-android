@@ -43,7 +43,7 @@
             android:layout_marginRight="30dp"
             android:layout_weight="1"
             android:ems="10"
-            android:hint="Mail"
+            android:hint="alguien@example.com"
             android:includeFontPadding="false"
             android:inputType="textEmailAddress"
             android:longClickable="true"
@@ -93,15 +93,26 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.58" >
+        android:layout_weight="0.58" 
+        android:layout_gravity="center">
 
-        <ImageView
-            android:id="@+id/imageView1"
-            android:layout_width="wrap_content"
-            android:layout_height="79dp"
+        <LinearLayout
+            android:layout_width="107dp"
+            android:layout_height="match_parent" >
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/enviar"
+            android:layout_width="109dip"
+            android:layout_height="79dip"
             android:layout_gravity="center"
-            android:layout_weight="0.10"
-            android:src="@drawable/benviar" />
+            android:background="@drawable/benviar" />
+
+        <LinearLayout
+            android:layout_width="123dp"
+            android:layout_height="match_parent" >
+        </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout
