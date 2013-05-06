@@ -37,22 +37,23 @@ public final class R {
         public static final int activity_vertical_margin=0x7f050001;
     }
     public static final class drawable {
-        public static final int blanco=0x7f020000;
-        public static final int ccbg=0x7f020001;
-        public static final int comp=0x7f020002;
-        public static final int comp2=0x7f020003;
-        public static final int home=0x7f020004;
-        public static final int ic_launcher=0x7f020005;
-        public static final int ku=0x7f020006;
-        public static final int kucolor=0x7f020007;
-        public static final int opciones=0x7f020008;
-        public static final int tran=0x7f020009;
-        public static final int tran2=0x7f02000a;
-        public static final int vent=0x7f02000b;
-        public static final int vent2=0x7f02000c;
+        public static final int benviar=0x7f020000;
+        public static final int blanco=0x7f020001;
+        public static final int ccbg=0x7f020002;
+        public static final int comp=0x7f020003;
+        public static final int comp2=0x7f020004;
+        public static final int home=0x7f020005;
+        public static final int ic_launcher=0x7f020006;
+        public static final int ku=0x7f020007;
+        public static final int kucolor=0x7f020008;
+        public static final int opciones=0x7f020009;
+        public static final int tran=0x7f02000a;
+        public static final int tran2=0x7f02000b;
+        public static final int vent=0x7f02000c;
+        public static final int vent2=0x7f02000d;
     }
     public static final class id {
-        public static final int action_settings=0x7f060012;
+        public static final int action_settings=0x7f060017;
         /**  Messages IDs 
          */
         public static final int auto_focus=0x7f060000;
@@ -60,7 +61,10 @@ public final class R {
         public static final int decode=0x7f060001;
         public static final int decode_failed=0x7f060002;
         public static final int decode_succeeded=0x7f060003;
+        public static final int editText1=0x7f060013;
+        public static final int editText2=0x7f060015;
         public static final int editando=0x7f060010;
+        public static final int enviar=0x7f060016;
         public static final int headerq=0x7f060007;
         public static final int imageView1=0x7f060008;
         public static final int imageView2=0x7f06000a;
@@ -72,6 +76,8 @@ public final class R {
         public static final int status_view=0x7f06000e;
         public static final int tabsLayout=0x7f06000f;
         public static final int text=0x7f060011;
+        public static final int textView1=0x7f060012;
+        public static final int textView2=0x7f060014;
         public static final int viewfinder_view=0x7f06000d;
     }
     public static final class layout {
@@ -84,7 +90,8 @@ public final class R {
         public static final int test=0x7f030006;
         public static final int textcomp=0x7f030007;
         public static final int tran=0x7f030008;
-        public static final int vent=0x7f030009;
+        public static final int transferencia=0x7f030009;
+        public static final int vent=0x7f03000a;
     }
     public static final class menu {
         public static final int main=0x7f090000;
