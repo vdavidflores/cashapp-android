@@ -34,27 +34,16 @@
                 android:id="@+id/cantidad"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:gravity="center"
+                android:layout_marginTop="13dp"
+                android:layout_marginRight="10dp"
+                android:gravity="right"
                 android:text="$1000"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="#ffffff" />
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="55dp"
-            android:layout_height="fill_parent"
-             >
-
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="match_parent"
-                android:layout_height="25dp"
-                android:layout_gravity="center"
-                android:src="@drawable/home" />
-
-        </LinearLayout>
-    </LinearLayout>
+            </LinearLayout>
 
     <FrameLayout
         android:id="@+id/realtabcontent"

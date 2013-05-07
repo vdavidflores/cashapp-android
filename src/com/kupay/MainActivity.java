@@ -14,6 +14,7 @@ public class MainActivity extends FragmentActivity{
 		setContentView(R.layout.activity_main);
 		 FragmentTabHost mTabHost = (FragmentTabHost) findViewById (android.R.id.tabhost);
 		 mTabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
+		 
 		
 		 Log.v("app", "2");
 
@@ -23,6 +24,7 @@ public class MainActivity extends FragmentActivity{
 		mTabHost.getTabWidget().getChildAt(0).setBackgroundResource(R.layout.bgcomp); 
 		mTabHost.getTabWidget().getChildAt(0).getLayoutParams().height = 100;
 		mTabHost.getTabWidget().setStripEnabled(false);
+		
 		//mTabHost.getChildAt(0).getLayoutParams().height = 80;
 		
 		Log.v("app", "3");
@@ -32,16 +34,20 @@ public class MainActivity extends FragmentActivity{
 		mTabHost.getTabWidget().getChildAt(1).setBackgroundResource(R.layout.bgcomp); 
 		mTabHost.getTabWidget().getChildAt(1).getLayoutParams().height = 100;
 		mTabHost.getTabWidget().setStripEnabled(false);
+		
 		//mTabHost.getChildAt(1).getLayoutParams().height = 80;
 		Log.v("app", "4");
 		
 		b = new Bundle();
 		b.putString("key", "cobrar");
-		mTabHost.addTab(mTabHost.newTabSpec("cobrar").setIndicator("",getResources().getDrawable(R.layout.vent)),test.class, b);
+		mTabHost.addTab(mTabHost.newTabSpec("cobrar").setIndicator("",getResources().getDrawable(R.layout.vent)),venta.class, b);
 		mTabHost.getTabWidget().getChildAt(2).setBackgroundResource(R.layout.bgcomp);
 		mTabHost.getTabWidget().getChildAt(2).getLayoutParams().height = 100;
 		mTabHost.getTabWidget().setStripEnabled(false);
-		//mTabHost.getChildAt(2).getLayoutParams().height = 80;
+		
+		
+		mTabHost.setCurrentTab(2);
+		
 		Log.v("app", "5");
 
 	}
