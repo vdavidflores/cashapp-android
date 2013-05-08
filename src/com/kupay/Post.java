@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
+import org.apache.http.ParseException;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -14,6 +15,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.util.Log;
@@ -35,7 +37,7 @@ public class Post {
 	  }
 	  
 	  
-	  public JSONObject exec() throws ClientProtocolException, IOException{
+	  public JSONObject exec() throws ClientProtocolException, IOException, ParseException, JSONException{
 		  Log.v("post", "1");
 		 
 			  
@@ -45,7 +47,7 @@ public class Post {
 		     pares = new ArrayList<NameValuePair>(2);
 		     Log.v("post", "3");
 		       pares.add(new BasicNameValuePair("ACCION", Integer.toString(accion)));
-		       pares.add(new BasicNameValuePair("DATA", "dsaf"));
+		       pares.add(new BasicNameValuePair("DATA", obj.toString()));
 		       Log.v("post", "4");
 		       
 		       
@@ -55,8 +57,8 @@ public class Post {
 				 Log.v("post", "5");
 				 HttpResponse httpresponse = httpclient.execute(httppost);
 			
-		       Log.v("app", EntityUtils.toString(httpresponse.getEntity()));
-		       //httpresponse.getEntity()
+		       response = new JSONObject(EntityUtils.toString(httpresponse.getEntity()));
+		       Log.v("app", "YYYYYYY");
        return response;
 	  }
 	  
