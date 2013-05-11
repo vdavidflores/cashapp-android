@@ -2,17 +2,19 @@ package com.kupay;
 
 import java.io.IOException;
 
+import org.apache.http.ParseException;
 import org.apache.http.client.ClientProtocolException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.telephony.TelephonyManager;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,9 +28,11 @@ public class transferencia extends Fragment{
 	TextView para;
 	TextView cantidad;
 	TextView cc;
-	String resultado = null;
+	
 	JSONObject datos;
+	Post post;
 	protected AlertDialog dialog;
+	private ProgressDialog progress;
 	
 	// RESULTADOS
 	final String TRANSACCION_EXITOSA = "TRANSACCION_EXITOSA";
@@ -92,46 +96,11 @@ public class transferencia extends Fragment{
 	private void transferir(){
 		TelephonyManager telephonyManager = (TelephonyManager) getActivity().getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
     	cc = (TextView) getActivity().findViewById(R.id.cantidad);
-    	JSONObject data = new JSONObject();
     	
-    	
-    	try {
-			data.put("receptor", para.getText());
-			data.put("emisor", "00000001");
-			data.put("cantidad", cantidad.getText());
-			//data.put("imei", telephonyManager.getDeviceId());
-			data.put("imei", "123456789012345");
-			data.put("pin", 1234);
-			
-		Post post = new Post(1,data);
-    	JSONObject response = post.exec();
-    	Log.v("app","Respuesta de post: "+response.toString());
-    	
-    	resultado = response.getString("RESULTADO");
 
-    		if (TRANSACCION_EXITOSA.toString().equals(resultado)){
-    			
-				datos = response.getJSONObject("DATOS");
-				Log.v("app","Datos: "+ datos.toString());
-				cc.setText("$"+Integer.toString(datos.getInt("SALDO_POST_TRASACCION")));
-    		}else if(TRANSACCION_FALLIDA.toString().equals(resultado)){
-    			transaccionFallida(datos.getString("CAUSA_FALLA").toString());
-    		}else{
-    			int duracion=Toast.LENGTH_SHORT;
-                Toast mensaje=Toast.makeText(getActivity(), "error desconosido", duracion);
-                mensaje.show();
-    		}
     	
-    	} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClientProtocolException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Transaccon tarea = new Transaccon();
+		tarea.execute();
 	}
 	
 	private void transaccionFallida(String causaFalla){
@@ -165,6 +134,98 @@ public class transferencia extends Fragment{
     	    }
     	});
 	}
+	
+	
+	
+	
+    private class Transaccon extends AsyncTask<Void, Integer, JSONObject>{
+   	 
+     
+
+		@Override
+         protected void onPreExecute() {
+			progress = ProgressDialog.show(getActivity(), "Transaccion es proceso", "procesando transacción");
+			
+          }
+         
+          
+		protected JSONObject doInBackground(Void... params) {
+			JSONObject data = new JSONObject();
+			try {
+    			
+    				data.put("receptor", para.getText());
+    			
+    			data.put("emisor", "00000001");
+    			data.put("cantidad", cantidad.getText());
+    			data.put("imei", "123456789012345");
+    			data.put("pin", 1234);
+    			
+    			} catch (JSONException e) {
+    				// TODO Auto-generated catch block
+    				e.printStackTrace();
+    			}
+    		post = new Post(1,data);
+        	  JSONObject response = null;
+        	  try {
+        		  response = post.exec();
+			} catch (ClientProtocolException e) {
+				// TODO Auto-generated catch block
+				Log.v("app", "ask1");
+				e.printStackTrace();
+			} catch (ParseException e) {
+				Log.v("app", "ask2");
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				Log.v("app", "ask3");
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (JSONException e) {
+				Log.v("app", "ask4");
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+          	
+          	Log.v("post",response.toString());
+  
+        	  return response;
+	
+          }
+        @Override
+          protected void onProgressUpdate (Integer... valores) {
+        
+          }
+        
+        @Override
+          protected void onPostExecute(JSONObject response) {
+        	progress.dismiss();
+       Log.v("app", response.toString());
+      
+        	try {
+			 String resultado = response.getString("RESULTADO");
+
+      		if (TRANSACCION_EXITOSA.toString().equals(resultado) ){
+      			
+  				datos = response.getJSONObject("DATOS");
+  				Log.v("app","Datos: "+ datos.toString());
+  				cc.setText("$"+Integer.toString(datos.getInt("SALDO_POST_TRASACCION")));
+      		}else if(TRANSACCION_FALLIDA.toString().equals(resultado)){
+      			transaccionFallida(datos.getString("CAUSA_FALLA").toString());
+      		}else{
+      			int duracion=Toast.LENGTH_SHORT;
+                  Toast mensaje=Toast.makeText(getActivity(), "error desconosido", duracion);
+                  mensaje.show();
+      		}
+        	} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+      	
+        	
+        }
+
+		
+    }
 	
 }
 		
