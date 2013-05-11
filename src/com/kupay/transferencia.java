@@ -167,17 +167,13 @@ public class transferencia extends Fragment{
     		post = new Post(1,data);
         	  JSONObject response = null;
         	  try {
-        		  response = post.exec();
+        		  response = post.exec(getActivity().getApplicationContext());
 			} catch (ClientProtocolException e) {
 				// TODO Auto-generated catch block
 				Log.v("app", "ask1");
 				e.printStackTrace();
 			} catch (ParseException e) {
 				Log.v("app", "ask2");
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				Log.v("app", "ask3");
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (JSONException e) {

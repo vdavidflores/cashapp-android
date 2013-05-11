@@ -18,6 +18,11 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 
 /*
@@ -25,7 +30,7 @@ import android.util.Log;
  */
 
 public class Post {
-	
+	 HttpResponse httpresponse;
 	int accion;
 	JSONObject obj;
 	private  List<NameValuePair> pares;
@@ -36,14 +41,17 @@ public class Post {
 		  accion = accion_;
 	  }
 	  
+
 	  
-	  public JSONObject exec() throws ClientProtocolException, IOException, ParseException, JSONException{
+	  
+	  public JSONObject exec(Context c ) throws ClientProtocolException, ParseException, JSONException{
 		  Log.v("post", "1");
-		 
+		 if (HayConexion(c)){
+			 Log.v("post", "2");
 			  
-		HttpClient httpclient = new DefaultHttpClient();
-		  Log.v("post", "2");
-		     HttpPost httppost = new HttpPost("http://10.1.18.122/kuCloudApp/index.php");
+			HttpClient httpclient = new DefaultHttpClient();
+		  	Log.v("post", "2");
+		     HttpPost httppost = new HttpPost("http://10.1.22.223/kuCloudApp/index.php");
 		     pares = new ArrayList<NameValuePair>(2);
 		     Log.v("post", "3");
 		       pares.add(new BasicNameValuePair("ACCION", Integer.toString(accion)));
@@ -52,15 +60,42 @@ public class Post {
 		       
 		       
 		      
-		    	//httppost.setHeader("Content-Type", "application/x-www-form-urlencoded");
-				httppost.setEntity(new UrlEncodedFormEntity(pares));
-				 Log.v("post", "5");
-				 HttpResponse httpresponse = httpclient.execute(httppost);
-			
-		       response = new JSONObject(EntityUtils.toString(httpresponse.getEntity()));
-		       Log.v("app", "YYYYYYY");
-       return response;
+		    	httppost.setHeader("Content-Type", "application/x-www-form-urlencoded");
+				
+				try {
+					httppost.setEntity(new UrlEncodedFormEntity(pares));
+					 Log.v("post", "5");
+					
+					httpresponse = httpclient.execute(httppost);
+				
+				 Log.v("post", "6");
+				 if ( httpresponse != null){
+		
+						response = new JSONObject(EntityUtils.toString(httpresponse.getEntity()));
+						
+				 }
+				 
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					Log.v("post", "5.4");
+					return  new JSONObject().put("RESULTADO", "CONEXION_FALLIDA");
+					//Log.v("post", "5.5");
+					//e.printStackTrace();
+				} 
+				return response;
+		 }else{
+				//responfail.put("RESULTADO", "CONEXION_FALLIDA");
+			 return  new JSONObject().put("RESULTADO", "CONEXION_FALLIDA");
+		 }
 	  }
 	  
+	  
+	  public boolean HayConexion(Context c){//Detectar si hay conexion de datos (Internet)
+	        ConnectivityManager cm = (ConnectivityManager)c.getSystemService(Context.CONNECTIVITY_SERVICE);
+	        NetworkInfo ni = cm.getActiveNetworkInfo();
+	        
+	        if(ni != null && ni.isConnected()) return true;
+	        else return false;
+	    }
 	
 }
