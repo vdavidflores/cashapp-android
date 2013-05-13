@@ -1,11 +1,8 @@
 package com.kupay;
 
-import java.io.IOException;
-
-import org.apache.http.ParseException;
-import org.apache.http.client.ClientProtocolException;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
@@ -13,29 +10,45 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends FragmentActivity{
+public class MainActivity extends FragmentActivity {
 	ProgressDialog	progress;
 	FragmentTabHost mTabHost;
 	Button actCC;
+	 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Log.v("app", "m1");
 		setContentView(R.layout.activity_main);
 		  mTabHost = (FragmentTabHost) findViewById (android.R.id.tabhost);
+		  actCC = (Button) findViewById(R.id.actCC); 
 		 mTabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
-		 
-		
+		 Eventos();
 		 ActualizarCC cc = new ActualizarCC();
 		 cc.execute();
 		 tabs();
 		
 
 	}
+	
+	
+	
+    public void Eventos(){
+   //cambia el estado        
+        
+      actCC.setOnClickListener(new View.OnClickListener() {
+          public void onClick(View view) { 
+        	  Log.v("app", "actualizar cc..");
+        	  ActualizarCC cc = new ActualizarCC();
+        	 cc.execute();
+        	 
+          }} );
+    }
 	
 	/*@Override
 	protected void onResume() {
@@ -71,7 +84,8 @@ public class MainActivity extends FragmentActivity{
 		Log.v("app", "m5");
 	}
 	
-	
+	///////////////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////////////
 	private class ActualizarCC extends AsyncTask<Void, Integer, JSONObject>{
 	   	 
 		final String ACTUALIZACION_CC_EXITOSA = "ACTUALIZACION_CC_EXITOSA";
@@ -119,7 +133,7 @@ public class MainActivity extends FragmentActivity{
         
         @Override
           protected void onPostExecute(JSONObject response) {
-        /*	try {
+        	try {
         	//	progress.dismiss();
    			 String resultado = response.getString("RESULTADO");
    			Log.v("app","RESult: "+ resultado.toString());
@@ -146,7 +160,7 @@ public class MainActivity extends FragmentActivity{
            	} catch (JSONException e) {
    				// TODO Auto-generated catch block
    				e.printStackTrace();
-   			}*/
+   			}
         }
 		
     }

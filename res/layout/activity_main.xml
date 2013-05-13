@@ -46,12 +46,12 @@
             android:layout_height="fill_parent"
              >
 
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="match_parent"
-                android:layout_height="25dp"
+            <Button
+                android:id="@+id/actCC"
+                android:layout_width="35dp"
+                android:layout_height="30dp"
                 android:layout_gravity="center"
-                android:src="@drawable/home" />
+               android:background="@drawable/refresh" />
 
         </LinearLayout>
     </LinearLayout>

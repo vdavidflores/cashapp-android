@@ -48,12 +48,14 @@ public final class R {
         public static final int ku72=0x7f020008;
         public static final int kucolor=0x7f020009;
         public static final int opciones=0x7f02000a;
-        public static final int tran=0x7f02000b;
-        public static final int tran2=0x7f02000c;
-        public static final int vent=0x7f02000d;
-        public static final int vent2=0x7f02000e;
+        public static final int refresh=0x7f02000b;
+        public static final int tran=0x7f02000c;
+        public static final int tran2=0x7f02000d;
+        public static final int vent=0x7f02000e;
+        public static final int vent2=0x7f02000f;
     }
     public static final class id {
+        public static final int actCC=0x7f06000a;
         public static final int action_settings=0x7f060017;
         /**  Messages IDs 
          */
@@ -66,7 +68,6 @@ public final class R {
         public static final int enviar=0x7f060016;
         public static final int headerq=0x7f060007;
         public static final int imageView1=0x7f060008;
-        public static final int imageView2=0x7f06000a;
         public static final int inputCantidad=0x7f060015;
         public static final int inputPara=0x7f060013;
         public static final int preview_view=0x7f06000c;

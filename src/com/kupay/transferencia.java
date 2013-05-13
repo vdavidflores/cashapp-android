@@ -144,7 +144,7 @@ public class transferencia extends Fragment{
 
 		@Override
          protected void onPreExecute() {
-			progress = ProgressDialog.show(getActivity(), "Transaccion es proceso", "procesando transacción");
+			progress = ProgressDialog.show(getActivity(), "Transaccion en proceso", "procesando transacción...");
 			
           }
          

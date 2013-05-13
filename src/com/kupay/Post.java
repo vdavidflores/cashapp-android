@@ -51,7 +51,7 @@ public class Post {
 			  
 			HttpClient httpclient = new DefaultHttpClient();
 		  	Log.v("post", "2");
-		     HttpPost httppost = new HttpPost("http://10.1.22.223/kuCloudApp/index.php");
+		     HttpPost httppost = new HttpPost("http://10.1.25.138/kuCloudApp/index.php");
 		     pares = new ArrayList<NameValuePair>(2);
 		     Log.v("post", "3");
 		       pares.add(new BasicNameValuePair("ACCION", Integer.toString(accion)));
