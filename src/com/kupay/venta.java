@@ -15,10 +15,14 @@ public class venta extends ListFragment {
   public void onActivityCreated(Bundle savedInstanceState) { 
 	  super.onActivityCreated(savedInstanceState);
     
-    String[] values = new String[] { "El Principito", "Playera Zara", "libro Lolita",
-        "juguete rojo", "tenis adidas", "Celular Verde"};
-    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-        android.R.layout.simple_list_item_1, values);
+    ventaw weather_data[]= new ventaw[] { 
+    		new ventaw(R.drawable.compm, "Compra" ),
+            new ventaw(R.drawable.mdm, "Depósito"),
+            new ventaw(R.drawable.tranm, "Transacción"),
+            new ventaw(R.drawable.tranm, "Transacción"),
+            new ventaw(R.drawable.compm, "Compra")
+    		};
+    WeatherAdapter adapter = new WeatherAdapter(getActivity(), R.layout.listview_item_row, weather_data);
 setListAdapter(adapter);
   }
 

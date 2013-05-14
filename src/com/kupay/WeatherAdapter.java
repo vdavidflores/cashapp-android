@@ -37,6 +37,7 @@ public class WeatherAdapter extends ArrayAdapter<ventaw>{
             holder.imgIcon = (ImageView)row.findViewById(R.id.imgIcon);
             holder.txtTitle = (TextView)row.findViewById(R.id.txtTitle);
             
+            
             row.setTag(holder);
         }
         else
