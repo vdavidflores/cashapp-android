@@ -16,11 +16,11 @@ public class venta extends ListFragment {
 	  super.onActivityCreated(savedInstanceState);
     
     ventaw weather_data[]= new ventaw[] { 
-    		new ventaw(R.drawable.compm, "Compra" ),
-            new ventaw(R.drawable.mdm, "Depósito"),
-            new ventaw(R.drawable.tranm, "Transacción"),
-            new ventaw(R.drawable.tranm, "Transacción"),
-            new ventaw(R.drawable.compm, "Compra")
+    		new ventaw(R.drawable.compm, "Compra  a  de $" ),
+            new ventaw(R.drawable.mdm, "Depósito  de  $"),
+            new ventaw(R.drawable.venm, "Venta  a  de $"),
+            new ventaw(R.drawable.tranm, "Transferencia  a  de $"),
+            new ventaw(R.drawable.compm, "Compra  a  de $")
     		};
     WeatherAdapter adapter = new WeatherAdapter(getActivity(), R.layout.listview_item_row, weather_data);
 setListAdapter(adapter);
