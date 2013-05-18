@@ -165,7 +165,7 @@ setListAdapter(adapter);*/
   			
   				
   			
-  			data.put("usr", "00000003");
+  			data.put("usr", "00000001");
   			data.put("dias", 1);
   			data.put("imei", "123456789012345");
   			data.put("pin", 1234);
