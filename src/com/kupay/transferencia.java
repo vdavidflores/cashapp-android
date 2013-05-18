@@ -212,7 +212,7 @@ public class transferencia extends Fragment{
     			
     				data.put("receptor", para.getText());
     			
-    			data.put("emisor", "00000001");
+    			data.put("emisor", "00000003");
     			data.put("cantidad", cantidad.getText());
     			data.put("imei", "123456789012345");
     			data.put("pin", pin);
