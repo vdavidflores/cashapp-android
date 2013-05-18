@@ -154,7 +154,7 @@ setListAdapter(adapter);*/
 
 		@Override
        protected void onPreExecute() {
-			progress = ProgressDialog.show(getActivity(), "Transaccion en proceso", "procesando transacción...");
+			progress = ProgressDialog.show(getActivity(), "Cargando", "Cargando lista...");
 			Log.v("movs", "1");
         }
        
@@ -231,28 +231,30 @@ setListAdapter(adapter);*/
         	
         	int tipo=0;
         	int monto=0;
+        	String fecha = null;
         	
         	try {
         		;
         	tipo = jay.getJSONObject(i).getInt("TIPO");
         	monto = jay.getJSONObject(i).getInt("MONTO");
+        	fecha = jay.getJSONObject(i).getString("FECHA");
         	 
         	} catch (JSONException e) {}
         	    	    	    	
         	switch (tipo) {
 
         	case 1:
-        	weather_data[i] =  new ventaw(R.drawable.mdm, "Abono de $"+monto);
+        	weather_data[i] =  new ventaw(R.drawable.mdm, "Abono de $"+monto+"      "+fecha);
         	break;
 
         	case 2:
-        	weather_data[i] =  new ventaw(R.drawable.compm, "Compra de $"+monto);
+        	weather_data[i] =  new ventaw(R.drawable.compm, "Compra de $"+monto+"      "+fecha);
         	break;
         	case 3:
-            	weather_data[i] =  new ventaw(R.drawable.tranm, "Transferencia de $"+monto);
+            	weather_data[i] =  new ventaw(R.drawable.tranm, "Transferencia de $"+monto+"      "+fecha);
             	break;
         	default:
-        	weather_data[i] =  new ventaw(R.drawable.mdm, "Movimiento Desconocido"+monto);
+        	weather_data[i] =  new ventaw(R.drawable.mdm, "Movimiento Desconocido"+monto+"      "+fecha);
         	break;
         	}
         }
