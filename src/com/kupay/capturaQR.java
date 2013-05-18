@@ -216,6 +216,7 @@ public class capturaQR extends DecoderActivity{
 								qr = "";
 							}
 						});
+						
 		  		    	dialog = builder_.create();
 		  		    	dialog.show();
 		  				
@@ -223,10 +224,20 @@ public class capturaQR extends DecoderActivity{
 		  				Log.v("app","Datos: "+ datos.toString());
 		      		}else if(OPERACION_NO_DISPONIBLE.toString().equals(resultado)){
 		      			
-		      			//Lo que susede si no esta disponible la operacion 
+		      			builder_.setTitle("Operacion no disponible");
+						builder_.setMessage("El codigo detectado no esta disponible, probablemente ya fue usado o se encuentra desactivado.");
+						
+						builder_.setNeutralButton("Aceptar", new DialogInterface.OnClickListener() {
+			                public void onClick(DialogInterface dialog, int id) {
+			                     dialog.dismiss();
+			                     qr = "";
+			                }
+			            });
+						dialog = builder_.create();
+		  		    	dialog.show();
 		      		}else{
 		      			int duracion=Toast.LENGTH_LONG;
-		                  Toast mensaje=Toast.makeText(getActivity(), "Operacion no disponible", duracion);
+		                  Toast mensaje=Toast.makeText(getActivity(), "Operacion no encontrada", duracion);
 		                  mensaje.show();
 		      		}
 		        	} catch (JSONException e) {
