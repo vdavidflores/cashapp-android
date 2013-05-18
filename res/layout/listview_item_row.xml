@@ -10,12 +10,12 @@
     >
     
      <ImageView android:id="@+id/imgIcon"
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
+        android:layout_width="80dp"
+        android:layout_height="57dp"
         android:gravity="center_vertical"
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginRight="15dp"
+        android:layout_marginRight="0dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp" />
         

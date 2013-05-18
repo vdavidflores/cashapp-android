@@ -13,11 +13,14 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.telephony.TelephonyManager;
+import android.text.InputType;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;   
 import android.widget.Toast;
 
@@ -26,7 +29,7 @@ public class transferencia extends Fragment{
 	TextView para;
 	TextView cantidad;
 	TextView cc;
-	
+	int pin;
 	JSONObject datos;
 	Post post;
 	protected AlertDialog dialog;
@@ -70,7 +73,7 @@ public class transferencia extends Fragment{
         		builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
         			
                     public void onClick(DialogInterface dialog, int id) {
-                    transferir();
+                    	pin();
     				}
                 });
         		builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -100,6 +103,60 @@ public class transferencia extends Fragment{
 		Transaccon tarea = new Transaccon();
 		tarea.execute();
 	}
+	
+	
+	
+	private void pin(){
+	
+		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+		builder.setIcon(R.drawable.pin);
+		builder.setTitle("Ingresa tu Pin");
+		builder.setMessage("Inserta tu Pin");
+		
+		
+		final EditText Password = new EditText(getActivity());
+		
+		builder.setView(Password);
+		Password.setGravity(Gravity.CENTER);
+	     Password.setHint("pin");
+	     Password.setWidth(200);
+		 Password.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+		
+		 builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+			
+            public void onClick(DialogInterface dialog, int id) {
+            
+            	
+            	 pin = Integer.parseInt(Password.getEditableText().toString()) ;
+           	// Toast.makeText(getActivity(),pin,Toast.LENGTH_LONG).show(); 
+            	transferir();
+			}
+        });
+		builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+            	enviar.setText("");
+            	para.setText("");
+            }
+        });
+
+		dialog = builder.create();
+    	dialog.show();
+    
+        	
+    	
+    }	
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	private void transaccionFallida(String causaFalla){
 		
@@ -153,10 +210,10 @@ public class transferencia extends Fragment{
     			
     				data.put("receptor", para.getText());
     			
-    			data.put("emisor", "00000001");
+    			data.put("emisor", "00000003");
     			data.put("cantidad", cantidad.getText());
     			data.put("imei", "123456789012345");
-    			data.put("pin", 1234);
+    			data.put("pin", pin);
     			
     			} catch (JSONException e) {
     				// TODO Auto-generated catch block
@@ -208,7 +265,7 @@ public class transferencia extends Fragment{
       			Log.v("app", "pst-4");
       			transaccionFallida(datos.getString("CAUSA_FALLA").toString());
       		}else{
-      			int duracion=Toast.LENGTH_SHORT;
+      			int duracion=Toast.LENGTH_LONG;
                   Toast mensaje=Toast.makeText(getActivity(), "error desconosido", duracion);
                   mensaje.show();
       		}
