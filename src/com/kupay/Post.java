@@ -46,6 +46,7 @@ public class Post {
 	  
 	  public JSONObject exec(Context c ) throws ClientProtocolException, ParseException, JSONException{
 		  Log.v("post", "1");
+		  String respuesta= "";
 		 if (HayConexion(c)){
 			 Log.v("post", "2");
 			  
@@ -70,14 +71,14 @@ public class Post {
 				
 				 Log.v("post", "6");
 				 if ( httpresponse != null){
-		
-						response = new JSONObject(EntityUtils.toString(httpresponse.getEntity()));
+					 respuesta = EntityUtils.toString(httpresponse.getEntity());
+						response = new JSONObject(respuesta);
 						
 				 }
 				 
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					Log.v("post", "5.4");
+					Log.v("post", "5.4: "+respuesta);
 					return  new JSONObject().put("RESULTADO", "CONEXION_FALLIDA");
 					//Log.v("post", "5.5");
 					//e.printStackTrace();
@@ -85,7 +86,7 @@ public class Post {
 				return response;
 		 }else{
 				//responfail.put("RESULTADO", "CONEXION_FALLIDA");
-			 return  new JSONObject().put("RESULTADO", "CONEXION_FALLIDA");
+			 return  new JSONObject().put("RESULTADO", "NO_HAY_CONEXION");
 		 }
 	  }
 	  

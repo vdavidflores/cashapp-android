@@ -1,7 +1,5 @@
 package com.kupay;
 
-import java.io.IOException;
-
 import org.apache.http.ParseException;
 import org.apache.http.client.ClientProtocolException;
 import org.json.JSONException;
@@ -195,17 +193,19 @@ public class transferencia extends Fragment{
         @Override
           protected void onPostExecute(JSONObject response) {
         	progress.dismiss();
-       Log.v("app", response.toString());
+       Log.v("app", "pst-1");
       
         	try {
 			 String resultado = response.getString("RESULTADO");
-
+			 datos = response.getJSONObject("DATOS");
       		if (TRANSACCION_EXITOSA.toString().equals(resultado) ){
-      			
-  				datos = response.getJSONObject("DATOS");
+      	       Log.v("app", "pst-2");
   				Log.v("app","Datos: "+ datos.toString());
   				cc.setText("$"+Integer.toString(datos.getInt("SALDO_POST_TRASACCION")));
       		}else if(TRANSACCION_FALLIDA.toString().equals(resultado)){
+      	       Log.v("app", "pst-3");
+      			Log.v("app","Causa falla: "+datos.getString("CAUSA_FALLA").toString());
+      			Log.v("app", "pst-4");
       			transaccionFallida(datos.getString("CAUSA_FALLA").toString());
       		}else{
       			int duracion=Toast.LENGTH_SHORT;
