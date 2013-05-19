@@ -18,18 +18,21 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
+import android.text.InputType;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
 public class capturaQR extends DecoderActivity{
 
-	
+	int pin;
 	String qr;
 	private AlertDialog dialog;
 
@@ -203,8 +206,9 @@ public class capturaQR extends DecoderActivity{
 							@Override
 							public void onClick(DialogInterface dialog,
 									int which) {
-								ejecutarQR ejqr = new ejecutarQR();
-								ejqr.execute();
+								
+								pin();
+								
 								
 							}
 						});
@@ -216,6 +220,7 @@ public class capturaQR extends DecoderActivity{
 								qr = "";
 							}
 						});
+						
 		  		    	dialog = builder_.create();
 		  		    	dialog.show();
 		  				
@@ -223,10 +228,20 @@ public class capturaQR extends DecoderActivity{
 		  				Log.v("app","Datos: "+ datos.toString());
 		      		}else if(OPERACION_NO_DISPONIBLE.toString().equals(resultado)){
 		      			
-		      			//Lo que susede si no esta disponible la operacion 
+		      			builder_.setTitle("Operacion no disponible");
+						builder_.setMessage("El codigo detectado no esta disponible, probablemente ya fue usado o se encuentra desactivado.");
+						
+						builder_.setNeutralButton("Aceptar", new DialogInterface.OnClickListener() {
+			                public void onClick(DialogInterface dialog, int id) {
+			                     dialog.dismiss();
+			                     qr = "";
+			                }
+			            });
+						dialog = builder_.create();
+		  		    	dialog.show();
 		      		}else{
 		      			int duracion=Toast.LENGTH_LONG;
-		                  Toast mensaje=Toast.makeText(getActivity(), "Operacion no disponible", duracion);
+		                  Toast mensaje=Toast.makeText(getActivity(), "Operacion no encontrada", duracion);
 		                  mensaje.show();
 		      		}
 		        	} catch (JSONException e) {
@@ -237,7 +252,45 @@ public class capturaQR extends DecoderActivity{
 		        	onResume();
 		        }
 		        
-				
+		    	private void pin(){
+		    		
+		    		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+		    		builder.setIcon(R.drawable.pin);
+		    		builder.setTitle("Ingresa tu Pin");
+		    		builder.setMessage("Inserta tu Pin");
+		    		
+		    		
+		    		final EditText Password = new EditText(getActivity());
+		    		
+		    		builder.setView(Password);
+		    		Password.setGravity(Gravity.CENTER);
+		    	     Password.setHint("pin");
+		    	     Password.setWidth(200);
+		    		 Password.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+		    		
+		    		 builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+		    			
+		                public void onClick(DialogInterface dialog, int id) {
+		                
+		                	
+		                	 pin = Integer.parseInt(Password.getEditableText().toString()) ;
+		               	// Toast.makeText(getActivity(),pin,Toast.LENGTH_LONG).show(); 
+		                	 ejecutarQR ejqr = new ejecutarQR();
+								ejqr.execute();
+		    			}
+		            });
+		    		builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+		                public void onClick(DialogInterface dialog, int id) {
+		                	dialog.dismiss();
+		                }
+		            });
+
+		    		dialog = builder.create();
+		        	dialog.show();
+		        
+		            	
+		        	
+		        }	
 		    }
 		    
 		    
@@ -267,7 +320,7 @@ public class capturaQR extends DecoderActivity{
 					try {
 		    			data.put("usr", "00000001");
 		    			data.put("imei", "123456789012345");
-		    			data.put("pin", 1234);
+		    			data.put("pin", pin);
 		    			data.put("qr", qr);
 		    			
 		    			} catch (JSONException e) {
@@ -313,8 +366,11 @@ public class capturaQR extends DecoderActivity{
 		      		if (TRANSACCION_EXITOSA.toString().equals(resultado) ){
 		      	       Log.v("app", "pst-2");
 		  				Log.v("app","Datos: "+ datos.toString());
-		  				cc = (TextView) getActivity().findViewById(R.id.cantidad);
-		  				cc.setText("$"+Integer.toString(datos.getInt("SALDO_POST_TRASACCION")));
+		  				//cc = (TextView) getActivity().findViewById(R.id.cantidad);
+		  				//cc.setText("$"+Integer.toString(datos.getInt("SALDO_POST_TRASACCION")));
+		  				AnimaSaldo actCC = new AnimaSaldo(getActivity());
+		  				actCC.execute(datos.getInt("SALDO_POST_TRASACCION"));
+		  				
 		      		}else if(TRANSACCION_FALLIDA.toString().equals(resultado)){
 		      	       Log.v("app", "pst-3");
 		      			Log.v("app","Causa falla: "+datos.getString("CAUSA_FALLA").toString());

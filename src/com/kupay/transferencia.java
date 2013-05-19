@@ -210,7 +210,7 @@ public class transferencia extends Fragment{
     			
     				data.put("receptor", para.getText());
     			
-    			data.put("emisor", "00000003");
+    			data.put("emisor", "00000001");
     			data.put("cantidad", cantidad.getText());
     			data.put("imei", "123456789012345");
     			data.put("pin", pin);
@@ -258,7 +258,10 @@ public class transferencia extends Fragment{
       		if (TRANSACCION_EXITOSA.toString().equals(resultado) ){
       	       Log.v("app", "pst-2");
   				Log.v("app","Datos: "+ datos.toString());
-  				cc.setText("$"+Integer.toString(datos.getInt("SALDO_POST_TRASACCION")));
+  				
+  				AnimaSaldo actcc = new AnimaSaldo(getActivity());
+  				actcc.execute(datos.getInt("SALDO_POST_TRASACCION"));
+  				//cc.setText("$"+Integer.toString(datos.getInt("SALDO_POST_TRASACCION")));
       		}else if(TRANSACCION_FALLIDA.toString().equals(resultado)){
       	       Log.v("app", "pst-3");
       			Log.v("app","Causa falla: "+datos.getString("CAUSA_FALLA").toString());
