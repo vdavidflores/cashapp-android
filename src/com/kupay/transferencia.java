@@ -258,7 +258,10 @@ public class transferencia extends Fragment{
       		if (TRANSACCION_EXITOSA.toString().equals(resultado) ){
       	       Log.v("app", "pst-2");
   				Log.v("app","Datos: "+ datos.toString());
-  				cc.setText("$"+Integer.toString(datos.getInt("SALDO_POST_TRASACCION")));
+  				
+  				AnimaSaldo actcc = new AnimaSaldo(getActivity());
+  				actcc.execute(datos.getInt("SALDO_POST_TRASACCION"));
+  				//cc.setText("$"+Integer.toString(datos.getInt("SALDO_POST_TRASACCION")));
       		}else if(TRANSACCION_FALLIDA.toString().equals(resultado)){
       	       Log.v("app", "pst-3");
       			Log.v("app","Causa falla: "+datos.getString("CAUSA_FALLA").toString());
