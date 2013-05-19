@@ -136,7 +136,7 @@ public class transferencia extends Fragment{
         });
 		builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-            	enviar.setText("");
+            	cantidad.setText("");
             	para.setText("");
             }
         });

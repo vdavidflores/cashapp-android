@@ -148,6 +148,10 @@ public class venta extends ListFragment {
         	case 3:
             	weather_data[i] =  new ventaw(R.drawable.tranm, "Transferencia de "+polo+"$"+monto+"      "+fecha);
             	break;
+            	
+        	case 5:
+            	weather_data[i] =  new ventaw(R.drawable.compm, "Compra de "+polo+"$"+monto+"      "+fecha);
+            	break;
         	default:
         	weather_data[i] =  new ventaw(R.drawable.mdm, "Movimiento Desconocido "+polo+"$"+monto+"      "+fecha);
         	break;
