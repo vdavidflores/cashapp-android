@@ -91,27 +91,15 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="112dp"
         android:layout_height="wrap_content"
-        android:layout_weight="0.58" 
-        android:layout_gravity="center">
-
-        <LinearLayout
-            android:layout_width="107dp"
-            android:layout_height="match_parent" >
-        </LinearLayout>
+        android:layout_gravity="center" >
 
         <Button
             android:id="@+id/enviar"
             android:layout_width="109dip"
             android:layout_height="79dip"
-            android:layout_gravity="center"
             android:background="@drawable/benviar" />
-
-        <LinearLayout
-            android:layout_width="123dp"
-            android:layout_height="match_parent" >
-        </LinearLayout>
 
     </LinearLayout>
 

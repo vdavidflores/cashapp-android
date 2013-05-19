@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -31,7 +32,7 @@ public class transferencia extends Fragment{
 	TextView para;
 	TextView cantidad;
 	TextView cc;
-	int pin;
+	int pin ;
 	JSONObject datos;
 	Post post;
 	protected AlertDialog dialog;
@@ -52,11 +53,28 @@ public class transferencia extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 		
+		
         	View view = inflater.inflate(R.layout.transferencia, container, false);
              enviar = (Button) view.findViewById(R.id.enviar);
              para = (TextView) view.findViewById(R.id.inputPara);
    		     cantidad = (TextView) view.findViewById(R.id.inputCantidad);
-   		
+   		  
+   		/*Log.v("text", "1");
+   		  TextView txt = (TextView) view.findViewById(R.id.textView1);
+   		Log.v("text", "2"); 
+          Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/customfont.ttf");
+          Log.v("text", "3");
+          txt.setTypeface(font);
+          Log.v("text", "4");*/
+         
+   		     
+   		     
+   		     
+   		     /*Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/mytruetypefont.ttf");
+   		view.setTypeface(typeFace);*/
+   		     
+   		     
+   		     
    		   eventos();
         return view;
     }
@@ -129,10 +147,17 @@ public class transferencia extends Fragment{
             public void onClick(DialogInterface dialog, int id) {
             
             	
-            	 pin = Integer.parseInt(Password.getEditableText().toString()) ;
-           	// Toast.makeText(getActivity(),pin,Toast.LENGTH_LONG).show(); 
-            	transferir();
-			}
+            	 String numCadena= String.valueOf(pin); ;
+                      	
+            	 if (numCadena == null ){
+            		 
+            		 
+            	 }
+            		 
+            	 else{ 
+            	 transferir();
+            	 }
+            	 }
         });
 		builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
