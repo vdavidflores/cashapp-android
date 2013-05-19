@@ -17,6 +17,8 @@ import android.os.Bundle;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.text.InputType;
 import android.util.Log;
@@ -318,7 +320,7 @@ public class capturaQR extends DecoderActivity{
 				protected JSONObject doInBackground(Void... params) {
 					JSONObject data = new JSONObject();
 					try {
-		    			data.put("usr", "00000001");
+		    			data.put("usr", MiUsuario());
 		    			data.put("imei", "123456789012345");
 		    			data.put("pin", pin);
 		    			data.put("qr", qr);
@@ -420,6 +422,19 @@ public class capturaQR extends DecoderActivity{
 		        	    }
 		        	});
 		    	}
+		    	
+		    	  private String MiUsuario(){
+		          	String usr = null;
+		              BDD dbh = new BDD(getActivity(),"kupay",null,1);
+		              SQLiteDatabase db= dbh.getReadableDatabase();
+		              Cursor reg = db.query("kupay",new String[]{"usr"},null,null,null,null,null,"1");
+		              if(reg.moveToFirst()){
+		                  usr=reg.getString(0);
+		                 
+		              
+		              }
+		      	 return usr;
+		          }
 
 				
 		    }

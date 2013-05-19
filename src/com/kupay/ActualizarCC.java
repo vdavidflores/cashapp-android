@@ -3,7 +3,11 @@ package com.kupay;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+
+
 import android.app.Activity;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.TextView;
@@ -35,7 +39,7 @@ class ActualizarCC extends AsyncTask<Void, Integer, JSONObject>{
     	  JSONObject response = new JSONObject();
 			try {
 
-  			data.put("emisor", "00000001");
+  			data.put("emisor", MiUsuario());
   			data.put("imei", "123456789012345");
   			data.put("pin", 1234);
   			
@@ -97,5 +101,17 @@ class ActualizarCC extends AsyncTask<Void, Integer, JSONObject>{
 				e.printStackTrace();
 			}
     }
-	
+    
+    private String MiUsuario(){
+    	String usr = null;
+        BDD dbh = new BDD(context,"kupay",null,1);
+        SQLiteDatabase db= dbh.getReadableDatabase();
+        Cursor reg = db.query("kupay",new String[]{"usr"},null,null,null,null,null,"1");
+        if(reg.moveToFirst()){
+            usr=reg.getString(0);
+           
+        
+        }
+	 return usr;
+    }
 }

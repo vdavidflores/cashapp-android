@@ -9,6 +9,8 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -210,7 +212,7 @@ public class transferencia extends Fragment{
     			
     				data.put("receptor", para.getText());
     			
-    			data.put("emisor", "00000001");
+    			data.put("emisor", MiUsuario());
     			data.put("cantidad", cantidad.getText());
     			data.put("imei", "123456789012345");
     			data.put("pin", pin);
@@ -278,6 +280,19 @@ public class transferencia extends Fragment{
 			}
       	
         	
+        }
+        
+        private String MiUsuario(){
+        	String usr = null;
+            BDD dbh = new BDD(getActivity(),"kupay",null,1);
+            SQLiteDatabase db= dbh.getReadableDatabase();
+            Cursor reg = db.query("kupay",new String[]{"usr"},null,null,null,null,null,"1");
+            if(reg.moveToFirst()){
+                usr=reg.getString(0);
+               
+            
+            }
+    	 return usr;
         }
 
 		
