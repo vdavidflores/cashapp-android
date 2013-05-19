@@ -6,13 +6,16 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends FragmentActivity {
 	ProgressDialog	progress;
 	FragmentTabHost mTabHost;
 	Button actCC;
+	Button navicon;
 	Activity actividad;
 	 
 	@Override
@@ -23,6 +26,7 @@ public class MainActivity extends FragmentActivity {
 		setContentView(R.layout.activity_main);
 		  mTabHost = (FragmentTabHost) findViewById (android.R.id.tabhost);
 		  actCC = (Button) findViewById(R.id.actCC); 
+		  navicon = (Button) findViewById(R.id.navicon);
 		 mTabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
 		 Eventos();
 		 ActualizarCC cc = new ActualizarCC(actividad);
@@ -44,7 +48,34 @@ public class MainActivity extends FragmentActivity {
         	  ActualizarCC cc = new ActualizarCC(actividad);
         	 cc.execute();
         	 
+        	 
+        	 int duracion=Toast.LENGTH_SHORT;
+             Toast mensaje=Toast.makeText(getApplicationContext(), "¡Saldo Actualizado!", duracion);
+             mensaje.show();
+             mensaje.setGravity(Gravity.TOP|Gravity.RIGHT, 0, 0);
+        	 
+        	 
           }} );
+      
+      
+      navicon.setOnClickListener(new View.OnClickListener() {
+          public void onClick(View view) { 
+        	  Log.v("app", "Navicon Oprimido");
+        	  	
+        	  
+       
+        	 
+        	  int duracion=Toast.LENGTH_SHORT;
+              Toast mensaje=Toast.makeText(getApplicationContext(), "Boton desactivado por el momento", duracion);
+              mensaje.show();
+              mensaje.setGravity(Gravity.TOP|Gravity.LEFT, 0, 0);
+         	 
+          }} );
+      
+      
+      
+      
+      
     }
 	
 	private void tabs(){

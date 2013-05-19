@@ -17,11 +17,11 @@
             android:layout_height="fill_parent"
             android:layout_weight="0.16" >
 
-            <ImageView
-                android:id="@+id/imageView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/opciones" />
+            <Button
+                android:id="@+id/navicon"
+                android:layout_width="75dp"
+                android:layout_height="fill_parent"
+                android:background="@drawable/opciones" />
 
         </LinearLayout>
 
