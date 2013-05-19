@@ -273,16 +273,12 @@ public class capturaQR extends DecoderActivity{
 		    		 builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
 		    			
 		                public void onClick(DialogInterface dialog, int id) {
-		                
-		                	
-		                	 String numCadena= String.valueOf(pin); ;
-		                      	
-		                	 if (numCadena == null ){
-		                		 
-		                		 
-		                	 }
-		                		 
-		                	 else{ 
+		                	   if (Password.getEditableText().length() == 0){
+		                  		 
+		                  		 dialog.dismiss();
+		                  	 }
+		                  	 else{ 
+		                       pin = Integer.parseInt(Password.getEditableText().toString()) ;
 		                		 ejecutarQR ejqr = new ejecutarQR();
 									ejqr.execute();
 		                	 }

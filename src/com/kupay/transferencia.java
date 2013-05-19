@@ -145,19 +145,15 @@ public class transferencia extends Fragment{
 		 builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
 			
             public void onClick(DialogInterface dialog, int id) {
-            
-            	
-            	 String numCadena= String.valueOf(pin); ;
-                      	
-            	 if (numCadena == null ){
+            if (Password.getEditableText().length() == 0){
             		 
-            		 
+            		 dialog.dismiss();
             	 }
-            		 
-            	 else{ 
+            else{ 
+                 pin = Integer.parseInt(Password.getEditableText().toString()) ;
             	 transferir();
             	 }
-            	 }
+            }
         });
 		builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
