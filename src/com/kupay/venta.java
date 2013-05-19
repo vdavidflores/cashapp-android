@@ -9,6 +9,8 @@ import org.json.JSONObject;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
@@ -56,7 +58,7 @@ public class venta extends ListFragment {
   			
   				
   			
-  			data.put("usr", "00000001");
+  			data.put("usr", MiUsuario());
   			data.put("dias", 1);
   			data.put("imei", "123456789012345");
   			data.put("pin", 1234);
@@ -123,29 +125,31 @@ public class venta extends ListFragment {
         	int tipo=0;
         	int monto=0;
         	String fecha = null;
+        	String polo = null;
         	
         	try {
         		;
         	tipo = jay.getJSONObject(i).getInt("TIPO");
         	monto = jay.getJSONObject(i).getInt("MONTO");
         	fecha = jay.getJSONObject(i).getString("FECHA");
+        	polo = jay.getJSONObject(i).getString("POLO");
         	 
         	} catch (JSONException e) {}
         	    	    	    	
         	switch (tipo) {
 
         	case 1:
-        	weather_data[i] =  new ventaw(R.drawable.mdm, "Abono de $"+monto+"      "+fecha);
+        	weather_data[i] =  new ventaw(R.drawable.mdm, "Abono de "+polo+"$"+monto+"      "+fecha);
         	break;
 
         	case 2:
-        	weather_data[i] =  new ventaw(R.drawable.compm, "Compra de $"+monto+"      "+fecha);
+        	weather_data[i] =  new ventaw(R.drawable.compm, "Compra de "+polo+"$"+monto+"      "+fecha);
         	break;
         	case 3:
-            	weather_data[i] =  new ventaw(R.drawable.tranm, "Transferencia de $"+monto+"      "+fecha);
+            	weather_data[i] =  new ventaw(R.drawable.tranm, "Transferencia de "+polo+"$"+monto+"      "+fecha);
             	break;
         	default:
-        	weather_data[i] =  new ventaw(R.drawable.mdm, "Movimiento Desconocido"+monto+"      "+fecha);
+        	weather_data[i] =  new ventaw(R.drawable.mdm, "Movimiento Desconocido "+polo+"$"+monto+"      "+fecha);
         	break;
         	}
         }
@@ -155,6 +159,19 @@ public class venta extends ListFragment {
         WeatherAdapter adapter = new WeatherAdapter(getActivity(), R.layout.listview_item_row, weather_data);
     setListAdapter(adapter);
       	
+      }
+      
+      private String MiUsuario(){
+      	String usr = null;
+          BDD dbh = new BDD(getActivity(),"kupay",null,1);
+          SQLiteDatabase db= dbh.getReadableDatabase();
+          Cursor reg = db.query("kupay",new String[]{"usr"},null,null,null,null,null,"1");
+          if(reg.moveToFirst()){
+              usr=reg.getString(0);
+             
+          
+          }
+  	 return usr;
       }
 
 		
