@@ -42,7 +42,7 @@ public class WeatherAdapter extends ArrayAdapter<ventaw>{
         }
         else
         {
-            holder = (WeatherHolder)row.getTag();
+           holder = (WeatherHolder)row.getTag();
         }
         
         ventaw ventaw = data[position];
