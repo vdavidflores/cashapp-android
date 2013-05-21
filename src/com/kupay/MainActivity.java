@@ -101,7 +101,7 @@ public class MainActivity extends FragmentActivity {
 		
 		b = new Bundle();
 		b.putString("key", "cobrar");
-		mTabHost.addTab(mTabHost.newTabSpec("cobrar").setIndicator("",getResources().getDrawable(R.layout.vent)),venta.class, b);
+		mTabHost.addTab(mTabHost.newTabSpec("cobrar").setIndicator("",getResources().getDrawable(R.layout.consulta)),Consulta.class, b);
 		mTabHost.getTabWidget().getChildAt(2).setBackgroundResource(R.layout.bgcomp);
 		mTabHost.getTabWidget().getChildAt(2).getLayoutParams().height = 100;
 		mTabHost.getTabWidget().setStripEnabled(false);

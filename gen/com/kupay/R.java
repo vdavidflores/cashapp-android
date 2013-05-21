@@ -51,16 +51,18 @@ public final class R {
         public static final int kucolor=0x7f02000b;
         public static final int mdm=0x7f02000c;
         public static final int opciones=0x7f02000d;
-        public static final int refresh=0x7f02000e;
-        public static final int tran=0x7f02000f;
-        public static final int tran2=0x7f020010;
-        public static final int tranm=0x7f020011;
-        public static final int vent=0x7f020012;
-        public static final int vent2=0x7f020013;
+        public static final int pin=0x7f02000e;
+        public static final int refresh=0x7f02000f;
+        public static final int tran=0x7f020010;
+        public static final int tran2=0x7f020011;
+        public static final int tranm=0x7f020012;
+        public static final int venm=0x7f020013;
+        public static final int vent=0x7f020014;
+        public static final int vent2=0x7f020015;
     }
     public static final class id {
         public static final int actCC=0x7f06000a;
-        public static final int action_settings=0x7f06001c;
+        public static final int action_settings=0x7f06001b;
         /**  Messages IDs 
          */
         public static final int auto_focus=0x7f060000;
@@ -68,27 +70,26 @@ public final class R {
         public static final int decode=0x7f060001;
         public static final int decode_failed=0x7f060002;
         public static final int decode_succeeded=0x7f060003;
-        public static final int editando=0x7f060015;
-        public static final int enviar=0x7f06001b;
+        public static final int editando=0x7f060014;
+        public static final int enviar=0x7f06001a;
         public static final int headerq=0x7f060007;
-        public static final int imageView1=0x7f060008;
-        public static final int imgIcon=0x7f060010;
-        public static final int inputCantidad=0x7f06001a;
-        public static final int inputPara=0x7f060018;
-        public static final int listView1=0x7f060013;
+        public static final int imgIcon=0x7f06000f;
+        public static final int inputCantidad=0x7f060019;
+        public static final int inputPara=0x7f060017;
+        public static final int listView1=0x7f060012;
+        public static final int navicon=0x7f060008;
         public static final int preview_view=0x7f06000c;
         public static final int quit=0x7f060004;
         public static final int realtabcontent=0x7f06000b;
         public static final int restart_preview=0x7f060005;
         public static final int return_scan_result=0x7f060006;
         public static final int status_view=0x7f06000e;
-        public static final int tabsLayout=0x7f060014;
-        public static final int text=0x7f060016;
-        public static final int textView1=0x7f060017;
-        public static final int textView2=0x7f060019;
-        public static final int txtHeader=0x7f06000f;
-        public static final int txtTitle=0x7f060011;
-        public static final int txtTitle2=0x7f060012;
+        public static final int tabsLayout=0x7f060013;
+        public static final int text=0x7f060015;
+        public static final int textView1=0x7f060016;
+        public static final int textView2=0x7f060018;
+        public static final int txtTitle=0x7f060010;
+        public static final int txtTitle2=0x7f060011;
         public static final int viewfinder_view=0x7f06000d;
     }
     public static final class layout {
@@ -96,18 +97,15 @@ public final class R {
         public static final int bgcomp=0x7f030001;
         public static final int capture=0x7f030002;
         public static final int comp=0x7f030003;
-        public static final int decoder=0x7f030004;
-        public static final int listview=0x7f030005;
-        public static final int listview_header_row=0x7f030006;
-        public static final int listview_item_row=0x7f030007;
-        public static final int main=0x7f030008;
-        public static final int tabs_bg=0x7f030009;
-        public static final int test=0x7f03000a;
-        public static final int textcomp=0x7f03000b;
-        public static final int tran=0x7f03000c;
-        public static final int transferencia=0x7f03000d;
-        public static final int vent=0x7f03000e;
-        public static final int ventas=0x7f03000f;
+        public static final int consulta=0x7f030004;
+        public static final int decoder=0x7f030005;
+        public static final int listview_item_row=0x7f030006;
+        public static final int main=0x7f030007;
+        public static final int tabs_bg=0x7f030008;
+        public static final int test=0x7f030009;
+        public static final int textcomp=0x7f03000a;
+        public static final int tran=0x7f03000b;
+        public static final int transferencia=0x7f03000c;
     }
     public static final class menu {
         public static final int main=0x7f090000;

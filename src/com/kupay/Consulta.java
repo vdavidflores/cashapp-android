@@ -1,6 +1,8 @@
 package com.kupay;
 
 
+import java.text.BreakIterator;
+
 import org.apache.http.ParseException;
 import org.apache.http.client.ClientProtocolException;
 import org.json.JSONArray;
@@ -21,7 +23,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 
-public class venta extends ListFragment {
+public class Consulta extends ListFragment {
 
   @Override
   public void onActivityCreated(Bundle savedInstanceState) { 
@@ -44,6 +46,7 @@ public class venta extends ListFragment {
 	  ProgressDialog progress;
 	  Post post; 	 
 	  JSONArray jay;
+	  String CONEXION_FALLIDA = "CONEXION_FALLIDA";
 
 		@Override
        protected void onPreExecute() {
@@ -100,15 +103,18 @@ public class venta extends ListFragment {
         protected void onPostExecute(JSONObject response) {
       	progress.dismiss();
       	Log.v("movs", "2");
+      	String resultado = null;
     
       	try {
-			 String resultado = response.getString("RESULTADO");
+			  resultado = response.getString("RESULTADO");
 			 Log.v("movs", "3");
       	} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				
 			}
+       if(!resultado.equals(CONEXION_FALLIDA.toString())){
+    	 
        
 		try {
 			Log.v("movs", "3.5");
@@ -162,7 +168,7 @@ public class venta extends ListFragment {
         Log.v("movs", "5");
         WeatherAdapter adapter = new WeatherAdapter(getActivity(), R.layout.listview_item_row, weather_data);
     setListAdapter(adapter);
-      	
+       }
       }
       
       private String MiUsuario(){
