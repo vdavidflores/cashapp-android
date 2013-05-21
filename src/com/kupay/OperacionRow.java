@@ -3,15 +3,15 @@ package com.kupay;
 import android.util.Log;
 
 
-	public class ventaw {
+	public class OperacionRow {
 		 
 		   public int icon;
 		    public String title;
-		    public ventaw(){
+		    public OperacionRow(){
 		        super();
 		    }
 		    
-		    public ventaw (int icon, String title) {
+		    public OperacionRow (int icon, String title) {
 		    	
 		        super();
 		        this.icon = icon;

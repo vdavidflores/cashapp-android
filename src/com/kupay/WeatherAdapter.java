@@ -10,13 +10,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class WeatherAdapter extends ArrayAdapter<ventaw>{
+public class WeatherAdapter extends ArrayAdapter<OperacionRow>{
 
     Context context; 
     int layoutResourceId;    
-    ventaw[] data = null;
+    OperacionRow[] data = null;
     
-    public WeatherAdapter(Context context, int layoutResourceId, ventaw[] data) {
+    public WeatherAdapter(Context context, int layoutResourceId, OperacionRow[] data) {
         super(context, layoutResourceId, data);
         this.layoutResourceId = layoutResourceId;
         this.context = context;
@@ -45,7 +45,7 @@ public class WeatherAdapter extends ArrayAdapter<ventaw>{
            holder = (WeatherHolder)row.getTag();
         }
         
-        ventaw ventaw = data[position];
+        OperacionRow ventaw = data[position];
         holder.txtTitle.setText(ventaw.title);
         holder.imgIcon.setImageResource(ventaw.icon);
         

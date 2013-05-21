@@ -42,7 +42,8 @@ public class Consulta extends ListFragment {
   }
   
   private class Serch extends AsyncTask<Void, Integer, JSONObject>{
-	   	 
+	  
+	  OperacionRow weather_data[];
 	  ProgressDialog progress;
 	  Post post; 	 
 	  JSONArray jay;
@@ -104,7 +105,7 @@ public class Consulta extends ListFragment {
       	progress.dismiss();
       	Log.v("movs", "2");
       	String resultado = null;
-    
+      	
       	try {
 			  resultado = response.getString("RESULTADO");
 			 Log.v("movs", "3");
@@ -114,61 +115,64 @@ public class Consulta extends ListFragment {
 				
 			}
        if(!resultado.equals(CONEXION_FALLIDA.toString())){
-    	 
+	    	 
+	       
+			try {
+				Log.v("movs", "3.5");
+				jay = response.getJSONObject("DATOS").getJSONArray("OPERACIONES");
+				Log.v("movs", "4");
+			} catch (JSONException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+				}
+	         weather_data = new OperacionRow[jay.length()]; 
+	        
+	        for(int i=0; i < jay.length();i++){
+	        
+	        	int tipo=0;
+	        	int monto=0;
+	        	String fecha = null;
+	        	String polo = null;
+	        	
+	        	try {
+	        		;
+	        	tipo = jay.getJSONObject(i).getInt("TIPO");
+	        	monto = jay.getJSONObject(i).getInt("MONTO");
+	        	fecha = jay.getJSONObject(i).getString("FECHA");
+	        	polo = jay.getJSONObject(i).getString("POLO");
+	        	 
+	        	} catch (JSONException e) {}
+	        	    	    	    	
+	        	switch (tipo) {
+	
+	        	case 1:
+	        	weather_data[i] =  new OperacionRow(R.drawable.mdm, "Abono de "+polo+"$"+monto+"      "+fecha);
+	        	break;
+	
+	        	case 2:
+	        	weather_data[i] =  new OperacionRow(R.drawable.compm, "Compra de "+polo+"$"+monto+"      "+fecha);
+	        	break;
+	        	case 3:
+	            	weather_data[i] =  new OperacionRow(R.drawable.tranm, "Transferencia de "+polo+"$"+monto+"      "+fecha);
+	            	break;
+	            	
+	        	case 5:
+	            	weather_data[i] =  new OperacionRow(R.drawable.compm, "Compra de "+polo+"$"+monto+"      "+fecha);
+	            	break;
+	        	default:
+	        	weather_data[i] =  new OperacionRow(R.drawable.mdm, "Movimiento Desconocido "+polo+"$"+monto+"      "+fecha);
+	        	break;
+	        	}
+	        }
        
-		try {
-			Log.v("movs", "3.5");
-			jay = response.getJSONObject("DATOS").getJSONArray("OPERACIONES");
-			Log.v("movs", "4");
-		} catch (JSONException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-			}
-        ventaw weather_data[] = new ventaw[jay.length()]; 
-        
-        for(int i=0; i < jay.length();i++){
-        	
-        	int tipo=0;
-        	int monto=0;
-        	String fecha = null;
-        	String polo = null;
-        	
-        	try {
-        		;
-        	tipo = jay.getJSONObject(i).getInt("TIPO");
-        	monto = jay.getJSONObject(i).getInt("MONTO");
-        	fecha = jay.getJSONObject(i).getString("FECHA");
-        	polo = jay.getJSONObject(i).getString("POLO");
-        	 
-        	} catch (JSONException e) {}
-        	    	    	    	
-        	switch (tipo) {
-
-        	case 1:
-        	weather_data[i] =  new ventaw(R.drawable.mdm, "Abono de "+polo+"$"+monto+"      "+fecha);
-        	break;
-
-        	case 2:
-        	weather_data[i] =  new ventaw(R.drawable.compm, "Compra de "+polo+"$"+monto+"      "+fecha);
-        	break;
-        	case 3:
-            	weather_data[i] =  new ventaw(R.drawable.tranm, "Transferencia de "+polo+"$"+monto+"      "+fecha);
-            	break;
-            	
-        	case 5:
-            	weather_data[i] =  new ventaw(R.drawable.compm, "Compra de "+polo+"$"+monto+"      "+fecha);
-            	break;
-        	default:
-        	weather_data[i] =  new ventaw(R.drawable.mdm, "Movimiento Desconocido "+polo+"$"+monto+"      "+fecha);
-        	break;
-        	}
-        }
-        
+	        Log.v("movs", "5");
+	        WeatherAdapter adapter = new WeatherAdapter(getActivity(), R.layout.listview_item_row, weather_data);
+	        setListAdapter(adapter);
+       
+        }else{
+	        	setListAdapter(getListAdapter());
+	        }
       
-        Log.v("movs", "5");
-        WeatherAdapter adapter = new WeatherAdapter(getActivity(), R.layout.listview_item_row, weather_data);
-    setListAdapter(adapter);
-       }
       }
       
       private String MiUsuario(){
