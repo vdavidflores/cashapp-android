@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.telephony.TelephonyManager;
 import android.text.InputType;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -141,7 +142,7 @@ public class transferencia extends Fragment{
 	     Password.setHint("pin");
 	     Password.setWidth(200);
 		 Password.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-		
+		 Password.setTransformationMethod(PasswordTransformationMethod.getInstance());
 		 builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
 			
             public void onClick(DialogInterface dialog, int id) {

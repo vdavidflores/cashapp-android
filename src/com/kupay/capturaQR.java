@@ -21,6 +21,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.text.InputType;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -269,7 +270,7 @@ public class capturaQR extends DecoderActivity{
 		    	     Password.setHint("pin");
 		    	     Password.setWidth(200);
 		    		 Password.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-		    		
+		    		 Password.setTransformationMethod(PasswordTransformationMethod.getInstance());
 		    		 builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
 		    			
 		                public void onClick(DialogInterface dialog, int id) {
