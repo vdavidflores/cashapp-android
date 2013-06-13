@@ -89,7 +89,7 @@ public class DecoderActivity extends Fragment implements IDecoderActivity, Surfa
 
         handler = null;
         hasSurface = false;
-        mHandler.postDelayed(mLoadCamera, 100);
+      
     }
 
     @Override
@@ -106,11 +106,19 @@ public class DecoderActivity extends Fragment implements IDecoderActivity, Surfa
         Log.v(TAG, "onResume()1");
 
         // CameraManager must be initialized here, not in onCreate().
-        if (cameraManager == null) cameraManager = new CameraManager(getActivity().getApplicationContext());
+        if (cameraManager == null){
+        	cameraManager = new CameraManager(getActivity().getApplicationContext());
+        	Log.v(TAG, "En resume cameraManager es nullo");
+        }else{
+        	Log.v(TAG, "En resume viewfinderView NO es nullo");
+        }
 
         if (viewfinderView == null) {
+        	Log.v(TAG, "En resume viewfinderView es nullo");
             viewfinderView = (ViewfinderView) getView().findViewById(R.id.viewfinder_view);
             viewfinderView.setCameraManager(cameraManager);
+        }else{
+        	Log.v(TAG, "En resume viewfinderView NO es nullo");
         }
         
         viewfinderView.setVisibility(View.VISIBLE);
@@ -122,7 +130,8 @@ public class DecoderActivity extends Fragment implements IDecoderActivity, Surfa
 
     }
     
-    private void startCamera(){
+    
+    public void startCamera(){
     	
    
     			//(SurfaceView) getView().findViewById(R.id.preview_view);
@@ -155,10 +164,39 @@ public class DecoderActivity extends Fragment implements IDecoderActivity, Surfa
         cameraManager.closeDriver();
 
         if (!hasSurface) {
-        	Log.v("app", "No hay superficie");
+        	Log.v("app", "No hay superficie<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
             SurfaceHolder surfaceHolder = surfaceView.getHolder();
             surfaceHolder.removeCallback(this);
         }
+    }
+    
+    public void reStartCamera(){
+    	
+    	if (cameraManager == null){
+        	//cameraManager = new CameraManager(getActivity().getApplicationContext());
+        	Log.v(TAG, "En reStart cameraManager es nullo");
+        }else{
+        	Log.v(TAG, "En reStart viewfinderView NO es nullo");
+        }
+
+        if (viewfinderView == null) {
+        	Log.v(TAG, "En reStart viewfinderView es nullo");
+           // viewfinderView = (ViewfinderView) getView().findViewById(R.id.viewfinder_view);
+            //viewfinderView.setCameraManager(cameraManager);
+        }else{
+        	Log.v(TAG, "En reStart viewfinderView NO es nullo");
+        }
+    	
+    	if (handler != null){
+    	 handler.quitSynchronously();
+         handler = null;
+    	}
+    	Log.v(TAG, "SufaceView: "+surfaceView );
+    	
+         SurfaceHolder surfaceHolder = surfaceView.getHolder();
+         surfaceHolder.removeCallback(this);
+         initCamera(surfaceHolder);
+    	
     }
 
     

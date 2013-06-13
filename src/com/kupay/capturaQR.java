@@ -70,11 +70,11 @@ public class capturaQR extends DecoderActivity{
 		      
 		    }
 
-////		    @Override
-//			public void onPause() {
-//		        super.onPause();
-//		        Log.v(TAG, "onPause() CQR");
-//		    }
+		    @Override
+			public void onPause() {
+		        super.onPause();
+		        Log.v(TAG, "onPause() CQR");
+		    }
 
 		   /* @Override
 		    public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -235,6 +235,8 @@ public class capturaQR extends DecoderActivity{
 			                public void onClick(DialogInterface dialog, int id) {
 			                     dialog.dismiss();
 			                     qr = "";
+			                     //onResume();
+			                     reStartCamera();
 			                }
 			            });
 						dialog = builder_.create();
@@ -249,7 +251,8 @@ public class capturaQR extends DecoderActivity{
 						e.printStackTrace();
 					}
 		      	
-		        	onResume();
+		        	//onResume();
+		        	
 		        }
 		        
 		    	private void pin(){
