@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -376,8 +377,38 @@ public class capturaQR extends DecoderActivity{
 		  				Log.v("app","Datos: "+ datos.toString());
 		  				//cc = (TextView) getActivity().findViewById(R.id.cantidad);
 		  				//cc.setText("$"+Integer.toString(datos.getInt("SALDO_POST_TRASACCION")));
-		  				AnimaSaldo actCC = new AnimaSaldo(getActivity());
-		  				actCC.execute(datos.getInt("SALDO_POST_TRASACCION"));
+		  				
+		  				AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+		  				builder.setTitle("Transacción exitosa");
+		  				
+		  				TextView publicidad = new TextView(getActivity());
+		  				publicidad.setText("Publicidad KUPAY \n"+
+		  				"Espacio reservado para publicidad dirigida");
+		  				publicidad.setTextSize(14);
+		  				publicidad.setGravity(Gravity.CENTER);
+		  				
+		  				builder.setView(publicidad);
+		  				
+		  				builder.setPositiveButton("Aceptar", new OnClickListener() {
+							
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								// TODO Auto-generated method stub
+				  				AnimaSaldo actCC = new AnimaSaldo(getActivity());
+				  				try {
+									actCC.execute(datos.getInt("SALDO_POST_TRASACCION"));
+								} catch (JSONException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+				  				
+							}
+						});
+		  				
+		  				AlertDialog dilaogoAceptar = builder.create();
+		  				dilaogoAceptar.show();
+		  				
+
 		  				
 		      		}else if(TRANSACCION_FALLIDA.toString().equals(resultado)){
 		      	       Log.v("app", "pst-3");
@@ -441,6 +472,7 @@ public class capturaQR extends DecoderActivity{
 		              }
 		      	 return usr;
 		          }
+		    	  
 
 				
 		    }
