@@ -42,6 +42,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.RelativeLayout;
 
 /**
  * Example Decoder Activity.
@@ -50,7 +51,7 @@ import android.view.WindowManager;
  */
 public class DecoderActivity extends Fragment implements IDecoderActivity, SurfaceHolder.Callback {
 
-    protected static final String TAG = DecoderActivity.class.getSimpleName();
+    protected static final String TAG = "app";
 
     protected DecoderActivityHandler handler = null;
     protected ViewfinderView viewfinderView = null;
@@ -58,6 +59,16 @@ public class DecoderActivity extends Fragment implements IDecoderActivity, Surfa
     protected boolean hasSurface = false;
     protected Collection<BarcodeFormat> decodeFormats = null;
     protected String characterSet = null;
+    private Handler mHandler = new Handler();
+    private final Runnable mLoadCamera = new Runnable()
+    {
+        public void run()
+        {
+            startCamera();
+        }
+    };
+    SurfaceView surfaceView;
+    
 
     @Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -78,18 +89,21 @@ public class DecoderActivity extends Fragment implements IDecoderActivity, Surfa
 
         handler = null;
         hasSurface = false;
+        mHandler.postDelayed(mLoadCamera, 100);
     }
 
     @Override
 	public void onDestroy() {
         super.onDestroy();
+        hasSurface = false;
         Log.v(TAG, "onDestroy()");
     }
 
     @Override
 	public void onResume() {
         super.onResume();
-        Log.v(TAG, "onResume()");
+        
+        Log.v(TAG, "onResume()1");
 
         // CameraManager must be initialized here, not in onCreate().
         if (cameraManager == null) cameraManager = new CameraManager(getActivity().getApplicationContext());
@@ -100,28 +114,40 @@ public class DecoderActivity extends Fragment implements IDecoderActivity, Surfa
         }
         
         viewfinderView.setVisibility(View.VISIBLE);
+        
+        
+      
+        
+        mHandler.postDelayed(mLoadCamera, 100);
 
-        SurfaceView surfaceView = (SurfaceView) getView().findViewById(R.id.preview_view);
+    }
+    
+    private void startCamera(){
+    	
+   
+    			//(SurfaceView) getView().findViewById(R.id.preview_view);
+    	 RelativeLayout rl = (RelativeLayout) getView().findViewById(R.id.fitCamera);
+    	  surfaceView = new SurfaceView(getActivity());
         SurfaceHolder surfaceHolder = surfaceView.getHolder();
-        if (hasSurface) {
-            // The activity was paused but not stopped, so the surface still
-            // exists. Therefore
-            // surfaceCreated() won't be called, so init the camera here.
-            initCamera(surfaceHolder);
-        } else {
-            // Install the callback and wait for surfaceCreated() to init the
-            // camera.
+ 
+        	
+        	Log.v("app", "Cargando camara");
             surfaceHolder.addCallback(this);
             surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
-        }
+        
+        
+        if(rl != null && surfaceView != null)
+            rl.addView(surfaceView);
+        
     }
-
+    
     @Override
 	public void onPause() {
         super.onPause();
-        Log.v(TAG, "onPause()");
+        Log.v(TAG, "onPause() DA");
 
         if (handler != null) {
+        	Log.v("app", "El handeler no es nulo");
             handler.quitSynchronously();
             handler = null;
         }
@@ -129,7 +155,7 @@ public class DecoderActivity extends Fragment implements IDecoderActivity, Surfa
         cameraManager.closeDriver();
 
         if (!hasSurface) {
-            SurfaceView surfaceView = (SurfaceView) getView().findViewById(R.id.preview_view);
+        	Log.v("app", "No hay superficie");
             SurfaceHolder surfaceHolder = surfaceView.getHolder();
             surfaceHolder.removeCallback(this);
         }
@@ -139,6 +165,7 @@ public class DecoderActivity extends Fragment implements IDecoderActivity, Surfa
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
+    	Log.v(TAG, "SUPERFICIE CREADA");
         if (holder == null)
             Log.e(TAG, "*** WARNING *** surfaceCreated() gave us a null surface!");
         if (!hasSurface) {
@@ -149,6 +176,7 @@ public class DecoderActivity extends Fragment implements IDecoderActivity, Surfa
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
+    	Log.v(TAG, "SUPERFICIE DESTRUIDA");
         hasSurface = false;
     }
 
@@ -219,7 +247,10 @@ public class DecoderActivity extends Fragment implements IDecoderActivity, Surfa
             // Creating the handler starts the preview, which can also throw a
             // RuntimeException.
         	cameraManager.openDriver(surfaceHolder);
-            if (handler == null) handler = new DecoderActivityHandler(this, decodeFormats, characterSet, cameraManager);
+            if (handler == null) {
+            	Log.v("app", "INICIANDO HANDELER PARA CAMARA");
+            	handler = new DecoderActivityHandler(this, decodeFormats, characterSet, cameraManager);
+            }
         } catch (IOException ioe) {
             Log.v(TAG, ioe.toString());
         } catch (RuntimeException e) {

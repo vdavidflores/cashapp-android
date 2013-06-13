@@ -40,20 +40,12 @@ public class capturaQR extends DecoderActivity{
 	String qr;
 	private AlertDialog dialog;
 
-		   private static final String TAG = capturaQR.class.getSimpleName();
-		
-
-		    private boolean inScanMode = false;
-			private View viewfinderView;
+		   private static final String TAG = "app";
+		    private View viewfinderView;
 
 		    public void onCreate(Bundle icicle) {
 		        super.onCreate(icicle);
-		      //  setContentView(R.layout.capture);
 		        Log.v(TAG, "onCreate()");
-
-
-
-		        inScanMode = false;
 		    }
 		    @Override
 			public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -69,15 +61,20 @@ public class capturaQR extends DecoderActivity{
 
 		    @Override
 			public void onResume() {
+		    	 
+		    	
 		        super.onResume();
-		        Log.v(TAG, "onResume()gitfg");
+		         Log.v(TAG, "RESUME  2");
+		        
+		        
+		      
 		    }
 
-		    @Override
-			public void onPause() {
-		        super.onPause();
-		        Log.v(TAG, "onPause()");
-		    }
+////		    @Override
+//			public void onPause() {
+//		        super.onPause();
+//		        Log.v(TAG, "onPause() CQR");
+//		    }
 
 		   /* @Override
 		    public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -100,7 +97,6 @@ public class capturaQR extends DecoderActivity{
 		    }
 
 		    public void showScanner() {
-		        inScanMode = true;
 		        viewfinderView.setVisibility(View.VISIBLE);
 		    }
 
