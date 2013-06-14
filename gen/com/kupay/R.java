@@ -62,7 +62,7 @@ public final class R {
     }
     public static final class id {
         public static final int actCC=0x7f06000a;
-        public static final int action_settings=0x7f06001b;
+        public static final int action_settings=0x7f06001c;
         /**  Messages IDs 
          */
         public static final int auto_focus=0x7f060000;
@@ -70,26 +70,27 @@ public final class R {
         public static final int decode=0x7f060001;
         public static final int decode_failed=0x7f060002;
         public static final int decode_succeeded=0x7f060003;
-        public static final int editando=0x7f060014;
-        public static final int enviar=0x7f06001a;
+        public static final int editando=0x7f060015;
+        public static final int enviar=0x7f06001b;
+        public static final int fitCamera=0x7f06000c;
         public static final int headerq=0x7f060007;
-        public static final int imgIcon=0x7f06000f;
-        public static final int inputCantidad=0x7f060019;
-        public static final int inputPara=0x7f060017;
-        public static final int listView1=0x7f060012;
+        public static final int imgIcon=0x7f060010;
+        public static final int inputCantidad=0x7f06001a;
+        public static final int inputPara=0x7f060018;
+        public static final int listView1=0x7f060013;
         public static final int navicon=0x7f060008;
-        public static final int preview_view=0x7f06000c;
+        public static final int preview_view=0x7f06000e;
         public static final int quit=0x7f060004;
         public static final int realtabcontent=0x7f06000b;
         public static final int restart_preview=0x7f060005;
         public static final int return_scan_result=0x7f060006;
-        public static final int status_view=0x7f06000e;
-        public static final int tabsLayout=0x7f060013;
-        public static final int text=0x7f060015;
-        public static final int textView1=0x7f060016;
-        public static final int textView2=0x7f060018;
-        public static final int txtTitle=0x7f060010;
-        public static final int txtTitle2=0x7f060011;
+        public static final int status_view=0x7f06000f;
+        public static final int tabsLayout=0x7f060014;
+        public static final int text=0x7f060016;
+        public static final int textView1=0x7f060017;
+        public static final int textView2=0x7f060019;
+        public static final int txtTitle=0x7f060011;
+        public static final int txtTitle2=0x7f060012;
         public static final int viewfinder_view=0x7f06000d;
     }
     public static final class layout {

@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -34,8 +35,11 @@ public class MainActivity extends FragmentActivity {
 		 tabs();
 		
 		 Log.v("app", "2");
+		 
 
 	}
+	
+
 	
 	
 	

@@ -40,11 +40,8 @@ public class capturaQR extends DecoderActivity{
 	String qr;
 	private AlertDialog dialog;
 
-		   private static final String TAG = capturaQR.class.getSimpleName();
-		
-
-		    private boolean inScanMode = false;
-			private View viewfinderView;
+		   private static final String TAG = "app";
+		    private View viewfinderView;
 
 		    public void onCreate(Bundle icicle) {
 		        super.onCreate(icicle);
@@ -53,7 +50,7 @@ public class capturaQR extends DecoderActivity{
 
 
 
-		        inScanMode = false;
+		      
 		    }
 		    @Override
 			public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -69,14 +66,30 @@ public class capturaQR extends DecoderActivity{
 
 		    @Override
 			public void onResume() {
-		        super.onResume();
-		        Log.v(TAG, "onResume()gitfg");
+		    	 
+		    	
+		       
+		        startPreview();
+		         Log.v(TAG, "RESUME  2////////////////////////////////////////");
+		        
+		         super.onResume();
+		      
 		    }
 
 		    @Override
 			public void onPause() {
-		        super.onPause();
-		        Log.v(TAG, "onPause()");
+		    	 super.onPause();
+		    	stopCamera();
+		    	
+//		    	try {
+//					Thread.sleep(100);
+//				} catch (InterruptedException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+		    	
+		       
+		        Log.v(TAG, "onPause() CQR ///////////////////////////////////////");
 		    }
 
 		   /* @Override
@@ -100,7 +113,6 @@ public class capturaQR extends DecoderActivity{
 		    }
 
 		    public void showScanner() {
-		        inScanMode = true;
 		        viewfinderView.setVisibility(View.VISIBLE);
 		    }
 
@@ -108,7 +120,7 @@ public class capturaQR extends DecoderActivity{
 
 		    // Put up our own UI for how to handle the decodBarcodeFormated contents.
 		    private void handleDecodeInternally(Result rawResult, ResultHandler resultHandler, Bitmap barcode) {
-		        onPause();
+		        stopCamera();
 		        CharSequence qrDetectado = resultHandler.getDisplayContents();
 		        Log.v("app", qrDetectado.toString());
 				
@@ -120,6 +132,7 @@ public class capturaQR extends DecoderActivity{
 	    			
 				ChechQR checkQR = new ChechQR();
 				checkQR.execute();
+			//	onResume();
 		    }
 		    
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -141,6 +154,7 @@ public class capturaQR extends DecoderActivity{
 
 				@Override
 		         protected void onPreExecute() {
+					
 					 progress = ProgressDialog.show(getActivity(), "Busqueda de QR", "Busqueda en proceso...");
 					
 		          }
@@ -239,6 +253,7 @@ public class capturaQR extends DecoderActivity{
 			                public void onClick(DialogInterface dialog, int id) {
 			                     dialog.dismiss();
 			                     qr = "";
+			                     restartCam();
 			                }
 			            });
 						dialog = builder_.create();
@@ -253,7 +268,7 @@ public class capturaQR extends DecoderActivity{
 						e.printStackTrace();
 					}
 		      	
-		        	onResume();
+		        	
 		        }
 		        
 		    	private void pin(){
