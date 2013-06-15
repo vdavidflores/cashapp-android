@@ -48,7 +48,7 @@ public class Consulta extends ListFragment {
 	  Post post; 	 
 	  JSONArray jay;
 	  String CONEXION_FALLIDA = "CONEXION_FALLIDA";
-
+	  String NO_HAY_CONEXION = "NO_HAY_CONEXION";
 		@Override
        protected void onPreExecute() {
 			progress = ProgressDialog.show(getActivity(), "Cargando", "Cargando lista...");
@@ -114,7 +114,9 @@ public class Consulta extends ListFragment {
 				e.printStackTrace();
 				
 			}
-       if(!resultado.equals(CONEXION_FALLIDA.toString())){
+      	
+      	Log.v("app", resultado);
+       if(!resultado.equals(CONEXION_FALLIDA.toString()) && !resultado.equals(NO_HAY_CONEXION.toString())){
 	    	 
 	       
 			try {
@@ -146,21 +148,21 @@ public class Consulta extends ListFragment {
 	        	switch (tipo) {
 	
 	        	case 1:
-	        	weather_data[i] =  new OperacionRow(R.drawable.mdm, "Abono de "+polo+"$"+monto+"      "+fecha);
+	        	weather_data[i] =  new OperacionRow(R.drawable.mdm, "Abono de "+polo+"$"+monto+"\n"+fecha);
 	        	break;
 	
 	        	case 2:
-	        	weather_data[i] =  new OperacionRow(R.drawable.compm, "Compra de "+polo+"$"+monto+"      "+fecha);
+	        	weather_data[i] =  new OperacionRow(R.drawable.compm, "Compra de "+polo+"$"+monto+"\n"+fecha);
 	        	break;
 	        	case 3:
-	            	weather_data[i] =  new OperacionRow(R.drawable.tranm, "Transferencia de "+polo+"$"+monto+"      "+fecha);
+	            	weather_data[i] =  new OperacionRow(R.drawable.tranm, "Transferencia de "+polo+"$"+monto+"\n"+fecha);
 	            	break;
 	            	
 	        	case 5:
-	            	weather_data[i] =  new OperacionRow(R.drawable.compm, "Compra de "+polo+"$"+monto+"      "+fecha);
+	            	weather_data[i] =  new OperacionRow(R.drawable.compm, "Compra de "+polo+"$"+monto+"\n"+fecha);
 	            	break;
 	        	default:
-	        	weather_data[i] =  new OperacionRow(R.drawable.mdm, "Movimiento Desconocido "+polo+"$"+monto+"      "+fecha);
+	        	weather_data[i] =  new OperacionRow(R.drawable.mdm, "Movimiento desconocido "+polo+"$"+monto+"\n"+fecha);
 	        	break;
 	        	}
 	        }
