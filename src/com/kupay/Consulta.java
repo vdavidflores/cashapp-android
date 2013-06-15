@@ -135,6 +135,7 @@ public class Consulta extends ListFragment {
 	        	int monto=0;
 	        	String fecha = null;
 	        	String polo = null;
+	        	String concepto = null;
 	        	
 	        	try {
 	        		;
@@ -142,27 +143,28 @@ public class Consulta extends ListFragment {
 	        	monto = jay.getJSONObject(i).getInt("MONTO");
 	        	fecha = jay.getJSONObject(i).getString("FECHA");
 	        	polo = jay.getJSONObject(i).getString("POLO");
+	        	concepto = jay.getJSONObject(i).getString("CONCEPTO");
 	        	 
 	        	} catch (JSONException e) {}
 	        	    	    	    	
 	        	switch (tipo) {
 	
 	        	case 1:
-	        	weather_data[i] =  new OperacionRow(R.drawable.mdm, "Abono de "+polo+"$"+monto+"\n"+fecha);
+	        	weather_data[i] =  new OperacionRow(R.drawable.mdm, "Abono de "+polo+"$"+monto+"\n"+fecha+"\n"+concepto);
 	        	break;
 	
 	        	case 2:
-	        	weather_data[i] =  new OperacionRow(R.drawable.compm, "Compra de "+polo+"$"+monto+"\n"+fecha);
+	        	weather_data[i] =  new OperacionRow(R.drawable.compm, "Compra de "+polo+"$"+monto+"\n"+fecha+"\n"+concepto);
 	        	break;
 	        	case 3:
-	            	weather_data[i] =  new OperacionRow(R.drawable.tranm, "Transferencia de "+polo+"$"+monto+"\n"+fecha);
+	            	weather_data[i] =  new OperacionRow(R.drawable.tranm, "Transferencia de "+polo+"$"+monto+"\n"+fecha+"\n"+concepto);
 	            	break;
 	            	
 	        	case 5:
-	            	weather_data[i] =  new OperacionRow(R.drawable.compm, "Compra de "+polo+"$"+monto+"\n"+fecha);
+	            	weather_data[i] =  new OperacionRow(R.drawable.compm, "Compra de "+polo+"$"+monto+"\n"+fecha+"\n"+concepto);
 	            	break;
 	        	default:
-	        	weather_data[i] =  new OperacionRow(R.drawable.mdm, "Movimiento desconocido "+polo+"$"+monto+"\n"+fecha);
+	        	weather_data[i] =  new OperacionRow(R.drawable.mdm, "Movimiento desconocido "+polo+"$"+monto+"\n"+fecha+"\n"+concepto);
 	        	break;
 	        	}
 	        }
