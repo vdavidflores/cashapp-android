@@ -2,8 +2,14 @@ package com.kupay;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -12,6 +18,10 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.conn.ClientConnectionManager;
+import org.apache.http.conn.scheme.Scheme;
+import org.apache.http.conn.scheme.SchemeRegistry;
+import org.apache.http.conn.ssl.SSLSocketFactory;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
@@ -34,7 +44,7 @@ public class Post {
 	int accion;
 	JSONObject obj;
 	private  List<NameValuePair> pares;
-	private JSONObject response;
+	private JSONObject response ;
 
 	  public Post(int accion_ ,JSONObject obj_){
 		  obj = obj_;
@@ -50,10 +60,12 @@ public class Post {
 		 if (HayConexion(c)){
 			 Log.v("post", "2");
 			  
-			HttpClient httpclient = new DefaultHttpClient();
+			HttpClient httpclient = sslClient(new DefaultHttpClient());
+			
 		  	Log.v("post", "2");
-		     HttpPost httppost = new HttpPost("http://ec2-54-218-24-192.us-west-2.compute.amazonaws.com/kuCloudApp/index.php");
-		     pares = new ArrayList<NameValuePair>(2);
+		    HttpPost httppost = new HttpPost("https://ec2-54-218-24-192.us-west-2.compute.amazonaws.com/kuCloudApp/index.php");
+		  //	 HttpPost httppost = new HttpPost("http://10.1.17.237/kuCloudApp/index.php"); 
+		  	pares = new ArrayList<NameValuePair>(2);
 		     Log.v("post", "3");
 		       pares.add(new BasicNameValuePair("ACCION", Integer.toString(accion)));
 		       pares.add(new BasicNameValuePair("DATA", obj.toString()));
@@ -78,16 +90,19 @@ public class Post {
 				 
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					Log.v("post", "5.4: "+respuesta);
+					Log.v("post", "5.4: "+e.toString());
 					return  new JSONObject().put("RESULTADO", "CONEXION_FALLIDA");
 					//Log.v("post", "5.5");
 					//e.printStackTrace();
 				} 
+				
+				if (response != null)
 				return response;
 		 }else{
 				//responfail.put("RESULTADO", "CONEXION_FALLIDA");
 			 return  new JSONObject().put("RESULTADO", "NO_HAY_CONEXION");
 		 }
+		return new JSONObject().put("RESULTADO", "CONEXION_FALLIDA");
 	  }
 	  
 	  
@@ -98,5 +113,31 @@ public class Post {
 	        if(ni != null && ni.isConnected()) return true;
 	        else return false;
 	    }
+	  
+	  private HttpClient sslClient(HttpClient client) {
+		    try {
+		        X509TrustManager tm = new X509TrustManager() { 
+		            public void checkClientTrusted(X509Certificate[] xcs, String string) throws CertificateException {
+		            }
+
+		            public void checkServerTrusted(X509Certificate[] xcs, String string) throws CertificateException {
+		            }
+
+		            public X509Certificate[] getAcceptedIssuers() {
+		                return null;
+		            }
+		        };
+		        SSLContext ctx = SSLContext.getInstance("TLS");
+		        ctx.init(null, new TrustManager[]{tm}, null);
+		        SSLSocketFactory ssf = new MySoketSSLFactory(ctx);
+		        ssf.setHostnameVerifier(SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
+		        ClientConnectionManager ccm = client.getConnectionManager();
+		        SchemeRegistry sr = ccm.getSchemeRegistry();
+		        sr.register(new Scheme("https", ssf, 443));
+		        return new DefaultHttpClient(ccm, client.getParams());
+		    } catch (Exception ex) {
+		        return null;
+		    }
+		}
 	
 }
