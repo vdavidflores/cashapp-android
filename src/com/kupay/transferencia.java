@@ -33,8 +33,7 @@ public class transferencia extends Fragment{
 	TextView para;
 	TextView cantidad;
 	TextView cc;
-	int pin ;
-	JSONObject datos;
+	int pin ;	JSONObject datos;
 	Post post;
 	protected AlertDialog dialog;
 	private ProgressDialog progress;

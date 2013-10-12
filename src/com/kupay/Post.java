@@ -52,10 +52,10 @@ public class Post {
 			  
 			HttpClient httpclient = new DefaultHttpClient();
 		  	Log.v("post", "2");
-		     HttpPost httppost = new HttpPost("http://ec2-54-218-24-192.us-west-2.compute.amazonaws.com/kuCloudApp/index.php");
+		     HttpPost httppost = new HttpPost("http://10.1.17.152/taxiHotServer/index.php");
 		     pares = new ArrayList<NameValuePair>(2);
 		     Log.v("post", "3");
-		       pares.add(new BasicNameValuePair("ACCION", Integer.toString(accion)));
+		       pares.add(new BasicNameValuePair("FUNCION", Integer.toString(accion)));
 		       pares.add(new BasicNameValuePair("DATA", obj.toString()));
 		       Log.v("post", "4");
 		       
