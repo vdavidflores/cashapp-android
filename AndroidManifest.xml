@@ -40,6 +40,13 @@
             android:windowSoftInputMode="adjustPan|adjustResize">
             
         </activity>
+         <activity
+            android:name="com.kupay.Inicio_sesion"
+            android:label="@string/app_name" 
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|adjustResize">
+            
+        </activity>
         <activity
             android:name="com.kupay.Pregunta"
             android:label="@string/app_name" 

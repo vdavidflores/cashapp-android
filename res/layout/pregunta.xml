@@ -30,7 +30,7 @@
             android:src="@drawable/pleca" />
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/posi"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_alignLeft="@+id/imageView1"
@@ -40,14 +40,13 @@
             android:text="" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/nega"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_alignBaseline="@+id/button1"
-            android:layout_alignBottom="@+id/button1"
+            android:layout_alignBaseline="@+id/posi"
+            android:layout_alignBottom="@+id/posi"
             android:layout_alignRight="@+id/imageView1"
-            android:background="@drawable/no"
-            android:text="" />
+            android:background="@drawable/no" />
 
     </RelativeLayout>
 
