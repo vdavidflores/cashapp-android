@@ -59,7 +59,7 @@ acept = (Button) findViewById(R.id.aceptar_r);
 	contraseña2.setTransformationMethod(PasswordTransformationMethod.getInstance());
    
 	Log.v("registro", "4");
-        
+        eventos();
 	/*  acept.setOnClickListener(new View.OnClickListener() {*/
     		
            	//das click en aceptar
@@ -255,4 +255,58 @@ Log.v("respuestas", "5");
         }*/
     }
    
+    
+private void eventos(){
+		
+		
+		// Boton de solicitar Taxis	
+			
+			
+	 acept.setOnClickListener(new View.OnClickListener() {
+				
+		       	
+				@Override
+				public void onClick(View view) {
+					// TODO Auto-generated method stub
+					Intent in = new Intent (getApplicationContext(), Registro_seguridad.class);
+					startActivityForResult(in, 2);
+					
+					try {
+						this.finalize();
+					} catch (Throwable e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					Log.v("TC","4ma");
+				}
+
+
+			});
+			
+	 cancel.setOnClickListener(new View.OnClickListener() {
+				
+		       	
+				@Override
+				public void onClick(View view) {
+					// TODO Auto-generated method stub
+					Intent in = new Intent (getApplicationContext(), Pregunta.class);
+					startActivityForResult(in, 2);
+					
+					try {
+						this.finalize();
+					} catch (Throwable e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					Log.v("TC","4ma");
+				}
+
+
+			});
+
+   
+   }
+    
+    
+    
 }
