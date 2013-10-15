@@ -96,6 +96,8 @@
 
                         <EditText
                             android:id="@+id/celular"
+                            android:background="@drawable/edit_text_design"
+                            android:textColor="#ffffff"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
@@ -113,25 +115,22 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical" >
 
-                        <TextView
-                            android:id="@+id/TextView05"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:text="Confirma Pin"
-                            android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:textColor="#ffffff" />
-
                         <EditText
                             android:id="@+id/nombreReg"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                              android:inputType="text"
-                              android:singleLine="true"
                             android:layout_marginRight="10dp"
+                            android:layout_marginTop="30dp"
+                            android:textColorHint="#ffffff"
+                            android:hint="Confirmar pin"
+                            android:background="@drawable/edit_text_design"
+                            android:ems="10"
                             android:imeOptions="actionNext"
-                            android:ems="10" />
+                            android:inputType="text"
+                            android:singleLine="true"
+                            android:textColor="#ffffff" />
+
                     </LinearLayout>
                 </LinearLayout>
 

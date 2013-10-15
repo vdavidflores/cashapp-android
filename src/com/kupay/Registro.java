@@ -48,8 +48,8 @@ public class Registro extends Activity {
 acept = (Button) findViewById(R.id.aceptar_r);
    cancel = (Button) findViewById(R.id.iniciar); 
    Log.v("registro", "2");
-   
-   celular = (EditText) findViewById(R.id.celular);
+   eventos();
+   /*celular = (EditText) findViewById(R.id.celular);
 	nombre = (EditText) findViewById(R.id.nombreReg);
 	email = (EditText) findViewById(R.id.mail);
 	Log.v("registro", "3");
@@ -59,8 +59,8 @@ acept = (Button) findViewById(R.id.aceptar_r);
 	contraseña2.setTransformationMethod(PasswordTransformationMethod.getInstance());
    
 	Log.v("registro", "4");
-        eventos();
-	/*  acept.setOnClickListener(new View.OnClickListener() {*/
+        
+	  acept.setOnClickListener(new View.OnClickListener() {*/
     		
            	//das click en aceptar
     		/*@Override

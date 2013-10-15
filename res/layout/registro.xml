@@ -85,22 +85,20 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical" >
 
-                        <TextView
-                            android:id="@+id/TextView06"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:text="Celular"
-                            android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:textColor="#ffffff" />
+                        
 
                         <EditText
-                            android:id="@+id/celular"
+                            android:id="@+id/nombre_registro"
+                            android:background="@drawable/edit_text_design"
+                             android:layout_marginTop="30dp"
+                            android:textColorHint="#ffffff"
+                            android:hint="Nombre"
+                            android:textColor="#ffffff"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
-                            android:inputType="phone"
+                            android:inputType="text"
                             android:singleLine="true"
                              android:imeOptions="actionNext"
                             android:ems="10"
@@ -113,17 +111,14 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical" >
 
-                        <TextView
-                            android:id="@+id/TextView05"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:text="Nombre"
-                            android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:textColor="#ffffff" />
-
+                        
                         <EditText
-                            android:id="@+id/nombreReg"
+                            android:id="@+id/apellido_registro"
+                            android:background="@drawable/edit_text_design"
+                            android:textColor="#ffffff"
+                             android:layout_marginTop="30dp"
+                            android:textColorHint="#ffffff"
+                            android:hint="Apellido"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
@@ -140,17 +135,15 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical" >
 
-                    <TextView
-                        android:id="@+id/TextView03"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:text="Correo electrónico:"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="#ffffff" />
+                    
 
                     <EditText
-                        android:id="@+id/mail"
+                        android:id="@+id/mail_registro"
+                        android:background="@drawable/edit_text_design"
+                        android:textColor="#ffffff"
+                         android:layout_marginTop="30dp"
+                            android:textColorHint="#ffffff"
+                            android:hint="Correo electrónico"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -166,22 +159,18 @@
                     android:layout_height="82dp"
                     android:orientation="vertical" >
 
-                    <TextView
-                        android:id="@+id/textpas"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:text="Password:"
-                        android:singleLine="true"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="#ffffff" />
-
+                    
                     <EditText
-                        android:id="@+id/pasword"
+                        android:id="@+id/date"
+                        android:background="@drawable/edit_text_design"
+                        android:textColor="#ffffff"
+                         android:layout_marginTop="30dp"
+                          android:textColorHint="#ffffff"
+                          android:hint="Fecha de nacimiento"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                         android:inputType="textPassword"
+                         android:inputType="date"
                          android:singleLine="true"
                         android:layout_marginRight="10dp"
                         android:imeOptions="actionNext"
@@ -196,22 +185,18 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical" >
 
-                    <TextView
-                        android:id="@+id/TextView02"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:text="Confirmar Password:"
-                        
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="#ffffff" />
-
+                   
                     <EditText
-                        android:id="@+id/pasword2"
+                        android:id="@+id/telefono_registro"
+                        android:background="@drawable/edit_text_design"
+                        android:textColor="#ffffff"
+                        
+                          android:textColorHint="#ffffff"
+                          android:hint="teléfono"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                         android:inputType="textPassword"
+                         android:inputType="phone"
                          android:singleLine="true"
                          android:imeOptions="actionDone"
                         android:layout_marginRight="10dp"
