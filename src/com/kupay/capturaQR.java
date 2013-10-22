@@ -434,14 +434,14 @@ public class capturaQR extends DecoderActivity{
 		    		
 		    		AlertDialog.Builder builder_ = new AlertDialog.Builder(getActivity());	
 		    		builder_.setIcon(R.drawable.ku72);
-		    		builder_.setTitle("Tranaccion no realizada");
+		    		builder_.setTitle(R.string.tranaccionNoRealizada);
 		    		
 		    		if (USUARIO_INVALIDO.toString().equals(causaFalla)){
 		    			builder_.setMessage("EL usuario ingresado es invalido");
 		    		}else if(FONDOS_INUFICIENTES.toString().equals(causaFalla)){
 		    			builder_.setMessage("No dipones de saldo suficiente para realizar esta transacción");
 		    		}else{
-		    			builder_.setMessage("Error desoconosido, intenta nuevamente mas tarde o contacta a tu acesor Ku-pay" +
+		    			builder_.setMessage("Error desconocido, intenta nuevamente mas tarde o contacta a tu acesor Ku-pay" +
 		    					" al 01800-222-359-9661");
 		    		}
 		    		

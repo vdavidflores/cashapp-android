@@ -16,42 +16,19 @@
             android:background="#ffffff" >
 
             <LinearLayout
-                android:layout_width="60dp"
-                android:layout_height="64dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="7dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0.04"
                 android:orientation="vertical" >
 
                 <ImageView
                     android:id="@+id/imgmark"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/pin" />
-            </LinearLayout>
+                    android:src="@drawable/datosw" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="0.02"
-                android:orientation="vertical" >
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical" >
-
-                <TextView
-                    android:id="@+id/editText1"
-                    android:layout_width="match_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_gravity="center"
-                    android:text="Registro"
-                    android:textColor="#ffffff"
-                    android:textSize="20sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -59,7 +36,33 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.04"
                 android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/ImageView01"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/seguridadq" />
+
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0.04"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/ImageView02"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/enlacew" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
         <ScrollView
@@ -74,6 +77,23 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                android:orientation="vertical" >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:textColor="#ffffff"
+                        android:text="Datos de seguridad"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -85,15 +105,6 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical" >
 
-                        <TextView
-                            android:id="@+id/TextView06"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:text="Pin"
-                            android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:textColor="#ffffff" />
-
                         <EditText
                             android:id="@+id/celular"
                             android:background="@drawable/edit_text_design"
@@ -103,6 +114,9 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:inputType="phone"
+                               android:layout_marginTop="30dp"
+                            android:textColorHint="#ffffff"
+                            android:hint="pin"
                             android:singleLine="true"
                              android:imeOptions="actionNext"
                             android:ems="10"
@@ -144,6 +158,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
+                        android:layout_marginTop="30dp"
                         android:text="PUK"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textColor="#ffffff" />
@@ -184,7 +199,7 @@
     android:id="@+id/aceptar_r"
     android:layout_width="160dp"
     android:layout_height="wrap_content"
-    android:background="@drawable/ccbg"
+    android:background="@drawable/fondo_acept_cancel"
     android:text="Aceptar"
     android:textColor="#ffffff" />
 
@@ -192,7 +207,7 @@
                     android:id="@+id/iniciar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/ccbg"
+                    android:background="@drawable/fondo_acept_cancel"
                     android:text="Cancelar"
                     android:textColor="#ffffff" />
 

@@ -61,7 +61,7 @@ acept = (Button) findViewById(R.id.aceptar_r);
 				@Override
 				public void onClick(View view) {
 					// TODO Auto-generated method stub
-					Intent in = new Intent (getApplicationContext(), MainActivity.class);
+					Intent in = new Intent (getApplicationContext(), Inicio_sesion.class);
 					startActivityForResult(in, 2);
 					
 					try {
