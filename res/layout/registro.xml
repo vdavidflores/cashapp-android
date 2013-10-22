@@ -115,7 +115,7 @@
                             android:layout_marginTop="30dp"
                             android:background="@drawable/edit_text_design"
                             android:ems="10"
-                            android:hint="@string/regNombrePista"
+                            android:hint="Nombre"
                             android:imeOptions="actionNext"
                             android:inputType="text"
                             android:singleLine="true"
@@ -222,7 +222,7 @@
                         android:layout_weight="0.64" >
 
                         <EditText
-                            android:id="@+id/EditText02"
+                            android:id="@+id/ndia_registro"
                             android:layout_width="54dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
@@ -237,7 +237,7 @@
                             android:textColorHint="#ffffff" />
 
                         <EditText
-                            android:id="@+id/EditText01"
+                            android:id="@+id/nmes_registro"
                             android:layout_width="49dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
@@ -252,7 +252,7 @@
                             android:textColorHint="#ffffff" />
 
                         <EditText
-                            android:id="@+id/date"
+                            android:id="@+id/nano_registro"
                             android:layout_width="33dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
@@ -298,7 +298,7 @@
                     </LinearLayout>
 
                     <Spinner
-                        android:id="@+id/spinner1"
+                        android:id="@+id/paiso"
                          android:background="@drawable/edit_text_design"
                           android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
