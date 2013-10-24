@@ -40,7 +40,10 @@ public class Registro extends Activity {
 	EditText nmes;
 	EditText nano;
 	
-	
+	@Override
+	public void onBackPressed() {
+	// Do nothing
+	}
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

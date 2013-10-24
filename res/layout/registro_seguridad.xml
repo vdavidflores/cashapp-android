@@ -105,18 +105,19 @@
                         android:orientation="vertical" >
 
                         <EditText
-                            android:id="@+id/pin"
+                            android:id="@+id/pin_uno"
                             android:background="@drawable/edit_text_design"
                             android:textColor="#ffffff"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:maxLength="4"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:inputType="phone"
                             android:password="true"
                             android:layout_marginTop="30dp"
                             android:textColorHint="#ffffff"
-                            android:hint="pin"
+                            android:hint="pin (cuatro dígitos)"
                             android:singleLine="true"
                              android:imeOptions="actionNext"
                             android:ems="10"
@@ -130,9 +131,10 @@
                         android:orientation="vertical" >
 
                         <EditText
-                            android:id="@+id/pin_confirmado"
+                            android:id="@+id/pin_dos"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:maxLength="4"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginTop="30dp"
@@ -198,7 +200,7 @@
 
                     
                  <EditText
-                            android:id="@+id/puk"
+                            android:id="@+id/puk_rs"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
