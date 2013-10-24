@@ -15,6 +15,7 @@ import android.view.View;
 
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 
@@ -28,6 +29,14 @@ public class Inicio_sesion extends Activity {
 	EditText pin;
 	EditText puk;
 	
+
+	@Override
+	public void onBackPressed() {
+	// Do nothing
+	}
+	
+	
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,9 +49,9 @@ acept = (Button) findViewById(R.id.aceptar_r);
    cancel = (Button) findViewById(R.id.iniciar); 
    Log.v("inicio", "2");  
    
-   correo = (EditText) findViewById(R.id.celular);
-	pin = (EditText) findViewById(R.id.nombreReg);
-	puk = (EditText) findViewById(R.id.mail);
+   correo = (EditText) findViewById(R.id.correo_i);
+	pin = (EditText) findViewById(R.id.pin_i);
+	puk = (EditText) findViewById(R.id.puk_i);
 	
 	eventos();
         
@@ -60,6 +69,16 @@ acept = (Button) findViewById(R.id.aceptar_r);
 		       	
 				@Override
 				public void onClick(View view) {
+					if (!correo.getText().toString().equals("")&&
+	    					!pin.getText().toString().equals("")&&
+	    					!puk.getText().toString().equals(""))
+					{		
+					
+					
+					
+					
+					
+					
 					// TODO Auto-generated method stub
 					Intent in = new Intent (getApplicationContext(), MainActivity.class);
 					startActivityForResult(in, 2);
@@ -72,10 +91,20 @@ acept = (Button) findViewById(R.id.aceptar_r);
 					}
 					Log.v("TC","4ma");
 				}
+			
+				else{
+					
+				Toast.makeText(getApplicationContext(), "Campos vacios, favor de llenar todos los campos", Toast.LENGTH_LONG).show();
+					
+					
+				}
 
-
+				}
+					
 			});
 			
+	 
+	 
 	 cancel.setOnClickListener(new View.OnClickListener() {
 				
 		       	

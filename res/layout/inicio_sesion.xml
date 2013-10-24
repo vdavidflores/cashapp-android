@@ -106,7 +106,7 @@
                         android:orientation="vertical" >
 
                         <EditText
-                            android:id="@+id/celular"
+                            android:id="@+id/correo_i"
                             android:background="@drawable/edit_text_design"
                             android:textColor="#ffffff"
                             android:layout_width="match_parent"
@@ -130,7 +130,7 @@
                         android:orientation="vertical" >
 
                         <EditText
-                            android:id="@+id/nombreReg"
+                            android:id="@+id/pin_i"
                             android:background="@drawable/edit_text_design"
                             android:textColor="#ffffff"
                             android:layout_width="match_parent"
@@ -139,7 +139,8 @@
                              android:layout_marginTop="30dp"
                             android:textColorHint="#ffffff"
                             android:hint="pin"
-                             android:inputType="textPassword"
+                             android:inputType="phone"
+                             android:password="true"
                               android:singleLine="true"
                             android:layout_marginRight="10dp"
                             android:imeOptions="actionNext"
@@ -153,7 +154,7 @@
                     android:orientation="vertical" >
 
                     <EditText
-                        android:id="@+id/mail"
+                        android:id="@+id/puk_i"
                         android:background="@drawable/edit_text_design"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
