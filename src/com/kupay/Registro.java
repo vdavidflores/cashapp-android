@@ -77,7 +77,7 @@ private void eventos(){
 				@Override
 				public void onClick(View view) {
 					
-					
+					Log.v("registro", "2.5");
 					
 					if (!celular.getText().toString().equals("")&&
 	    					!nombre.getText().toString().equals("")&&
@@ -86,21 +86,41 @@ private void eventos(){
 	    					!celular.getText().toString().equals("")&&
 	    					!ndia.getText().toString().equals("")&&
 	    					!nmes.getText().toString().equals("")&&
-	    					!nano.getText().toString().equals("")){	
+	    					!nano.getText().toString().equals(""))
+					{	
+							Log.v("registro", "3");
 						
-					// TODO Auto-generated method stub
-					Intent in = new Intent (getApplicationContext(), Registro_seguridad.class);
-					startActivityForResult(in, 2);
+							if (Integer.parseInt(nano.getText().toString()) < (int)1900 ){
+								Log.v("registro", "4");	
+								Toast.makeText(getApplicationContext(), "Año de nacimiento incorrecto", Toast.LENGTH_LONG).show();
+										
+							}
+							else if (Integer.parseInt(ndia.getText().toString()) > (int)31){
+								Log.v("registro", "6");
+								Toast.makeText(getApplicationContext(), "Día incorrecto", Toast.LENGTH_LONG).show();							
+							}
+							else if (Integer.parseInt(nmes.getText().toString()) > (int)12){
+								Log.v("registro", "5");
+								Toast.makeText(getApplicationContext(), "Mes incorrecto", Toast.LENGTH_LONG).show();			
+									
+							}
+							else {
+							// TODO Auto-generated method stub
+							Intent in = new Intent (getApplicationContext(), Registro_seguridad.class);
+							startActivityForResult(in, 2);
 					
-					try {
-						this.finalize();
-					} catch (Throwable e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+							try {
+								this.finalize();
+							} catch (Throwable e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+					
+							Toast.makeText(getApplicationContext(), "Datos Registrados", Toast.LENGTH_LONG).show();
+							}
+							
+							//Toast.makeText(getApplicationContext(), "Si funciona", Toast.LENGTH_LONG).show();
 					}
-					
-					Toast.makeText(getApplicationContext(), "Datos Registrados", Toast.LENGTH_LONG).show();
-			}
 					else{
 						
 					Toast.makeText(getApplicationContext(), "Campos vacios, favor de llenar todos los campos", Toast.LENGTH_LONG).show();

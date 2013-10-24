@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >   
     
+      
    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -217,19 +218,20 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.64" >
+                         android:orientation="horizontal">
 
                         <EditText
                             android:id="@+id/ndia_registro"
-                            android:layout_width="54dp"
+                            android:layout_width="26dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
+                            android:maxLength="2"
                             android:background="@drawable/edit_text_design"
                             android:ems="10"
-                            android:hint="Día"
+                            android:hint="DD"
                             android:imeOptions="actionNext"
                             android:inputType="phone"
                             android:singleLine="true"
@@ -238,28 +240,14 @@
 
                         <EditText
                             android:id="@+id/nmes_registro"
-                            android:layout_width="49dp"
+                            android:layout_width="42dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginRight="3dp"
                             android:background="@drawable/edit_text_design"
                             android:ems="10"
-                            android:hint="Mes"
-                            android:imeOptions="actionNext"
-                            android:inputType="phone"
-                            android:singleLine="true"
-                            android:textColor="#ffffff"
-                            android:textColorHint="#ffffff" />
-
-                        <EditText
-                            android:id="@+id/nano_registro"
-                            android:layout_width="33dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            android:background="@drawable/edit_text_design"
-                            android:ems="10"
-                            android:hint="Año"
+                            android:maxLength="2"
+                            android:hint="MM"
                             android:imeOptions="actionNext"
                             android:inputType="phone"
                             android:singleLine="true"
@@ -271,6 +259,23 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:orientation="vertical" >
+
+                            <EditText
+                                android:id="@+id/nano_registro"
+                                android:layout_width="52dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="1dp"
+                                android:layout_marginRight="10dp"
+                                android:background="@drawable/edit_text_design"
+                                android:ems="10"
+                                android:hint="AAAA"
+                                android:imeOptions="actionNext"
+                                android:inputType="phone"
+                                android:maxLength="4"
+                                android:singleLine="true"
+                                android:textColor="#ffffff"
+                                android:textColorHint="#ffffff" />
+
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -340,6 +345,8 @@
 
         </LinearLayout>
     </LinearLayout>
+    
+    
       </LinearLayout>
 
 
