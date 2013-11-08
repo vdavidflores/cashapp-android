@@ -62,7 +62,7 @@ public class Pregunta extends Activity{
 				@Override
 				public void onClick(View view) {
 					// TODO Auto-generated method stub
-					Intent in = new Intent (getApplicationContext(), Inicio_sesion.class);
+					Intent in = new Intent (getApplicationContext(), Enlazar.class);
 					startActivityForResult(in, 2);
 					
 					try {

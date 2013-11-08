@@ -97,7 +97,7 @@ acept = (Button) findViewById(R.id.aceptar_r);
 					//pin_uno.getText().length();
 					
 					// TODO Auto-generated method stub
-					Intent in = new Intent (getApplicationContext(), Inicio_sesion.class);
+					Intent in = new Intent (getApplicationContext(), Enlazar.class);
 					startActivityForResult(in, 2);
 					
 					try {

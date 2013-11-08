@@ -20,7 +20,7 @@ import android.widget.Toast;
 
 
 
-public class Inicio_sesion extends Activity {
+public class Enlazar extends Activity {
     
 	Button acept;
 	Button cancel;
@@ -41,7 +41,7 @@ public class Inicio_sesion extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.v("inicio", "0.5");
-        setContentView(R.layout.inicio_sesion);
+        setContentView(R.layout.enlazar);
         Log.v("inicio", "1");
         
         // Tomar los datos de los campos
