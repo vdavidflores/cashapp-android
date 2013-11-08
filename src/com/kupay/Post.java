@@ -52,10 +52,10 @@ public class Post {
 			  
 			HttpClient httpclient = new DefaultHttpClient();
 		  	Log.v("post", "2");
-		     HttpPost httppost = new HttpPost("http://10.1.17.152/taxiHotServer/index.php");
+		     HttpPost httppost = new HttpPost("http://kupay.tk/kuCloudAppDev/index.php");
 		     pares = new ArrayList<NameValuePair>(2);
 		     Log.v("post", "3");
-		       pares.add(new BasicNameValuePair("FUNCION", Integer.toString(accion)));
+		       pares.add(new BasicNameValuePair("ACCION", Integer.toString(accion)));
 		       pares.add(new BasicNameValuePair("DATA", obj.toString()));
 		       Log.v("post", "4");
 		       
@@ -71,9 +71,9 @@ public class Post {
 				 respuesta = EntityUtils.toString(httpresponse.getEntity());
 				 Log.v("post", "6");
 				 if ( httpresponse != null){
-					
+					 Log.v("post", "7");
 						response = new JSONObject(respuesta);
-						
+					 Log.v("post", "7");	
 				 }
 				 
 				} catch (Exception e) {
