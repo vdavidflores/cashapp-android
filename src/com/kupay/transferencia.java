@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -59,20 +60,7 @@ public class transferencia extends Fragment{
              para = (TextView) view.findViewById(R.id.inputPara);
    		     cantidad = (TextView) view.findViewById(R.id.inputCantidad);
    		  
-   		/*Log.v("text", "1");
-   		  TextView txt = (TextView) view.findViewById(R.id.textView1);
-   		Log.v("text", "2"); 
-          Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/customfont.ttf");
-          Log.v("text", "3");
-          txt.setTypeface(font);
-          Log.v("text", "4");*/
-         
-   		     
-   		     
-   		     
-   		     /*Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/mytruetypefont.ttf");
-   		view.setTypeface(typeFace);*/
-   		     
+   
    		     
    		     
    		   eventos();
@@ -86,25 +74,51 @@ public class transferencia extends Fragment{
 		enviar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
             	
-            	AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        		builder.setIcon(R.drawable.ku72);
-        		builder.setTitle("Transferencia");
-        		builder.setMessage("Deseas transferir $"+cantidad.getText()+" a "+para.getText());
-        		builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-        			
-                    public void onClick(DialogInterface dialog, int id) {
-                    	pin();
-    				}
-                });
-        		builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                    	enviar.setText("");
-                    	para.setText("");
-                    }
-                });
+            	 String EMAIL_REGEX = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+            	 
+            	 if (para.getText().toString().matches(EMAIL_REGEX)){
+            		 para.setBackgroundColor(Color.WHITE);
+            		 if(!cantidad.getText().toString().equals("")){
+            			 cantidad.setBackgroundColor(Color.WHITE);
+            			 
+            			 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                 		builder.setIcon(R.drawable.ku72);
+                 		builder.setTitle("Transferencia");
+                 		builder.setMessage("Deseas transferir $"+cantidad.getText()+" a "+para.getText());
+                 		builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                 			
+                             public void onClick(DialogInterface dialog, int id) {
+                             	pin();
+             				}
+                         });
+                 		builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                             public void onClick(DialogInterface dialog, int id) {
+                             	enviar.setText("");
+                             	para.setText("");
+                             }
+                         });
 
-        		dialog = builder.create();
-            	dialog.show();
+                 		dialog = builder.create();
+                     	dialog.show();
+            			 
+            			 
+            		 }else {
+						Toast.makeText(getActivity(), "Cantad vacia", Toast.LENGTH_LONG).show();
+						cantidad.requestFocus();
+						cantidad.setBackgroundColor(Color.YELLOW);
+					}
+            		 
+            		 
+            		 
+            	 }else {
+					Toast.makeText(getActivity(), "email invalido", Toast.LENGTH_LONG).show();
+					cantidad.setBackgroundColor(Color.WHITE);
+					para.requestFocus();
+					para.setBackgroundColor(Color.YELLOW);
+				}
+            	
+            	
+            	
             	
             
             	
