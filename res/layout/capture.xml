@@ -11,10 +11,7 @@
                android:layout_width="fill_parent"
                android:layout_height="fill_parent">
   </RelativeLayout> 
-     <SurfaceView
-               android:layout_width="fill_parent"
-               android:layout_height="fill_parent">
-  </SurfaceView>  
+       
   
   <com.kupay.decoder.ViewfinderView
       android:id="@+id/viewfinder_view"

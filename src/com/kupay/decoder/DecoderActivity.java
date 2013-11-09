@@ -73,7 +73,7 @@ public class DecoderActivity extends Fragment implements IDecoderActivity, Surfa
     @Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View c = View.inflate(getActivity().getApplicationContext(), R.layout.decoder,null);
+		View c = View.inflate(getActivity().getApplicationContext(), R.layout.capture,null);
 	
 		return c;
     }
@@ -134,35 +134,31 @@ public class DecoderActivity extends Fragment implements IDecoderActivity, Surfa
     			//(SurfaceView) getView().findViewById(R.id.preview_view);
     	 RelativeLayout rl = (RelativeLayout) getView().findViewById(R.id.fitCamera);
     	 surfaceView = null;
-    	  surfaceView = new SurfaceView(getActivity());
-        SurfaceHolder surfaceHolder = surfaceView.getHolder();
+    	 surfaceView = new SurfaceView(getActivity().getApplicationContext());
+         SurfaceHolder surfaceHolder = surfaceView.getHolder();
         
         	
-        	Log.v("app", "Cargando camara");
-            surfaceHolder.addCallback(this);
-            surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+         Log.v("app", "Cargando camara");
+       
+         Log.v("app", "surfaceView height: "+surfaceView.getHeight());
+         surfaceHolder.addCallback(this);
+         surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
         
         
-        if(rl != null && surfaceView != null)
-        	
+         if(rl != null && surfaceView != null){
         	rl.removeAllViews();
             rl.addView(surfaceView);
-        
+            Log.v("app", "surfaceView height: "+surfaceView.getHeight());
+         }
     }
     
     @Override
 	public void onPause() {
-        
         Log.v(TAG, "onPause() DA");
-
-      
-        
         super.onPause();
     }
     
     public void stopCamera(){
-    	
-    	
     	  if (handler != null) {
           	Log.v("app", "El handeler no es nulo");
               handler.quitSynchronously();
@@ -179,9 +175,6 @@ public class DecoderActivity extends Fragment implements IDecoderActivity, Surfa
     }
 
     public void restartCam(){
-    	
-
-    	
     	if (handler != null) {
         	Log.v("app", "El handeler no es nulo");
             handler.quitSynchronously();

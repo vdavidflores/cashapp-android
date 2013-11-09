@@ -236,6 +236,7 @@ public class capturaQR extends DecoderActivity{
 									int which) {
 								dialog.dismiss();
 								qr = "";
+								restartCam();
 							}
 						});
 						
@@ -306,6 +307,7 @@ public class capturaQR extends DecoderActivity{
 		    		builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
 		                public void onClick(DialogInterface dialog, int id) {
 		                	dialog.dismiss();
+		                	restartCam();
 		                }
 		            });
 
