@@ -9,8 +9,10 @@
         android:id="@+id/headerq"
         android:layout_width="fill_parent"
         android:layout_height="60dp"
+        android:baselineAligned="false"
         android:orientation="horizontal"
-        android:background="@drawable/ccbg" >
+        android:background="@drawable/ccbg"
+        >
 
         <LinearLayout
             android:layout_width="20dp"
@@ -59,18 +61,20 @@
     <FrameLayout
         android:id="@+id/realtabcontent"
         android:layout_width="match_parent"
-        android:layout_height="0dip"
-        android:layout_weight="1" />
+        android:layout_height="0dp"
+        android:layout_weight="4" />
 
-    <android.support.v4.app.FragmentTabHost
+   <android.support.v4.app.FragmentTabHost
         android:id="@android:id/tabhost"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="69dp"
+        android:layout_margin="0dp"
+         android:layout_weight="0"
+       android:layout_gravity="bottom"
+       android:layout_marginBottom="0dp"
+       android:paddingBottom="0dp"
+        >
 
-        <FrameLayout
-            android:id="@android:id/tabcontent"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="0" />
+      
     </android.support.v4.app.FragmentTabHost>
 </LinearLayout>

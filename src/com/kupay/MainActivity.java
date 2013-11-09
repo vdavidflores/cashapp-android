@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
+import android.support.v4.view.ViewPager.LayoutParams;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -87,7 +88,8 @@ public class MainActivity extends FragmentActivity {
 		b.putString("key", "comprar");
 		mTabHost.addTab(mTabHost.newTabSpec("comprar").setIndicator("", getResources().getDrawable(R.layout.comp)),capturaQR.class, b);
 		mTabHost.getTabWidget().getChildAt(0).setBackgroundResource(R.layout.bgcomp); 
-		mTabHost.getTabWidget().getChildAt(0).getLayoutParams().height = 100;
+		mTabHost.getTabWidget().getChildAt(0).getLayoutParams().height = LayoutParams.MATCH_PARENT;
+		mTabHost.getTabWidget().getChildAt(0).getLayoutParams().width = LayoutParams.MATCH_PARENT;
 		mTabHost.getTabWidget().setStripEnabled(false);
 		
 		//mTabHost.getChildAt(0).getLayoutParams().height = 80;
@@ -97,7 +99,8 @@ public class MainActivity extends FragmentActivity {
 		b.putString("key", "transferir");
 		mTabHost.addTab(mTabHost.newTabSpec("transferir").setIndicator("", getResources().getDrawable(R.layout.tran)), transferencia.class, b);
 		mTabHost.getTabWidget().getChildAt(1).setBackgroundResource(R.layout.bgcomp); 
-		mTabHost.getTabWidget().getChildAt(1).getLayoutParams().height = 100;
+		mTabHost.getTabWidget().getChildAt(1).getLayoutParams().height = LayoutParams.MATCH_PARENT;
+		mTabHost.getTabWidget().getChildAt(1).getLayoutParams().width = LayoutParams.MATCH_PARENT;
 		mTabHost.getTabWidget().setStripEnabled(false);
 		
 		//mTabHost.getChildAt(1).getLayoutParams().height = 80;
@@ -107,7 +110,8 @@ public class MainActivity extends FragmentActivity {
 		b.putString("key", "cobrar");
 		mTabHost.addTab(mTabHost.newTabSpec("cobrar").setIndicator("",getResources().getDrawable(R.layout.consulta)),Consulta.class, b);
 		mTabHost.getTabWidget().getChildAt(2).setBackgroundResource(R.layout.bgcomp);
-		mTabHost.getTabWidget().getChildAt(2).getLayoutParams().height = 100;
+		mTabHost.getTabWidget().getChildAt(2).getLayoutParams().height =  LayoutParams.MATCH_PARENT;
+		mTabHost.getTabWidget().getChildAt(2).getLayoutParams().width = LayoutParams.MATCH_PARENT;
 		mTabHost.getTabWidget().setStripEnabled(false);
 		
 		

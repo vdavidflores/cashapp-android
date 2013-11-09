@@ -8,7 +8,7 @@
 	android:id="@+id/tabsLayout" 
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent" 
-	android:padding="2dip" 
+	android:padding="0dip" 
 	android:gravity="center" 
 	android:orientation="vertical">
 
