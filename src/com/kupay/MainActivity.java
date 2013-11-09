@@ -21,6 +21,11 @@ public class MainActivity extends FragmentActivity {
 	Activity actividad;
 	 
 	@Override
+	public void onBackPressed() {
+	// Do nothing
+	}
+	
+	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		actividad = this;

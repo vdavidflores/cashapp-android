@@ -176,43 +176,18 @@ public class Consulta extends ListFragment {
         }else{
 	        	setListAdapter(getListAdapter());
 	        }
-      
       }
-      
       private String MiUsuario(){
       	String usr = null;
           BDD dbh = new BDD(getActivity(),"kupay",null,1);
           SQLiteDatabase db= dbh.getReadableDatabase();
           Cursor reg = db.query("kupay",new String[]{"usr"},null,null,null,null,null,"1");
           if(reg.moveToFirst()){
-              usr=reg.getString(0);
-             
-          
+              usr=reg.getString(0);   
           }
   	 return usr;
-      }
-
-		
+      }	
   }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   
 } 
 

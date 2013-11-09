@@ -40,5 +40,21 @@
   <string name="wifi_type_label">Type</string>
 
   <string name="barcode_image">Barcode Image</string>
+  
+  <string name="regNombrePista">Pele</string>
+<string name="tranaccionNoRealizada">Transaction fail</string>
+  
+  
+  <string name="pais">País de procedencia</string>
+  <string-array name="Paises">
+      <item >México</item>
+      <item >Bolivia</item>
+      <item >Peru</item>
+      <item >España</item>
+  </string-array>
+  
+  
+  
+  
 
 </resources>

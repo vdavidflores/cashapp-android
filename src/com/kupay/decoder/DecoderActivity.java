@@ -51,7 +51,7 @@ import android.widget.RelativeLayout;
  */
 public class DecoderActivity extends Fragment implements IDecoderActivity, SurfaceHolder.Callback {
 
-    protected static final String TAG = "app";
+    protected static final String TAG = DecoderActivity.class.getSimpleName();
 
     protected DecoderActivityHandler handler = null;
     protected ViewfinderView viewfinderView = null;
@@ -114,6 +114,7 @@ public class DecoderActivity extends Fragment implements IDecoderActivity, Surfa
     	 // CameraManager must be initialized here, not in onCreate().
         	cameraManager = null;
         	cameraManager = new CameraManager(getActivity().getApplicationContext());
+ 
 
         	viewfinderView = null;
             viewfinderView = (ViewfinderView) getView().findViewById(R.id.viewfinder_view);
@@ -121,11 +122,14 @@ public class DecoderActivity extends Fragment implements IDecoderActivity, Surfa
                
             viewfinderView.setVisibility(View.VISIBLE);
         
+        viewfinderView.setVisibility(View.VISIBLE);
+        
         
       
         
             mHandler.postDelayed(mLoadCamera, 50);
     	
+
     }
     
     private void startCamera(){
@@ -154,6 +158,7 @@ public class DecoderActivity extends Fragment implements IDecoderActivity, Surfa
     
     @Override
 	public void onPause() {
+
         Log.v(TAG, "onPause() DA");
         super.onPause();
     }
@@ -193,6 +198,8 @@ public class DecoderActivity extends Fragment implements IDecoderActivity, Surfa
         //mHandler.postDelayed(mLoadCamera, 100);
        
     }
+
+    
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {

@@ -113,6 +113,7 @@ public class capturaQR extends DecoderActivity{
 		    }
 
 		    public void showScanner() {
+		        inScanMode = true;
 		        viewfinderView.setVisibility(View.VISIBLE);
 		    }
 
@@ -269,6 +270,7 @@ public class capturaQR extends DecoderActivity{
 						e.printStackTrace();
 					}
 		      	
+		        	//onResume();
 		        	
 		        }
 		        
@@ -459,7 +461,7 @@ public class capturaQR extends DecoderActivity{
 		    		}else if(FONDOS_INUFICIENTES.toString().equals(causaFalla)){
 		    			builder_.setMessage("No dipones de saldo suficiente para realizar esta transacción");
 		    		}else{
-		    			builder_.setMessage("Error desoconosido, intenta nuevamente mas tarde o contacta a tu acesor Ku-pay" +
+		    			builder_.setMessage("Error desconocido, intenta nuevamente mas tarde o contacta a tu acesor Ku-pay" +
 		    					" al 01800-222-359-9661");
 		    		}
 		    		
