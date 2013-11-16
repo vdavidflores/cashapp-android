@@ -64,7 +64,7 @@ public class Consulta extends Fragment {
 				// TODO Auto-generated method stub
 				
 				TextView myView = new TextView(getActivity().getApplicationContext());
-				  myView.setText(weather_data[position-1].idkey.substring(0, 5));
+				  myView.setText(weather_data[(int) id].idkey.substring(0, 5));
 				  myView.setGravity(Gravity.CENTER_HORIZONTAL);
 				  
 				  myView.setTextSize(40);
@@ -72,7 +72,7 @@ public class Consulta extends Fragment {
 				  AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
 				    alert.setTitle("Tiket de operación");
 				    alert.setView(myView);
-				    alert.setMessage("Concepto: "+weather_data[position].concepto);
+				    alert.setMessage("Concepto: "+weather_data[(int)id].concepto);
 				  
 				    alert.setPositiveButton("OK",
 				            new DialogInterface.OnClickListener() {
