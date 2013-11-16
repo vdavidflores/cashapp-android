@@ -120,19 +120,12 @@ public class DecoderActivity extends Fragment implements IDecoderActivity, Surfa
             viewfinderView = (ViewfinderView) getView().findViewById(R.id.viewfinder_view);
             viewfinderView.setCameraManager(cameraManager);
                
-            viewfinderView.setVisibility(View.VISIBLE);
-        
-        viewfinderView.setVisibility(View.VISIBLE);
-        
-        
-      
-        
+            viewfinderView.setVisibility(View.VISIBLE);     
             mHandler.postDelayed(mLoadCamera, 50);
-    	
-
     }
     
-    private void startCamera(){
+    @SuppressWarnings("deprecation")
+	private void startCamera(){
     	
    
     			//(SurfaceView) getView().findViewById(R.id.preview_view);
@@ -185,18 +178,9 @@ public class DecoderActivity extends Fragment implements IDecoderActivity, Surfa
             handler.quitSynchronously();
             handler = null;
         }
-    	
-        	
             SurfaceHolder surfaceHolder = surfaceView.getHolder();
             surfaceHolder.removeCallback(this);
             initCamera(surfaceHolder);
-        
-    	
-        
-      
-       // initCamera();
-        //mHandler.postDelayed(mLoadCamera, 100);
-       
     }
 
     

@@ -81,7 +81,7 @@ public class Post {
 					
 					httpresponse = httpclient.execute(httppost);
 				 respuesta = EntityUtils.toString(httpresponse.getEntity());
-				 Log.v("post", "6");
+				 Log.v("app", "respuesta: " +respuesta.toString());
 				 if ( httpresponse != null){
 					
 						response = new JSONObject(respuesta);

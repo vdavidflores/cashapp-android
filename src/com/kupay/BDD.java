@@ -23,13 +23,13 @@ public class BDD extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
        db.execSQL(crea);
-       db.execSQL("INSERT INTO kupay VALUES ('00000001','123456789012345')");
+       db.execSQL("INSERT INTO kupay VALUES ('dos@kupay.com','123456789012345')");
     }
     
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
         db.execSQL("DROP TABLE IF EXISTS mitaxi");
         db.execSQL(crea);
-        db.execSQL("INSERT INTO kupay VALUES ('00000001','123456789012345')");
+        db.execSQL("INSERT INTO kupay VALUES ('uno@kupay.com','123456789012345')");
     }
 }

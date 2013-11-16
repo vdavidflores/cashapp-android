@@ -113,7 +113,7 @@ public class capturaQR extends DecoderActivity{
 		    }
 
 		    public void showScanner() {
-		        inScanMode = true;
+		      
 		        viewfinderView.setVisibility(View.VISIBLE);
 		    }
 

@@ -33,6 +33,7 @@ public class Enlazar extends Activity {
 	@Override
 	public void onBackPressed() {
 	// Do nothing
+		
 	}
 	
 	

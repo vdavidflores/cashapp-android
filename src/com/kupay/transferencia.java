@@ -195,7 +195,7 @@ public class transferencia extends Fragment{
 	
 	
 	
-	private void transaccionFallida(String causaFalla){
+	private void transaccionFallida(String causaFalla, String mensaje){
 		
 		
 		
@@ -208,6 +208,8 @@ public class transferencia extends Fragment{
 			builder_.setMessage("EL usuario ingresado es invalido");
 		}else if(FONDOS_INUFICIENTES.toString().equals(causaFalla)){
 			builder_.setMessage("No dipones de saldo suficiente para realizar esta transacción");
+		}else if(causaFalla.equals("FALLA_MENSAJE")){
+			builder_.setMessage(mensaje);
 		}else{
 			builder_.setMessage("Error desoconosido, intenta nuevamente mas tarde o contacta a tu acesor Ku-pay" +
 					" al 01800-222-359-9661");
@@ -303,7 +305,12 @@ public class transferencia extends Fragment{
       	       Log.v("app", "pst-3");
       			Log.v("app","Causa falla: "+datos.getString("CAUSA_FALLA").toString());
       			Log.v("app", "pst-4");
-      			transaccionFallida(datos.getString("CAUSA_FALLA").toString());
+      			
+      			if (datos.getString("CAUSA_FALLA").equals("FALLA_MENSAJE")){
+      				transaccionFallida(datos.getString("CAUSA_FALLA").toString(),datos.getString("MENSAJE"));
+      			}else{
+      			transaccionFallida(datos.getString("CAUSA_FALLA").toString(),null);
+      			}
       		}else{
       			int duracion=Toast.LENGTH_LONG;
                   Toast mensaje=Toast.makeText(getActivity(), "error desconosido", duracion);

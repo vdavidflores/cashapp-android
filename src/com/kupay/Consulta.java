@@ -2,6 +2,7 @@ package com.kupay;
 
 
 import java.text.BreakIterator;
+import java.util.GregorianCalendar;
 
 import org.apache.http.ParseException;
 import org.apache.http.client.ClientProtocolException;
@@ -9,7 +10,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -17,33 +20,70 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
 public class Consulta extends ListFragment {
-
+	
+	String[] idKEY;
+	Boolean hayLista = false;
+	 OperacionRow weather_data[];
   @Override
   public void onActivityCreated(Bundle savedInstanceState) { 
 	  super.onActivityCreated(savedInstanceState);
-	  Serch consultas = new Serch();
-	  consultas.execute();
+	  
 
   }
-  
+  public void onDestroy() {
+	  hayLista = false;
+      super.onDestroy();
+  }
+
+  @Override
+	public void onResume() {
+  	 
+	  if (!hayLista){
+		  Serch consultas = new Serch();
+		  consultas.execute();
+	  }
+       super.onResume();
+    
+  }
 
   public void onListItemClick(ListView l, View v, int position, long id) {
+	 
+	  TextView myView = new TextView(getActivity().getApplicationContext());
+	  myView.setText(idKEY[position].substring(0, 5));
+	  myView.setGravity(Gravity.CENTER_HORIZONTAL);
+	  myView.setTextSize(40);
+	//  myView.setGravity(Gravity.BOTTOM );
+	  AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+	    alert.setTitle("Tiket de operación");
+	    alert.setView(myView);
+	    alert.setMessage("Concepto: "+weather_data[position].concepto);
+	  
+	    alert.setPositiveButton("OK",
+	            new DialogInterface.OnClickListener() {
+	                @Override
+	                public void onClick(DialogInterface dialog, int which) {
+	                    // TODO Auto-generated method stub
 
+	                    dialog.dismiss();
+	                }
+	            });
 
-  
-  
+	    alert.show();
+	   
   }
   
   private class Serch extends AsyncTask<Void, Integer, JSONObject>{
 	  
-	  OperacionRow weather_data[];
+	 
 	  ProgressDialog progress;
 	  Post post; 	 
 	  JSONArray jay;
@@ -59,9 +99,6 @@ public class Consulta extends ListFragment {
 		protected JSONObject doInBackground(Void... params) {
 			JSONObject data = new JSONObject();
 			try {
-  			
-  				
-  			
   			data.put("usr", MiUsuario());
   			data.put("dias", 1);
   			data.put("imei", "123456789012345");
@@ -128,17 +165,18 @@ public class Consulta extends ListFragment {
 				e1.printStackTrace();
 				}
 	         weather_data = new OperacionRow[jay.length()]; 
-	        
+	        idKEY = new String[jay.length()];
 	        for(int i=0; i < jay.length();i++){
 	        
 	        	int tipo=0;
 	        	int monto=0;
+	        	
 	        	String fecha = null;
 	        	String polo = null;
 	        	String concepto = null;
 	        	
 	        	try {
-	        		;
+	        	idKEY[i]= jay.getJSONObject(i).getString("IDKEY");
 	        	tipo = jay.getJSONObject(i).getInt("TIPO");
 	        	monto = jay.getJSONObject(i).getInt("MONTO");
 	        	fecha = jay.getJSONObject(i).getString("FECHA");
@@ -150,21 +188,21 @@ public class Consulta extends ListFragment {
 	        	switch (tipo) {
 	
 	        	case 1:
-	        	weather_data[i] =  new OperacionRow(R.drawable.mdm, "Abono de "+polo+"$"+monto+"\n"+fecha+"\n"+concepto);
+	        	weather_data[i] =  new OperacionRow(R.drawable.mdm, "Abono de "+polo+"$"+monto+"\n"+fecha+"\n"+concepto, concepto);
 	        	break;
 	
 	        	case 2:
-	        	weather_data[i] =  new OperacionRow(R.drawable.compm, "Compra de "+polo+"$"+monto+"\n"+fecha+"\n"+concepto);
+	        	weather_data[i] =  new OperacionRow(R.drawable.compm, "Compra de "+polo+"$"+monto+"\n"+fecha+"\n"+concepto, concepto);
 	        	break;
 	        	case 3:
-	            	weather_data[i] =  new OperacionRow(R.drawable.tranm, "Transferencia de "+polo+"$"+monto+"\n"+fecha+"\n"+concepto);
-	            	break;
+	            	weather_data[i] =  new OperacionRow(R.drawable.tranm, "Transferencia de "+polo+"$"+monto+"\n"+fecha+"\n"+concepto, concepto);
+	            break;
 	            	
 	        	case 5:
-	            	weather_data[i] =  new OperacionRow(R.drawable.compm, "Compra de "+polo+"$"+monto+"\n"+fecha+"\n"+concepto);
-	            	break;
+	            	weather_data[i] =  new OperacionRow(R.drawable.compm, "Compra de "+polo+"$"+monto+"\n"+fecha+"\n"+concepto, concepto);
+	            break;
 	        	default:
-	        	weather_data[i] =  new OperacionRow(R.drawable.mdm, "Movimiento desconocido "+polo+"$"+monto+"\n"+fecha+"\n"+concepto);
+	        	weather_data[i] =  new OperacionRow(R.drawable.mdm, "Movimiento desconocido "+polo+"$"+monto+"\n"+fecha+"\n"+concepto, concepto);
 	        	break;
 	        	}
 	        }
@@ -172,6 +210,7 @@ public class Consulta extends ListFragment {
 	        Log.v("movs", "5");
 	        WeatherAdapter adapter = new WeatherAdapter(getActivity(), R.layout.listview_item_row, weather_data);
 	        setListAdapter(adapter);
+	        hayLista = true;
        
         }else{
 	        	setListAdapter(getListAdapter());

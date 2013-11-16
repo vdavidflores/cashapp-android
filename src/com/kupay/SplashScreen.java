@@ -17,7 +17,7 @@ public class SplashScreen extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.slash_kupay);
         
-        if(MiUsuario().equals("nil")){
+        if(MiUsuario().equals("nill")){
  
         new Handler().postDelayed(new Runnable() {
  

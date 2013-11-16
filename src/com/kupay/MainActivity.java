@@ -20,10 +20,7 @@ public class MainActivity extends FragmentActivity {
 	Button navicon;
 	Activity actividad;
 	 
-	@Override
-	public void onBackPressed() {
-	// Do nothing
-	}
+
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
