@@ -18,21 +18,28 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 
 
-public class Consulta extends ListFragment {
+public class Consulta extends Fragment {
 	
 	String[] idKEY;
 	Boolean hayLista = false;
 	 OperacionRow weather_data[];
+	 ListView lv ;
   @Override
   public void onActivityCreated(Bundle savedInstanceState) { 
 	  super.onActivityCreated(savedInstanceState);
@@ -43,43 +50,60 @@ public class Consulta extends ListFragment {
 	  hayLista = false;
       super.onDestroy();
   }
+  
+  @Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		View c = View.inflate(getActivity().getApplicationContext(), R.layout.consulta_listview,null);
+		lv = (ListView) c.findViewById(R.id.listView1);
+		lv.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?>parent, View v, int position, long id) {			
+				// TODO Auto-generated method stub
+				
+				TextView myView = new TextView(getActivity().getApplicationContext());
+				  myView.setText(idKEY[position].substring(0, 5));
+				  myView.setGravity(Gravity.CENTER_HORIZONTAL);
+				  myView.setTextSize(40);
+				//  myView.setGravity(Gravity.BOTTOM );
+				  AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+				    alert.setTitle("Tiket de operación");
+				    alert.setView(myView);
+				    alert.setMessage("Concepto: "+weather_data[position].concepto);
+				  
+				    alert.setPositiveButton("OK",
+				            new DialogInterface.OnClickListener() {
+				                @Override
+				                public void onClick(DialogInterface dialog, int which) {
+				                    // TODO Auto-generated method stub
 
+				                    dialog.dismiss();
+				                }
+				            });
+
+				    alert.show();		
+			}
+        	 
+        });
+		return c;
+  }
   @Override
 	public void onResume() {
   	 
 	  if (!hayLista){
 		  Serch consultas = new Serch();
 		  consultas.execute();
+	  }else{
+		  WeatherAdapter adapter = new WeatherAdapter(getActivity(), R.layout.listview_item_row, weather_data);
+	        lv.setAdapter(adapter);
 	  }
        super.onResume();
     
   }
+  
+  
 
-  public void onListItemClick(ListView l, View v, int position, long id) {
-	 
-	  TextView myView = new TextView(getActivity().getApplicationContext());
-	  myView.setText(idKEY[position].substring(0, 5));
-	  myView.setGravity(Gravity.CENTER_HORIZONTAL);
-	  myView.setTextSize(40);
-	//  myView.setGravity(Gravity.BOTTOM );
-	  AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
-	    alert.setTitle("Tiket de operación");
-	    alert.setView(myView);
-	    alert.setMessage("Concepto: "+weather_data[position].concepto);
-	  
-	    alert.setPositiveButton("OK",
-	            new DialogInterface.OnClickListener() {
-	                @Override
-	                public void onClick(DialogInterface dialog, int which) {
-	                    // TODO Auto-generated method stub
 
-	                    dialog.dismiss();
-	                }
-	            });
-
-	    alert.show();
-	   
-  }
   
   private class Serch extends AsyncTask<Void, Integer, JSONObject>{
 	  
@@ -209,11 +233,11 @@ public class Consulta extends ListFragment {
        
 	        Log.v("movs", "5");
 	        WeatherAdapter adapter = new WeatherAdapter(getActivity(), R.layout.listview_item_row, weather_data);
-	        setListAdapter(adapter);
+	        lv.setAdapter(adapter);
 	        hayLista = true;
        
         }else{
-	        	setListAdapter(getListAdapter());
+	        	lv.setAdapter(lv.getAdapter());
 	        }
       }
       private String MiUsuario(){

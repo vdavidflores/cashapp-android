@@ -88,7 +88,7 @@ public class MainActivity extends FragmentActivity {
 	private void tabs(){
 		Bundle b = new Bundle();
 		b.putString("key", "comprar");
-		mTabHost.addTab(mTabHost.newTabSpec("comprar").setIndicator("", getResources().getDrawable(R.layout.comp)),capturaQR.class, b);
+		mTabHost.addTab(mTabHost.newTabSpec("comprar").setIndicator("", getResources().getDrawable(R.layout.compratab)),capturaQR.class, b);
 		mTabHost.getTabWidget().getChildAt(0).setBackgroundResource(R.layout.bgcomp); 
 		mTabHost.getTabWidget().getChildAt(0).getLayoutParams().height = LayoutParams.MATCH_PARENT;
 		mTabHost.getTabWidget().getChildAt(0).getLayoutParams().width = LayoutParams.MATCH_PARENT;
@@ -99,7 +99,7 @@ public class MainActivity extends FragmentActivity {
 		Log.v("app", "3");
 		b = new Bundle();
 		b.putString("key", "transferir");
-		mTabHost.addTab(mTabHost.newTabSpec("transferir").setIndicator("", getResources().getDrawable(R.layout.tran)), transferencia.class, b);
+		mTabHost.addTab(mTabHost.newTabSpec("transferir").setIndicator("", getResources().getDrawable(R.layout.transferitab)), transferencia.class, b);
 		mTabHost.getTabWidget().getChildAt(1).setBackgroundResource(R.layout.bgcomp); 
 		mTabHost.getTabWidget().getChildAt(1).getLayoutParams().height = LayoutParams.MATCH_PARENT;
 		mTabHost.getTabWidget().getChildAt(1).getLayoutParams().width = LayoutParams.MATCH_PARENT;
@@ -110,7 +110,7 @@ public class MainActivity extends FragmentActivity {
 		
 		b = new Bundle();
 		b.putString("key", "cobrar");
-		mTabHost.addTab(mTabHost.newTabSpec("cobrar").setIndicator("",getResources().getDrawable(R.layout.consulta)),Consulta.class, b);
+		mTabHost.addTab(mTabHost.newTabSpec("cobrar").setIndicator("",getResources().getDrawable(R.layout.consultatab)),Consulta.class, b);
 		mTabHost.getTabWidget().getChildAt(2).setBackgroundResource(R.layout.bgcomp);
 		mTabHost.getTabWidget().getChildAt(2).getLayoutParams().height =  LayoutParams.MATCH_PARENT;
 		mTabHost.getTabWidget().getChildAt(2).getLayoutParams().width = LayoutParams.MATCH_PARENT;
