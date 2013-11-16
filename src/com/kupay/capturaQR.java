@@ -264,6 +264,7 @@ public class capturaQR extends DecoderActivity{
 		      			int duracion=Toast.LENGTH_LONG;
 		                  Toast mensaje=Toast.makeText(getActivity(), "Operacion no encontrada", duracion);
 		                  mensaje.show();
+		                  restartCam();
 		      		}
 		        	} catch (JSONException e) {
 						// TODO Auto-generated catch block
@@ -420,6 +421,7 @@ public class capturaQR extends DecoderActivity{
 									// TODO Auto-generated catch block
 									e.printStackTrace();
 								}
+				  				restartCam();
 				  				
 							}
 						});
@@ -429,15 +431,20 @@ public class capturaQR extends DecoderActivity{
 		  				
 
 		  				
-		      		}else if(TRANSACCION_FALLIDA.toString().equals(resultado)){
+		      		}else if(TRANSACCION_FALLIDA.toString().equals(resultado)||resultado.equals("OPERACION_FALLIDA")){
 		      	       Log.v("app", "pst-3");
-		      			Log.v("app","Causa falla: "+datos.getString("CAUSA_FALLA").toString());
+		      			
 		      			Log.v("app", "pst-4");
+		      			if (datos.has("CAUSA_FALLA")){
 		      			transaccionFallida(datos.getString("CAUSA_FALLA").toString());
+		      			} else if (datos.has("CAUSA")) {
+		      				transaccionFallida(datos.getString("CAUSA").toString());
+						}
 		      		}else{
 		      			int duracion=Toast.LENGTH_SHORT;
 		                  Toast mensaje=Toast.makeText(getActivity(), "error desconosido", duracion);
 		                  mensaje.show();
+		                  restartCam();
 		      		}
 		        	} catch (JSONException e) {
 						// TODO Auto-generated catch block
@@ -475,6 +482,7 @@ public class capturaQR extends DecoderActivity{
 		        	    @Override
 		        	    public void onDismiss(DialogInterface dialog) {
 		        	        dialog.dismiss();
+		        	        restartCam();
 		        	    }
 		        	});
 		    	}
