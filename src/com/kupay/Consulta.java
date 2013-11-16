@@ -28,18 +28,20 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
+
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
+import com.markupartist.android.widget.PullToRefreshListView;
+import com.markupartist.android.widget.PullToRefreshListView.OnRefreshListener;
 
 
 public class Consulta extends Fragment {
 	
-	String[] idKEY;
+
 	Boolean hayLista = false;
 	 OperacionRow weather_data[];
-	 ListView lv ;
+	 PullToRefreshListView lv ;
   @Override
   public void onActivityCreated(Bundle savedInstanceState) { 
 	  super.onActivityCreated(savedInstanceState);
@@ -55,15 +57,16 @@ public class Consulta extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View c = View.inflate(getActivity().getApplicationContext(), R.layout.consulta_listview,null);
-		lv = (ListView) c.findViewById(R.id.listView1);
+		lv = (PullToRefreshListView) c.findViewById(R.id.listView1);
 		lv.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?>parent, View v, int position, long id) {			
 				// TODO Auto-generated method stub
 				
 				TextView myView = new TextView(getActivity().getApplicationContext());
-				  myView.setText(idKEY[position].substring(0, 5));
+				  myView.setText(weather_data[position-1].idkey.substring(0, 5));
 				  myView.setGravity(Gravity.CENTER_HORIZONTAL);
+				  
 				  myView.setTextSize(40);
 				//  myView.setGravity(Gravity.BOTTOM );
 				  AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
@@ -85,6 +88,17 @@ public class Consulta extends Fragment {
 			}
         	 
         });
+		
+		lv.setOnRefreshListener(new OnRefreshListener() {
+		    @Override
+		    public void onRefresh() {
+		        // Do work to refresh the list here.
+		    	Serch consultas = new Serch();
+				  consultas.execute();
+				
+		    }
+		});
+		
 		return c;
   }
   @Override
@@ -189,7 +203,7 @@ public class Consulta extends Fragment {
 				e1.printStackTrace();
 				}
 	         weather_data = new OperacionRow[jay.length()]; 
-	        idKEY = new String[jay.length()];
+	       
 	        for(int i=0; i < jay.length();i++){
 	        
 	        	int tipo=0;
@@ -198,9 +212,10 @@ public class Consulta extends Fragment {
 	        	String fecha = null;
 	        	String polo = null;
 	        	String concepto = null;
+	        	String idkey = null;
 	        	
 	        	try {
-	        	idKEY[i]= jay.getJSONObject(i).getString("IDKEY");
+	        	idkey= jay.getJSONObject(i).getString("IDKEY");
 	        	tipo = jay.getJSONObject(i).getInt("TIPO");
 	        	monto = jay.getJSONObject(i).getInt("MONTO");
 	        	fecha = jay.getJSONObject(i).getString("FECHA");
@@ -212,21 +227,21 @@ public class Consulta extends Fragment {
 	        	switch (tipo) {
 	
 	        	case 1:
-	        	weather_data[i] =  new OperacionRow(R.drawable.mdm, "Abono de "+polo+"$"+monto+"\n"+fecha+"\n"+concepto, concepto);
+	        	weather_data[i] =  new OperacionRow(R.drawable.mdm, "Abono de "+polo+"$"+monto+"\n"+fecha+"\n"+concepto, concepto,idkey);
 	        	break;
 	
 	        	case 2:
-	        	weather_data[i] =  new OperacionRow(R.drawable.compm, "Compra de "+polo+"$"+monto+"\n"+fecha+"\n"+concepto, concepto);
+	        	weather_data[i] =  new OperacionRow(R.drawable.compm, "Compra de "+polo+"$"+monto+"\n"+fecha+"\n"+concepto, concepto, idkey);
 	        	break;
 	        	case 3:
-	            	weather_data[i] =  new OperacionRow(R.drawable.tranm, "Transferencia de "+polo+"$"+monto+"\n"+fecha+"\n"+concepto, concepto);
+	            	weather_data[i] =  new OperacionRow(R.drawable.tranm, "Transferencia de "+polo+"$"+monto+"\n"+fecha+"\n"+concepto, concepto, idkey);
 	            break;
 	            	
 	        	case 5:
-	            	weather_data[i] =  new OperacionRow(R.drawable.compm, "Compra de "+polo+"$"+monto+"\n"+fecha+"\n"+concepto, concepto);
+	            	weather_data[i] =  new OperacionRow(R.drawable.compm, "Compra de "+polo+"$"+monto+"\n"+fecha+"\n"+concepto, concepto, idkey);
 	            break;
 	        	default:
-	        	weather_data[i] =  new OperacionRow(R.drawable.mdm, "Movimiento desconocido "+polo+"$"+monto+"\n"+fecha+"\n"+concepto, concepto);
+	        	weather_data[i] =  new OperacionRow(R.drawable.mdm, "Movimiento desconocido "+polo+"$"+monto+"\n"+fecha+"\n"+concepto, concepto, idkey);
 	        	break;
 	        	}
 	        }
@@ -239,6 +254,7 @@ public class Consulta extends Fragment {
         }else{
 	        	lv.setAdapter(lv.getAdapter());
 	        }
+       lv.onRefreshComplete();
       }
       private String MiUsuario(){
       	String usr = null;

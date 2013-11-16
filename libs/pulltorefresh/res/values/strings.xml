@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">pulltorefresh</string>
+    <string name="pull_to_refresh_pull_label">Jala para refrescar...</string>
+    <string name="pull_to_refresh_release_label">Suelta para refrescar...</string>
+    <string name="pull_to_refresh_refreshing_label">Cargando...</string>
+    <string name="pull_to_refresh_tap_label">Toca para refrescar...</string>
+</resources>
