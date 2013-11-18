@@ -60,6 +60,9 @@ public class DecoderActivity extends Fragment implements IDecoderActivity, Surfa
     protected Collection<BarcodeFormat> decodeFormats = null;
     protected String characterSet = null;
     private Handler mHandler = new Handler();
+    
+    public boolean isRuning = false;
+    
     private final Runnable mLoadCamera = new Runnable()
     {
         public void run()
@@ -122,6 +125,8 @@ public class DecoderActivity extends Fragment implements IDecoderActivity, Surfa
                
             viewfinderView.setVisibility(View.VISIBLE);     
             mHandler.postDelayed(mLoadCamera, 50);
+            
+            isRuning = true;
     }
     
     @SuppressWarnings("deprecation")
@@ -147,6 +152,8 @@ public class DecoderActivity extends Fragment implements IDecoderActivity, Surfa
             rl.addView(surfaceView);
             Log.v("app", "surfaceView height: "+surfaceView.getHeight());
          }
+         
+         isRuning = true;
     }
     
     @Override
@@ -170,6 +177,7 @@ public class DecoderActivity extends Fragment implements IDecoderActivity, Surfa
               SurfaceHolder surfaceHolder = surfaceView.getHolder();
               surfaceHolder.removeCallback(this);
           }
+          isRuning = false;
     }
 
     public void restartCam(){

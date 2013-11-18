@@ -3,6 +3,9 @@ package com.kupay;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
+
+
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -17,6 +20,10 @@ import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class MainConteiner extends FragmentActivity  {
+	
+	
+
+	
 	ListView sidemenu;
 	SlidingMenu menu;
 	OperacionRow menurow[];
