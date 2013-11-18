@@ -34,7 +34,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class capturaQR extends DecoderActivity{
+public class capturaQR extends DecoderActivity  {
 
 	int pin;
 	String qr;
@@ -42,7 +42,8 @@ public class capturaQR extends DecoderActivity{
 
 		   private static final String TAG = "app";
 		    private View viewfinderView;
-
+		   
+		    
 		    public void onCreate(Bundle icicle) {
 		        super.onCreate(icicle);
 		      //  setContentView(R.layout.capture);
@@ -503,6 +504,12 @@ public class capturaQR extends DecoderActivity{
 
 				
 		    }
+
+/*
+@Override
+public void onDecoderNoEsVisible() {
+	stopCamera();
+}*/
 		    
 		    
 		}
