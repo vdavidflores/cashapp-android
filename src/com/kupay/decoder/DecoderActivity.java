@@ -84,7 +84,7 @@ public class DecoderActivity extends Fragment implements IDecoderActivity, Surfa
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         
-        Log.v(TAG, "onCreate()");
+        Log.v("app", "onCreate() CAMARA");
 
        Window window = getActivity().getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -98,14 +98,14 @@ public class DecoderActivity extends Fragment implements IDecoderActivity, Surfa
 	public void onDestroy() {
         super.onDestroy();
         hasSurface = false;
-        Log.v(TAG, "onDestroy()");
+        Log.v("app", "onDestroy() CAMARA");
     }
 
     @Override
 	public void onResume() {
        
         
-        Log.v(TAG, "onResume()1");
+        Log.v("app", "onResume() CAMARA");
 
        
         super.onResume();
@@ -126,7 +126,10 @@ public class DecoderActivity extends Fragment implements IDecoderActivity, Surfa
             viewfinderView.setVisibility(View.VISIBLE);     
             mHandler.postDelayed(mLoadCamera, 50);
             
-            isRuning = true;
+            
+            
+            Log.v("app", "startPreview()");
+            
     }
     
     @SuppressWarnings("deprecation")
@@ -153,13 +156,15 @@ public class DecoderActivity extends Fragment implements IDecoderActivity, Surfa
             Log.v("app", "surfaceView height: "+surfaceView.getHeight());
          }
          
-         isRuning = true;
+         
+         
+         Log.v("app", "startCamera()");
     }
     
     @Override
 	public void onPause() {
 
-        Log.v(TAG, "onPause() DA");
+        Log.v("app", "onPause() CAMARA");
         super.onPause();
     }
     
@@ -178,6 +183,8 @@ public class DecoderActivity extends Fragment implements IDecoderActivity, Surfa
               surfaceHolder.removeCallback(this);
           }
           isRuning = false;
+          
+          Log.v("app", "stopCamera()");
     }
 
     public void restartCam(){
@@ -189,6 +196,9 @@ public class DecoderActivity extends Fragment implements IDecoderActivity, Surfa
             SurfaceHolder surfaceHolder = surfaceView.getHolder();
             surfaceHolder.removeCallback(this);
             initCamera(surfaceHolder);
+            
+            Log.v("app", "restartCam()");
+            isRuning =true;
     }
 
     

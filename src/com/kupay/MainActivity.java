@@ -120,7 +120,7 @@ public class MainActivity extends Fragment {
         
         Log.v("app", " MAIN ACTIVITIE onDestroy()");
         capturaQR fragment = (capturaQR) getFragmentManager().findFragmentById(R.id.tab_1);
-        if(fragment.isRuning){
+        if(camaraCargada){
 			fragment.stopCamera();
 			}
    super.onDestroy();
@@ -166,6 +166,8 @@ public class MainActivity extends Fragment {
 			public void onTabChanged(String tabId) {
 				// TODO Auto-generated method stub
 				Log.v("app", tabId);
+				
+				
 				FragmentManager fm = getFragmentManager();
 				if (tabId.equals("transferir")){
 					if (fm.findFragmentByTag(tabId) == null) {
@@ -175,44 +177,42 @@ public class MainActivity extends Fragment {
 							.commit();
 					
 					}
-					capturaQR fragment = (capturaQR) getFragmentManager().findFragmentById(R.id.tab_1);
-					if(fragment != null && fragment.isRuning){
-				    fragment.stopCamera(); 
+					capturaQR camaraPointer = (capturaQR) getFragmentManager().findFragmentById(R.id.tab_1);
+					if(camaraCargada){
+						camaraPointer.stopCamera(); 
 					}
 					
 				}else if(tabId.equals("comprar")){
-					camaraCargada = true;
+					
 					if (fm.findFragmentByTag(tabId) == null) {
 						Log.v("app", "cargando captura qr fragment");
 						Log.v("app", "el fragment ES nulo");
 						fm.beginTransaction()
 						.replace(R.id.tab_1, new capturaQR(), tabId)
 						.commit();
-					}//else{
-						Log.v("app", "el fragment NO es nulo");
-						capturaQR fragment = (capturaQR) getFragmentManager().findFragmentById(R.id.tab_1);
-						if(!fragment.isRuning && fragment != null){
-						fragment.restartCam();
+					}
+						capturaQR camaraPointer = (capturaQR) getFragmentManager().findFragmentById(R.id.tab_1);
+						if(camaraCargada){
+							Log.v("app", "ENSENDIENDO camara");
+							camaraPointer.restartCam();
 						}
-						
-						
-					
-				//	}
-					
-					
+						camaraCargada = true;
 				}else if(tabId.equals("consultar")) {
 					if (fm.findFragmentByTag(tabId) == null) {
 						fm.beginTransaction()
 						.replace(R.id.tab_3, new Consulta(), tabId)
 						.commit();
 					}
-					capturaQR fragment = (capturaQR) getFragmentManager().findFragmentById(R.id.tab_1);
-					if(fragment != null &&  fragment.isRuning ){
-						Log.v("app", "APAGANDO LA CAMARA!!!!!!!!!!!!!!!");
-				    fragment.stopCamera(); 
+					capturaQR camaraPointer = (capturaQR) getFragmentManager().findFragmentById(R.id.tab_1);
+					if(camaraCargada ){
+						Log.v("app", "Apagando camara");
+						camaraPointer.stopCamera(); 
 					}
 					
 				}
+				
+				
+				
 			}
 		});
 		
