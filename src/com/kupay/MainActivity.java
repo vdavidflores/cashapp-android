@@ -102,8 +102,11 @@ public class MainActivity extends Fragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		setRetainInstance(true);
-
-		mTabHost.setCurrentTab(1);
+		FragmentManager fm = getFragmentManager();
+		fm.beginTransaction()
+		.replace(R.id.tab_3, new Consulta(), "consultar")
+		.commit();
+		mTabHost.setCurrentTab(2);
 
 	}
     
@@ -169,7 +172,9 @@ public class MainActivity extends Fragment {
 						.commit();
 					}else{
 						capturaQR fragment = (capturaQR) getFragmentManager().findFragmentById(R.id.tab_1);
+						if(fragment != null){
 						fragment.restartCam();
+						}
 					}
 					
 					

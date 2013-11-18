@@ -42,13 +42,10 @@ public class capturaQR extends DecoderActivity  {
 
 		   private static final String TAG = "app";
 		    private View viewfinderView;
-		   
 		 
 		    public void onCreate(Bundle icicle) {
 		        super.onCreate(icicle);
-		     
 		        Log.v(TAG, "onCreate()");
-
 		    }
 		    
 		    @Override
@@ -64,44 +61,17 @@ public class capturaQR extends DecoderActivity  {
 		    }
 
 		    @Override
-			public void onResume() {
-		    	 
-		    	
-		       
+			public void onResume() {  
 		        startPreview();
-		         Log.v(TAG, "RESUME  2////////////////////////////////////////");
-		        
 		         super.onResume();
-		      
 		    }
 
 		    @Override
 			public void onPause() {
 		    	 super.onPause();
 		    	stopCamera();
-		    	
-//		    	try {
-//					Thread.sleep(100);
-//				} catch (InterruptedException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-		    	
-		       
-		        Log.v(TAG, "onPause() CQR ///////////////////////////////////////");
 		    }
 
-		   /* @Override
-		    public boolean onKeyDown(int keyCode, KeyEvent event) {
-		        if (keyCode == KeyEvent.KEYCODE_BACK) {
-		            if (inScanMode)
-		                finish();
-		            else
-		                onResume();
-		            return true;
-		        }
-		        return super.onKeyDown(keyCode, event);
-		    }*/
 
 		    @Override
 		    public void handleDecode(Result rawResult, Bitmap barcode) {
@@ -115,8 +85,6 @@ public class capturaQR extends DecoderActivity  {
 		      
 		        viewfinderView.setVisibility(View.VISIBLE);
 		    }
-
-		    
 
 		    // Put up our own UI for how to handle the decodBarcodeFormated contents.
 		    private void handleDecodeInternally(Result rawResult, ResultHandler resultHandler, Bitmap barcode) {
@@ -449,14 +417,9 @@ public class capturaQR extends DecoderActivity  {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-		      	
-		        	
 		        }
 		        
 		    	private void transaccionFallida(String causaFalla){
-		    		
-		    		
-		    		
 		    		
 		    		AlertDialog.Builder builder_ = new AlertDialog.Builder(getActivity());	
 		    		builder_.setIcon(R.drawable.ku72);
@@ -492,22 +455,13 @@ public class capturaQR extends DecoderActivity  {
 		              SQLiteDatabase db= dbh.getReadableDatabase();
 		              Cursor reg = db.query("kupay",new String[]{"usr"},null,null,null,null,null,"1");
 		              if(reg.moveToFirst()){
-		                  usr=reg.getString(0);
-		                 
-		              
+		              usr=reg.getString(0);
 		              }
 		      	 return usr;
 		          }
-		    	  
-
-				
+		    	  				
 		    }
 
-/*
-@Override
-public void onDecoderNoEsVisible() {
-	stopCamera();
-}*/
 		    
 		    
 		}
