@@ -43,16 +43,14 @@ public class capturaQR extends DecoderActivity  {
 		   private static final String TAG = "app";
 		    private View viewfinderView;
 		   
-		    
+		 
 		    public void onCreate(Bundle icicle) {
 		        super.onCreate(icicle);
-		      //  setContentView(R.layout.capture);
+		     
 		        Log.v(TAG, "onCreate()");
 
-
-
-		      
 		    }
+		    
 		    @Override
 			public View onCreateView(LayoutInflater inflater, ViewGroup container,
 					Bundle savedInstanceState) {

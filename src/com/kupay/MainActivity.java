@@ -40,42 +40,10 @@ public class MainActivity extends Fragment {
 	Activity actividad;
 	private View mRoot;
 	
-	/*
-	 onDecoderNoVisible Decodercallbak;
-	    
-	    public interface onDecoderNoVisible {
-	        public void onDecoderNoEsVisible();
-	    }*/
-
-	/*
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		actividad = this;
-		Log.v("app", "1");
-
-		setContentView(R.layout.activity_main);
-		actividad = this;
-		Log.v("app", "1");
-		  mTabHost = (TabHost) findViewById (android.R.id.tabhost);
-		  Log.v("app", "2");
-		  actCC = (Button)  findViewById(R.id.actCC); 
-		  Log.v("app", "2");
-		  navicon = (Button)  findViewById(R.id.navicon);
-		  Log.v("app", "3");
-		 mTabHost.setup();
-		 Log.v("app", "4");
-		 Eventos();
-		 ActualizarCC cc = new ActualizarCC(actividad);
-		 cc.execute();
-		 tabs();
-		 
-		 
-
+	
 	
 
-	}*/
-	
+
 
 	@Override
 	  public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -142,32 +110,6 @@ public class MainActivity extends Fragment {
 	private void tabs(){
 		Log.v("app", "5");
 		
-		//TabHost tabHost = mTabHost;
-        
-       /* // Tab for Photos
-        TabSpec photospec = tabHost.newTabSpec("comprar");
-        // setting Title and Icon for the Tab
-        photospec.setIndicator("", getResources().getDrawable(R.layout.compratab));
-     //   Intent photosIntent = new Intent(mRoot.getContext(), capturaQR.class);
-      //  photospec.setContent(photosIntent);
-        Log.v("app", "6");
-        // Tab for Songs
-        TabSpec songspec = tabHost.newTabSpec("transferir");        
-        songspec.setIndicator("", getResources().getDrawable(R.layout.transferitab));
-      //  Intent songsIntent = new Intent(mRoot.getContext(), transferencia.class);
-      //  songspec.setContent(songsIntent);
-         
-        // Tab for Videos
-        TabSpec videospec = tabHost.newTabSpec("consulta");
-        videospec.setIndicator("consulta", getResources().getDrawable(R.layout.consultatab));
-       // Intent videosIntent = new Intent(mRoot.getContext(), Consulta.class);
-      //  videospec.setContent(videosIntent);
-         
-        // Adding all TabSpec to TabHost
-        tabHost.addTab(photospec); // Adding photos tab
-        tabHost.addTab(songspec); // Adding songs tab
-        tabHost.addTab(videospec); // Adding videos tab
-		*/
 		
 		Bundle b = new Bundle();
 		b.putString("key", "comprar");
@@ -212,7 +154,11 @@ public class MainActivity extends Fragment {
 					fm.beginTransaction()
 							.replace(R.id.tab_2, new transferencia(), tabId)
 							.commit();
-					//Decodercallbak.onDecoderNoEsVisible();
+					
+					}
+					capturaQR fragment = (capturaQR) getFragmentManager().findFragmentById(R.id.tab_1);
+					if(fragment != null){
+				    fragment.stopCamera(); 
 					}
 					
 				}else if(tabId.equals("comprar")){
@@ -221,15 +167,23 @@ public class MainActivity extends Fragment {
 						fm.beginTransaction()
 						.replace(R.id.tab_1, new capturaQR(), tabId)
 						.commit();
-						
+					}else{
+						capturaQR fragment = (capturaQR) getFragmentManager().findFragmentById(R.id.tab_1);
+						fragment.restartCam();
 					}
+					
+					
 				}else if(tabId.equals("consultar")) {
 					if (fm.findFragmentByTag(tabId) == null) {
 						fm.beginTransaction()
 						.replace(R.id.tab_3, new Consulta(), tabId)
 						.commit();
-						//Decodercallbak.onDecoderNoEsVisible();
 					}
+					capturaQR fragment = (capturaQR) getFragmentManager().findFragmentById(R.id.tab_1);
+					if(fragment != null){
+				    fragment.stopCamera(); 
+					}
+					
 				}
 			}
 		});
@@ -238,6 +192,10 @@ public class MainActivity extends Fragment {
 		Log.v("app", "5");
 
 	}
+	
+
+	
+	
 	
 
 	
