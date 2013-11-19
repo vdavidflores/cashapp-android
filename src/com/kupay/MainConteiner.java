@@ -14,6 +14,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ListView;
@@ -48,7 +49,8 @@ public class MainConteiner extends FragmentActivity  {
 		menu.setShadowWidth(5);
 		menu.setFadeDegree(0.0f);
 		menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
-		
+		menu.setShadowDrawable(R.drawable.shadow);
+		menu.setShadowWidth(10);
 		
 		Display display = getWindowManager().getDefaultDisplay();
 		menu.setBehindWidth((display.getWidth()/3)*2);
@@ -74,9 +76,8 @@ public class MainConteiner extends FragmentActivity  {
 		menurow[6]= new OperacionRow(R.drawable.mdm, "Desenlazar equipo",null,null);
 		
 	
-		WeatherAdapter adapter = new WeatherAdapter(this, R.layout.listview_item_row,menurow);
+		WeatherAdapter adapter = new WeatherAdapter(this, R.layout.listview_item_row_menu,menurow);
 		sidemenu.setAdapter(adapter);
-		
 		sidemenu.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?>parent, View v, int position, long id) {
