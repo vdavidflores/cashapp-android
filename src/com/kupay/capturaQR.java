@@ -14,10 +14,13 @@ import com.kupay.decoder.result.ResultHandlerFactory;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.content.DialogInterface.OnDismissListener;
+import android.content.DialogInterface.OnKeyListener;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -207,6 +210,19 @@ public class capturaQR extends DecoderActivity  {
 								restartCam();
 							}
 						});
+						builder_.setOnKeyListener(new OnKeyListener() {
+
+			                @Override
+			                public boolean onKey(DialogInterface arg0, int keyCode,
+			                        KeyEvent event) {
+			                    // TODO Auto-generated method stub
+			                    if (keyCode == KeyEvent.KEYCODE_BACK) {
+			                        restartCam();
+			                        dialog.dismiss();
+			                    }
+			                    return true;
+			                }
+			            });
 						
 		  		    	dialog = builder_.create();
 		  		    	dialog.show();
@@ -225,6 +241,21 @@ public class capturaQR extends DecoderActivity  {
 			                     restartCam();
 			                }
 			            });
+						
+						builder_.setOnKeyListener(new OnKeyListener() {
+
+			                @Override
+			                public boolean onKey(DialogInterface arg0, int keyCode,
+			                        KeyEvent event) {
+			                    // TODO Auto-generated method stub
+			                    if (keyCode == KeyEvent.KEYCODE_BACK) {
+			                        restartCam();
+			                        dialog.dismiss();
+			                    }
+			                    return true;
+			                }
+			            });
+						
 						dialog = builder_.create();
 		  		    	dialog.show();
 		      		}else{
@@ -280,6 +311,22 @@ public class capturaQR extends DecoderActivity  {
 		                	restartCam();
 		                }
 		            });
+		 
+		    		
+		    	/*	
+		    		builder.setOnKeyListener(new OnKeyListener() {
+
+		                @Override
+		                public boolean onKey(DialogInterface arg0, int keyCode,
+		                        KeyEvent event) {
+		                    // TODO Auto-generated method stub
+		                    if (keyCode == KeyEvent.KEYCODE_BACK) {
+		                        restartCam();
+		                        dialog.dismiss();
+		                    }
+		                    return true;
+		                }
+		            });*/
 
 		    		dialog = builder.create();
 		        	dialog.show();
@@ -393,6 +440,20 @@ public class capturaQR extends DecoderActivity  {
 							}
 						});
 		  				
+		  				builder.setOnKeyListener(new OnKeyListener() {
+
+			                @Override
+			                public boolean onKey(DialogInterface arg0, int keyCode,
+			                        KeyEvent event) {
+			                    // TODO Auto-generated method stub
+			                    if (keyCode == KeyEvent.KEYCODE_BACK) {
+			                        restartCam();
+			                        dialog.dismiss();
+			                    }
+			                    return true;
+			                }
+			            });
+		  				
 		  				AlertDialog dilaogoAceptar = builder.create();
 		  				dilaogoAceptar.show();
 		  				
@@ -406,6 +467,10 @@ public class capturaQR extends DecoderActivity  {
 		      			transaccionFallida(datos.getString("CAUSA_FALLA").toString());
 		      			} else if (datos.has("CAUSA")) {
 		      				transaccionFallida(datos.getString("CAUSA").toString());
+						} else {
+							 Toast mensaje=Toast.makeText(getActivity(), "error desconosido", Toast.LENGTH_LONG);
+			                  mensaje.show();
+			                  restartCam();
 						}
 		      		}else{
 		      			int duracion=Toast.LENGTH_SHORT;
@@ -447,6 +512,22 @@ public class capturaQR extends DecoderActivity  {
 		        	        restartCam();
 		        	    }
 		        	});
+		        	dialog.setOnKeyListener(new OnKeyListener() {
+
+		                @Override
+		                public boolean onKey(DialogInterface arg0, int keyCode,
+		                        KeyEvent event) {
+		                    // TODO Auto-generated method stub
+		                    if (keyCode == KeyEvent.KEYCODE_BACK) {
+		                        restartCam();
+		                        dialog.dismiss();
+		                    }
+		                    return true;
+		                }
+		            });
+		        	
+		        	
+		        	
 		    	}
 		    	
 		    	  private String MiUsuario(){
@@ -461,6 +542,7 @@ public class capturaQR extends DecoderActivity  {
 		          }
 		    	  				
 		    }
+		    
 
 		    
 		    
