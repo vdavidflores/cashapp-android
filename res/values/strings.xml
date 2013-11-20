@@ -52,6 +52,11 @@
       <item >Peru</item>
       <item >España</item>
   </string-array>
+  <string name="fpago">forma de pago</string>
+  <string-array name="formas_pago">
+      <item >OXXO</item>
+      <item >Visa o Master Card</item>
+  </string-array>
   
   
   

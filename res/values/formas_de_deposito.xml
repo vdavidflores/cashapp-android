@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="formas_de_depsito">
+        <item>OXXO</item>
+        <item>Visa o Master Card</item>
+    </string-array>
+</resources>

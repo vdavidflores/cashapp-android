@@ -13,13 +13,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
-public class Deposito extends Fragment implements OnItemSelectedListener {
+public class Llaveku extends Fragment implements OnItemSelectedListener {
 	Button navicon;
 	
 	 @Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-		 View view = View.inflate(getActivity().getApplicationContext(), R.layout.deposito,null);
+		 View view = View.inflate(getActivity().getApplicationContext(), R.layout.llaveku,null);
 		 
 		 Spinner spinner = (Spinner) view.findViewById(R.id.spinner1);
 		 

@@ -32,6 +32,7 @@ public class MainConteiner extends FragmentActivity  {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_conteiner);
 		if (findViewById(R.id.fragment_container) != null) {
+			//
 		FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
 
@@ -39,7 +40,7 @@ public class MainConteiner extends FragmentActivity  {
         myFragment.setArguments(getIntent().getExtras());
         ft.add(R.id.fragment_container, myFragment);
         ft.commit();
-        
+        //
 		}
 		
 		
@@ -66,15 +67,13 @@ public class MainConteiner extends FragmentActivity  {
 		
 	
 		sidemenu = (ListView) menu.findViewById(R.id.sideMenuList);
-		menurow = new OperacionRow[7];
+		menurow = new OperacionRow[6];
 		menurow[0]= new OperacionRow(R.drawable.mdm, "INICIO",null,null);
-		menurow[1]= new OperacionRow(R.drawable.mdm, "Deposito",null,null);
-		menurow[2]= new OperacionRow(R.drawable.mdm, "Retiro",null,null);
-		menurow[3]= new OperacionRow(R.drawable.mdm, "Llave-ku",null,null);
-		menurow[4]= new OperacionRow(R.drawable.mdm, "Perfil",null,null);
-		menurow[5]= new OperacionRow(R.drawable.mdm, "Soporte",null,null);
-		menurow[6]= new OperacionRow(R.drawable.mdm, "Desenlazar equipo",null,null);
-		
+		menurow[1]= new OperacionRow(R.drawable.deposito, "Deposito",null,null);
+		menurow[2]= new OperacionRow(R.drawable.retiro, "Retiro",null,null);
+		menurow[3]= new OperacionRow(R.drawable.llavek, "Llave-ku",null,null);
+		menurow[4]= new OperacionRow(R.drawable.desenlazar, "Desenlazar equipo",null,null);
+		menurow[5]= new OperacionRow(R.drawable.info, "Kupay",null,null);
 	
 		WeatherAdapter adapter = new WeatherAdapter(this, R.layout.listview_item_row_menu,menurow);
 		sidemenu.setAdapter(adapter);
@@ -101,25 +100,47 @@ public class MainConteiner extends FragmentActivity  {
 					togle();
 
 				}
-				/*switch ((int) id) {
-				
-				case 0:
-					if (fm.findFragmentByTag("mainactivity") == null) {
+				else  if(id== 2){
+					//if (fm.findFragmentByTag("deposito") == null) {
 				        fm.beginTransaction()
-						.replace(R.id.fragment1, new MainActivity(), "mainactivity")
+						.replace(R.id.fragment_container, new Retiro(), "retiro")
 						.commit();
 				        
-						
-					}togle();
-					break;
-				case 1:
-										break;
+				//	}
+					togle();
 
-				default:
-					break;
 				}
-				togle();
-				*/
+				else  if(id== 3){
+					//if (fm.findFragmentByTag("deposito") == null) {
+				        fm.beginTransaction()
+						.replace(R.id.fragment_container, new Llaveku(), "llveku")
+						.commit();
+				        
+				//	}
+					togle();
+
+				}
+				else  if(id== 4){
+					//if (fm.findFragmentByTag("deposito") == null) {
+				        fm.beginTransaction()
+						.replace(R.id.fragment_container, new Desenlazar(), "desenlazar")
+						.commit();
+				        
+				//	}
+					togle();
+
+				}
+				else  if(id== 5){
+					//if (fm.findFragmentByTag("deposito") == null) {
+				        fm.beginTransaction()
+						.replace(R.id.fragment_container, new Info(), "info")
+						.commit();
+				        
+				//	}
+					togle();
+
+				}
+				
 			}
 		});
 			

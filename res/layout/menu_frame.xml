@@ -2,14 +2,31 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#989898" >
-    
-    
-    <ListView 
+    android:background="#989898"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.14"
+        android:orientation="vertical"
+        android:background="#727272" >
+
+        <TextView
+            android:id="@+id/mail_navicon"
+            android:layout_gravity="center_horizontal"
+            android:textColor="#989898"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kupay@kupay.com"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    </LinearLayout>
+
+    <ListView
         android:id="@+id/sideMenuList"
-         android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-        ></ListView>
-   
+        android:layout_width="fill_parent"
+        android:layout_height="446dp" >
+    </ListView>
+
 </LinearLayout>

@@ -107,11 +107,11 @@ public class MainActivity extends Fragment {
 		setRetainInstance(true);
 		FragmentManager fm = getFragmentManager();
 		fm.beginTransaction()
-		.replace(R.id.tab_3, new Consulta(), "consultar")
-		.replace(R.id.tab_1, new capturaQR(), "comprar")
+		//.replace(R.id.tab_3, new Consulta(), "consultar")
+		//.replace(R.id.tab_1, new capturaQR(), "comprar")
 		.replace(R.id.tab_2, new transferencia(), "transferir")
 		.commit();
-		mTabHost.setCurrentTab(2);
+		mTabHost.setCurrentTab(1);
 
 	}
   
