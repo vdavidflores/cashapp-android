@@ -51,12 +51,6 @@ public class capturaQR extends DecoderActivity  {
 		        Log.v(TAG, "onCreate()");
 		    }
 		    
-		    @Override
-			public View onCreateView(LayoutInflater inflater, ViewGroup container,
-					Bundle savedInstanceState) {
-				View c = View.inflate(getActivity().getApplicationContext(), R.layout.capture,null);
-				return c;
-		    }
 
 		    public void onDestroy() {
 		        super.onDestroy();
@@ -65,7 +59,7 @@ public class capturaQR extends DecoderActivity  {
 
 		    @Override
 			public void onResume() {  
-		        startPreview();
+		       
 		         super.onResume();
 		    }
 
@@ -91,7 +85,7 @@ public class capturaQR extends DecoderActivity  {
 
 		    // Put up our own UI for how to handle the decodBarcodeFormated contents.
 		    private void handleDecodeInternally(Result rawResult, ResultHandler resultHandler, Bitmap barcode) {
-		        stopCamera();
+		     //   stopCamera();
 		        CharSequence qrDetectado = resultHandler.getDisplayContents();
 		        Log.v("app", qrDetectado.toString());
 				

@@ -150,15 +150,8 @@ public class DecoderActivity extends Fragment implements IDecoderActivity, Surfa
          surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
         
         
-         if(rl != null && surfaceView != null){
-        	rl.removeAllViews();
+         if(rl != null && surfaceView != null)
             rl.addView(surfaceView);
-            Log.v("app", "surfaceView height: "+surfaceView.getHeight());
-         }
-         
-         
-         
-         Log.v("app", "startCamera()");
     }
     
     @Override
@@ -169,21 +162,23 @@ public class DecoderActivity extends Fragment implements IDecoderActivity, Surfa
     }
     
     public void stopCamera(){
+    	Log.v("app", "1");
     	  if (handler != null) {
           	Log.v("app", "El handeler no es nulo");
               handler.quitSynchronously();
               handler = null;
           }
-
+    	  Log.v("app", "2");
           cameraManager.closeDriver();
-
+          Log.v("app", "3");
           if (!hasSurface) {
           	Log.v("app", "No hay superficie");
               SurfaceHolder surfaceHolder = surfaceView.getHolder();
               surfaceHolder.removeCallback(this);
           }
+          Log.v("app", "4");
           isRuning = false;
-          
+          Log.v("app", "5");
           Log.v("app", "stopCamera()");
     }
 
