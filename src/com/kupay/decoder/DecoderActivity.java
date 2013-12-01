@@ -169,13 +169,15 @@ public class DecoderActivity extends Fragment implements IDecoderActivity, Surfa
               handler = null;
           }
     	  Log.v("app", "2");
+    	  if(cameraManager != null){
           cameraManager.closeDriver();
+    	  }
           Log.v("app", "3");
-          if (!hasSurface) {
+         /* if (!hasSurface) {
           	Log.v("app", "No hay superficie");
               SurfaceHolder surfaceHolder = surfaceView.getHolder();
               surfaceHolder.removeCallback(this);
-          }
+          }*/
           Log.v("app", "4");
           isRuning = false;
           Log.v("app", "5");

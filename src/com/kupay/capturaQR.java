@@ -65,8 +65,10 @@ public class capturaQR extends DecoderActivity  {
 
 		    @Override
 			public void onPause() {
-		    	 super.onPause();
+		    	Log.v("app", "Se va a detener la camara por pausa");
 		    	stopCamera();
+		    	Log.v("app", "Se detubo la camara por pausa");
+		    	 super.onPause();
 		    }
 
 

@@ -147,6 +147,13 @@ public class MainConteiner extends FragmentActivity  {
 		
 	}
 	
+    @Override
+			public void onPause() {
+		    	 super.onPause();
+		    
+		    }
+
+	
 	public void togle() {
 		menu.toggle();
 	}

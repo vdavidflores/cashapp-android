@@ -1,8 +1,12 @@
 package com.kupay;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,20 +15,25 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListPopupWindow;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class Deposito extends Fragment implements OnItemSelectedListener {
 	Button navicon;
-	
+	Button aceptar;	
 	 @Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-		 View view = View.inflate(getActivity().getApplicationContext(), R.layout.deposito,null);
-		 
+		 View view = View.inflate(this.getActivity(), R.layout.deposito,null);
+		 String [] values = {"OXXO","Tarjeta bancaria",};
 		 Spinner spinner = (Spinner) view.findViewById(R.id.spinner1);
-		 
+		 ArrayAdapter<String> LTRadapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, values);
+		    LTRadapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+		    spinner.setAdapter(LTRadapter);
 		
 		  navicon = (Button)  view.findViewById(R.id.navicon_dep);
+		  aceptar = (Button)  view.findViewById(R.id.deposito_aceptar);
 		
 		  navicon.setOnClickListener(new OnClickListener() {
 	          public void onClick(View view) { 
@@ -35,66 +44,61 @@ public class Deposito extends Fragment implements OnItemSelectedListener {
 	        	  }
 	         	 
 	          }} );
-
-
-		  
-		  
-		/* ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getActivity(),
-			        R.array.formas_de_depsito, android.R.layout.simple_spinner_item);
-			// Specify the layout to use when the list of choices appears
-			adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-			// Apply the adapter to the spinner
-			spinner.setAdapter(adapter);
+		  aceptar.setOnClickListener(new OnClickListener() {
 			
-			spinner.setOnItemSelectedListener(this );
-		 String [] values = 
-		        {"Time at Residence","Under 6 months","6-12 months","1-2 years","2-4 years","4-8 years","8-15 years","Over 15 years",};
-		    Spinner spinner = (Spinner) view.findViewById(R.id.spinner1);
-		    ArrayAdapter<String> LTRadapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, values);
-		    LTRadapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-		    spinner.setAdapter(LTRadapter);*/
-		 
+			@Override
+			public void onClick(View v) {
+				listartarjetas();
+			}
+		});
+
+
 		 return view; 
 		 
 	 }
 	@Override
 	public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
 			long arg3) {
-		// TODO Auto-generated method stub
-		
 	}
 	@Override
 	public void onNothingSelected(AdapterView<?> arg0) {
-		// TODO Auto-generated method stub
-		
+		Log.v("app", "nada seleccionado") ;
 	}
+	
+	public void listartarjetas() {
+		AlertDialog.Builder builderSingle = new AlertDialog.Builder(
+                this.getActivity());
+        builderSingle.setTitle("Seecciona una tarjeta");
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this.getActivity(),
+                android.R.layout.select_dialog_item);
+        arrayAdapter.add("+ NUEVA TARJETA");
+        arrayAdapter.add("Tarjeta 1");
+        arrayAdapter.add("Tarjeta 2");
+        arrayAdapter.add("Tarjeta 3");
+        arrayAdapter.add("Tarjeta 4");
+        arrayAdapter.add("Tarjeta 5");
+        arrayAdapter.add("Tarjeta 6");
+        builderSingle.setNeutralButton("cancel",
+                new DialogInterface.OnClickListener() {
 
-	 
-	 
-	
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
 
-	
-	
-	
-	
-	
-	
-	
-	
+        builderSingle.setAdapter(arrayAdapter,
+                new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    	Log.v("app", "dialogo "+Integer.toString(which));
+                      if (which == 0){
+                    	  Intent intent = new Intent(getActivity(),NuevaTarjeta.class);
+                          startActivity(intent);
+                      }
+                    }
+                });
+        builderSingle.show();
+	}
 }
-/*
-
-navicon.setOnClickListener(new OnClickListener() {
-	          public void onClick(View view) { 
-	        	  Activity act = getActivity();
-
-	        	  if(act instanceof MainConteiner) {
-	        	      ((MainConteiner) act).togle();
-	        	  }
-	         	 
-	          }} );
-
-
-
-
-*/

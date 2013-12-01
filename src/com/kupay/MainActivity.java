@@ -112,8 +112,12 @@ public class MainActivity extends Fragment {
 		.replace(R.id.tab_2, new transferencia(), "transferir")
 		.commit();
 		mTabHost.setCurrentTab(1);
-
 	}
+    
+    @Override
+    public void onPause(){
+    	super.onPause();
+    }
   
     @Override
     public void onDestroy() {
