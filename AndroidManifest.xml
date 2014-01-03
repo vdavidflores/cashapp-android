@@ -112,6 +112,7 @@
         </activity>
         <activity
             android:name="com.kupay.NuevaTarjeta"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_nueva_tarjeta" >
         </activity>
     </application>
