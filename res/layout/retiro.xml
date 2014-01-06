@@ -48,19 +48,9 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="29dp" >
 
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="304dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.01"
-            android:paddingLeft="40dp"
-            android:paddingTop="20dp"
-            android:paddingRight="20dp"
-            android:textColor="#FFFFFF"
-            android:text="Añade saldo a tu cuenta kuPay por el medio que prefieras"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+        
 
     </LinearLayout>
 
@@ -75,8 +65,9 @@
             android:paddingRight="20dp"
              android:paddingLeft="20dp"
              android:layout_gravity="bottom"
-            android:text="Cantidad"
+            android:text="Cantidad Que deseas Retirar:"
             android:textColor="#FFFFFF"
+            android:textSize="15dp"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
     </LinearLayout>
@@ -105,35 +96,36 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp" >
+           android:layout_gravity="bottom"
+        android:layout_height="84dp" >
 
         <TextView
             android:id="@+id/TextView01"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="53dp"
             android:layout_gravity="bottom"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:text="Forma de pago"
+            android:text="¿En qué cuenta quieres recibir el dinero retirado de kupay?"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFFFFF"
+            android:textSize="15dp" />
+
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="50dp" >
 
         <Spinner
             android:id="@+id/spinner1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-             android:layout_marginLeft="20dp"
-             android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:entries="@array/formas_pago"
-            android:prompt="@string/fpago"
-            />
-
+            android:prompt="@string/fpago" />
     </LinearLayout>
 
     <RelativeLayout

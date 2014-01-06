@@ -46,110 +46,27 @@
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+    <ScrollView
+            android:id="@+id/scrollView1"
+            android:background="#c51e4f"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.42" >
 
         <TextView
             android:id="@+id/textView1"
             android:layout_width="304dp"
-            android:layout_height="wrap_content"
+            android:layout_height="340dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
             android:layout_weight="0.01"
             android:paddingLeft="40dp"
+            android:paddingRight="20dp"
             android:paddingTop="20dp"
-            android:paddingRight="20dp"
-            android:textColor="#FFFFFF"
-            android:text="Añade saldo a tu cuenta kuPay por el medio que prefieras"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp" >
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingRight="20dp"
-             android:paddingLeft="20dp"
-             android:layout_gravity="bottom"
-            android:text="Cantidad"
-            android:textColor="#FFFFFF"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp" >
-
-        <EditText
-            android:id="@+id/editText1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-             android:layout_marginLeft="20dp"
-             android:layout_marginRight="20dp"
-             android:layout_gravity="center_vertical"
-             android:singleLine="true"
-             android:hint="$"
-           android:ems="10"
-            android:inputType="numberDecimal" >
-
-           
-        </EditText>
-        
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp" >
-
-        <TextView
-            android:id="@+id/TextView01"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:text="Forma de pago"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Aquí va l información de Kupay"
+            android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="#FFFFFF" />
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <Spinner
-            android:id="@+id/spinner1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-             android:layout_marginLeft="20dp"
-             android:layout_marginRight="20dp"
-            android:layout_weight="1"
-            android:entries="@array/formas_pago"
-            android:prompt="@string/fpago"
-            />
-
-    </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-         >
-
-        <Button
-            android:id="@+id/button1"
-            android:layout_width="110dp"
-            android:layout_height="70dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-           
-            android:text="Aceptar" />
-
-    </RelativeLayout>
+    </ScrollView>
 
 </LinearLayout>

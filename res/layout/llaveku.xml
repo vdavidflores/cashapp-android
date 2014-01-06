@@ -35,7 +35,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
-                android:text="llave-Ku"
+                android:text="llave ku"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="#ffffff" />
         </LinearLayout>
@@ -46,96 +46,6 @@
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="304dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.01"
-            android:paddingLeft="40dp"
-            android:paddingTop="20dp"
-            android:paddingRight="20dp"
-            android:textColor="#FFFFFF"
-            android:text="Añade saldo a tu cuenta kuPay por el medio que prefieras"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp" >
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingRight="20dp"
-             android:paddingLeft="20dp"
-             android:layout_gravity="bottom"
-            android:text="Cantidad"
-            android:textColor="#FFFFFF"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp" >
-
-        <EditText
-            android:id="@+id/editText1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-             android:layout_marginLeft="20dp"
-             android:layout_marginRight="20dp"
-             android:layout_gravity="center_vertical"
-             android:singleLine="true"
-             android:hint="$"
-           android:ems="10"
-            android:inputType="numberDecimal" >
-
-           
-        </EditText>
-        
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp" >
-
-        <TextView
-            android:id="@+id/TextView01"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:text="Forma de pago"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="#FFFFFF" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <Spinner
-            android:id="@+id/spinner1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-             android:layout_marginLeft="20dp"
-             android:layout_marginRight="20dp"
-            android:layout_weight="1"
-            android:entries="@array/formas_pago"
-            android:prompt="@string/fpago"
-            />
-
-    </LinearLayout>
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -143,12 +53,50 @@
 
         <Button
             android:id="@+id/button1"
-            android:layout_width="110dp"
-            android:layout_height="70dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView1"
             android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-           
-            android:text="Aceptar" />
+            android:layout_marginTop="24dp"
+            android:text="Generar llave-ku" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="18dp"
+            android:text="La llave-ku es una clave dinámica para acceder a los servicios kupay fuera de tu móvil, la llave-ku cambia cada que es generada, así que cada vez que se requiera se tendra que generar una nueva."
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#FFFFFF" />
+
+        <EditText
+            android:id="@+id/llaveq"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="34dp"
+            android:ems="10"
+            android:hint="Llave-ku" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="304dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView2"
+            android:layout_below="@+id/llaveq"
+            android:layout_marginTop="33dp"
+            android:layout_weight="0.01"
+            android:paddingLeft="40dp"
+            android:paddingRight="20dp"
+            android:paddingTop="20dp"
+            android:text="Presiona el Botón para generar un nueva llave"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#FFFFFF"
+            android:textSize="15dp" />
 
     </RelativeLayout>
 
