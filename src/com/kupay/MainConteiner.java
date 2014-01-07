@@ -7,6 +7,7 @@ import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -147,6 +148,18 @@ public class MainConteiner extends FragmentActivity  {
 		
 	}
 	
+    @Override
+			public void onPause() {
+		    	 super.onPause();
+		    
+		    }
+
+	
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+       super.onActivityResult(requestCode, resultCode, data);
+    }
+    
 	public void togle() {
 		menu.toggle();
 	}

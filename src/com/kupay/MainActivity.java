@@ -107,13 +107,17 @@ public class MainActivity extends Fragment {
 		setRetainInstance(true);
 		FragmentManager fm = getFragmentManager();
 		fm.beginTransaction()
-		//.replace(R.id.tab_3, new Consulta(), "consultar")
-		//.replace(R.id.tab_1, new capturaQR(), "comprar")
+		.replace(R.id.tab_3, new Consulta(), "consultar")
+		.replace(R.id.tab_1, new capturaQR(), "comprar")
 		.replace(R.id.tab_2, new transferencia(), "transferir")
 		.commit();
 		mTabHost.setCurrentTab(1);
-
 	}
+    
+    @Override
+    public void onPause(){
+    	super.onPause();
+    }
   
     @Override
     public void onDestroy() {
@@ -183,7 +187,7 @@ public class MainActivity extends Fragment {
 					}
 					
 				}else if(tabId.equals("comprar")){
-					
+					Log.v("app","CAMBIANDO a comprar");
 					if (fm.findFragmentByTag(tabId) == null) {
 						Log.v("app", "cargando captura qr fragment");
 						Log.v("app", "el fragment ES nulo");
@@ -192,8 +196,12 @@ public class MainActivity extends Fragment {
 						.commit();
 					}
 						capturaQR camaraPointer = (capturaQR) getFragmentManager().findFragmentById(R.id.tab_1);
-						if(camaraCargada){
+						if(!camaraCargada){
+							Log.v("app", "nunca antes se ha cargado la camara");
 							Log.v("app", "ENSENDIENDO camara");
+							camaraPointer.startPreview();
+						} else{
+							Log.v("app", "ya antes se ha cargado la camara");
 							camaraPointer.restartCam();
 						}
 						camaraCargada = true;

@@ -1,0 +1,393 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#c51f50"
+    
+    android:orientation="vertical"
+    tools:context=".NuevaTarjeta" >
+
+	<LinearLayout
+        android:id="@+id/headerq"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/ccbg"
+        android:baselineAligned="false"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="20dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.16" >
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="20dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.69" >
+
+            <TextView
+                android:id="@+id/deposito"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:text="Nueva Tarjeta"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#ffffff" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="55dp"
+            android:layout_height="fill_parent" >
+        </LinearLayout>
+    </LinearLayout>
+    
+	
+	
+    <ScrollView 
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+	<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="40dp" >
+
+		<TextView
+		     android:layout_marginLeft="15dp"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="Nombre del titular"
+		    android:textColor="#FFFFFF"
+		    android:layout_gravity="bottom"
+		    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	</LinearLayout>
+
+	<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content" 
+	    >
+
+		<EditText
+		    android:id="@+id/titular_nombre"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_marginLeft="15dp"
+		    android:layout_marginRight="15dp"
+		
+		    android:layout_gravity="center_horizontal"
+		    android:layout_weight="1"
+		    android:ems="10"
+		    android:inputType="textPersonName" >
+
+		</EditText>
+
+	</LinearLayout>
+		<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="40dp" >
+
+		<TextView
+		   android:layout_marginLeft="15dp"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="Numero de tarjeta"
+		    android:textColor="#FFFFFF"
+		    android:layout_gravity="bottom"
+		    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	</LinearLayout>
+
+	<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content" 
+	    >
+
+		<EditText
+		    android:id="@+id/tarjeta_numero"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_marginLeft="15dp"
+		    android:layout_marginRight="15dp"
+		
+		    android:layout_gravity="center_horizontal"
+		    android:layout_weight="1"
+		    android:ems="10"
+		    android:inputType="numberDecimal" >
+
+		   
+		</EditText>
+
+	</LinearLayout>
+			<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="40dp" >
+
+		<TextView
+		
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_marginLeft="15dp"
+		    android:text="Marca"
+		    android:textColor="#FFFFFF"
+		    android:layout_gravity="bottom"
+		    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	</LinearLayout>
+	<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Spinner
+            android:id="@+id/spinner_marca"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+             android:layout_marginLeft="20dp"
+             android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            />
+
+    </LinearLayout>
+    
+		<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="40dp" >
+
+		<TextView
+		
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_marginLeft="15dp"
+		    android:text="Fecha de expiracón"
+		    android:textColor="#FFFFFF"
+		    android:layout_gravity="bottom"
+		    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	</LinearLayout>
+    	<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content" >
+
+		<EditText
+		    android:id="@+id/mes"
+		    android:layout_width="60dp"
+		    android:layout_height="wrap_content"
+		    android:layout_marginLeft="15dp"
+		    android:layout_marginRight="10dp"
+		    
+		    android:ems="10"
+		     android:lines="1"
+            android:maxLength= "2"
+            android:hint="mm"
+		    android:inputType="number" />
+
+		<EditText
+		    android:id="@+id/anio"
+		    android:layout_width="60dp"
+		    android:layout_height="wrap_content"
+		    android:layout_marginLeft="10dp"
+		    android:layout_marginRight="15dp"
+		    
+		   
+		     android:lines="1"
+            android:maxLength= "2"
+             android:hint="aa"
+		    android:ems="10"
+		    android:inputType="number" />
+
+	</LinearLayout>
+	
+    <LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="40dp" >
+
+		<TextView
+		
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_marginLeft="15dp"
+		    android:text="CVV2"
+		    android:textColor="#FFFFFF"
+		    android:layout_gravity="bottom"
+		    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	</LinearLayout>
+		
+   	<LinearLayout
+   	    android:layout_width="match_parent"
+   	    android:layout_height="wrap_content" >
+
+		<EditText
+		    android:id="@+id/cvv"
+		    android:layout_width="80dp"
+		    android:layout_height="match_parent"
+		    android:layout_marginLeft="15dp"
+		    android:ems="10"
+		    android:hint="xxx"
+		    android:inputType="number"
+		    android:lines="1"
+		    android:maxLength="3" />
+
+	</LinearLayout>
+	<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="40dp" >
+
+		<TextView
+		
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_marginLeft="15dp"
+		    android:text="Dirección del titular"
+		    android:textColor="#FFFFFF"
+		    android:layout_gravity="bottom"
+		    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	</LinearLayout>
+		
+   	<LinearLayout
+   	    android:layout_width="match_parent"
+   	    android:layout_height="wrap_content" >
+
+		<EditText
+		    android:id="@+id/direccion"
+		    android:layout_width="match_parent"
+		    android:layout_height="match_parent"
+		    android:layout_marginLeft="15dp"
+		    android:layout_marginRight="15dp"
+		    android:ems="10"
+		    android:inputType="textPostalAddress"
+		    android:lines="1" />
+
+	</LinearLayout>
+	<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="40dp" >
+
+		<TextView
+		
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_marginLeft="15dp"
+		    android:text="Codigo postal"
+		    android:textColor="#FFFFFF"
+		    android:layout_gravity="bottom"
+		    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	</LinearLayout>
+		
+   	<LinearLayout
+   	    android:layout_width="match_parent"
+   	    android:layout_height="wrap_content" >
+
+		<EditText
+		    android:id="@+id/codiogo_postal"
+		    android:layout_width="match_parent"
+		    android:layout_height="match_parent"
+		    android:layout_marginLeft="15dp"
+		    android:layout_marginRight="15dp"
+		    android:ems="10"
+		    android:inputType="textPostalAddress"
+		    android:lines="1" />
+
+	</LinearLayout>
+   	
+   	<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="40dp" >
+
+		<TextView
+		
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_marginLeft="15dp"
+		    android:text="Estado"
+		    android:textColor="#FFFFFF"
+		    android:layout_gravity="bottom"
+		    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	</LinearLayout>
+		
+   	<LinearLayout
+   	    android:layout_width="match_parent"
+   	    android:layout_height="wrap_content" >
+
+		<EditText
+		    android:id="@+id/estado"
+		    android:layout_width="match_parent"
+		    android:layout_height="match_parent"
+		    android:layout_marginLeft="15dp"
+		    android:layout_marginRight="15dp"
+		    android:ems="10"
+		    android:inputType="textPostalAddress"
+		    android:lines="1" />
+
+	</LinearLayout>
+	
+   	<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="40dp" >
+
+		<TextView
+		
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_marginLeft="15dp"
+		    android:text="Pais"
+		    android:textColor="#FFFFFF"
+		    android:layout_gravity="bottom"
+		    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	</LinearLayout>
+		
+   	<LinearLayout
+   	    android:layout_width="match_parent"
+   	    android:layout_height="wrap_content" >
+
+		 <Spinner
+            android:id="@+id/spinner_pais"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+             android:layout_marginLeft="20dp"
+             android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            />
+
+	</LinearLayout>
+	<LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            
+            android:gravity="bottom"
+            android:orientation="horizontal"
+            android:background="#ffffff" >
+
+		<Button
+		    android:id="@+id/cancelar_ntarjeta"
+		    android:layout_width="160dp"
+		    android:layout_height="62dp"
+		    android:background="@drawable/background_button"
+		    android:text="Cancelar"
+		    android:textColor="#ffffff" />
+
+              <Button
+                  android:id="@+id/aceptar_ntarjeta"
+                  android:layout_width="wrap_content"
+                  android:layout_height="62dp"
+                  android:background="@drawable/background_button"
+                  android:text="Aceptar"
+                  android:textColor="#ffffff" />
+
+        </LinearLayout>
+   	
+    	
+	</LinearLayout>
+	</ScrollView>
+
+</LinearLayout>
