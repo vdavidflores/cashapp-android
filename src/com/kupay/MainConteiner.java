@@ -68,13 +68,13 @@ public class MainConteiner extends FragmentActivity  {
 		
 	
 		sidemenu = (ListView) menu.findViewById(R.id.sideMenuList);
-		menurow = new OperacionRow[6];
+		menurow = new OperacionRow[5];
 		menurow[0]= new OperacionRow(R.drawable.mdm, "INICIO",null,null);
 		menurow[1]= new OperacionRow(R.drawable.deposito, "Deposito",null,null);
-		menurow[2]= new OperacionRow(R.drawable.retiro, "Retiro",null,null);
-		menurow[3]= new OperacionRow(R.drawable.llavek, "Llave-ku",null,null);
-		menurow[4]= new OperacionRow(R.drawable.desenlazar, "Desenlazar equipo",null,null);
-		menurow[5]= new OperacionRow(R.drawable.info, "Kupay",null,null);
+		//menurow[2]= new OperacionRow(R.drawable.retiro, "Retiro",null,null);
+		menurow[2]= new OperacionRow(R.drawable.llavek, "Llave-ku",null,null);
+		menurow[3]= new OperacionRow(R.drawable.desenlazar, "Desenlazar equipo",null,null);
+		menurow[4]= new OperacionRow(R.drawable.info, "Kupay",null,null);
 	
 		WeatherAdapter adapter = new WeatherAdapter(this, R.layout.listview_item_row_menu,menurow);
 		sidemenu.setAdapter(adapter);
@@ -101,17 +101,17 @@ public class MainConteiner extends FragmentActivity  {
 					togle();
 
 				}
-				else  if(id== 2){
+				//else  if(id== 2){
 					//if (fm.findFragmentByTag("deposito") == null) {
-				        fm.beginTransaction()
-						.replace(R.id.fragment_container, new Retiro(), "retiro")
-						.commit();
+				       // fm.beginTransaction()
+						//.replace(R.id.fragment_container, new Retiro(), "retiro")
+						//.commit();
 				        
 				//	}
-					togle();
+					//togle();
 
-				}
-				else  if(id== 3){
+				//}
+				else  if(id== 2){
 					//if (fm.findFragmentByTag("deposito") == null) {
 				        fm.beginTransaction()
 						.replace(R.id.fragment_container, new Llaveku(), "llveku")
@@ -121,7 +121,7 @@ public class MainConteiner extends FragmentActivity  {
 					togle();
 
 				}
-				else  if(id== 4){
+				else  if(id== 3){
 					//if (fm.findFragmentByTag("deposito") == null) {
 				        fm.beginTransaction()
 						.replace(R.id.fragment_container, new Desenlazar(), "desenlazar")
@@ -131,7 +131,7 @@ public class MainConteiner extends FragmentActivity  {
 					togle();
 
 				}
-				else  if(id== 5){
+				else  if(id== 4){
 					//if (fm.findFragmentByTag("deposito") == null) {
 				        fm.beginTransaction()
 						.replace(R.id.fragment_container, new Info(), "info")
