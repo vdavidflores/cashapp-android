@@ -53,12 +53,13 @@
 
         <Button
             android:id="@+id/button1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="130dp"
+            android:layout_height="56dp"
             android:layout_below="@+id/textView1"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="24dp"
-            android:text="Generar llave-ku" />
+            android:background="@drawable/llaveboton"
+            android:text="" />
 
         <TextView
             android:id="@+id/textView2"
