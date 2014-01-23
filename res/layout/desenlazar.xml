@@ -112,12 +112,12 @@
 
         <Button
             android:id="@+id/button1"
-            android:layout_width="110dp"
-            android:layout_height="70dp"
+            android:layout_width="220dp"
+            android:layout_height="69dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-           
-            android:text="Desenlazar Celular" />
+           android:background="@drawable/desenlazarboton"
+            android:text="" />
 
     </RelativeLayout>
 
