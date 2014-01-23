@@ -28,12 +28,16 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.widget.Toast;
 
 /*
  * 
@@ -45,13 +49,12 @@ public class Post {
 	JSONObject obj;
 	private  List<NameValuePair> pares;
 	private JSONObject response ;
+	private Context conext;
 
 	  public Post(int accion_ ,JSONObject obj_){
 		  obj = obj_;
 		  accion = accion_;
 	  }
-	  
-
 	  
 	  
 	  public JSONObject exec(Context c ) throws ClientProtocolException, ParseException, JSONException{
@@ -78,10 +81,10 @@ public class Post {
 				try {
 					httppost.setEntity(new UrlEncodedFormEntity(pares));
 					 Log.v("post", "5");
-					
+				
 					httpresponse = httpclient.execute(httppost);
-				 respuesta = EntityUtils.toString(httpresponse.getEntity());
-				 Log.v("app", "respuesta: " +respuesta.toString());
+					respuesta = EntityUtils.toString(httpresponse.getEntity());
+					Log.v("app", "respuesta: " +respuesta.toString());
 				 if ( httpresponse != null){
 					
 						response = new JSONObject(respuesta);
@@ -139,5 +142,61 @@ public class Post {
 		        return null;
 		    }
 		}
+	  
+	  OnResponseAsync mListener;
+	  public interface OnResponseAsync{
+		  public void onResponseAsync(JSONObject response);
+		  }
+	  
+	  
+	  public void setOnResponseAsync(OnResponseAsync responseAsync) {
+		  mListener=responseAsync;
+		  }
+	  
+	  
+	  public void execAsync(Context appContext) {
+		  conext = appContext;
+		execAsync ea = new execAsync();
+		ea.execute();
+	}
+	  
+	  
+	  private class execAsync extends AsyncTask<Void, Integer, JSONObject>{
+		   	 
+		     
+
+			@Override
+	         protected void onPreExecute() {
+				
+	          }
+	         
+	          
+			protected JSONObject doInBackground(Void... args0) {
+	        		  try {
+						response = exec(conext);
+					} catch (ClientProtocolException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 	
+	          	
+	          	Log.v("app",response.toString());
+	  
+	        	  return response;
+		
+	          }
+	        
+	        @Override
+	          protected void onPostExecute(JSONObject response) {
+	        	
+	        	mListener.onResponseAsync(response);
+	        	
+	        }
+	  }
 }
