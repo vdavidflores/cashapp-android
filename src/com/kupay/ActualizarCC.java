@@ -40,8 +40,8 @@ class ActualizarCC extends AsyncTask<Void, Integer, JSONObject>{
 			try {
 
   			data.put("emisor", MiUsuario());
-  			data.put("imei", "123456789012345");
-  			data.put("pin", 1234);
+  			data.put("imei", MiImei());
+  			//data.put("pin", 1234);
   			
   			} catch (JSONException e) {
   				// TODO Auto-generated catch block
@@ -113,5 +113,18 @@ class ActualizarCC extends AsyncTask<Void, Integer, JSONObject>{
         
         }
 	 return usr;
+    }
+    
+    private String MiImei(){
+    	String imei = null;
+        BDD dbh = new BDD(context,"kupay",null,1);
+        SQLiteDatabase db= dbh.getReadableDatabase();
+        Cursor reg = db.query("kupay",new String[]{"imei"},null,null,null,null,null,"1");
+        if(reg.moveToFirst()){
+            imei=reg.getString(0);
+           
+        
+        }
+	 return imei;
     }
 }

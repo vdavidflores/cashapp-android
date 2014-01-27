@@ -139,8 +139,8 @@ public class Consulta extends Fragment {
 			try {
   			data.put("usr", MiUsuario());
   			data.put("dias", 1);
-  			data.put("imei", "123456789012345");
-  			data.put("pin", 1234);
+  			data.put("imei", MiImei());
+  			//data.put("pin", 1234);
   			
   			} catch (JSONException e) {
   				// TODO Auto-generated catch block
@@ -265,7 +265,19 @@ public class Consulta extends Fragment {
               usr=reg.getString(0);   
           }
   	 return usr;
-      }	
+      }
+      private String MiImei(){
+      	String imei = null;
+          BDD dbh = new BDD(getActivity(),"kupay",null,1);
+          SQLiteDatabase db= dbh.getReadableDatabase();
+          Cursor reg = db.query("kupay",new String[]{"imei"},null,null,null,null,null,"1");
+          if(reg.moveToFirst()){
+              imei=reg.getString(0);
+             
+          
+          }
+  	 return imei;
+      }
   }
   
 } 

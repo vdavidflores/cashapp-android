@@ -23,7 +23,7 @@ public class BDD extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
        db.execSQL(crea);
-       db.execSQL("INSERT INTO kupay VALUES ('dos@kupay.com','123456789012345')");
+       db.execSQL("INSERT INTO kupay VALUES ('nill','nill')");
        db.execSQL("CREATE TABLE kupayTarjetas (numero_tarjeta_cryp TEXT, nombre_titular_cryp TEXT,  exp_mes_cryp TEXT,  exp_anio_cryp TEXT,  cvv_cryp TEXT,  direccion_titular_cryp TEXT,  codigo_postal_cryp TEXT,   marca_cryp TEXT ,   pais_cryp TEXT)");
     }
     
@@ -32,6 +32,6 @@ public class BDD extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS kupay");
         db.execSQL("DROP TABLE IF EXISTS kupayTarjetas");
         db.execSQL(crea);
-        db.execSQL("INSERT INTO kupay VALUES ('dos@kupay.com','123456789012345')");
+        db.execSQL("INSERT INTO kupay VALUES ('nill','nill')");
     }
 }

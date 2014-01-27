@@ -8,6 +8,8 @@ import org.apache.http.client.ClientProtocolException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.kupay.Post.OnResponseAsync;
+
 
 
 import android.app.Activity;
@@ -39,6 +41,7 @@ public class Registro extends Activity {
 	EditText ndia;
 	EditText nmes;
 	EditText nano;
+	Post registro;
 	
 	@Override
 	public void onBackPressed() {
@@ -64,7 +67,7 @@ acept = (Button) findViewById(R.id.aceptar_r);
    ndia = (EditText) findViewById(R.id.ndia_registro);
    nmes = (EditText) findViewById(R.id.nmes_registro);
    nano = (EditText) findViewById(R.id.nano_registro);
-    
+   registro = new Post();
    eventos();
    }
     
@@ -108,18 +111,25 @@ private void eventos(){
 									
 							}
 							else {
-							// TODO Auto-generated method stub
-							Intent in = new Intent (getApplicationContext(), Registro_seguridad.class);
-							startActivityForResult(in, 2);
-					
-							try {
-								this.finalize();
-							} catch (Throwable e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-					
-							Toast.makeText(getApplicationContext(), "Datos Registrados", Toast.LENGTH_LONG).show();
+								
+								JSONObject data = new JSONObject();
+								try {
+					    			
+					    				data.put("nombre",nombre.getText().toString());
+					    			
+					    			data.put("apellido",apellido.getText().toString());
+					    			data.put("email", mail.getText().toString());
+					    			data.put("fechaNas", nano.getText().toString()+"-"+nmes.getText().toString()+"-"+ndia.getText().toString());
+					    			data.put("telefono", celular.getText().toString());
+					    			
+					    			} catch (JSONException e) {
+					    				// TODO Auto-generated catch block
+					    				e.printStackTrace();
+					    			}
+								
+								registro.setData(2, data);
+								registro.execAsync(getApplicationContext());
+							Toast.makeText(getApplicationContext(), "Registrado...", Toast.LENGTH_LONG).show();
 							}
 							
 							//Toast.makeText(getApplicationContext(), "Si funciona", Toast.LENGTH_LONG).show();
@@ -135,6 +145,9 @@ private void eventos(){
 				
 				}			
 			});
+	 
+	 
+	 
 			
 	 cancel.setOnClickListener(new View.OnClickListener() {
 				
@@ -156,9 +169,39 @@ private void eventos(){
 
 
 			});
+	
+	 registro.setOnResponseAsync(new OnResponseAsync() {
+		
+		@Override
+		public void onResponseAsync(JSONObject response) {
+			// TODO Auto-generated method stub
+			try {
+				if(response.getString("RESULTADO").equals("EXITO")){
+					Toast.makeText(getApplicationContext(), "Rgistrasdo con exito", Toast.LENGTH_LONG).show();
+					Intent in = new Intent (getApplicationContext(), Enlazar.class);
+					startActivityForResult(in, 2);
+				
+					try {
+						this.finalize();
+					} catch (Throwable e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}else{
+					Toast.makeText(getApplicationContext(), "No registrasdo", Toast.LENGTH_LONG).show();
+				}
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	});
 
    
    }
+
+
+	
     
 }
     

@@ -55,7 +55,13 @@ public class Post {
 		  obj = obj_;
 		  accion = accion_;
 	  }
-	  
+	  public Post(){
+		  
+	  }
+	  public void setData(int accion_ ,JSONObject obj_){
+		  obj = obj_;
+		  accion = accion_;
+	  }
 	  
 	  public JSONObject exec(Context c ) throws ClientProtocolException, ParseException, JSONException{
 		  Log.v("post", "1");

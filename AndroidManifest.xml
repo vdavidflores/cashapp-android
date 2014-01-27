@@ -55,7 +55,7 @@
             android:name="com.kupay.Enlazar"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|adjustResize" >
+            android:windowSoftInputMode="adjustResize" >
         </activity>
         <activity
             android:name="com.kupay.Registro_seguridad"
@@ -73,7 +73,7 @@
             android:name="com.kupay.Registro"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|adjustResize" >
+            android:windowSoftInputMode="adjustResize" >
         </activity>
         <activity
             android:name="com.kupay.transferencia"
