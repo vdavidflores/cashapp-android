@@ -33,6 +33,7 @@ public class Enlazar extends Activity {
     
 	Button acept;
 	Button cancel;
+	Button enviarBtn;
 
 	EditText correo;
 	EditText pin;
@@ -42,7 +43,7 @@ public class Enlazar extends Activity {
 	String imei;
 	String usr;
 	RandomString random;
-	
+	Post enviarLlave;
 	
 	@Override
 	public void onBackPressed() {
@@ -67,19 +68,34 @@ public class Enlazar extends Activity {
         acept = (Button) findViewById(R.id.aceptar_r);
    cancel = (Button) findViewById(R.id.iniciar); 
    Log.v("inicio", "2");  
-   
+   enviarBtn = (Button) findViewById(R.id.enviar_llave_ku);
    correo = (EditText) findViewById(R.id.correo_i);
 	pin = (EditText) findViewById(R.id.pin_i);
 	pin2 = (EditText) findViewById(R.id.pin_dos);
 	puk = (EditText) findViewById(R.id.puk_i);
 	enlaz = new Post();
+	enviarLlave = new Post();
 	eventos();
         
 	
     }
     
  private void eventos(){
+	enviarLlave.setOnResponseAsync(new OnResponseAsync() {
 		
+		@Override
+		public void onResponseAsync(JSONObject response) {
+			try {
+				if(response.getString("RESULTADO").equals("EXITO")){
+					Toast.makeText(getApplicationContext(), "llave ku enviada!", Toast.LENGTH_LONG).show();
+				}
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+	});
 		
 		// Boton de solicitar Taxis	
 	 enlaz.setOnResponseAsync(new OnResponseAsync() {
@@ -111,6 +127,34 @@ public class Enlazar extends Activity {
 					e.printStackTrace();
 				}
 			
+			
+		}
+	});
+	 
+	 
+	 enviarBtn.setOnClickListener(new View.OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			
+			
+			if (!correo.getText().toString().equals(""))
+			{		
+				JSONObject datallave = new JSONObject();
+				
+				try {
+					datallave.put("usr", correo.getText().toString());
+					enviarLlave.setData(15, datallave);
+					enviarLlave.execAsync(getApplicationContext());
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
+			}else{
+				Toast.makeText(getApplicationContext(), "Ingresa un correo electronico", Toast.LENGTH_LONG).show();
+			}
 			
 		}
 	});
