@@ -115,53 +115,6 @@
                            
                            />
                     </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical" >
-
-                        <EditText
-                            android:id="@+id/pin_i"
-                            android:background="@drawable/edit_text_design"
-                            android:textColor="#ffffff"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                             android:layout_marginTop="30dp"
-                            android:textColorHint="#ffffff"
-                            android:hint="pin"
-                             android:inputType="phone"
-                             android:password="true"
-                              android:singleLine="true"
-                            android:layout_marginRight="10dp"
-                            android:imeOptions="actionNext"
-                            android:ems="10" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical" >
-
-                        <EditText
-                            android:id="@+id/pin_dos"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:maxLength="4"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginTop="30dp"
-                            android:textColorHint="#ffffff"
-                            android:hint="Confirmar pin"
-                            android:background="@drawable/edit_text_design"
-                            android:ems="10"
-                            android:imeOptions="actionNext"
-                            android:inputType="phone"
-                            android:password="true"
-                            android:singleLine="true"
-                            android:textColor="#ffffff" />
-
-                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -190,7 +143,6 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:orientation="vertical" >
-
                     
                  <TextView
                             android:id="@+id/Alerta"
@@ -212,30 +164,75 @@
                             android:layout_marginRight="10dp"
                             android:layout_marginTop="5dp"
                             android:textColorHint="#ffffff"
-                            android:text="La llaveKu fue enviada al correo electrónico registrado anteriormente, Esta llave solo servira una vez, por lo que si te quivocas genera otra he intanta nuevamente."
+                            android:text="OJO !!! La llave-ku será enviada a tu correo electrónico una vez presionado el Botón. ,presione el Botón, espere el correo electrónico, y digite la llave-ku en el campo correcto!!"
                             android:textAppearance="?android:attr/textAppearanceSmall" 
-                            android:textColor="#ffffff" />                    
+                            android:textColor="#ffffff" />
+
+                  <Button
+                      android:id="@+id/enviarll"
+                      android:layout_width="100dp"
+                      android:layout_height="match_parent"
+                      android:text="Enivar llaveku"
+                      android:textColor="#ffffff" />
                     
                 </LinearLayout>
                 
                  <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical" >
-                  
-                     
-                     <Button
-                         android:id="@+id/enviar_llave_ku"
-                         android:text="Enivar llaveku"
-                         android:textColor="#ffffff"
-                         android:layout_gravity="center_horizontal"
-                         android:layout_width="100dp"
-                         android:layout_height="match_parent"
-                         
-                         
-                         ></Button>
-                  </LinearLayout>
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:gravity="center"
+                     android:orientation="vertical" >
+
+                     <LinearLayout
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:orientation="vertical" >
+
+                         <EditText
+                             android:id="@+id/pin_i"
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:layout_marginLeft="10dp"
+                             android:layout_marginRight="10dp"
+                             android:layout_marginTop="30dp"
+                             android:background="@drawable/edit_text_design"
+                             android:ems="10"
+                             android:hint="pin"
+                             android:imeOptions="actionNext"
+                             android:inputType="phone"
+                             android:password="true"
+                             android:singleLine="true"
+                             android:textColor="#ffffff"
+                             android:textColorHint="#ffffff" >
+
+                             <requestFocus />
+                         </EditText>
+                     </LinearLayout>
+
+                     <LinearLayout
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:orientation="vertical" >
+
+                         <EditText
+                             android:id="@+id/pin_dos"
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:layout_marginLeft="10dp"
+                             android:layout_marginRight="10dp"
+                             android:layout_marginTop="30dp"
+                             android:background="@drawable/edit_text_design"
+                             android:ems="10"
+                             android:hint="Confirmar pin"
+                             android:imeOptions="actionNext"
+                             android:inputType="phone"
+                             android:maxLength="4"
+                             android:password="true"
+                             android:singleLine="true"
+                             android:textColor="#ffffff"
+                             android:textColorHint="#ffffff" />
+                     </LinearLayout>
+                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"

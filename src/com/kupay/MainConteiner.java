@@ -163,4 +163,8 @@ public class MainConteiner extends FragmentActivity  {
 	public void togle() {
 		menu.toggle();
 	}
+	
+	
+	
+	
 }

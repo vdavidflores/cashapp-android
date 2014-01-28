@@ -67,16 +67,24 @@ public class Enlazar extends Activity {
         // Tomar los datos de los campos
         acept = (Button) findViewById(R.id.aceptar_r);
    cancel = (Button) findViewById(R.id.iniciar); 
-   Log.v("inicio", "2");  
-   enviarBtn = (Button) findViewById(R.id.enviar_llave_ku);
+   Log.v("inicio", "2.0");  
+   enviarBtn = (Button) findViewById(R.id.enviarll);
+   Log.v("inicio", "2.1");
    correo = (EditText) findViewById(R.id.correo_i);
-	pin = (EditText) findViewById(R.id.pin_i);
-	pin2 = (EditText) findViewById(R.id.pin_dos);
-	puk = (EditText) findViewById(R.id.puk_i);
-	enlaz = new Post();
-	enviarLlave = new Post();
+   Log.v("inicio", "2.2");
+   pin = (EditText) findViewById(R.id.pin_i);
+   Log.v("inicio", "2.3");
+   pin2 = (EditText) findViewById(R.id.pin_dos);
+   Log.v("inicio", "2.4");
+   puk = (EditText) findViewById(R.id.puk_i);
+   Log.v("inicio", "2.5");
+   enlaz = new Post();
+   Log.v("inicio", "2.6");
+   enviarLlave = new Post();
+	
+	Log.v("inicio", "3"); 
 	eventos();
-        
+	Log.v("inicio", "4");    
 	
     }
     

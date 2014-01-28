@@ -32,7 +32,7 @@ public class Pregunta extends Activity{
    private void eventos(){
 		
 		
-		// Boton de solicitar Taxis	
+		// el usuario responde que no
 			
 			
 			bno.setOnClickListener(new View.OnClickListener() {
@@ -55,6 +55,10 @@ public class Pregunta extends Activity{
 
 
 			});
+			
+			
+			
+			// el usuario responde que si
 			
 			bsi.setOnClickListener(new View.OnClickListener() {
 				
