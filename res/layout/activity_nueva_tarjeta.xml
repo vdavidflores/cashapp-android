@@ -53,6 +53,44 @@
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:orientation="vertical" >
+            
+            
+            
+            	<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="40dp" >
+
+		<TextView
+		     android:layout_marginLeft="15dp"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="Nombre de la tarjeta"
+		    android:textColor="#FFFFFF"
+		    android:layout_gravity="bottom"
+		    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	</LinearLayout>
+
+	<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content" 
+	    >
+
+		<EditText
+		    android:id="@+id/nombre_tarjeta"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_marginLeft="15dp"
+		    android:layout_marginRight="15dp"
+		
+		    android:layout_gravity="center_horizontal"
+		    android:layout_weight="1"
+		    android:ems="10"
+		    android:inputType="textPersonName" >
+
+		</EditText>
+
+	</LinearLayout>
 
 	<LinearLayout
 	    android:layout_width="match_parent"
@@ -125,35 +163,6 @@
 		</EditText>
 
 	</LinearLayout>
-			<LinearLayout
-	    android:layout_width="match_parent"
-	    android:layout_height="40dp" >
-
-		<TextView
-		
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:layout_marginLeft="15dp"
-		    android:text="Marca"
-		    android:textColor="#FFFFFF"
-		    android:layout_gravity="bottom"
-		    android:textAppearance="?android:attr/textAppearanceMedium" />
-
-	</LinearLayout>
-	<LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <Spinner
-            android:id="@+id/spinner_marca"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-             android:layout_marginLeft="20dp"
-             android:layout_marginRight="20dp"
-            android:layout_weight="1"
-            />
-
-    </LinearLayout>
     
 		<LinearLayout
 	    android:layout_width="match_parent"
@@ -233,131 +242,6 @@
 		    android:inputType="number"
 		    android:lines="1"
 		    android:maxLength="3" />
-
-	</LinearLayout>
-	<LinearLayout
-	    android:layout_width="match_parent"
-	    android:layout_height="40dp" >
-
-		<TextView
-		
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:layout_marginLeft="15dp"
-		    android:text="Dirección del titular"
-		    android:textColor="#FFFFFF"
-		    android:layout_gravity="bottom"
-		    android:textAppearance="?android:attr/textAppearanceMedium" />
-
-	</LinearLayout>
-		
-   	<LinearLayout
-   	    android:layout_width="match_parent"
-   	    android:layout_height="wrap_content" >
-
-		<EditText
-		    android:id="@+id/direccion"
-		    android:layout_width="match_parent"
-		    android:layout_height="match_parent"
-		    android:layout_marginLeft="15dp"
-		    android:layout_marginRight="15dp"
-		    android:ems="10"
-		    android:inputType="textPostalAddress"
-		    android:lines="1" />
-
-	</LinearLayout>
-	<LinearLayout
-	    android:layout_width="match_parent"
-	    android:layout_height="40dp" >
-
-		<TextView
-		
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:layout_marginLeft="15dp"
-		    android:text="Codigo postal"
-		    android:textColor="#FFFFFF"
-		    android:layout_gravity="bottom"
-		    android:textAppearance="?android:attr/textAppearanceMedium" />
-
-	</LinearLayout>
-		
-   	<LinearLayout
-   	    android:layout_width="match_parent"
-   	    android:layout_height="wrap_content" >
-
-		<EditText
-		    android:id="@+id/codiogo_postal"
-		    android:layout_width="match_parent"
-		    android:layout_height="match_parent"
-		    android:layout_marginLeft="15dp"
-		    android:layout_marginRight="15dp"
-		    android:ems="10"
-		    android:inputType="textPostalAddress"
-		    android:lines="1" />
-
-	</LinearLayout>
-   	
-   	<LinearLayout
-	    android:layout_width="match_parent"
-	    android:layout_height="40dp" >
-
-		<TextView
-		
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:layout_marginLeft="15dp"
-		    android:text="Estado"
-		    android:textColor="#FFFFFF"
-		    android:layout_gravity="bottom"
-		    android:textAppearance="?android:attr/textAppearanceMedium" />
-
-	</LinearLayout>
-		
-   	<LinearLayout
-   	    android:layout_width="match_parent"
-   	    android:layout_height="wrap_content" >
-
-		<EditText
-		    android:id="@+id/estado"
-		    android:layout_width="match_parent"
-		    android:layout_height="match_parent"
-		    android:layout_marginLeft="15dp"
-		    android:layout_marginRight="15dp"
-		    android:ems="10"
-		    android:inputType="textPostalAddress"
-		    android:lines="1" />
-
-	</LinearLayout>
-	
-   	<LinearLayout
-	    android:layout_width="match_parent"
-	    android:layout_height="40dp" >
-
-		<TextView
-		
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:layout_marginLeft="15dp"
-		    android:text="Pais"
-		    android:textColor="#FFFFFF"
-		    android:layout_gravity="bottom"
-		    android:textAppearance="?android:attr/textAppearanceMedium" />
-
-	</LinearLayout>
-		
-   	<LinearLayout
-   	    android:layout_width="match_parent"
-   	    android:layout_height="wrap_content" >
-
-		 <Spinner
-            android:id="@+id/spinner_pais"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-             android:layout_marginLeft="20dp"
-             android:layout_marginRight="20dp"
-            android:layout_weight="1"
-            />
 
 	</LinearLayout>
 	<LinearLayout

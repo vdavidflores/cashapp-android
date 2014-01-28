@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -32,11 +34,14 @@ public class Deposito extends Fragment implements OnItemSelectedListener {
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
 		 View view = View.inflate(this.getActivity(), R.layout.deposito,null);
-		 String [] values = {"OXXO","Tarjeta bancaria",};
-		  spinner = (Spinner) view.findViewById(R.id.spinner1);
+		 
+		 //Spiner de forma de pago
+		 String [] values = {"Tineda de conveniencia","Tarjeta bancaria",};
+		 spinner = (Spinner) view.findViewById(R.id.spinner1);
 		 ArrayAdapter<String> LTRadapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, values);
-		    LTRadapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-		    spinner.setAdapter(LTRadapter);
+		 LTRadapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+		 spinner.setAdapter(LTRadapter);
+		    
 		
 		  navicon = (Button)  view.findViewById(R.id.navicon_dep);
 		  aceptar = (Button)  view.findViewById(R.id.deposito_aceptar);
@@ -94,12 +99,19 @@ public class Deposito extends Fragment implements OnItemSelectedListener {
 		final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
 				this.getActivity(), android.R.layout.select_dialog_item);
 		arrayAdapter.add("+ NUEVA TARJETA");
-		arrayAdapter.add("Tarjeta 1");
-		arrayAdapter.add("Tarjeta 2");
-		arrayAdapter.add("Tarjeta 3");
-		arrayAdapter.add("Tarjeta 4");
-		arrayAdapter.add("Tarjeta 5");
-		arrayAdapter.add("Tarjeta 6");
+		
+			//se buscan las tarjetas registradas y se enlistn
+		 	BDD dbh = new BDD(getActivity().getApplicationContext(),"kupay",null,1);
+	        SQLiteDatabase db= dbh.getWritableDatabase();
+	        Cursor c = db.rawQuery("select * from kupayTarjetas",null);
+	        c.moveToFirst();
+	        while (c.moveToNext()) {
+	        	arrayAdapter.add(c.getString(1).toString());
+			}
+	        
+	      //  Toast.makeText(getActivity(), "tarjeta: "+c.getString(0), Toast.LENGTH_LONG).show();
+	
+		
 		builderSingle.setNeutralButton("cancel",
 				new DialogInterface.OnClickListener() {
 
@@ -119,6 +131,8 @@ public class Deposito extends Fragment implements OnItemSelectedListener {
 							Intent intent = new Intent(getActivity(),
 									NuevaTarjeta.class);
 							startActivityForResult(intent, 450);
+						}else{
+							Toast.makeText(getActivity(), "pagar con tarjeta id: "+(which-1), Toast.LENGTH_LONG).show();
 						}
 					}
 				});

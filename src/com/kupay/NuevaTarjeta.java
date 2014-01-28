@@ -29,13 +29,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.Toast;
 
-public class NuevaTarjeta extends Activity implements OnItemSelectedListener {
+public class NuevaTarjeta extends Activity {
 
-	Spinner spinner;
-	Spinner paisSpiner;
+	//Spinner spinner;
+	//Spinner paisSpiner;
 	private ProgressDialog progress;
-	EditText nombreTitular, numeroTarjeta, expMes, expAnio, cvv, direccionTitular, codigoPostal, estado;
+	EditText nombreTitular, numeroTarjeta, expMes, expAnio, cvv, nombreTarjeta;
 
 	Button acepar, cancelar;
 	
@@ -49,24 +50,24 @@ public class NuevaTarjeta extends Activity implements OnItemSelectedListener {
 		setContentView(R.layout.activity_nueva_tarjeta);
 		
 		paises = getResources().getStringArray(R.array.countries_array);
-		 spinner = (Spinner) findViewById(R.id.spinner_marca);
-		 paisSpiner = (Spinner) findViewById(R.id.spinner_pais);
+		 //spinner = (Spinner) findViewById(R.id.spinner_marca);
+		 //paisSpiner = (Spinner) findViewById(R.id.spinner_pais);
+		
+		nombreTarjeta = (EditText) findViewById(R.id.nombre_tarjeta);
 		 nombreTitular = (EditText) findViewById(R.id.titular_nombre);
 		 numeroTarjeta = (EditText) findViewById(R.id.tarjeta_numero);
 		 expMes = (EditText) findViewById(R.id.mes);
 		 expAnio = (EditText) findViewById(R.id.anio);
 		 cvv = (EditText) findViewById(R.id.cvv);
-		 direccionTitular = (EditText) findViewById(R.id.direccion);
-		 codigoPostal = (EditText) findViewById(R.id.codiogo_postal);
-		 estado = (EditText) findViewById(R.id.estado);
+	
 		
-		 ArrayAdapter<String> LTRadapter = new ArrayAdapter<String>(this.getApplicationContext(), android.R.layout.simple_spinner_item, marcas);
+		/* ArrayAdapter<String> LTRadapter = new ArrayAdapter<String>(this.getApplicationContext(), android.R.layout.simple_spinner_item, marcas);
 		    LTRadapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
 		    spinner.setAdapter(LTRadapter);
 		    
 		    ArrayAdapter<String> mpa = new ArrayAdapter<String>(this.getApplicationContext(), android.R.layout.simple_spinner_item, paises);
 		    LTRadapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-		    paisSpiner.setAdapter(mpa);
+		    paisSpiner.setAdapter(mpa);*/
 		    cancelar = (Button) findViewById(R.id.cancelar_ntarjeta);
 		 
 		     cancelar.setOnClickListener(new OnClickListener() {
@@ -95,7 +96,7 @@ public class NuevaTarjeta extends Activity implements OnItemSelectedListener {
 		
 	}
 
-	@Override
+	/*@Override
 	public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
 			long arg3) {
 		// TODO Auto-generated method stub
@@ -106,7 +107,7 @@ public class NuevaTarjeta extends Activity implements OnItemSelectedListener {
 	public void onNothingSelected(AdapterView<?> arg0) {
 		// TODO Auto-generated method stub
 		
-	}
+	}*/
 	
 	private void pin(){
 		
@@ -170,11 +171,7 @@ public class NuevaTarjeta extends Activity implements OnItemSelectedListener {
 				data.put("exp_mes", expMes.getText().toString());
 				data.put("exp_anio", expAnio.getText().toString());
 				data.put("cvv", cvv.getText().toString());
-				data.put("direccion_titular", direccionTitular.getText().toString());
-				data.put("codigo_postal", codigoPostal.getText().toString());
-				data.put("estado", estado.getText().toString());
-				data.put("marca", marcas[spinner.getSelectedItemPosition()]);
-				data.put("pais", paises[paisSpiner.getSelectedItemPosition()]);
+
 				
 				
 				data.put("usr", MiUsuario());
@@ -218,26 +215,36 @@ public class NuevaTarjeta extends Activity implements OnItemSelectedListener {
 				  String resultado = response.get("RESULTADO").toString();
 				if (resultado.equals("EXITO")){
 					  //ALMACENA
+					Log.v("app", "1");
 					JSONObject datos = response.getJSONObject("DATOS");
+					Log.v("app", "2");
 					 BDD dbh = new BDD(getApplicationContext(),"kupay",null,1);
+					 Log.v("app", "3");
 				        SQLiteDatabase db= dbh.getWritableDatabase();
-				        db.execSQL("INSERT INTO kupayTarjetas VALUES ('"+datos.getString("numero_tarjeta_cryp")+"'," +
-				        		"'"+datos.getString("nombre_titular_cryp")+"'," +
-				        				"'"+datos.getString("exp_mes_cryp")+"'," +
-				        						"'"+datos.getString("exp_anio_cryp")+"," +
-				        								"'"+datos.getString("cvv_cryp")+"'," +
-				        										"'"+datos.getString("direccion_titular_cryp")+"'," +
-				        												"'"+datos.getString("codigo_postal_cryp")+"'," +
-				        														"'"+datos.getString("marca_cryp")+"'," +
-				        																"'"+datos.getString("pais_cryp")+"')");
-				        String query = "SELECT ROWID from kupayTarjetas order by ROWID DESC limit 1";
+				        Log.v("app", "4");
+				        try {
+				        	 db.execSQL("INSERT INTO kupayTarjetas(nombre ,numero_tarjeta_cryp , nombre_titular_cryp ,  exp_mes_cryp ,  exp_anio_cryp ,  cvv_cryp ) VALUES ('"+nombreTarjeta.getText().toString()+"','"+datos.getString("numero_tarjeta_cryp")+"'," +
+						        		"'"+datos.getString("nombre_titular_cryp")+"'," +
+						        				"'"+datos.getString("exp_mes_cryp")+"'," +
+						        						"'"+datos.getString("exp_anio_cryp")+"'," +
+						        								"'"+datos.getString("cvv_cryp")+"')");
+						} catch (Exception e) {
+							Toast.makeText(getApplicationContext(), "ERROR: "+e.toString(), Toast.LENGTH_LONG).show();
+							Log.v("app", "ERROR: "+e.toString());
+						
+						}
+				       
+				        Log.v("app", "5");
+				   /*     String query = "SELECT ROWID from kupayTarjetas order by ROWID DESC limit 1";
 				        Cursor c = db.rawQuery(query,null);
+				        
+				        
 				        Intent data = new Intent();
 				        if (c != null && c.moveToFirst()) 
 				         data.putExtra("tarjeta_id",Long.toString(c.getLong(0)));
 			
-						setResult(Activity.RESULT_OK,data);
-						finish();
+						setResult(Activity.RESULT_OK);
+						finish();*/
 					
 				  } else{ 
 						
