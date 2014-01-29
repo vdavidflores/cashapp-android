@@ -31,7 +31,7 @@
             android:layout_weight="0.69" >
 
             <TextView
-                android:id="@+id/llaveku"
+                android:id="@+id/titulo"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -52,7 +52,7 @@
          >
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/getllave"
             android:layout_width="130dp"
             android:layout_height="56dp"
             android:layout_below="@+id/textView1"
@@ -65,7 +65,7 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/button1"
+            android:layout_below="@+id/getllave"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="18dp"
@@ -80,7 +80,9 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="34dp"
+            android:gravity="center"
             android:ems="10"
+            android:enabled="false"
             android:hint="Llave-ku" />
 
         <TextView
