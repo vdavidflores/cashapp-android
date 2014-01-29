@@ -13,7 +13,10 @@ import org.json.JSONObject;
 import com.kupay.Post.OnResponseAsync;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -88,11 +91,32 @@ public class Enlazar extends Activity {
 	
     }
     
+    private void  errorEnlaze() {
+    	AlertDialog.Builder builder_ = new AlertDialog.Builder(this.getApplicationContext());	
+		builder_.setIcon(R.drawable.ku72);
+		builder_.setTitle("Llave-ku incorrecta");
+		builder_.setMessage("La llave-KU:"+puk.getText().toString()+" no es correcta. GENERA OTRA he intanta nuevamente");
+		Log.v("app", "noniendo botones...");
+		builder_.setNeutralButton("Cancelar", null);
+		builder_.setPositiveButton("Enviar llave-ku", new OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				// TODO Auto-generated method stub
+				enviarBtn.callOnClick();
+			}
+		});
+		Log.v("app", "botones puestos");
+		AlertDialog ad = builder_.create();
+		ad.show();
+	}
+    
  private void eventos(){
 	enviarLlave.setOnResponseAsync(new OnResponseAsync() {
 		
 		@Override
 		public void onResponseAsync(JSONObject response) {
+			enviarBtn.setActivated(true);	
 			try {
 				if(response.getString("RESULTADO").equals("EXITO")){
 					Toast.makeText(getApplicationContext(), "llave ku enviada!", Toast.LENGTH_LONG).show();
@@ -122,12 +146,15 @@ public class Enlazar extends Activity {
 						startActivity(in);
 						
 						try {
-							finalize();
+							finish();
 						} catch (Throwable e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 					}else{
+						Log.v("app", "Error en elnaze!");
+						errorEnlaze();
+						
 						Toast.makeText(getApplicationContext(), "falla en enlaze", Toast.LENGTH_LONG).show();
 					}
 				} catch (JSONException e) {
@@ -147,7 +174,7 @@ public class Enlazar extends Activity {
 			
 			
 			if (!correo.getText().toString().equals(""))
-			{		
+			{	enviarBtn.setActivated(false);	
 				JSONObject datallave = new JSONObject();
 				
 				try {
@@ -161,6 +188,7 @@ public class Enlazar extends Activity {
 				
 				
 			}else{
+
 				Toast.makeText(getApplicationContext(), "Ingresa un correo electronico", Toast.LENGTH_LONG).show();
 			}
 			

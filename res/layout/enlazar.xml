@@ -110,42 +110,19 @@
                             android:layout_marginRight="10dp"
                             android:inputType="textEmailAddress"
                             android:singleLine="true"
-                             android:imeOptions="actionNext"
+                             android:imeOptions="actionDone"
                             android:ems="10"
                            
                            />
                     </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" >
-
-                    <EditText
-                        android:id="@+id/puk_i"
-                        android:background="@drawable/edit_text_design"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                         android:layout_marginTop="30dp"
-                            android:textColorHint="#ffffff"
-                            android:hint="llaveKu"
-                       android:imeOptions="actionNext"
-                       android:singleLine="true"
-                        android:inputType="textPassword"
-                        android:ems="10" />
-                </LinearLayout>
-
-                <LinearLayout
+                    <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:orientation="vertical" >
                     
                  <TextView
-                            android:id="@+id/Alerta"
+                            
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
@@ -157,24 +134,51 @@
                 
                   
                   <TextView
-                            android:id="@+id/Alerta"
+                          
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginTop="5dp"
                             android:textColorHint="#ffffff"
-                            android:text="OJO !!! La llave-ku será enviada a tu correo electrónico una vez presionado el Botón. ,presione el Botón, espere el correo electrónico, y digite la llave-ku en el campo correcto!!"
+                            android:text="1-PRESIONE EL BOTÓN, 2-Espere el correo electrónico, 3-digite la llave-ku en el campo correcto!! OJO !!! La llave-ku será enviada a tu correo electrónico una vez presionado el Botón."
                             android:textAppearance="?android:attr/textAppearanceSmall" 
                             android:textColor="#ffffff" />
-
-                  <Button
-                      android:id="@+id/enviarll"
-                      android:layout_width="100dp"
-                      android:layout_height="match_parent"
-                      android:text="Enivar llaveku"
-                      android:textColor="#ffffff" />
                     
+                </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <EditText
+                        android:id="@+id/puk_i"
+                        android:layout_width="199dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:paddingRight="15dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/edit_text_design"
+                        android:ems="10"
+                        android:hint="llaveKu"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:singleLine="true"
+                        android:textColorHint="#ffffff" />
+
+                    <Button
+                        android:id="@+id/enviarll"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Enivar llaveku"
+                        android:textColor="#ffffff" />
                 </LinearLayout>
                 
                  <LinearLayout
@@ -205,7 +209,7 @@
                              android:textColor="#ffffff"
                              android:textColorHint="#ffffff" >
 
-                             <requestFocus />
+                            
                          </EditText>
                      </LinearLayout>
 
@@ -221,10 +225,11 @@
                              android:layout_marginLeft="10dp"
                              android:layout_marginRight="10dp"
                              android:layout_marginTop="30dp"
+                             android:layout_marginBottom="30dp"
                              android:background="@drawable/edit_text_design"
                              android:ems="10"
                              android:hint="Confirmar pin"
-                             android:imeOptions="actionNext"
+                             android:imeOptions="actionDone"
                              android:inputType="phone"
                              android:maxLength="4"
                              android:password="true"
