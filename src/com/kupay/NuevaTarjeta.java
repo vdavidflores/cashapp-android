@@ -228,6 +228,18 @@ public class NuevaTarjeta extends Activity {
 						        				"'"+datos.getString("exp_mes_cryp")+"'," +
 						        						"'"+datos.getString("exp_anio_cryp")+"'," +
 						        								"'"+datos.getString("cvv_cryp")+"')");
+				        	 
+				        	 String query = "SELECT ROWID from kupayTarjetas order by ROWID DESC limit 1";
+						        Cursor c = db.rawQuery(query,null);
+						        
+						        
+						        Intent data = new Intent();
+						        if (c != null && c.moveToFirst()) 
+						         data.putExtra("tarjeta_id",c.getInt(0));
+					
+								setResult(Activity.RESULT_OK, data);
+								finish();
+				        	 
 						} catch (Exception e) {
 							Toast.makeText(getApplicationContext(), "ERROR: "+e.toString(), Toast.LENGTH_LONG).show();
 							Log.v("app", "ERROR: "+e.toString());
@@ -235,16 +247,7 @@ public class NuevaTarjeta extends Activity {
 						}
 				       
 				        Log.v("app", "5");
-				   /*     String query = "SELECT ROWID from kupayTarjetas order by ROWID DESC limit 1";
-				        Cursor c = db.rawQuery(query,null);
-				        
-				        
-				        Intent data = new Intent();
-				        if (c != null && c.moveToFirst()) 
-				         data.putExtra("tarjeta_id",Long.toString(c.getLong(0)));
-			
-						setResult(Activity.RESULT_OK);
-						finish();*/
+				      
 					
 				  } else{ 
 						
