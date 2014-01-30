@@ -36,7 +36,7 @@ public class Enlazar extends Activity {
     
 	Button acept;
 	Button cancel;
-	Button enviarBtn;
+
 
 	EditText correo;
 	EditText pin;
@@ -71,7 +71,7 @@ public class Enlazar extends Activity {
         acept = (Button) findViewById(R.id.aceptar_r);
    cancel = (Button) findViewById(R.id.iniciar); 
    Log.v("inicio", "2.0");  
-   enviarBtn = (Button) findViewById(R.id.enviarll);
+
    Log.v("inicio", "2.1");
    correo = (EditText) findViewById(R.id.correo_i);
    Log.v("inicio", "2.2");
@@ -79,7 +79,7 @@ public class Enlazar extends Activity {
    Log.v("inicio", "2.3");
    pin2 = (EditText) findViewById(R.id.pin_dos);
    Log.v("inicio", "2.4");
-   puk = (EditText) findViewById(R.id.puk_i);
+   puk = (EditText) findViewById(R.id.contrasenia);
    Log.v("inicio", "2.5");
    enlaz = new Post();
    Log.v("inicio", "2.6");
@@ -91,21 +91,21 @@ public class Enlazar extends Activity {
 	
     }
     
-    private void  errorEnlaze() {
-    	AlertDialog.Builder builder_ = new AlertDialog.Builder(this.getApplicationContext());	
+    private void  errorEnlaze(String mensaje) {
+    	AlertDialog.Builder builder_ = new AlertDialog.Builder(this);	
 		builder_.setIcon(R.drawable.ku72);
-		builder_.setTitle("Llave-ku incorrecta");
-		builder_.setMessage("La llave-KU:"+puk.getText().toString()+" no es correcta. GENERA OTRA he intanta nuevamente");
+		builder_.setTitle("Acceso denegado");
+		builder_.setMessage(mensaje);
 		Log.v("app", "noniendo botones...");
-		builder_.setNeutralButton("Cancelar", null);
-		builder_.setPositiveButton("Enviar llave-ku", new OnClickListener() {
+		builder_.setNeutralButton("Aceptar", null);
+		/*builder_.setPositiveButton("Enviar llave-ku", new OnClickListener() {
 			
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				// TODO Auto-generated method stub
 				enviarBtn.callOnClick();
 			}
-		});
+		});*/
 		Log.v("app", "botones puestos");
 		AlertDialog ad = builder_.create();
 		ad.show();
@@ -116,7 +116,7 @@ public class Enlazar extends Activity {
 		
 		@Override
 		public void onResponseAsync(JSONObject response) {
-			enviarBtn.setActivated(true);	
+		//	enviarBtn.setActivated(true);	
 			try {
 				if(response.getString("RESULTADO").equals("EXITO")){
 					Toast.makeText(getApplicationContext(), "llave ku enviada!", Toast.LENGTH_LONG).show();
@@ -151,9 +151,13 @@ public class Enlazar extends Activity {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
+					} else if(response.getString("RESULTADO").equals("FALLA")){
+					JSONObject data = response.getJSONObject("DATOS"); 
+						errorEnlaze(data.getString("MENSAJE"));
+					
 					}else{
 						Log.v("app", "Error en elnaze!");
-						errorEnlaze();
+					
 						
 						Toast.makeText(getApplicationContext(), "falla en enlaze", Toast.LENGTH_LONG).show();
 					}
@@ -167,7 +171,7 @@ public class Enlazar extends Activity {
 	});
 	 
 	 
-	 enviarBtn.setOnClickListener(new View.OnClickListener() {
+	/* enviarBtn.setOnClickListener(new View.OnClickListener() {
 		
 		@Override
 		public void onClick(View v) {
@@ -193,7 +197,7 @@ public class Enlazar extends Activity {
 			}
 			
 		}
-	});
+	});*/
 			
 	 acept.setOnClickListener(new View.OnClickListener() {
 				
@@ -216,7 +220,7 @@ public class Enlazar extends Activity {
 			    			
 			    			data.put("imei",imei);
 			    			data.put("pin", pin.getText().toString());
-			    			data.put("llave_ku",puk.getText().toString());
+			    			data.put("pass",puk.getText().toString());
 			    			data.put("rol1", "4");
 			    			data.put("rol2", "5");
 			    			
