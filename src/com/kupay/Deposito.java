@@ -134,7 +134,7 @@ public class Deposito extends Fragment implements OnItemSelectedListener {
 		 	BDD dbh = new BDD(getActivity().getApplicationContext(),"kupay",null,1);
 	        SQLiteDatabase db= dbh.getWritableDatabase();
 	        Cursor c = db.rawQuery("select * from kupayTarjetas",null);
-	        c.moveToFirst();
+	        //c.moveToFirst();
 	        while (c.moveToNext()) {
 	        	arrayAdapter.add(c.getString(1).toString());
 			}
