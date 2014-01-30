@@ -43,11 +43,8 @@ public class Registro extends Activity {
 	EditText nmes;
 	EditText nano;
 	Post registro;
-	
-	@Override
-	public void onBackPressed() {
-	// Do nothing
-	}
+	private ProgressDialog progress;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -132,7 +129,7 @@ private void eventos(){
 					    				// TODO Auto-generated catch block
 					    				e.printStackTrace();
 					    			}
-								
+								progress = ProgressDialog.show(Registro.this, "Registrando usuario", "cuanta asta 10! ...1..");
 								registro.setData(2, data);
 								registro.execAsync(getApplicationContext());
 							Toast.makeText(getApplicationContext(), "Registrado...", Toast.LENGTH_LONG).show();
@@ -186,7 +183,7 @@ private void eventos(){
 					Toast.makeText(getApplicationContext(), "Rgistrasdo con exito", Toast.LENGTH_LONG).show();
 					Intent in = new Intent (getApplicationContext(), Enlazar.class);
 					startActivityForResult(in, 2);
-				
+					progress.dismiss();
 					try {
 						finish();
 					} catch (Throwable e) {

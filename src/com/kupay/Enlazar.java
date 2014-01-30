@@ -14,6 +14,7 @@ import com.kupay.Post.OnResponseAsync;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
@@ -47,12 +48,7 @@ public class Enlazar extends Activity {
 	String usr;
 	RandomString random;
 	Post enviarLlave;
-	
-	@Override
-	public void onBackPressed() {
-	// Do nothing
-		
-	}
+	private ProgressDialog progress;
 	
 	
 	
@@ -119,6 +115,7 @@ public class Enlazar extends Activity {
 		//	enviarBtn.setActivated(true);	
 			try {
 				if(response.getString("RESULTADO").equals("EXITO")){
+					progress.dismiss();
 					Toast.makeText(getApplicationContext(), "llave ku enviada!", Toast.LENGTH_LONG).show();
 				}
 			} catch (JSONException e) {
@@ -231,6 +228,8 @@ public class Enlazar extends Activity {
 						
 						enlaz.setData(14, data);
 						enlaz.execAsync(getApplicationContext());
+						Log.v("app", "lanzando progres");
+						progress = ProgressDialog.show(Enlazar.this, "Validando daos", "En un momento estaremos listos...");
 					Toast.makeText(getApplicationContext(), "Registrado...", Toast.LENGTH_LONG).show();
 				
 					
