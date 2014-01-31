@@ -50,6 +50,9 @@ public class Desenlazar extends Fragment   {
 				try {
 					
 					if(response.getString("RESULTADO").equals("EXITO")){
+						
+						nuevoUsurio("nill", getActivity());
+						nuevoImei("nill", getActivity());
 						 android.os.Process.killProcess(android.os.Process.myPid());
 						    Editor editor = getActivity().getSharedPreferences("clear_cache", Context.MODE_PRIVATE).edit();
 						    editor.clear();
@@ -240,7 +243,16 @@ public class Desenlazar extends Fragment   {
 	        }
 		 return imei;
 	    }
-	
+	    private void nuevoUsurio(String dat,Context cont){
+	        BDD dbh = new BDD(cont,"kupay",null,1);
+	        SQLiteDatabase db= dbh.getWritableDatabase();
+	        db.execSQL("UPDATE kupay SET usr='"+dat+"'");
+	      }
+	    private void nuevoImei(String dat,Context cont){
+	        BDD dbh = new BDD(cont,"kupay",null,1);
+	        SQLiteDatabase db= dbh.getWritableDatabase();
+	        db.execSQL("UPDATE kupay SET imei='"+dat+"'");
+	      }
 	
 	
 }

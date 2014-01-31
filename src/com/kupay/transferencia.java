@@ -210,6 +210,8 @@ public class transferencia extends Fragment{
 			builder_.setMessage("No dipones de saldo suficiente para realizar esta transacción");
 		}else if(causaFalla.equals("FALLA_MENSAJE")){
 			builder_.setMessage(mensaje);
+		}else if (causaFalla.equals("FALLA")){
+			builder_.setMessage(mensaje);
 		}else{
 			builder_.setMessage("Error desoconosido, intenta nuevamente mas tarde o contacta a tu acesor Ku-pay" +
 					" al 01800-222-359-9661");
@@ -251,7 +253,7 @@ public class transferencia extends Fragment{
     			
     			data.put("emisor", MiUsuario());
     			data.put("cantidad", cantidad.getText());
-    			data.put("imei", "123456789012345");
+    			data.put("imei", MiImei());
     			data.put("pin", pin);
     			
     			} catch (JSONException e) {
@@ -311,10 +313,8 @@ public class transferencia extends Fragment{
       			}else{
       			transaccionFallida(datos.getString("CAUSA_FALLA").toString(),null);
       			}
-      		}else{
-      			int duracion=Toast.LENGTH_LONG;
-                  Toast mensaje=Toast.makeText(getActivity(), "error desconosido", duracion);
-                  mensaje.show();
+      		}else if (resultado.equals("FALLA")){
+      			transaccionFallida("FALLA",datos.getString("MENSAJE"));
       		}
         	} catch (JSONException e) {
 				// TODO Auto-generated catch block
@@ -336,6 +336,19 @@ public class transferencia extends Fragment{
             }
     	 return usr;
         }
+        private String MiImei(){
+        	String usr = null;
+            BDD dbh = new BDD(getActivity(),"kupay",null,1);
+            SQLiteDatabase db= dbh.getReadableDatabase();
+            Cursor reg = db.query("kupay",new String[]{"imei"},null,null,null,null,null,"1");
+            if(reg.moveToFirst()){
+                usr=reg.getString(0);
+               
+            
+            }
+    	 return usr;
+        }
+
 
 		
     }

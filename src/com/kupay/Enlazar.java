@@ -126,12 +126,13 @@ public class Enlazar extends Activity {
 		}
 	});
 		
-		// Boton de solicitar Taxis	
+		
 	 enlaz.setOnResponseAsync(new OnResponseAsync() {
 		
 		@Override
 		public void onResponseAsync(JSONObject response) {
 			Log.v("app", "0");
+			progress.dismiss();
 				try {
 					if(response.getString("RESULTADO").equals("EXITO")){
 						nuevoUsurio(usr, getApplicationContext());
@@ -143,14 +144,15 @@ public class Enlazar extends Activity {
 						startActivity(in);
 						
 						try {
-							finish();
+							finishAffinity();
 						} catch (Throwable e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 					} else if(response.getString("RESULTADO").equals("FALLA")){
-					JSONObject data = response.getJSONObject("DATOS"); 
-						errorEnlaze(data.getString("MENSAJE"));
+					Log.v("app", "error de enlaze");
+						JSONObject data = response.getJSONObject("DATOS"); 
+						errorEnlaze(data.getString("MENSAJE").toString());
 					
 					}else{
 						Log.v("app", "Error en elnaze!");

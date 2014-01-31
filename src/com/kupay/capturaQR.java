@@ -358,7 +358,7 @@ public class capturaQR extends DecoderActivity  {
 					JSONObject data = new JSONObject();
 					try {
 		    			data.put("usr", MiUsuario());
-		    			data.put("imei", "123456789012345");
+		    			data.put("imei", MiImei());
 		    			data.put("pin", pin);
 		    			data.put("qr", qr);
 		    			
@@ -533,6 +533,18 @@ public class capturaQR extends DecoderActivity  {
 		              Cursor reg = db.query("kupay",new String[]{"usr"},null,null,null,null,null,"1");
 		              if(reg.moveToFirst()){
 		              usr=reg.getString(0);
+		              }
+		      	 return usr;
+		          }
+		    	  private String MiImei(){
+		          	String usr = null;
+		              BDD dbh = new BDD(getActivity(),"kupay",null,1);
+		              SQLiteDatabase db= dbh.getReadableDatabase();
+		              Cursor reg = db.query("kupay",new String[]{"imei"},null,null,null,null,null,"1");
+		              if(reg.moveToFirst()){
+		                  usr=reg.getString(0);
+		                 
+		              
 		              }
 		      	 return usr;
 		          }

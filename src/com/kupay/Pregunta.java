@@ -45,7 +45,7 @@ public class Pregunta extends Activity{
 					startActivityForResult(in, 2);
 					
 					try {
-						this.finalize();
+						finalize();
 					} catch (Throwable e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

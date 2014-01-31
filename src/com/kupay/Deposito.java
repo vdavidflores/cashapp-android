@@ -40,6 +40,8 @@ public class Deposito extends Fragment implements OnItemSelectedListener {
 	Spinner spinner;
 	Post procesT;
 	int pin;
+	
+	
 	ProgressDialog progress;
 
 	@Override
@@ -78,7 +80,7 @@ public class Deposito extends Fragment implements OnItemSelectedListener {
 					if (spinner.getSelectedItemPosition() == 1){
 						listartarjetas();
 					}else if (spinner.getSelectedItemPosition() == 0){
-						
+						Toast.makeText(getActivity(), "Proximamente", Toast.LENGTH_LONG).show();
 						// aqui va lo que se hace cuando se deposita por oxxo
 						
 					}
@@ -98,7 +100,11 @@ public class Deposito extends Fragment implements OnItemSelectedListener {
 				try {
 					if(response.getString("RESULTADO").equals("EXITO")){
 						Toast.makeText(getActivity(), "Abono exitoso!", Toast.LENGTH_LONG).show();
-					}else{
+					}else if(response.getString("RESULTADO").equals("FALLA")){
+						Log.v("app", "error en mensaje");
+						JSONObject datos = response.getJSONObject("DATOS");
+						errorEnlaze(datos.getString("MENSAJE").toString());
+						
 						Toast.makeText(getActivity(), "Abono fallido!", Toast.LENGTH_LONG).show();
 					}
 				} catch (JSONException e) {
@@ -218,7 +224,7 @@ public class Deposito extends Fragment implements OnItemSelectedListener {
 					}
 		        	
 		        }
-		        progress.dismiss();
+		      //  progress.dismiss();
 		        	
 			
 		}
@@ -289,4 +295,23 @@ public class Deposito extends Fragment implements OnItemSelectedListener {
 	        }
 		 return imei;
 	    }
+	    private void  errorEnlaze(String mensaje) {
+	    	AlertDialog.Builder builder_ = new AlertDialog.Builder(getActivity());	
+			builder_.setIcon(R.drawable.ku72);
+			builder_.setTitle("Trajeta declinada");
+			builder_.setMessage(mensaje);
+			Log.v("app", "noniendo botones...");
+			builder_.setNeutralButton("Aceptar", null);
+			/*builder_.setPositiveButton("Enviar llave-ku", new OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					// TODO Auto-generated method stub
+					enviarBtn.callOnClick();
+				}
+			});*/
+			Log.v("app", "botones puestos");
+			AlertDialog ad = builder_.create();
+			ad.show();
+		}
 }
