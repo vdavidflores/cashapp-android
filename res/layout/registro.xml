@@ -176,13 +176,13 @@
                         android:background="@drawable/edit_text_design"
                         android:ems="10"
                         android:hint="teléfono"
-                        android:imeOptions="actionDone"
+                        android:imeOptions="actionNext"
                         android:inputType="phone"
                         android:singleLine="true"
                         android:textColor="#ffffff"
                         android:textColorHint="#ffffff" >
 
-                        <requestFocus />
+                       
                     </EditText>
                 </LinearLayout>
 
@@ -295,7 +295,7 @@
                         android:textColor="#ffffff"
                         android:textColorHint="#ffffff" >
 
-                        <requestFocus />
+                      
                     </EditText>
                 </LinearLayout>
                 <LinearLayout
@@ -319,7 +319,7 @@
                         android:textColor="#ffffff"
                         android:textColorHint="#ffffff" >
 
-                        <requestFocus />
+                      
                     </EditText>
                 </LinearLayout>
                 

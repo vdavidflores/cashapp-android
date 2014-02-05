@@ -257,17 +257,9 @@ public class Enlazar extends Activity {
 		       	
 				@Override
 				public void onClick(View view) {
-					// TODO Auto-generated method stub
-					Intent in = new Intent (getApplicationContext(), Pregunta.class);
-					startActivityForResult(in, 2);
 					
-					try {
-						this.finalize();
-					} catch (Throwable e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					Log.v("TC","4ma");
+						finish();
+
 				}
 
 

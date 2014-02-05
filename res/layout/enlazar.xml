@@ -110,7 +110,7 @@
                             android:layout_marginRight="10dp"
                             android:inputType="textEmailAddress"
                             android:singleLine="true"
-                             android:imeOptions="actionDone"
+                             android:imeOptions="actionNext"
                             android:ems="10"
                            
                            />
