@@ -50,7 +50,7 @@ public class Deposito extends Fragment implements OnItemSelectedListener {
 		 View view = View.inflate(this.getActivity(), R.layout.deposito,null);
 		 
 		 //Spiner de forma de pago
-		 String [] values = {"Tineda de conveniencia","Tarjeta bancaria",};
+		 String [] values = {"Tineda de conveniencia","Tarjeta bancaria","SPEI"};
 		 spinner = (Spinner) view.findViewById(R.id.spinner1);
 		 ArrayAdapter<String> LTRadapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, values);
 		 LTRadapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
@@ -90,7 +90,9 @@ public class Deposito extends Fragment implements OnItemSelectedListener {
 				}
 			}
 		});
-
+		  
+		  
+		  //procesar tarjeta
 		  procesT.setOnResponseAsync(new OnResponseAsync() {
 			
 			@Override
@@ -127,7 +129,32 @@ public class Deposito extends Fragment implements OnItemSelectedListener {
 	public void onNothingSelected(AdapterView<?> arg0) {
 		Log.v("app", "nada seleccionado");
 	}
-
+	
+	private void  preguntaPagarConTarjeta(final int idTarjeta) {
+		BDD dbh = new BDD(getActivity().getApplicationContext(),"kupay",null,1);
+        SQLiteDatabase db= dbh.getWritableDatabase();
+        Cursor c = db.rawQuery("select * from kupayTarjetas where id=?",new String[]{Integer.toString(idTarjeta)});
+        c.moveToFirst();
+		
+		
+		AlertDialog.Builder adb = new AlertDialog.Builder(this.getActivity());
+		adb.setTitle("Confirma tu tarjeta");
+		adb.setMessage("Seguro que deseas abonar $"+cantidad.getText().toString()+" con la tarjeta '"+c.getString(1)+"'");
+		adb.setNeutralButton("Cancelar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+            	dialog.dismiss();
+            }
+        });
+		adb.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+            	pinYtarjeta(idTarjeta);
+            }
+        });
+	AlertDialog ad = adb.create();
+	ad.show();
+		
+	}
+	
 	public void listartarjetas() {
 		AlertDialog.Builder builderSingle = new AlertDialog.Builder(
 				this.getActivity());
@@ -168,7 +195,7 @@ public class Deposito extends Fragment implements OnItemSelectedListener {
 									NuevaTarjeta.class);
 							startActivityForResult(intent, 450);
 						}else{
-							pinYtarjeta(which);
+							preguntaPagarConTarjeta(which);
 							Toast.makeText(getActivity(), "pagar con tarjeta id: "+(which-1), Toast.LENGTH_LONG).show();
 						}
 					}
@@ -181,8 +208,8 @@ public class Deposito extends Fragment implements OnItemSelectedListener {
 		super.onActivityResult(requestCode, resultCode, data);
 		
 		if (requestCode == 450 && resultCode == Activity.RESULT_OK){
-			
-			pinYtarjeta(data.getIntExtra("tarjeta_id",-1));
+			preguntaPagarConTarjeta(data.getIntExtra("tarjeta_id",-1));
+		//	pinYtarjeta(data.getIntExtra("tarjeta_id",-1));
 		//	procesarTarjeta(data.getIntExtra("indideTarjeta", 0));
 		}
 	}
@@ -250,10 +277,14 @@ public class Deposito extends Fragment implements OnItemSelectedListener {
 		 builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
 			
             public void onClick(DialogInterface dialog, int id) {
-         
+            	if (Password.getText().length() == 0){
+            		 
+            		 dialog.dismiss();
+            	 }
+            else{ 
                  pin = Integer.parseInt(Password.getEditableText().toString()) ;
             	 	procesarTarjeta(Tarjetaid);
-            	
+            }
             }
         });
 		builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -296,7 +327,7 @@ public class Deposito extends Fragment implements OnItemSelectedListener {
 		 return imei;
 	    }
 	    private void  errorEnlaze(String mensaje) {
-	    	AlertDialog.Builder builder_ = new AlertDialog.Builder(getActivity());	
+	    	AlertDialog.Builder builder_ = new AlertDialog.Builder(this.getActivity());	
 			builder_.setIcon(R.drawable.ku72);
 			builder_.setTitle("Trajeta declinada");
 			builder_.setMessage(mensaje);

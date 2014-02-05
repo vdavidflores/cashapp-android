@@ -128,7 +128,7 @@ public class NuevaTarjeta extends Activity {
 		 builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
 			
             public void onClick(DialogInterface dialog, int id) {
-            if (Password.getEditableText().length() == 0){
+            if (Password.getText().length() == 0){
             		 
             		 dialog.dismiss();
             	 }
@@ -249,28 +249,9 @@ public class NuevaTarjeta extends Activity {
 				        Log.v("app", "5");
 				      
 					
-				  } else{ 
+				  } else if(resultado.equals("FALLA")) { 
 						
-						AlertDialog.Builder builder_ = new AlertDialog.Builder(getApplicationContext());	
-						builder_.setIcon(R.drawable.ku72);
-						builder_.setTitle("No se registro la tarjeta");
-						if (resultado.equals("FALLA")){
-								builder_.setMessage(response.getJSONObject("DATOS").getString("MENSAJE").toString());
-						} else
-						if (resultado.equals("CONEXION_FALLIDA")){
-							//Alert dialog conexion falida
-							builder_.setMessage("Algun error en tu conexión, intenta nuevamente");
-						} else 
-						if (resultado.equals("NO_HAY_CONEXION")){
-							//No hay conexion
-							builder_.setMessage("Algun error en tu conexión, intenta nuevamente");
-						}
-						builder_.setNeutralButton("Aceptar", new DialogInterface.OnClickListener() {
-				            public void onClick(DialogInterface dialog, int id) {
-				            }
-				        });
-				    	AlertDialog dialog = builder_.create();
-				    	dialog.show();
+						errorMSJ(response.getJSONObject("DATOS").getString("MENSAJE").toString());
 				 }
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
@@ -281,6 +262,24 @@ public class NuevaTarjeta extends Activity {
 		
 	}
 	
+	private void  errorMSJ(String mensaje) {
+		AlertDialog.Builder builder_ = new AlertDialog.Builder(this);	
+		builder_.setIcon(R.drawable.ku72);
+		builder_.setTitle("No se registro la tarjeta");
+		
+				builder_.setMessage(mensaje);
+		
+
+			
+		builder_.setNeutralButton("Aceptar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+            }
+        });
+    	AlertDialog dialog = builder_.create();
+    	dialog.show();
+	}
+
+
 	 private String MiUsuario(){
      	String usr = null;
          BDD dbh = new BDD(getApplicationContext(),"kupay",null,1);
