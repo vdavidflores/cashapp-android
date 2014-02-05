@@ -77,7 +77,7 @@
         android:layout_height="60dp" >
 
         <EditText
-            android:id="@+id/editText1"
+            android:id="@+id/retiro_cantidad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -118,7 +118,7 @@
         android:layout_height="50dp" >
 
         <Spinner
-            android:id="@+id/spinner1"
+            android:id="@+id/spinnerR"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -134,7 +134,7 @@
          >
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/aceptar_retiro"
             android:layout_width="110dp"
             android:layout_height="70dp"
             android:layout_centerHorizontal="true"
