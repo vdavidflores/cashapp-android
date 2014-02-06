@@ -39,6 +39,7 @@ public class Deposito extends Fragment implements OnItemSelectedListener {
 	EditText cantidad;
 	Spinner spinner;
 	Post procesT;
+	Post getBarCode;
 	int pin;
 	
 	
@@ -56,6 +57,7 @@ public class Deposito extends Fragment implements OnItemSelectedListener {
 		 LTRadapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
 		 spinner.setAdapter(LTRadapter);
 		    procesT = new Post();
+		    getBarCode = new Post();
 		
 		  navicon = (Button)  view.findViewById(R.id.navicon_dep);
 		  aceptar = (Button)  view.findViewById(R.id.deposito_aceptar);
@@ -80,8 +82,9 @@ public class Deposito extends Fragment implements OnItemSelectedListener {
 					if (spinner.getSelectedItemPosition() == 1){
 						listartarjetas();
 					}else if (spinner.getSelectedItemPosition() == 0){
-						Toast.makeText(getActivity(), "Proximamente", Toast.LENGTH_LONG).show();
+						//Toast.makeText(getActivity(), "Proximamente", Toast.LENGTH_LONG).show();
 						// aqui va lo que se hace cuando se deposita por oxxo
+						obtenerBarCode();
 						
 					}
 				}else{
@@ -116,6 +119,33 @@ public class Deposito extends Fragment implements OnItemSelectedListener {
 				
 			}
 		});
+		  
+		  getBarCode.setOnResponseAsync(new OnResponseAsync() {
+			
+			@Override
+			public void onResponseAsync(JSONObject response) {
+				// TODO Auto-generated method stub
+				progress.dismiss();
+				try {
+					if(response.getString("RESULTADO").equals("EXITO")){
+						JSONObject datos = response.getJSONObject("DATOS");
+						Intent intent = new Intent(getActivity(), BarCode.class);
+						intent.putExtra("url", datos.getString("url_bar_code").toString());
+						startActivity(intent);
+					}else if(response.getString("RESULTADO").equals("FALLA")){
+						Log.v("app", "error en mensaje");
+						JSONObject datos = response.getJSONObject("DATOS");
+						errorEnlaze(datos.getString("MENSAJE").toString());
+						
+						Toast.makeText(getActivity(), "Abono fallido!", Toast.LENGTH_LONG).show();
+					}
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+		  
 		 return view; 
 		 
 	 }
@@ -258,6 +288,62 @@ public class Deposito extends Fragment implements OnItemSelectedListener {
 		
 	}
 	
+	private void obtenerBarCode(){
+		
+		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+		builder.setIcon(R.drawable.pin);
+		builder.setTitle("Ingresa tu Pin");
+		builder.setMessage("Inserta tu Pin");
+		
+		
+		final EditText Password = new EditText(getActivity());
+		
+		builder.setView(Password);
+		Password.setGravity(Gravity.CENTER);
+	     Password.setHint("pin");
+	     Password.setWidth(200);
+		 Password.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+		 Password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+		 builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+			
+            public void onClick(DialogInterface dialog, int id) {
+            	if (Password.getText().length() == 0){
+            		 
+            		 dialog.dismiss();
+            	 }
+            else{ 
+                 pin = Integer.parseInt(Password.getEditableText().toString()) ;
+                 progress = ProgressDialog.show(getActivity(), "Transacción en proceso", "Obteniendo codigo de barras...");
+         		JSONObject dats = new JSONObject();
+         		try {
+         			dats.put("usr", MiUsuario());
+         			dats.put("imei", MiImei());
+         			dats.put("pin", pin);
+         			dats.put("monto", cantidad.getText().toString());
+         		} catch (JSONException e) {
+         			// TODO Auto-generated catch block
+         			e.printStackTrace();
+         		}
+         		getBarCode.setData(20, dats);
+         		getBarCode.execAsync(getActivity());
+            	
+            }
+            }
+        });
+		builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+            
+            }
+        });
+
+		AlertDialog dialog = builder.create();
+    	dialog.show();	
+		
+		//////
+		
+		
+	}
+	
 	private void pinYtarjeta(final int Tarjetaid){
 		
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -294,10 +380,7 @@ public class Deposito extends Fragment implements OnItemSelectedListener {
         });
 
 		AlertDialog dialog = builder.create();
-    	dialog.show();
-    
-        	
-    	
+    	dialog.show();	
     }	
 	
 	

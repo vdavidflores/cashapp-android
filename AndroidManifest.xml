@@ -112,8 +112,15 @@
         </activity>
         <activity
             android:name="com.kupay.NuevaTarjeta"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_nueva_tarjeta" >
+            android:label="@string/title_activity_nueva_tarjeta"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.kupay.BarCode"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_bar_code"
+            android:screenOrientation="landscape"
+            android:theme="@style/FullscreenTheme" >
         </activity>
     </application>
 
