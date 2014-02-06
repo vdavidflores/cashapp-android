@@ -48,6 +48,7 @@ public class Enlazar extends Activity {
 	String usr;
 	RandomString random;
 	Post enviarLlave;
+	Post enviarNuevaConfirmacion;
 	private ProgressDialog progress;
 	
 	
@@ -78,6 +79,7 @@ public class Enlazar extends Activity {
    puk = (EditText) findViewById(R.id.contrasenia);
    Log.v("inicio", "2.5");
    enlaz = new Post();
+   enviarNuevaConfirmacion = new Post();
    Log.v("inicio", "2.6");
    enviarLlave = new Post();
 	
@@ -94,14 +96,24 @@ public class Enlazar extends Activity {
 		builder_.setMessage(mensaje);
 		Log.v("app", "noniendo botones...");
 		builder_.setNeutralButton("Aceptar", null);
-		/*builder_.setPositiveButton("Enviar llave-ku", new OnClickListener() {
+		builder_.setPositiveButton("Enviar correo de confirmación", new OnClickListener() {
 			
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				// TODO Auto-generated method stub
-				enviarBtn.callOnClick();
+				JSONObject jso= new JSONObject();
+				try {
+					jso.put("usr", correo.getText().toString());
+					enviarNuevaConfirmacion.setData(19, jso);
+					enviarNuevaConfirmacion.execAsync(getApplicationContext());
+					Toast.makeText(getApplicationContext(), "Correo enviado", Toast.LENGTH_SHORT).show();
+					
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
-		});*/
+		});
 		Log.v("app", "botones puestos");
 		AlertDialog ad = builder_.create();
 		ad.show();
