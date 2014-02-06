@@ -181,6 +181,7 @@ private void eventos(){
 						e.printStackTrace();
 					}
 				}else{
+					progress.dismiss();
 					Toast.makeText(getApplicationContext(), "No registrasdo", Toast.LENGTH_LONG).show();
 				}
 			} catch (JSONException e) {
