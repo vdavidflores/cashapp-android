@@ -6,7 +6,6 @@ import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 
-import com.kupay.util.SystemUiHider;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
