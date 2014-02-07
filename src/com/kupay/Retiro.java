@@ -63,7 +63,10 @@ public class Retiro extends Fragment implements OnItemSelectedListener {
 						listartarjetas();
 					}else if (spinner.getSelectedItemPosition() == 1){
 						Toast.makeText(getActivity(), "Proximamente", Toast.LENGTH_LONG).show();
-						// aqui va lo que se hace cuando se deposita por oxxo
+						Intent inT = new Intent(getActivity(),RetiroSpei.class);
+						inT.putExtra("monto", cantidad.getText().toString());
+						
+						startActivity(inT);
 						
 					}
 				}else{
