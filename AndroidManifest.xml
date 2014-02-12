@@ -122,6 +122,10 @@
             android:screenOrientation="landscape"
             android:theme="@style/FullscreenTheme" >
         </activity>
+        <activity
+            android:name="com.kupay.RetiroSpei"
+            android:label="@string/title_activity_retiro_spei" >
+        </activity>
     </application>
 
 </manifest>

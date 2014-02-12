@@ -13,8 +13,11 @@ import com.kupay.Post.OnResponseAsync;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
@@ -129,7 +132,7 @@ private void eventos(){
 					    				// TODO Auto-generated catch block
 					    				e.printStackTrace();
 					    			}
-								progress = ProgressDialog.show(Registro.this, "Registrando usuario", "cuanta asta 10! ...1..");
+								progress = ProgressDialog.show(Registro.this, "Registrando usuario", "cuenta hasta 10! ...1..");
 								registro.setData(2, data);
 								registro.execAsync(getApplicationContext());
 							Toast.makeText(getApplicationContext(), "Registrado...", Toast.LENGTH_LONG).show();
@@ -140,12 +143,7 @@ private void eventos(){
 					else{
 						
 					Toast.makeText(getApplicationContext(), "Campos vacios, favor de llenar todos los campos", Toast.LENGTH_LONG).show();
-						
-						
 					}
-				
-				
-				
 				}			
 			});
 	 
@@ -168,21 +166,12 @@ private void eventos(){
 		@Override
 		public void onResponseAsync(JSONObject response) {
 			// TODO Auto-generated method stub
+			progress.dismiss();
 			try {
 				if(response.getString("RESULTADO").equals("EXITO")){
-					Toast.makeText(getApplicationContext(), "Rgistrasdo con exito", Toast.LENGTH_LONG).show();
-					Intent in = new Intent (getApplicationContext(), Enlazar.class);
-					startActivityForResult(in, 2);
-					progress.dismiss();
-					try {
-						finish();
-					} catch (Throwable e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+					exitoRegistro();
 				}else{
-					progress.dismiss();
-					Toast.makeText(getApplicationContext(), "No registrasdo", Toast.LENGTH_LONG).show();
+					Toast.makeText(getApplicationContext(), "Datos no validos", Toast.LENGTH_LONG).show();
 				}
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
@@ -193,6 +182,32 @@ private void eventos(){
 
    
    }
+
+private void  exitoRegistro() {
+	AlertDialog.Builder adb =new  AlertDialog.Builder(this);
+	adb.setTitle("Registro exitoso");
+	adb.setMessage("Gracias por registrarte en kupay. recibiras un email de confirmacion.");
+	adb.setNeutralButton("Acepar", new OnClickListener() {
+		
+		@Override
+		public void onClick(DialogInterface dialog, int which) {
+			// TODO Auto-generated method stub
+
+			Intent in = new Intent (getApplicationContext(), Enlazar.class);
+			startActivityForResult(in, 2);
+			
+			try {
+				finish();
+			} catch (Throwable e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	});
+AlertDialog ad = adb.create();
+ad.show();
+	
+}
 
 
 	

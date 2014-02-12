@@ -108,7 +108,7 @@ public class Enlazar extends Activity {
 					enviarNuevaConfirmacion.execAsync(getApplicationContext());
 					Toast.makeText(getApplicationContext(), "Correo enviado", Toast.LENGTH_SHORT).show();
 					
-				} catch (JSONException e) {
+				}catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
@@ -243,12 +243,7 @@ public class Enlazar extends Activity {
 						enlaz.setData(14, data);
 						enlaz.execAsync(getApplicationContext());
 						Log.v("app", "lanzando progres");
-						progress = ProgressDialog.show(Enlazar.this, "Validando daos", "En un momento estaremos listos...");
-					Toast.makeText(getApplicationContext(), "Registrado...", Toast.LENGTH_LONG).show();
-				
-					
-					
-
+						progress = ProgressDialog.show(Enlazar.this, "Validando datos", "En un momento estaremos listos.");
 				}
 			
 				else{
