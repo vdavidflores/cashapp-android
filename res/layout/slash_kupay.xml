@@ -15,7 +15,7 @@
             android:layout_height="103dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/slash_kupay" />
+            android:src="@drawable/slash_cashapp" />
 
     </RelativeLayout>
 
