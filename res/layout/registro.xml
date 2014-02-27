@@ -83,10 +83,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:gravity="center"
-                        android:textColor="#ffffff"
                         android:text="Captura de datos"
-                        android:textAppearance="?android:attr/textAppearanceMedium" />
-
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#ffffff" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -163,38 +162,14 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" >
-
-                    <EditText
-                        android:id="@+id/telefono_registro"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginTop="30dp"
-                        android:background="@drawable/edit_text_design"
-                        android:ems="10"
-                        android:hint="teléfono"
-                        android:imeOptions="actionNext"
-                        android:inputType="phone"
-                        android:singleLine="true"
-                        android:textColor="#ffffff"
-                        android:textColorHint="#ffffff" >
-
-                       
-                    </EditText>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="57dp"
+                    android:layout_height="80dp"
                     android:layout_marginTop="30dp"
+                    android:layout_weight="0.80"
                     android:orientation="vertical" >
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="15dp"
+                        android:layout_height="10dp"
                         android:layout_weight="0.64" >
 
                         <TextView
@@ -212,68 +187,19 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                         android:orientation="horizontal">
+                        android:orientation="vertical"
+                        android:layout_gravity="center_horizontal"
+                        >
 
-                        <EditText
-                            android:id="@+id/ndia_registro"
-                            android:layout_width="26dp"
+                        <Button
+                            android:id="@+id/buttonFecha"
+                            android:layout_width="216dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            android:maxLength="2"
-                            android:background="@drawable/edit_text_design"
-                            android:ems="10"
-                            android:hint="DD"
-                            android:imeOptions="actionNext"
-                            android:inputType="phone"
-                            android:singleLine="true"
-                            android:textColor="#ffffff"
-                            android:textColorHint="#ffffff" />
+                            android:text="has clic para seleccionar" />
 
-                        <EditText
-                            android:id="@+id/nmes_registro"
-                            android:layout_width="42dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="3dp"
-                            android:layout_marginRight="3dp"
-                            android:background="@drawable/edit_text_design"
-                            android:ems="10"
-                            android:maxLength="2"
-                            android:hint="MM"
-                            android:imeOptions="actionNext"
-                            android:inputType="phone"
-                            android:singleLine="true"
-                            android:textColor="#ffffff"
-                            android:textColorHint="#ffffff" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical" >
-
-                            <EditText
-                                android:id="@+id/nano_registro"
-                                android:layout_width="52dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="1dp"
-                                android:layout_marginRight="10dp"
-                                android:background="@drawable/edit_text_design"
-                                android:ems="10"
-                                android:hint="AAAA"
-                                android:imeOptions="actionNext"
-                                android:inputType="phone"
-                                android:maxLength="4"
-                                android:singleLine="true"
-                                android:textColor="#ffffff"
-                                android:textColorHint="#ffffff" />
-
-                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
-                
-                
-                
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -294,10 +220,9 @@
                         android:singleLine="true"
                         android:textColor="#ffffff"
                         android:textColorHint="#ffffff" >
-
-                      
                     </EditText>
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -318,12 +243,8 @@
                         android:singleLine="true"
                         android:textColor="#ffffff"
                         android:textColorHint="#ffffff" >
-
-                      
                     </EditText>
                 </LinearLayout>
-                
-                
             </LinearLayout>
 
         </ScrollView>

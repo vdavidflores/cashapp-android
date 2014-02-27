@@ -1,6 +1,7 @@
 package com.kupay;
 
 
+import java.util.Calendar;
 import java.util.jar.JarOutputStream;
 
 import org.apache.http.ParseException;
@@ -14,10 +15,14 @@ import com.kupay.Post.OnResponseAsync;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.content.pm.FeatureInfo;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
@@ -26,6 +31,7 @@ import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -35,19 +41,25 @@ public class Registro extends Activity {
     
 	Button acept;
 	Button cancel;
-	EditText celular;
+	//EditText celular;
 	EditText nombre;
 	EditText mail;
 	EditText contrasena;
 	EditText contraseña2;
 	EditText apellido;
-	EditText ndia;
+	//EditText ndia;
 	EditText pass1,pass2;
-	EditText nmes;
-	EditText nano;
+	//EditText nmes;
+//	EditText nano;
 	Post registro;
+	 Button fechaNas;
+	static int diaNas;
+	static int mesNas;
+	static int anioNas;
 	private ProgressDialog progress;
-
+	
+	DatePickerDialog dpd;
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,13 +74,15 @@ public class Registro extends Activity {
   
    pass1 = (EditText) findViewById(R.id.pass1);
    pass2 = (EditText) findViewById(R.id.pass2);
-   celular = (EditText) findViewById(R.id.telefono_registro);
+   //celular = (EditText) findViewById(R.id.telefono_registro);
    nombre = (EditText) findViewById(R.id.nombre_registro);
    apellido = (EditText) findViewById(R.id.apellido_registro);
    mail = (EditText) findViewById(R.id.mail_registro);
-   ndia = (EditText) findViewById(R.id.ndia_registro);
-   nmes = (EditText) findViewById(R.id.nmes_registro);
-   nano = (EditText) findViewById(R.id.nano_registro);
+ //  ndia = (EditText) findViewById(R.id.ndia_registro);
+  // nmes = (EditText) findViewById(R.id.nmes_registro);
+  // nano = (EditText) findViewById(R.id.nano_registro);
+   fechaNas = (Button) findViewById(R.id.buttonFecha);
+   
    registro = new Post();
    eventos();
    }
@@ -76,7 +90,16 @@ public class Registro extends Activity {
 private void eventos(){
 		
 		
-		// Boton de solicitar Taxis	
+	fechaNas.setOnClickListener(new View.OnClickListener() {
+		
+	
+		@Override
+		public void onClick(View view) {
+			// TODO Auto-generated method stub
+			 DialogFragment newFragment = new DatePickerFragment();
+             newFragment.show(getFragmentManager(), "datePicker");
+		}
+	});
 			
 			
 	 acept.setOnClickListener(new View.OnClickListener() {
@@ -87,30 +110,30 @@ private void eventos(){
 					
 					Log.v("registro", "2.5");
 					
-					if (!celular.getText().toString().equals("")&&
+					if (//!celular.getText().toString().equals("")&&
 	    					!nombre.getText().toString().equals("")&&
 	    					!apellido.getText().toString().equals("")&&
 	    					!mail.getText().toString().equals("")&&
-	    					!celular.getText().toString().equals("")&&
-	    					!ndia.getText().toString().equals("")&&
-	    					!nmes.getText().toString().equals("")&&
-	    					!nano.getText().toString().equals("")&&
+	    					//!celular.getText().toString().equals("")&&
+	    					(anioNas!=0)&&
+	    					(diaNas!=0)&&
+	    					(mesNas !=0)&&
 	    					!pass1.getText().toString().equals("")&&
 	    					!pass2.getText().toString().equals("")&&
 	    					pass2.getText().toString().equals(pass1.getText().toString()))
 					{	
 							Log.v("registro", "3");
 						
-							if (Integer.parseInt(nano.getText().toString()) < (int)1900 ){
+							if (anioNas < (int)1900 ){
 								Log.v("registro", "4");	
 								Toast.makeText(getApplicationContext(), "Año de nacimiento incorrecto", Toast.LENGTH_LONG).show();
 										
 							}
-							else if (Integer.parseInt(ndia.getText().toString()) > (int)31){
+							else if (diaNas > (int)31){
 								Log.v("registro", "6");
 								Toast.makeText(getApplicationContext(), "Día incorrecto", Toast.LENGTH_LONG).show();							
 							}
-							else if (Integer.parseInt(nmes.getText().toString()) > (int)12){
+							else if (mesNas > (int)12){
 								Log.v("registro", "5");
 								Toast.makeText(getApplicationContext(), "Mes incorrecto", Toast.LENGTH_LONG).show();			
 									
@@ -124,8 +147,8 @@ private void eventos(){
 					    			
 					    			data.put("apellido",apellido.getText().toString());
 					    			data.put("email", mail.getText().toString());
-					    			data.put("fechaNas", nano.getText().toString()+"-"+nmes.getText().toString()+"-"+ndia.getText().toString());
-					    			data.put("telefono", celular.getText().toString());
+					    			data.put("fechaNas", Integer.toString(anioNas).toString()+"-"+Integer.toString(mesNas).toString()+"-"+Integer.toString(diaNas).toString());
+					    			data.put("telefono", "");
 					    			data.put("pass", pass1.getText().toString());
 					    			
 					    			} catch (JSONException e) {
@@ -148,7 +171,7 @@ private void eventos(){
 			});
 	 
 	 
-	 
+
 			
 	 cancel.setOnClickListener(new View.OnClickListener() {
 				
@@ -209,6 +232,35 @@ ad.show();
 	
 }
 
+public void cambiarFechaBoton(String fecha){
+	fechaNas.setText(fecha);
+}
+
+
+
+public  class DatePickerFragment extends DialogFragment
+implements DatePickerDialog.OnDateSetListener {
+
+    public EditText editText;
+    DatePicker dpResult;
+
+public Dialog onCreateDialog(Bundle savedInstanceState) {
+// Use the current date as the default date in the picker
+final Calendar c = Calendar.getInstance();
+int year = c.get(Calendar.YEAR);
+int month = c.get(Calendar.MONTH);
+int day = c.get(Calendar.DAY_OF_MONTH);
+return new DatePickerDialog(getActivity(), this, year, month, day);
+}
+
+public void onDateSet(DatePicker view, int year, int month, int day) {
+	diaNas = day;
+	mesNas = month+1;
+	anioNas =year;
+	cambiarFechaBoton(Integer.toString(diaNas).toString()+"-"+Integer.toString(mesNas).toString()+"-"+Integer.toString(anioNas));
+   
+}
+}
 
 	
     
