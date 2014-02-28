@@ -120,24 +120,29 @@ public class Desenlazar extends Fragment   {
 				
 	            public void onClick(DialogInterface dialog, int id) {
 	         
-	                 pin = Integer.parseInt(Password.getEditableText().toString()) ;
-	            	JSONObject data = new JSONObject();
+	               
 	            	
-	            
-	            	try {
-	            		
-		            	data.put("usr", MiUsuario());
-		            	data.put("imei", MiImei());
-						data.put("pin", pin);
-						
-						soket.setData(17, data);
-						soket.execAsync(getActivity().getApplicationContext());
-						
-					} catch (JSONException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-	                 
+		            if (Password.getEditableText().length() == 0){
+		            		 
+		            		 dialog.dismiss();
+		            }  else{ 
+		            	
+		            	  pin = Integer.parseInt(Password.getEditableText().toString()) ;
+			            	JSONObject data = new JSONObject();
+		            	try {
+		            		
+			            	data.put("usr", MiUsuario());
+			            	data.put("imei", MiImei());
+							data.put("pin", pin);
+							
+							soket.setData(17, data);
+							soket.execAsync(getActivity().getApplicationContext());
+							
+						} catch (JSONException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+		            }
 	                 
 	                 
 	            	
