@@ -90,31 +90,38 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical" >
+                    android:orientation="horizontal" >
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="209dp"
                         android:layout_height="wrap_content"
                         android:orientation="vertical" >
 
                         <EditText
                             android:id="@+id/correo_i"
-                            android:background="@drawable/edit_text_design"
-                            android:textColor="#ffffff"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                             android:layout_marginTop="30dp"
-                            android:textColorHint="#ffffff"
-                            android:hint="Correo Electrónico"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
+                            android:layout_marginTop="30dp"
+                            android:background="@drawable/edit_text_design"
+                            android:ems="10"
+                            android:hint="Correo Electrónico"
+                            android:imeOptions="actionNext"
                             android:inputType="textEmailAddress"
                             android:singleLine="true"
-                             android:imeOptions="actionNext"
-                            android:ems="10"
-                           
-                           />
+                            android:textColor="#ffffff"
+                            android:textColorHint="#ffffff" >
+
+                            <requestFocus />
+                        </EditText>
                     </LinearLayout>
+
+                    <Button
+                        android:id="@+id/codigoAcceso"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Enviar código de acceso" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -146,7 +153,7 @@
                              android:layout_marginTop="30dp"
                              android:background="@drawable/edit_text_design"
                              android:ems="10"
-                             android:hint="Contraseña"
+                             android:hint="Código de acceso"
                              android:imeOptions="actionNext"
                              android:inputType="textPassword"
                              android:password="true"

@@ -49,6 +49,7 @@ public class Enlazar extends Activity {
 	RandomString random;
 	Post enviarLlave;
 	Post enviarNuevaConfirmacion;
+	Button enviarBtn;
 	private ProgressDialog progress;
 	
 	
@@ -63,7 +64,7 @@ public class Enlazar extends Activity {
         PRNGFixes.apply();
         
         random = new RandomString(64);
-      
+      enviarBtn = (Button) findViewById(R.id.codigoAcceso);
         // Tomar los datos de los campos
         acept = (Button) findViewById(R.id.aceptar_r);
    cancel = (Button) findViewById(R.id.iniciar); 
@@ -124,11 +125,11 @@ public class Enlazar extends Activity {
 		
 		@Override
 		public void onResponseAsync(JSONObject response) {
-		//	enviarBtn.setActivated(true);	
+			enviarBtn.setActivated(true);	
 			try {
 				if(response.getString("RESULTADO").equals("EXITO")){
 					progress.dismiss();
-					Toast.makeText(getApplicationContext(), "llave ku enviada!", Toast.LENGTH_LONG).show();
+					Toast.makeText(getApplicationContext(), "código de acceso enviado!", Toast.LENGTH_LONG).show();
 				}
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
@@ -182,16 +183,17 @@ public class Enlazar extends Activity {
 	});
 	 
 	 
-	/* enviarBtn.setOnClickListener(new View.OnClickListener() {
+	 enviarBtn.setOnClickListener(new View.OnClickListener() {
 		
 		@Override
 		public void onClick(View v) {
 			
 			
 			if (!correo.getText().toString().equals(""))
-			{	enviarBtn.setActivated(false);	
+			{	
+				enviarBtn.setActivated(false);	
 				JSONObject datallave = new JSONObject();
-				
+				progress = ProgressDialog.show(Enlazar.this, "Enviando", "Se esta enviando unnuevo código de acceso.");
 				try {
 					datallave.put("usr", correo.getText().toString());
 					enviarLlave.setData(15, datallave);
@@ -208,7 +210,7 @@ public class Enlazar extends Activity {
 			}
 			
 		}
-	});*/
+	});
 			
 	 acept.setOnClickListener(new View.OnClickListener() {
 				

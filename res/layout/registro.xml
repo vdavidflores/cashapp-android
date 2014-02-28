@@ -153,7 +153,7 @@
                         android:background="@drawable/edit_text_design"
                         android:ems="10"
                         android:hint="Correo electrónico"
-                        android:imeOptions="actionNext"
+                        android:imeOptions="actionDone"
                         android:inputType="textEmailAddress"
                         android:singleLine="true"
                         android:textColor="#ffffff"
@@ -198,52 +198,6 @@
                             android:text="has clic para seleccionar" />
 
                     </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" >
-
-                    <EditText
-                        android:id="@+id/pass1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginTop="30dp"
-                        android:background="@drawable/edit_text_design"
-                        android:ems="10"
-                        android:hint="Contraseña"
-                        android:imeOptions="actionNext"
-                        android:inputType="textPassword"
-                        android:singleLine="true"
-                        android:textColor="#ffffff"
-                        android:textColorHint="#ffffff" >
-                    </EditText>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" >
-
-                    <EditText
-                        android:id="@+id/pass2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginTop="30dp"
-                        android:background="@drawable/edit_text_design"
-                        android:ems="10"
-                        android:hint="Repetir contraseña"
-                        android:imeOptions="actionDone"
-                        android:inputType="textPassword"
-                        android:singleLine="true"
-                        android:textColor="#ffffff"
-                        android:textColorHint="#ffffff" >
-                    </EditText>
                 </LinearLayout>
             </LinearLayout>
 

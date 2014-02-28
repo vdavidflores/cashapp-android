@@ -48,7 +48,7 @@ public class Registro extends Activity {
 	EditText contraseña2;
 	EditText apellido;
 	//EditText ndia;
-	EditText pass1,pass2;
+	//EditText pass1,pass2;
 	//EditText nmes;
 //	EditText nano;
 	Post registro;
@@ -72,8 +72,8 @@ public class Registro extends Activity {
    cancel = (Button) findViewById(R.id.iniciar); 
    Log.v("registro", "2");
   
-   pass1 = (EditText) findViewById(R.id.pass1);
-   pass2 = (EditText) findViewById(R.id.pass2);
+  // pass1 = (EditText) findViewById(R.id.pass1);
+  // pass2 = (EditText) findViewById(R.id.pass2);
    //celular = (EditText) findViewById(R.id.telefono_registro);
    nombre = (EditText) findViewById(R.id.nombre_registro);
    apellido = (EditText) findViewById(R.id.apellido_registro);
@@ -117,10 +117,11 @@ private void eventos(){
 	    					//!celular.getText().toString().equals("")&&
 	    					(anioNas!=0)&&
 	    					(diaNas!=0)&&
-	    					(mesNas !=0)&&
-	    					!pass1.getText().toString().equals("")&&
-	    					!pass2.getText().toString().equals("")&&
-	    					pass2.getText().toString().equals(pass1.getText().toString()))
+	    					(mesNas !=0)//&&
+	    				//	!pass1.getText().toString().equals("")&&
+	    				//	!pass2.getText().toString().equals("")&&
+	    				//	pass2.getText().toString().equals(pass1.getText().toString())
+	    					)
 					{	
 							Log.v("registro", "3");
 						
@@ -149,7 +150,7 @@ private void eventos(){
 					    			data.put("email", mail.getText().toString());
 					    			data.put("fechaNas", Integer.toString(anioNas).toString()+"-"+Integer.toString(mesNas).toString()+"-"+Integer.toString(diaNas).toString());
 					    			data.put("telefono", "");
-					    			data.put("pass", pass1.getText().toString());
+					    			//data.put("pass", pass1.getText().toString());
 					    			
 					    			} catch (JSONException e) {
 					    				// TODO Auto-generated catch block
