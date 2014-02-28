@@ -122,14 +122,14 @@ public class Consulta extends Fragment {
   private class Serch extends AsyncTask<Void, Integer, JSONObject>{
 	  
 	 
-	  ProgressDialog progress;
+	
 	  Post post; 	 
 	  JSONArray jay;
 	  String CONEXION_FALLIDA = "CONEXION_FALLIDA";
 	  String NO_HAY_CONEXION = "NO_HAY_CONEXION";
 		@Override
        protected void onPreExecute() {
-			progress = ProgressDialog.show(getActivity(), "Cargando", "Cargando lista...");
+		
 			Log.v("movs", "1");
         }
        
@@ -177,7 +177,7 @@ public class Consulta extends Fragment {
       
       @Override
         protected void onPostExecute(JSONObject response) {
-      	progress.dismiss();
+  
       	Log.v("movs", "2");
       	String resultado = null;
       	
