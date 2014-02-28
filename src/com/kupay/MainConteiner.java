@@ -8,6 +8,8 @@ import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -20,6 +22,7 @@ import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.TextView;
 
 public class MainConteiner extends FragmentActivity  {
 	
@@ -28,6 +31,7 @@ public class MainConteiner extends FragmentActivity  {
 	
 	ListView sidemenu;
 	SlidingMenu menu;
+	TextView usuario;
 	OperacionRow menurow[];
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -65,8 +69,9 @@ public class MainConteiner extends FragmentActivity  {
 		menu.setMenu(R.layout.menu_frame);
 		
 
+		usuario = (AutoResizeTextView) menu.findViewById(R.id.mail_navicon);
+		usuario.setText(MiUsuario());
 		
-	
 		sidemenu = (ListView) menu.findViewById(R.id.sideMenuList);
 		menurow = new OperacionRow[6];
 		menurow[0]= new OperacionRow(R.drawable.mdm, "INICIO",null,null);
@@ -164,7 +169,18 @@ public class MainConteiner extends FragmentActivity  {
 		menu.toggle();
 	}
 	
-	
+	private String MiUsuario(){
+    	String usr = null;
+        BDD dbh = new BDD(this,"kupay",null,1);
+        SQLiteDatabase db= dbh.getReadableDatabase();
+        Cursor reg = db.query("kupay",new String[]{"usr"},null,null,null,null,null,"1");
+        if(reg.moveToFirst()){
+            usr=reg.getString(0);
+           
+        
+        }
+	 return usr;
+    }
 	
 	
 }
