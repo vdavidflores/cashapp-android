@@ -155,7 +155,7 @@
                              android:ems="10"
                              android:hint="Código de acceso"
                              android:imeOptions="actionNext"
-                             android:inputType="textPassword"
+                             android:inputType="text"
                              android:password="true"
                              android:singleLine="true"
                              android:textColor="#ffffff"
