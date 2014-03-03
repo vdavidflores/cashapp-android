@@ -23,6 +23,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import android.os.Bundle;
 
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
 
@@ -33,7 +34,7 @@ import android.widget.Toast;
 
 
 
-public class Enlazar extends Activity {
+public class Enlazar extends FragmentActivity {
     
 	Button acept;
 	Button cancel;
@@ -120,16 +121,32 @@ public class Enlazar extends Activity {
 		ad.show();
 	}
     
+    private void  errorEnvio(String mensaje) {
+    	AlertDialog.Builder builder_ = new AlertDialog.Builder(this);	
+		builder_.setIcon(R.drawable.ku72);
+		builder_.setTitle("Imposible enviar llave de acceso");
+		builder_.setMessage(mensaje);
+		
+		builder_.setNeutralButton("Aceptar", null);
+		Log.v("app", "botones puestos");
+		AlertDialog ad = builder_.create();
+		ad.show();
+	}
+    
  private void eventos(){
 	enviarLlave.setOnResponseAsync(new OnResponseAsync() {
 		
 		@Override
 		public void onResponseAsync(JSONObject response) {
 			enviarBtn.setActivated(true);	
+			progress.dismiss();
 			try {
 				if(response.getString("RESULTADO").equals("EXITO")){
-					progress.dismiss();
+				
 					Toast.makeText(getApplicationContext(), "código de acceso enviado!", Toast.LENGTH_LONG).show();
+				}else{
+					JSONObject datos = response.getJSONObject("DATOS");
+					errorEnvio(datos.getString("MENSAJE"));
 				}
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
