@@ -17,7 +17,8 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.app.DialogFragment;
+import  android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentActivity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -25,6 +26,7 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.pm.FeatureInfo;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
@@ -37,7 +39,7 @@ import android.widget.Toast;
 
 
 
-public class Registro extends Activity {
+public class Registro extends FragmentActivity {
     
 	Button acept;
 	Button cancel;
@@ -97,7 +99,7 @@ private void eventos(){
 		public void onClick(View view) {
 			// TODO Auto-generated method stub
 			 DialogFragment newFragment = new DatePickerFragment();
-             newFragment.show(getFragmentManager(), "datePicker");
+             newFragment.show(getSupportFragmentManager(), "datePicker");
 		}
 	});
 			
@@ -251,7 +253,10 @@ final Calendar c = Calendar.getInstance();
 int year = c.get(Calendar.YEAR);
 int month = c.get(Calendar.MONTH);
 int day = c.get(Calendar.DAY_OF_MONTH);
-return new DatePickerDialog(getActivity(), this, year, month, day);
+DatePickerDialog DP = new DatePickerDialog(getActivity(), android.R.style.Theme_DeviceDefault_Dialog, this, year, month, day);
+DP.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+
+return DP;
 }
 
 public void onDateSet(DatePicker view, int year, int month, int day) {
