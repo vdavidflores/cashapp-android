@@ -133,6 +133,43 @@ public class Enlazar extends FragmentActivity {
 		ad.show();
 	}
     
+    private void  preguntaEnvio() {
+    	AlertDialog.Builder builder_ = new AlertDialog.Builder(this);	
+		builder_.setIcon(R.drawable.ku72);
+		builder_.setTitle("Enviar llave de acceso");
+		builder_.setMessage("Deseas enviar una nueva llave de acceso a "+correo.getEditableText().toString());
+		builder_.setNegativeButton("Cancelar", new OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				// TODO Auto-generated method stub
+				dialog.dismiss();
+			}
+		});
+		builder_.setPositiveButton("Aceptar", new OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				// TODO Auto-generated method stub
+				enviarBtn.setActivated(false);	
+				JSONObject datallave = new JSONObject();
+				progress = ProgressDialog.show(Enlazar.this, "Enviando", "Se esta enviando un nuevo código de acceso.");
+				try {
+					datallave.put("usr", correo.getText().toString());
+					enviarLlave.setData(15, datallave);
+					enviarLlave.execAsync(getApplicationContext());
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+		});
+		Log.v("app", "botones puestos");
+		AlertDialog ad = builder_.create();
+		ad.show();
+	}
+    
  private void eventos(){
 	enviarLlave.setOnResponseAsync(new OnResponseAsync() {
 		
@@ -208,18 +245,7 @@ public class Enlazar extends FragmentActivity {
 			
 			if (!correo.getText().toString().equals(""))
 			{	
-				enviarBtn.setActivated(false);	
-				JSONObject datallave = new JSONObject();
-				progress = ProgressDialog.show(Enlazar.this, "Enviando", "Se esta enviando unnuevo código de acceso.");
-				try {
-					datallave.put("usr", correo.getText().toString());
-					enviarLlave.setData(15, datallave);
-					enviarLlave.execAsync(getApplicationContext());
-				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
+				preguntaEnvio();
 				
 			}else{
 
