@@ -23,7 +23,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import android.os.Bundle;
 
-import android.support.v4.app.FragmentActivity;
+
 import android.util.Log;
 import android.view.View;
 
@@ -34,7 +34,7 @@ import android.widget.Toast;
 
 
 
-public class Enlazar extends FragmentActivity {
+public class Enlazar extends Activity {
     
 	Button acept;
 	Button cancel;

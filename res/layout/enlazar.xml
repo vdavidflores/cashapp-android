@@ -93,13 +93,13 @@
                     android:orientation="horizontal" >
 
                     <LinearLayout
-                        android:layout_width="209dp"
+                        android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical" >
 
                         <EditText
                             android:id="@+id/correo_i"
-                            android:layout_width="wrap_content"
+                            android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
@@ -116,20 +116,28 @@
                             <requestFocus />
                         </EditText>
                     </LinearLayout>
-
-                    <Button
-                        android:id="@+id/codigoAcceso"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Enviar código de acceso" />
                 </LinearLayout>
 
                 <LinearLayout
+                    
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:layout_marginTop="20dp"
-                    android:layout_height="wrap_content"
                     android:orientation="horizontal" >
+
+                    <Button
+                        android:id="@+id/codigoAcceso"
+                        android:layout_width="220dp"
+                        android:layout_height="58dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="0.04"
+                        android:background="#fff"
+                        android:text="Enviar código de Acceso a tu Correo Electrónico"
+                        android:textColor="#c51f50" />
+
                 </LinearLayout>
                 
                  <LinearLayout
@@ -142,11 +150,12 @@
                      <LinearLayout
                          android:layout_width="match_parent"
                          android:layout_height="wrap_content"
+                         android:gravity="center"
                          android:orientation="vertical" >
 
                          <EditText
                              android:id="@+id/contrasenia"
-                             android:layout_width="match_parent"
+                             android:layout_width="192dp"
                              android:layout_height="wrap_content"
                              android:layout_marginLeft="10dp"
                              android:layout_marginRight="10dp"
@@ -170,13 +179,32 @@
                          android:layout_height="wrap_content"
                          android:orientation="vertical" >
 
+                         <TextView
+                             android:id="@+id/textView1"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:text="Digite un nuevo pin el cual sea fácil de recordar, ya que será requerido para cada operación de Cashapp"
+                             android:layout_gravity="center"
+                             android:textColor="#fff"
+                             android:layout_marginTop="35dp"
+                             android:layout_marginLeft="10dp"
+                             android:layout_marginRight="10dp"
+                             android:textAppearance="?android:attr/textAppearanceMedium" />
+							
+                     </LinearLayout>
+
+                     <LinearLayout
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:orientation="vertical" >
+
                          <EditText
                              android:id="@+id/pin_i"
                              android:layout_width="match_parent"
                              android:layout_height="wrap_content"
                              android:layout_marginLeft="10dp"
                              android:layout_marginRight="10dp"
-                             android:layout_marginTop="30dp"
+                             android:layout_marginTop="20dp"
                              android:background="@drawable/edit_text_design"
                              android:ems="10"
                              android:hint="PIN"
