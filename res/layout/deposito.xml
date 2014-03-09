@@ -35,7 +35,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
-                android:text="Deposito"
+                android:text="Depósito"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="#ffffff" />
         </LinearLayout>
@@ -59,7 +59,7 @@
             android:paddingTop="20dp"
             android:paddingRight="20dp"
             android:textColor="#FFFFFF"
-            android:text="Añade saldo a tu cuenta kuPay por el medio que prefieras"
+            android:text="Añade saldo a tu cuenta Cashapp por el medio que prefieras"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
     </LinearLayout>

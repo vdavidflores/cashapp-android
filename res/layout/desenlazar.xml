@@ -59,7 +59,7 @@
             android:paddingRight="20dp"
             android:paddingTop="20dp"
             android:textSize="15dp"
-            android:text="Desenlazar celular implica en desenlazar tu cuenta Kupay de este dispositivo, Recuerda que después de desenlazar tu cuenta solo la podrás enlazar a un solo nuevo dispositivo"
+            android:text="Desenlazar celular implica en desenlazar tu cuenta Cashapp de este dispositivo, Recuerda que después de des enlazar tu cuenta solo la podrás enlazar a un solo nuevo dispositivo"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="#FFFFFF" />
 

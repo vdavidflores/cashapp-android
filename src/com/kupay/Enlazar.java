@@ -137,7 +137,7 @@ public class Enlazar extends Activity {
     	AlertDialog.Builder builder_ = new AlertDialog.Builder(this);	
 		builder_.setIcon(R.drawable.ku72);
 		builder_.setTitle("Enviar llave de acceso");
-		builder_.setMessage("Deseas enviar una nueva llave de acceso a "+correo.getEditableText().toString());
+		builder_.setMessage("Deseas enviar un nuevo código de acceso a "+correo.getEditableText().toString());
 		builder_.setNegativeButton("Cancelar", new OnClickListener() {
 			
 			@Override
@@ -217,15 +217,15 @@ public class Enlazar extends Activity {
 							e.printStackTrace();
 						}
 					} else if(response.getString("RESULTADO").equals("FALLA")){
-					Log.v("app", "error de enlaze");
+					Log.v("app", "error de enlace");
 						JSONObject data = response.getJSONObject("DATOS"); 
 						errorEnlaze(data.getString("MENSAJE").toString());
 					
 					}else{
-						Log.v("app", "Error en elnaze!");
+						Log.v("app", "Error en elnace!");
 					
 						
-						Toast.makeText(getApplicationContext(), "falla en enlaze", Toast.LENGTH_LONG).show();
+						Toast.makeText(getApplicationContext(), "falla en enlace", Toast.LENGTH_LONG).show();
 					}
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
@@ -293,7 +293,7 @@ public class Enlazar extends Activity {
 			
 				else{
 					
-				Toast.makeText(getApplicationContext(), "Campos incorectos, favor de llenar todos los campos", Toast.LENGTH_LONG).show();
+				Toast.makeText(getApplicationContext(), "Campos incorrectos, favor de llenar todos los campos", Toast.LENGTH_LONG).show();
 					
 					
 				}

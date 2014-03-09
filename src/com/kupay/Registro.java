@@ -158,7 +158,7 @@ private void eventos(){
 					    				// TODO Auto-generated catch block
 					    				e.printStackTrace();
 					    			}
-								progress = ProgressDialog.show(Registro.this, "Registrando usuario", "cuenta hasta 10! ...1..");
+								progress = ProgressDialog.show(Registro.this, "Registrando usuario", "cuenta hasta 10! ...1.2.");
 								registro.setData(2, data);
 								registro.execAsync(getApplicationContext());
 							Toast.makeText(getApplicationContext(), "Registrado...", Toast.LENGTH_LONG).show();
@@ -211,8 +211,8 @@ private void eventos(){
 
 private void  exitoRegistro() {
 	AlertDialog.Builder adb =new  AlertDialog.Builder(this);
-	adb.setTitle("Registro exitoso");
-	adb.setMessage("Gracias por registrarte en kupay. recibiras un email de confirmacion.");
+	adb.setTitle("Registro exitoso!");
+	adb.setMessage("Gracias por registrarte en Cashapp. recibirás un email de confirmación.");
 	adb.setNeutralButton("Acepar", new OnClickListener() {
 		
 		@Override

@@ -66,7 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="10dp"
-            android:text="Cantidad"
+            android:text="Cantidad:"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#ffffff"
             android:textStyle="bold" />

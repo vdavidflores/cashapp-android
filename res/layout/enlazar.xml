@@ -135,7 +135,7 @@
                         android:layout_marginTop="20dp"
                         android:layout_weight="0.04"
                         android:background="#fff"
-                        android:text="Enviar código de Acceso a tu Correo Electrónico"
+                        android:text="Enviar Código de Acceso a tu Correo Electrónico"
                         android:textColor="#c51f50" />
 
                 </LinearLayout>
@@ -259,7 +259,7 @@
 		    android:layout_width="160dp"
 		    android:layout_height="wrap_content"
 		    android:background="@drawable/fondo_acept_cancel"
-		    android:text="Enlazar celular"
+		    android:text="Enlazar Celular"
 		    android:textColor="#ffffff" />
 
        	<Button

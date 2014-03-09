@@ -106,7 +106,7 @@
             android:layout_gravity="bottom"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:text="¿En qué cuenta quieres recibir el dinero retirado de kupay?"
+            android:text="¿En qué cuenta quieres recibir el dinero retirado de Cashapp?"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#FFFFFF"
             android:textSize="15dp" />

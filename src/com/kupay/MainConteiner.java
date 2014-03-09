@@ -75,11 +75,11 @@ public class MainConteiner extends FragmentActivity  {
 		sidemenu = (ListView) menu.findViewById(R.id.sideMenuList);
 		menurow = new OperacionRow[6];
 		menurow[0]= new OperacionRow(R.drawable.mdm, "INICIO",null,null);
-		menurow[1]= new OperacionRow(R.drawable.deposito, "Deposito",null,null);
+		menurow[1]= new OperacionRow(R.drawable.deposito, "Depósito",null,null);
 		menurow[2]= new OperacionRow(R.drawable.retiro, "Retiro",null,null);
-		menurow[3]= new OperacionRow(R.drawable.llavek, "Llave-ku",null,null);
+		menurow[3]= new OperacionRow(R.drawable.llavek, "Código de Acceso",null,null);
 		menurow[4]= new OperacionRow(R.drawable.desenlazar, "Desenlazar equipo",null,null);
-		menurow[5]= new OperacionRow(R.drawable.info, "Kupay",null,null);
+		menurow[5]= new OperacionRow(R.drawable.info, "Cashapp",null,null);
 	
 		WeatherAdapter adapter = new WeatherAdapter(this, R.layout.listview_item_row_menu,menurow);
 		sidemenu.setAdapter(adapter);
