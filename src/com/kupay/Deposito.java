@@ -191,10 +191,11 @@ public class Deposito extends Fragment implements OnItemSelectedListener {
 		try{
 		AlertDialog.Builder adb = new AlertDialog.Builder(this.getActivity());
 		adb.setTitle("Abono de saldo SPEI");
-		adb.setMessage("Transfiere:\n$"+cantidad.getText().toString()+"\n\n" +
-				"A la cuenta CLABE:\n" +datos.getString("clabe")+"\n\n"+
+		adb.setMessage(
+				"Tu numero de cuenta (CLABE) es:\n" +datos.getString("clabe")+"\n\n"+
 				"Del banco:\n"+datos.getString("bank")+"\n\n" +
-				"Con la referencia:\n"+datos.getString("ref"));
+				"Transfiere:\n$"+cantidad.getText().toString()+"(o lo que nesecites) \n\n" +		
+				"Con la referencia (opcional):\n"+datos.getString("ref"));
 		adb.setNeutralButton("Finalizar", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
             	dialog.dismiss();

@@ -98,24 +98,6 @@ public class Enlazar extends Activity {
 		builder_.setMessage(mensaje);
 		Log.v("app", "noniendo botones...");
 		builder_.setNeutralButton("Aceptar", null);
-		builder_.setPositiveButton("Enviar correo de confirmación", new OnClickListener() {
-			
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				// TODO Auto-generated method stub
-				JSONObject jso= new JSONObject();
-				try {
-					jso.put("usr", correo.getText().toString());
-					enviarNuevaConfirmacion.setData(19, jso);
-					enviarNuevaConfirmacion.execAsync(getApplicationContext());
-					Toast.makeText(getApplicationContext(), "Correo enviado", Toast.LENGTH_SHORT).show();
-					
-				}catch (JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		});
 		Log.v("app", "botones puestos");
 		AlertDialog ad = builder_.create();
 		ad.show();
@@ -151,7 +133,7 @@ public class Enlazar extends Activity {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				// TODO Auto-generated method stub
-				enviarBtn.setActivated(false);	
+				//enviarBtn.setActivated(false);	
 				JSONObject datallave = new JSONObject();
 				progress = ProgressDialog.show(Enlazar.this, "Enviando", "Se esta enviando un nuevo código de acceso.");
 				try {
@@ -175,7 +157,7 @@ public class Enlazar extends Activity {
 		
 		@Override
 		public void onResponseAsync(JSONObject response) {
-			enviarBtn.setActivated(true);	
+			//enviarBtn.setActivated(true);	
 			progress.dismiss();
 			try {
 				if(response.getString("RESULTADO").equals("EXITO")){
