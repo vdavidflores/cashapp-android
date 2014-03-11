@@ -35,7 +35,7 @@ import android.widget.Toast;
 public class Desenlazar extends Fragment   {
 	Button navicon, desenlazbtn;
 	Post soket;
-	int pin;
+
 	
 	 @Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,6 +53,8 @@ public class Desenlazar extends Fragment   {
 						
 						nuevoUsurio("nill", getActivity());
 						nuevoImei("nill", getActivity());
+						borrarTarjetas(getActivity());
+						Toast.makeText(getActivity(), "ADIOS", Toast.LENGTH_LONG).show();
 						 android.os.Process.killProcess(android.os.Process.myPid());
 						    Editor editor = getActivity().getSharedPreferences("clear_cache", Context.MODE_PRIVATE).edit();
 						    editor.clear();
@@ -60,7 +62,7 @@ public class Desenlazar extends Fragment   {
 						    clearApplicationData();
 						    
 					}else{
-						Toast.makeText(getActivity(), "Falla en desenlaze", Toast.LENGTH_LONG).show();
+						Toast.makeText(getActivity(), "Falla en desenlaze\nVerifica tu conexión", Toast.LENGTH_LONG).show();
 					}
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
@@ -104,36 +106,20 @@ public class Desenlazar extends Fragment   {
 			
 			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 			builder.setIcon(R.drawable.pin);
-			builder.setTitle("Ingresa tu Pin");
-			builder.setMessage("Inserta tu Pin");
-			
-			
-			final EditText Password = new EditText(getActivity());
-			
-			builder.setView(Password);
-			Password.setGravity(Gravity.CENTER);
-		     Password.setHint("pin");
-		     Password.setWidth(200);
-			 Password.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-			 Password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+			builder.setTitle("Deseas desenlazar este equipo?");
+			builder.setMessage("Se eliminarán todos los datos relacionados a tu cuenta de este dispositivo.");
+
 			 builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
 				
 	            public void onClick(DialogInterface dialog, int id) {
 	         
-	               
-	            	
-		            if (Password.getEditableText().length() == 0){
-		            		 
-		            		 dialog.dismiss();
-		            }  else{ 
-		            	
-		            	  pin = Integer.parseInt(Password.getEditableText().toString()) ;
+	              
 			            	JSONObject data = new JSONObject();
-		            	try {
+		           try {
 		            		
 			            	data.put("usr", MiUsuario());
 			            	data.put("imei", MiImei());
-							data.put("pin", pin);
+						
 							
 							soket.setData(17, data);
 							soket.execAsync(getActivity().getApplicationContext());
@@ -142,15 +128,12 @@ public class Desenlazar extends Fragment   {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-		            }
-	                 
-	                 
 	            	
 	            }
 	        });
 			builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
 	            public void onClick(DialogInterface dialog, int id) {
-	            pin = 0;
+	             dialog.dismiss();
 	            }
 	        });
 
@@ -258,6 +241,10 @@ public class Desenlazar extends Fragment   {
 	        SQLiteDatabase db= dbh.getWritableDatabase();
 	        db.execSQL("UPDATE kupay SET imei='"+dat+"'");
 	      }
-	
+	    private void borrarTarjetas(Context cont){
+	        BDD dbh = new BDD(cont,"kupay",null,1);
+	        SQLiteDatabase db= dbh.getWritableDatabase();
+	        db.execSQL("DROP TABLE IF EXISTS kupayTarjetas");
+	    }
 	
 }
