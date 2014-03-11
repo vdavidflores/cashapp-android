@@ -179,7 +179,7 @@
                             android:layout_gravity="center"
                             android:layout_marginLeft="15dp"
                             android:gravity="center_horizontal"
-                            android:text="Fecha de Nacimiento"
+                            android:text="Fecha de nacimiento"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:textColor="#ffffff" />
                     </LinearLayout>
@@ -196,7 +196,7 @@
                             android:layout_width="216dp"
                             android:layout_height="35dp"
                             android:background="#fff"
-                            android:text="haz click para seleccionar"
+                            android:text="Haz click para seleccionar"
                             android:textColor="#c51f50" />
 
                     </LinearLayout>
