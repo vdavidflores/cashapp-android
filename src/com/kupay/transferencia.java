@@ -205,7 +205,7 @@ public class transferencia extends Fragment{
 		builder_.setTitle("Transacción no realizada");
 		
 		if (USUARIO_INVALIDO.toString().equals(causaFalla)){
-			builder_.setMessage("EL usuario ingresado es invalido");
+			builder_.setMessage("El pin es incorrecto, intenta nuevamente");
 		}else if(FONDOS_INUFICIENTES.toString().equals(causaFalla)){
 			builder_.setMessage("No dipones de saldo suficiente para realizar esta transacción");
 		}else if(causaFalla.equals("FALLA_MENSAJE")){

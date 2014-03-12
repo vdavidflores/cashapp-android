@@ -52,7 +52,7 @@ public class Deposito extends Fragment implements OnItemSelectedListener {
 		 View view = View.inflate(this.getActivity(), R.layout.deposito,null);
 		 
 		 //Spiner de forma de pago
-		 String [] values = {"Tineda de conveniencia","Tarjeta bancaria","SPEI"};
+		 String [] values = {"Tienda de conveniencia","Tarjeta bancaria","SPEI"};
 		 spinner = (Spinner) view.findViewById(R.id.spinner1);
 		 ArrayAdapter<String> LTRadapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, values);
 		 LTRadapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
