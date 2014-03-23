@@ -301,5 +301,6 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_retiro_spei">RetiroSpei</string>
     <string name="title_activity_operacion_qr">OperacionQR</string>
+    <string name="title_activity_cobrar">Cobrar</string>
 
 </resources>
