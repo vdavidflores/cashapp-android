@@ -107,7 +107,8 @@ public class MainActivity extends Fragment {
 		setRetainInstance(true);
 		FragmentManager fm = getFragmentManager();
 		fm.beginTransaction()
-		.replace(R.id.tab_3, new Consulta(), "consultar")
+		.replace(R.id.tab_4, new Consulta(), "consultar")
+		.replace(R.id.tab_3, new Cobrar(), "cobrar")
 		.replace(R.id.tab_1, new capturaQR(), "comprar")
 		.replace(R.id.tab_2, new transferencia(), "transferir")
 		.commit();
@@ -157,12 +158,24 @@ public class MainActivity extends Fragment {
 		Log.v("app", "4");
 		
 		b = new Bundle();
-		b.putString("key", "consultar");
-		mTabHost.addTab(mTabHost.newTabSpec("consultar").setIndicator("",getResources().getDrawable(R.layout.consultatab)).setContent(R.id.tab_3));
+		b.putString("key", "cobrar");
+		mTabHost.addTab(mTabHost.newTabSpec("cobrar").setIndicator("",getResources().getDrawable(R.layout.cobrotab)).setContent(R.id.tab_3));
 		mTabHost.getTabWidget().getChildAt(2).setBackgroundResource(R.layout.bgcomp);
 		mTabHost.getTabWidget().getChildAt(2).getLayoutParams().height =  LayoutParams.MATCH_PARENT;
 		mTabHost.getTabWidget().getChildAt(2).getLayoutParams().width = LayoutParams.MATCH_PARENT;
 		mTabHost.getTabWidget().setStripEnabled(false);
+		
+		
+	Log.v("app", "7");
+		
+		b = new Bundle();
+		b.putString("key", "consultar");
+		mTabHost.addTab(mTabHost.newTabSpec("consultar").setIndicator("",getResources().getDrawable(R.layout.consultatab)).setContent(R.id.tab_4));
+		mTabHost.getTabWidget().getChildAt(3).setBackgroundResource(R.layout.bgcomp);
+		mTabHost.getTabWidget().getChildAt(3).getLayoutParams().height =  LayoutParams.MATCH_PARENT;
+		mTabHost.getTabWidget().getChildAt(3).getLayoutParams().width = LayoutParams.MATCH_PARENT;
+		mTabHost.getTabWidget().setStripEnabled(false);
+		
 		
 		mTabHost.setOnTabChangedListener(new OnTabChangeListener() {
 			
@@ -173,7 +186,20 @@ public class MainActivity extends Fragment {
 				
 				
 				FragmentManager fm = getFragmentManager();
-				if (tabId.equals("transferir")){
+				if (tabId.equals("cobrar")){
+					if (fm.findFragmentByTag(tabId) == null) {
+				
+					fm.beginTransaction()
+							.replace(R.id.tab_3, new Cobrar(), tabId)
+							.commit();
+					
+					}
+					capturaQR camaraPointer = (capturaQR) getFragmentManager().findFragmentById(R.id.tab_1);
+					if(camaraCargada){
+						camaraPointer.stopCamera(); 
+					}
+					
+				}else if (tabId.equals("transferir")){
 					if (fm.findFragmentByTag(tabId) == null) {
 				
 					fm.beginTransaction()
@@ -208,7 +234,7 @@ public class MainActivity extends Fragment {
 				}else if(tabId.equals("consultar")) {
 					if (fm.findFragmentByTag(tabId) == null) {
 						fm.beginTransaction()
-						.replace(R.id.tab_3, new Consulta(), tabId)
+						.replace(R.id.tab_4, new Consulta(), tabId)
 						.commit();
 					}
 					capturaQR camaraPointer = (capturaQR) getFragmentManager().findFragmentById(R.id.tab_1);

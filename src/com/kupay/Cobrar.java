@@ -88,11 +88,9 @@ private void eventos() {
 				
 				
 				if (resultado.equals("EXITO")){
-					Bundle bundle = new Bundle();
-					bundle.putString("OPERACION", datos.getString("OPERACION"));
-					
+
 					Intent in = new Intent(getActivity(), OperacionQR.class);
-					in.putExtras(bundle);
+					in.putExtra("OPERACION", datos.getString("OPERACION").toString());
 					startActivity(in);
 					
 				}else{

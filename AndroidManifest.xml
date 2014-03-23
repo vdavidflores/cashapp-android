@@ -128,7 +128,8 @@
         </activity>
         <activity
             android:name="com.kupay.OperacionQR"
-            android:label="@string/title_activity_operacion_qr" >
+            android:label="@string/title_activity_operacion_qr"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.kupay.Cobrar"

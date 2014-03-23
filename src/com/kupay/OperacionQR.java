@@ -25,10 +25,13 @@ public class OperacionQR extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		Log.v("app", "op1");
 		setContentView(R.layout.activity_operacion_qr);
 		qr = (ImageView) findViewById(R.id.QR);
+		Log.v("app", "op2");
 		estatus = (TextView) findViewById(R.id.estatus);
 		Intent in = getIntent();
+		Log.v("app", "op3");
 		operacion = in.getExtras().getString("OPERACION").toString();
 		Bitmap qrBitmap = null;
 		Log.v("app","4");
@@ -42,11 +45,10 @@ public class OperacionQR extends Activity {
 		}
 		Log.v("app","6");
 		
-		qr.setImageBitmap(qrBitmap);
+		qr.setImageBitmap(qrBitmap);	
+		
+		monitor = new Post();
 		eventos();
-		
-		
-		
 		JSONObject data = new JSONObject();
 		try {
 			data.put("qr", operacion);
@@ -54,12 +56,19 @@ public class OperacionQR extends Activity {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+	
 		monitor.setData(4, data);
 		monitor.execAsync(getApplicationContext());
 		
 
 	}
+	
+	@Override
+	protected void onDestroy() {
+	monitor.stopAsync();
+	super.onDestroy();
+	}
+	
 	private void eventos() {
 		monitor.setOnResponseAsync(new OnResponseAsync() {
 			
@@ -77,7 +86,7 @@ public class OperacionQR extends Activity {
 				
 					JSONObject data = new JSONObject();
 					data.put("qr", operacion);
-					
+					Log.v("app", "pidiendo "+operacion);
 					monitor.setData(4, data);
 					monitor.execAsync(getApplicationContext());
 					

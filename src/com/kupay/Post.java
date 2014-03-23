@@ -50,6 +50,7 @@ public class Post {
 	private  List<NameValuePair> pares;
 	private JSONObject response ;
 	private Context conext;
+	private execAsync ea;
 
 	  public Post(int accion_ ,JSONObject obj_){
 		  obj = obj_;
@@ -162,8 +163,11 @@ public class Post {
 	  
 	  public void execAsync(Context appContext) {
 		  conext = appContext;
-		execAsync ea = new execAsync();
+		 ea = new execAsync();
 		ea.execute();
+	}
+	  public void stopAsync() {
+		ea.cancel(true);
 	}
 	  
 	  
