@@ -244,7 +244,7 @@ public class Desenlazar extends Fragment   {
 	    private void borrarTarjetas(Context cont){
 	        BDD dbh = new BDD(cont,"kupay",null,1);
 	        SQLiteDatabase db= dbh.getWritableDatabase();
-	        db.execSQL("DROP TABLE IF EXISTS kupayTarjetas");
+	        db.execSQL("DELETE FROM kupayTarjetas");
 	    }
 	
 }
