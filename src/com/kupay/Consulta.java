@@ -70,7 +70,7 @@ public class Consulta extends Fragment {
 				  myView.setTextSize(40);
 				//  myView.setGravity(Gravity.BOTTOM );
 				  AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
-				    alert.setTitle("Tiket de operación");
+				    alert.setTitle("Ticket de operación");
 				    alert.setView(myView);
 				    alert.setMessage("Concepto: "+weather_data[(int)id].concepto);
 				  
