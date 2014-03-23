@@ -130,6 +130,10 @@
             android:name="com.kupay.OperacionQR"
             android:label="@string/title_activity_operacion_qr" >
         </activity>
+        <activity
+            android:name="com.kupay.Cobrar"
+            android:label="@string/title_activity_cobrar" >
+        </activity>
     </application>
 
 </manifest>
