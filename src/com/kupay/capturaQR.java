@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.DialogInterface.OnDismissListener;
@@ -87,7 +88,7 @@ public class capturaQR extends DecoderActivity  {
 
 		    // Put up our own UI for how to handle the decodBarcodeFormated contents.
 		    private void handleDecodeInternally(Result rawResult, ResultHandler resultHandler, Bitmap barcode) {
-		     //   stopCamera();
+		        stopCamera();
 		        CharSequence qrDetectado = resultHandler.getDisplayContents();
 		        Log.v("app", qrDetectado.toString());
 				
@@ -116,8 +117,6 @@ public class capturaQR extends DecoderActivity  {
 		    	JSONObject datos;
 				private Post post;
 				ProgressDialog progress;
-				String OPERACION_DISPONIBLE = "OPERACION_DISPONIBLE";
-				String OPERACION_NO_DISPONIBLE = "OPERACION_NO_DISPONIBLE";
 
 				@Override
 		         protected void onPreExecute() {
@@ -172,12 +171,42 @@ public class capturaQR extends DecoderActivity  {
 		        	progress.dismiss();
 		        	try {
 					 String resultado = response.getString("RESULTADO");
-		      		if (OPERACION_DISPONIBLE.toString().equals(resultado) ){
-
-		  				datos = response.getJSONObject("DATOS");
-
-		  				//switch (datos.getString("TIPO")) 
-		  				
+		      		if (resultado.equals("EXITO")){
+		      			JSONObject datos = response.getJSONObject("DATOS");
+		      			int codigodeestatus = Integer.parseInt(datos.getString("NUMERO_ESTATUS"));
+		      			switch (codigodeestatus) {
+						case 0:
+							operacionActiva(datos);
+							break;
+						case 1:
+							operacionInactiva();
+							break;
+						case 2:
+							operacionInactiva();
+							break;
+						case 3:
+							operacionInactiva();
+							break;
+						default:
+							operacionInactiva();
+							break;
+						}
+		      		}else{
+		      			int duracion=Toast.LENGTH_LONG;
+		                  Toast mensaje=Toast.makeText(getActivity(), "Operacion no encontrada", duracion);
+		                  mensaje.show();
+		                  restartCam();
+		      		}
+		        	} catch (JSONException e) {
+						// TODO Auto-generated catch block
+		        		restartCam();
+						e.printStackTrace();
+					}
+		        }
+		        private void operacionActiva(JSONObject datos) {
+		        	
+		        	AlertDialog.Builder builder_ = new AlertDialog.Builder(getActivity());
+					try {
 						if (CARGO_A_QUIEN_DETECTA.toString().equals(datos.getString("TIPO").toString())){
 							builder_.setTitle("Cargo");
 							builder_.setMessage("Monto a pagar: $"+datos.getString("MONTO")+" \n"+
@@ -187,45 +216,48 @@ public class capturaQR extends DecoderActivity  {
 							builder_.setMessage("Monto a ingresar: "+datos.getString("MONTO")+" \n"+
 							"Concepto: "+datos.getString("CONCEPTO"));
 						}
-						builder_.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog,
-									int which) {
-								
-								pin();
-								
-								
-							}
-						});
-						builder_.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog,
-									int which) {
-								dialog.dismiss();
-								qr = "";
-								restartCam();
-							}
-						});
-						builder_.setOnKeyListener(new OnKeyListener() {
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					builder_.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog,
+								int which) {
+							pin();
+						}
+					});
+					builder_.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog,
+								int which) {
+							dialog.dismiss();
+							qr = "";
+							restartCam();
+						}
+					});
+					builder_.setOnKeyListener(new OnKeyListener() {
 
-			                @Override
-			                public boolean onKey(DialogInterface arg0, int keyCode,
-			                        KeyEvent event) {
-			                    // TODO Auto-generated method stub
-			                    if (keyCode == KeyEvent.KEYCODE_BACK) {
-			                        restartCam();
-			                        dialog.dismiss();
-			                    }
-			                    return true;
-			                }
-			            });
-						
-		  		    	dialog = builder_.create();
-		  		    	dialog.show();
-		  				
-			    		
-		  				Log.v("app","Datos: "+ datos.toString());
-		      		}else if(OPERACION_NO_DISPONIBLE.toString().equals(resultado)){
+		                @Override
+		                public boolean onKey(DialogInterface arg0, int keyCode,
+		                        KeyEvent event) {
+		                    // TODO Auto-generated method stub
+		                    if (keyCode == KeyEvent.KEYCODE_BACK) {
+		                        restartCam();
+		                        dialog.dismiss();
+		                    }
+		                    return true;
+		                }
+		            });
+					
+	  		    	dialog = builder_.create();
+	  		    	dialog.show();
+	  			
+				}
+		        
+		        
+		        private void operacionInactiva(){
+		        	AlertDialog.Builder builder_ = new AlertDialog.Builder(getActivity());
 		      			
 		      			builder_.setTitle("Operacion no disponible");
 						builder_.setMessage("El codigo detectado no esta disponible, probablemente ya fue usado o se encuentra desactivado.");
@@ -254,19 +286,7 @@ public class capturaQR extends DecoderActivity  {
 						
 						dialog = builder_.create();
 		  		    	dialog.show();
-		      		}else{
-		      			int duracion=Toast.LENGTH_LONG;
-		                  Toast mensaje=Toast.makeText(getActivity(), "Operacion no encontrada", duracion);
-		                  mensaje.show();
-		                  restartCam();
-		      		}
-		        	} catch (JSONException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-		      	
-		        	//onResume();
-		        	
+		      		
 		        }
 		        
 		    	private void pin(){
