@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+      android:id="@+id/scrollView1"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_weight="0.42"
+      android:background="#c51f50" >
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#c51e4f"
@@ -15,7 +23,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content" 
+        android:layout_marginTop="20dp">
 
         <TextView
             android:id="@+id/textView1"
@@ -58,7 +67,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp" >
 
         <TextView
             android:id="@+id/textView2"
@@ -87,15 +97,57 @@
             android:hint="$"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:inputType="number" 
-            android:imeOptions="actionDone"/>
+            android:inputType="numberDecimal" 
+            android:imeOptions="actionNext"/>
+
+    </LinearLayout>
+    
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp" >
+
+        <TextView
+            android:id="@+id/textViewre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:text="Concepto:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#ffffff"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.39" >
+
+         <EditText
+            android:id="@+id/concept"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_weight="0.32"
+            android:ems="9"
+            android:hint="opcional"
+            android:includeFontPadding="false"
+            android:inputType="text"
+           android:maxLength="20"
+            android:scrollHorizontally="true"></EditText>
+           
+
+    </LinearLayout>
+    
+
+    <LinearLayout
         android:layout_width="112dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center" >
+        android:layout_gravity="center" 
+        android:layout_marginTop="20dp">
 
         <Button
             android:id="@+id/enviar"
@@ -107,8 +159,10 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.58" >
+        android:layout_height="20dp"
+        android:layout_weight="0.58"
+         >
     </LinearLayout>
 
 </LinearLayout>
+</ScrollView>
