@@ -55,20 +55,15 @@
 
         <TextView
             android:id="@+id/textView1"
-            android:layout_width="304dp"
-            android:layout_height="340dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_weight="0.01"
             android:paddingLeft="40dp"
             android:paddingRight="20dp"
             android:paddingTop="20dp"
-            android:text="Cashapp es una herramienta de venta-compra que funcionan por medio de una aplicación para smartphones y una consola web.
-            
-Esta aplicación permite a los usuarios realizar recargas de saldo con su tarjeta de crédito-débito, comprando tarjetas de abono o en tiendas de autoservicio. A su vez estos usuarios pueden realizar pagos escaneando códigos QR con un escáner integrado a su aplicación cashapp.
-
-Es importante destacar que todos los usuarios de cashapp pueden acceder a una consola web (página web de venta) que les permite generar sus propios códigos QR de ventas y llevar un control sobre pedidos y ventas hechas, “Cashapp es tu negocio en la nube”.
-No olvides visitar tu consola web de venta en www.cashapp.mx
+            android:text="Cashapp es una herramienta de venta-compra que funcionan por medio de una aplicación para smartphones y una consola web.\nEsta aplicación permite a los usuarios realizar recargas de saldo con su tarjeta de crédito-débito, comprando tarjetas de abono o en tiendas de autoservicio. A su vez estos usuarios pueden realizar pagos escaneando códigos QR con un escáner integrado a su aplicación cashapp.\nEs importante destacar que todos los usuarios de cashapp pueden acceder a una consola web (página web de venta) que les permite generar sus propios códigos QR de ventas y llevar un control sobre pedidos y ventas hechas, “Cashapp es tu negocio en la nube”.\nNo olvides visitar tu consola web de venta en www.cashapp.mx
 
             "
             android:textAppearance="?android:attr/textAppearanceSmall"
