@@ -166,6 +166,7 @@ private void  generar() {
 			
 			data.put("usr", MiUsuario());
 			data.put("monto", monto.getText().toString());
+			data.put("concepto", concepto.getText().toString());
 			data.put("imei", MiImei());
 			data.put("tipo", "CARGO");
 			data.put("pin", pin);
