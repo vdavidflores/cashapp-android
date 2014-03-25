@@ -446,7 +446,7 @@ public class capturaQR extends DecoderActivity  {
 								// TODO Auto-generated method stub
 				  				AnimaSaldo actCC = new AnimaSaldo(getActivity());
 				  				try {
-									actCC.execute(datos.getInt("SALDO_POST_TRASACCION"));
+									actCC.execute(datos.getDouble("SALDO_POST_TRASACCION"));
 								} catch (JSONException e) {
 									// TODO Auto-generated catch block
 									e.printStackTrace();

@@ -45,8 +45,8 @@
             android:hint="$"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:inputType="number" 
-            android:imeOptions="actionDone"/>
+            android:inputType="numberDecimal" 
+            android:imeOptions="actionNext"/>
 
     </LinearLayout>
 

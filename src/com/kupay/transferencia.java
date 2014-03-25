@@ -24,6 +24,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;   
@@ -34,6 +35,7 @@ public class transferencia extends Fragment{
 	TextView para;
 	TextView cantidad;
 	TextView cc;
+	EditText concepto;
 	int pin ;	JSONObject datos;
 	Post post;
 	protected AlertDialog dialog;
@@ -59,9 +61,9 @@ public class transferencia extends Fragment{
              enviar = (Button) view.findViewById(R.id.enviar);
              para = (TextView) view.findViewById(R.id.inputPara);
    		     cantidad = (TextView) view.findViewById(R.id.inputCantidad);
-   		  
+   		  concepto = (EditText) view.findViewById(R.id.concept);
    
-   		     
+   		getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
    		     
    		   eventos();
         return view;
@@ -253,6 +255,7 @@ public class transferencia extends Fragment{
     			
     			data.put("emisor", MiUsuario());
     			data.put("cantidad", cantidad.getText());
+    			data.put("concepto", concepto.getText().toString());
     			data.put("imei", MiImei());
     			data.put("pin", pin);
     			
@@ -301,7 +304,7 @@ public class transferencia extends Fragment{
   				Log.v("app","Datos: "+ datos.toString());
   				
   				AnimaSaldo actcc = new AnimaSaldo(getActivity());
-  				actcc.execute(datos.getInt("SALDO_POST_TRASACCION"));
+  				actcc.execute(datos.getDouble("SALDO_POST_TRASACCION"));
   				//cc.setText("$"+Integer.toString(datos.getInt("SALDO_POST_TRASACCION")));
       		}else if(TRANSACCION_FALLIDA.toString().equals(resultado)){
       	       Log.v("app", "pst-3");

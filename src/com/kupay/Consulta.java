@@ -207,7 +207,7 @@ public class Consulta extends Fragment {
 	        for(int i=0; i < jay.length();i++){
 	        
 	        	int tipo=0;
-	        	int monto=0;
+	        	Double monto=0.0;
 	        	
 	        	String fecha = null;
 	        	String polo = null;
@@ -217,7 +217,7 @@ public class Consulta extends Fragment {
 	        	try {
 	        	idkey= jay.getJSONObject(i).getString("IDKEY");
 	        	tipo = jay.getJSONObject(i).getInt("TIPO");
-	        	monto = jay.getJSONObject(i).getInt("MONTO");
+	        	monto = jay.getJSONObject(i).getDouble("MONTO");
 	        	fecha = jay.getJSONObject(i).getString("FECHA");
 	        	polo = jay.getJSONObject(i).getString("POLO");
 	        	concepto = jay.getJSONObject(i).getString("CONCEPTO");
