@@ -245,6 +245,7 @@ public class Desenlazar extends Fragment   {
 	        BDD dbh = new BDD(cont,"kupay",null,1);
 	        SQLiteDatabase db= dbh.getWritableDatabase();
 	        db.execSQL("DELETE FROM kupayTarjetas");
+	        db.execSQL("DELETE FROM SQLITE_SEQUENCE WHERE NAME = 'kupayTarjetas'");
 	    }
 	
 }
