@@ -42,6 +42,7 @@ public class Consulta extends Fragment {
 	Boolean hayLista = false;
 	 OperacionRow weather_data[];
 	 PullToRefreshListView lv ;
+	 Serch  serch;
   @Override
   public void onActivityCreated(Bundle savedInstanceState) { 
 	  super.onActivityCreated(savedInstanceState);
@@ -50,7 +51,10 @@ public class Consulta extends Fragment {
   }
   public void onDestroy() {
 	  hayLista = false;
-      super.onDestroy();
+      
+	  serch.cancel(true);
+	  super.onDestroy();
+      
   }
   
   @Override
@@ -93,8 +97,8 @@ public class Consulta extends Fragment {
 		    @Override
 		    public void onRefresh() {
 		        // Do work to refresh the list here.
-		    	Serch consultas = new Serch();
-				  consultas.execute();
+		    
+				  serch.execute();
 				
 		    }
 		});
@@ -105,8 +109,8 @@ public class Consulta extends Fragment {
 	public void onResume() {
   	 
 	  if (!hayLista){
-		  Serch consultas = new Serch();
-		  consultas.execute();
+		   serch = new Serch();
+		   serch.execute();
 	  }else{
 		  WeatherAdapter adapter = new WeatherAdapter(getActivity(), R.layout.listview_item_row, weather_data);
 	        lv.setAdapter(adapter);
@@ -114,7 +118,6 @@ public class Consulta extends Fragment {
        super.onResume();
     
   }
-  
   
 
 
