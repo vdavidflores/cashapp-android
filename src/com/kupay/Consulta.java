@@ -231,7 +231,11 @@ public class Consulta extends Fragment {
 	        	break;
 	
 	        	case 2:
-	        	weather_data[i] =  new OperacionRow(R.drawable.compm, "Compra de "+polo+"$"+monto+"\n"+fecha+"\n"+concepto, concepto, idkey);
+	        		if(polo.equals("-")){
+	        			weather_data[i] =  new OperacionRow(R.drawable.compm, "Compra de "+polo+"$"+monto+"\n"+fecha+"\n"+concepto, concepto, idkey);
+	        		}else{
+	        			weather_data[i] =  new OperacionRow(R.drawable.compm, "Venta de "+polo+"$"+monto+"\n"+fecha+"\n"+concepto, concepto, idkey);
+	        		}
 	        	break;
 	        	case 3:
 	            	weather_data[i] =  new OperacionRow(R.drawable.tranm, "Transferencia de "+polo+"$"+monto+"\n"+fecha+"\n"+concepto, concepto, idkey);
