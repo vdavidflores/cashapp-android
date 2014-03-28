@@ -29,12 +29,16 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -55,9 +59,11 @@ public class Registro extends FragmentActivity {
 //	EditText nano;
 	Post registro;
 	 Button fechaNas;
+	 CheckBox terms;
 	static int diaNas;
 	static int mesNas;
 	static int anioNas;
+	private TextView temsTX;
 	private ProgressDialog progress;
 	
 	DatePickerDialog dpd;
@@ -84,7 +90,10 @@ public class Registro extends FragmentActivity {
   // nmes = (EditText) findViewById(R.id.nmes_registro);
   // nano = (EditText) findViewById(R.id.nano_registro);
    fechaNas = (Button) findViewById(R.id.buttonFecha);
-   
+   terms = (CheckBox) findViewById(R.id.checkBox1);
+   temsTX = (TextView) findViewById(R.id.termsTX);
+   temsTX.setText(Html.fromHtml("<a href='http://cashapp.mx/terminosyc.html#terminos'>Acepto los términos y condiciones</a>"));
+   temsTX.setMovementMethod(LinkMovementMethod.getInstance());
    registro = new Post();
    eventos();
    }
@@ -140,6 +149,10 @@ private void eventos(){
 								Log.v("registro", "5");
 								Toast.makeText(getApplicationContext(), "Mes incorrecto", Toast.LENGTH_LONG).show();			
 									
+							}
+							else if (!terms.isChecked()){
+								Log.v("registro", "5");
+								Toast.makeText(getApplicationContext(), "Acepta los terminos y condiciones", Toast.LENGTH_LONG).show();	
 							}
 							else {
 								

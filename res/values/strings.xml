@@ -302,5 +302,6 @@
     <string name="title_activity_retiro_spei">RetiroSpei</string>
     <string name="title_activity_operacion_qr">OperacionQR</string>
     <string name="title_activity_cobrar">Cobrar</string>
+    <string name="terminos">&lt;string name=&quot;txtCredits&quot;&gt;www.google.com&lt;/string&gt;</string>
 
 </resources>
