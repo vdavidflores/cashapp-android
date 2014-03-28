@@ -131,19 +131,6 @@ public class NuevaTarjeta extends Activity {
 			}
 		}, 2015, 2, 1);
 		dpd.show();
-				
-				
-				
-				/*new DatePickerDialog(this, new OnDateSetListener() {
-			
-			@Override
-			public void onDateSet(DatePicker view, int year, int monthOfYear,
-					int dayOfMonth) {
-				// TODO Auto-generated method stub
-				cambiarFechaBoton(Integer.toString(monthOfYear).toString()+"-"+Integer.toString(year));
-			}
-		}, 2015, 2, 1);*/
-		//dpd.show();
 	}
 	
 	public void cambiarFechaBoton(String fecha){
