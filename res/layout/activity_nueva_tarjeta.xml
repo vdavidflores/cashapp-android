@@ -179,38 +179,22 @@
 		    android:textAppearance="?android:attr/textAppearanceMedium" />
 
 	</LinearLayout>
+
     	<LinearLayout
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content" >
+    	    android:layout_width="match_parent"
+    	    android:layout_height="wrap_content"
+    	    android:gravity="center" >
 
-		<EditText
-		    android:id="@+id/mes"
-		    android:layout_width="60dp"
-		    android:layout_height="wrap_content"
-		    android:layout_marginLeft="15dp"
-		    android:layout_marginRight="10dp"
-		    
-		    android:ems="10"
-		     android:lines="1"
-            android:maxLength= "2"
-            android:hint="mm"
-		    android:inputType="number" />
+    	    <Button
+    	        android:id="@+id/fechabtn"
+    	        android:layout_width="200dp"
+    	        android:layout_height="40dp"
 
-		<EditText
-		    android:id="@+id/anio"
-		    android:layout_width="60dp"
-		    android:layout_height="wrap_content"
-		    android:layout_marginLeft="10dp"
-		    android:layout_marginRight="15dp"
-		    
-		   
-		     android:lines="1"
-            android:maxLength= "2"
-             android:hint="aa"
-		    android:ems="10"
-		    android:inputType="number" />
+    	        android:background="#fff"
+    	        android:text="Has click para seleccionar"
+    	        android:textColor="#c51f50" />
 
-	</LinearLayout>
+    	</LinearLayout>
 	
     <LinearLayout
 	    android:layout_width="match_parent"

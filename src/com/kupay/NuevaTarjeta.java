@@ -1,5 +1,9 @@
 package com.kupay;
 
+import java.lang.reflect.Field;
+import java.net.DatagramPacket;
+import java.text.DecimalFormat;
+
 import org.apache.http.ParseException;
 import org.apache.http.client.ClientProtocolException;
 import org.json.JSONException;
@@ -11,6 +15,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
+import android.app.DatePickerDialog.OnDateSetListener;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -26,6 +32,7 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -36,13 +43,15 @@ public class NuevaTarjeta extends Activity {
 	//Spinner spinner;
 	//Spinner paisSpiner;
 	private ProgressDialog progress;
-	EditText nombreTitular, numeroTarjeta, expMes, expAnio, cvv, nombreTarjeta;
+	EditText nombreTitular, numeroTarjeta, cvv, nombreTarjeta;
 
-	Button acepar, cancelar;
+	Button acepar, cancelar, fechaBtn;
 	
 	 int pin;
 	 String paises[];
 	 String  marcas[] = {"Visa","MasterCard",};
+	 String mes;
+	String anio;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,12 +62,12 @@ public class NuevaTarjeta extends Activity {
 		 //spinner = (Spinner) findViewById(R.id.spinner_marca);
 		 //paisSpiner = (Spinner) findViewById(R.id.spinner_pais);
 		
-		nombreTarjeta = (EditText) findViewById(R.id.nombre_tarjeta);
+		 nombreTarjeta = (EditText) findViewById(R.id.nombre_tarjeta);
 		 nombreTitular = (EditText) findViewById(R.id.titular_nombre);
 		 numeroTarjeta = (EditText) findViewById(R.id.tarjeta_numero);
-		 expMes = (EditText) findViewById(R.id.mes);
-		 expAnio = (EditText) findViewById(R.id.anio);
 		 cvv = (EditText) findViewById(R.id.cvv);
+		 fechaBtn = (Button) findViewById(R.id.fechabtn);
+		 
 	
 		
 		/* ArrayAdapter<String> LTRadapter = new ArrayAdapter<String>(this.getApplicationContext(), android.R.layout.simple_spinner_item, marcas);
@@ -92,22 +101,54 @@ public class NuevaTarjeta extends Activity {
 					
 				}
 			});
-		    
+		    fechaBtn.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					mostrarDialogoFecha();
+				}
+			});
 		
 	}
 
-	/*@Override
-	public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
-			long arg3) {
-		// TODO Auto-generated method stub
-		
+	private void mostrarDialogoFecha() {
+		DatePickerDialog dpd = customDatePicker(new OnDateSetListener() {
+			
+			@Override
+			public void onDateSet(DatePicker view, int year, int monthOfYear,
+					int dayOfMonth) {
+				// TODO Auto-generated method stub
+				
+				String presmes = Integer.toString(monthOfYear+1);
+				if(presmes.length() <2 ){
+					mes = "0"+presmes;
+				}else{
+					mes = presmes;
+				}
+				anio = Integer.toString(year).substring(2);
+				cambiarFechaBoton(mes.toString()+"-"+anio);
+			}
+		}, 2015, 2, 1);
+		dpd.show();
+				
+				
+				
+				/*new DatePickerDialog(this, new OnDateSetListener() {
+			
+			@Override
+			public void onDateSet(DatePicker view, int year, int monthOfYear,
+					int dayOfMonth) {
+				// TODO Auto-generated method stub
+				cambiarFechaBoton(Integer.toString(monthOfYear).toString()+"-"+Integer.toString(year));
+			}
+		}, 2015, 2, 1);*/
+		//dpd.show();
 	}
-
-	@Override
-	public void onNothingSelected(AdapterView<?> arg0) {
-		// TODO Auto-generated method stub
-		
-	}*/
+	
+	public void cambiarFechaBoton(String fecha){
+		fechaBtn.setText(fecha);
+	}
 	
 	private void pin(){
 		
@@ -165,11 +206,11 @@ public class NuevaTarjeta extends Activity {
 			
 			JSONObject data = new JSONObject();
 			try {
-    			
+				
 				data.put("numero_tarjeta", numeroTarjeta.getText().toString());
 				data.put("nombre_titular", nombreTitular.getText().toString());
-				data.put("exp_mes", expMes.getText().toString());
-				data.put("exp_anio", expAnio.getText().toString());
+				data.put("exp_mes",mes );
+				data.put("exp_anio", anio);
 				data.put("cvv", cvv.getText().toString());
 
 				
@@ -287,8 +328,6 @@ public class NuevaTarjeta extends Activity {
          Cursor reg = db.query("kupay",new String[]{"usr"},null,null,null,null,null,"1");
          if(reg.moveToFirst()){
              usr=reg.getString(0);
-            
-         
          }
          dbh.close();
  	 return usr;
@@ -308,4 +347,33 @@ public class NuevaTarjeta extends Activity {
 	 	 return usr;
 	     }
 
+	 
+	  private DatePickerDialog customDatePicker(DatePickerDialog.OnDateSetListener dpl, int mYear,int mMonth,int mDay) {
+	        DatePickerDialog dpd = new DatePickerDialog(this, dpl,
+	                mYear, mMonth, mDay);
+	        try {
+	            Field[] datePickerDialogFields = dpd.getClass().getDeclaredFields();
+	            for (Field datePickerDialogField : datePickerDialogFields) {
+	                if (datePickerDialogField.getName().equals("mDatePicker")) {
+	                    datePickerDialogField.setAccessible(true);
+	                    DatePicker datePicker = (DatePicker) datePickerDialogField
+	                            .get(dpd);
+	                    Field datePickerFields[] = datePickerDialogField.getType()
+	                            .getDeclaredFields();
+	                    for (Field datePickerField : datePickerFields) {
+	                        if ("mDayPicker".equals(datePickerField.getName())
+	                                || "mDaySpinner".equals(datePickerField
+	                                        .getName())) {
+	                            datePickerField.setAccessible(true);
+	                            Object dayPicker = new Object();
+	                            dayPicker = datePickerField.get(datePicker);
+	                            ((View) dayPicker).setVisibility(View.GONE);
+	                        }
+	                    }
+	                }
+	            }
+	        } catch (Exception ex) {
+	        }
+	        return dpd;
+	    }
 }
