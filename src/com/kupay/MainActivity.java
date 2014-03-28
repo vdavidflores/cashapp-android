@@ -39,6 +39,7 @@ public class MainActivity extends Fragment {
 	Button actCC;
 	Button navicon;
 	Activity actividad;
+	 ActualizarCC cc;
 	private boolean camaraCargada = false;
 	
 	private View mRoot;
@@ -62,7 +63,7 @@ public class MainActivity extends Fragment {
 		
 
 		 Eventos();
-		 ActualizarCC cc = new ActualizarCC(actividad);
+		 cc = new ActualizarCC(actividad);
 		 cc.execute();
 		 tabs();
 	    return mRoot;
@@ -128,6 +129,7 @@ public class MainActivity extends Fragment {
         if(camaraCargada){
 			fragment.stopCamera();
 			}
+        cc.cancel(true);
    super.onDestroy();
     }
 
