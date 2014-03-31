@@ -97,8 +97,9 @@ public class Consulta extends Fragment {
 		    @Override
 		    public void onRefresh() {
 		        // Do work to refresh the list here.
-		    
-				  serch.execute();
+		    		serch = new Serch();
+				 
+		    		serch.execute();
 				
 		    }
 		});
