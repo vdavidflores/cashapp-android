@@ -100,7 +100,7 @@ public class Retiro extends Fragment implements OnItemSelectedListener {
 				}
 			});
 		 
-		 String [] values = {"Tarjeta bancaria","SPEI"};
+		 String [] values = {"Tarjeta de débito","Cuenta de banco"};
 		 spinner = (Spinner) view.findViewById(R.id.spinnerR);
 		 ArrayAdapter<String> LTRadapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, values);
 		 LTRadapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);

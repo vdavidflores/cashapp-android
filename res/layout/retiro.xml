@@ -65,9 +65,8 @@
             android:paddingRight="20dp"
              android:paddingLeft="20dp"
              android:layout_gravity="bottom"
-            android:text="Cantidad Que deseas Retirar:"
+            android:text="Cantidad"
             android:textColor="#FFFFFF"
-            android:textSize="15dp"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
     </LinearLayout>
