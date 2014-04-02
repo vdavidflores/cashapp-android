@@ -80,7 +80,7 @@
             android:layout_marginRight="30dp"
             android:layout_weight="0.32"
             android:ems="9"
-            android:hint="producto o servico"
+            android:hint="producto o servicio"
             android:includeFontPadding="false"
             android:inputType="textEmailAddress"
            
@@ -92,15 +92,15 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="112dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center" >
 
         <Button
             android:id="@+id/enviar"
-            android:layout_width="109dip"
-            android:layout_height="79dip"
-            android:background="@drawable/benviar" />
+            android:layout_width="130dp"
+            android:layout_height="56dp"
+            android:background="@drawable/generarboton" />
 
     </LinearLayout>
 
