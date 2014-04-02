@@ -42,10 +42,7 @@ public class Deposito extends Fragment implements OnItemSelectedListener {
 	Post getBarCode;
 	Post abonoSpei;
 	int pin;
-	
-	
 	ProgressDialog progress;
-
 	@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
@@ -131,13 +128,12 @@ public class Deposito extends Fragment implements OnItemSelectedListener {
 				progress.dismiss();
 				try {
 					if(response.getString("RESULTADO").equals("EXITO")){
-						Toast.makeText(getActivity(), "Abono exitoso!", Toast.LENGTH_LONG).show();
+						DialogoDepositoExitoso();
 					}else if(response.getString("RESULTADO").equals("FALLA")){
 						Log.v("app", "error en mensaje");
 						JSONObject datos = response.getJSONObject("DATOS");
 						errorEnlaze(datos.getString("MENSAJE").toString());
-						
-						Toast.makeText(getActivity(), "Abono fallido!", Toast.LENGTH_LONG).show();
+					
 					}
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
@@ -181,10 +177,23 @@ public class Deposito extends Fragment implements OnItemSelectedListener {
 	public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
 			long arg3) {
 	}
-
 	@Override
 	public void onNothingSelected(AdapterView<?> arg0) {
 		Log.v("app", "nada seleccionado");
+	}
+	
+	private void DialogoDepositoExitoso(){
+		AlertDialog.Builder adb = new AlertDialog.Builder(this.getActivity());
+		adb.setTitle("Abono exitoso");
+		adb.setMessage("El abono de saldo con tu tarjeta ha sido realizado con éxito.\nPuedes confirmarlo en tu registro de movimientos.");
+		adb.setNeutralButton("Aceptar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+            	dialog.dismiss();
+            }
+        });
+		
+		AlertDialog ad = adb.create();
+		ad.show();
 	}
 	
 	private void mostrarDatosSpei(JSONObject datos) {
@@ -219,7 +228,7 @@ public class Deposito extends Fragment implements OnItemSelectedListener {
 		
 		AlertDialog.Builder adb = new AlertDialog.Builder(this.getActivity());
 		adb.setTitle("Confirma tu tarjeta");
-		adb.setMessage("Seguro que deseas abonar $"+cantidad.getText().toString()+" con la tarjeta '"+c.getString(1)+"'");
+		adb.setMessage("Deseas abonar $"+cantidad.getText().toString()+" con la tarjeta '"+c.getString(1)+"'\n(Aplica una comisión de $2.5 pesos)");
 		adb.setNeutralButton("Cancelar", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
             	dialog.dismiss();
@@ -276,7 +285,7 @@ public class Deposito extends Fragment implements OnItemSelectedListener {
 							startActivityForResult(intent, 450);
 						}else{
 							preguntaPagarConTarjeta(which);
-							Toast.makeText(getActivity(), "pagar con tarjeta id: "+(which-1), Toast.LENGTH_LONG).show();
+							//Toast.makeText(getActivity(), "pagar con tarjeta id: "+(which-1), Toast.LENGTH_LONG).show();
 						}
 					}
 				});
@@ -296,7 +305,7 @@ public class Deposito extends Fragment implements OnItemSelectedListener {
 	
 	private void procesarTarjeta(int indiceTarjeta) {
 		if (indiceTarjeta != -1){
-			progress = ProgressDialog.show(getActivity(), "Transaccion en proceso", "procesando tarjeta...");
+			progress = ProgressDialog.show(getActivity(), "Transacción en proceso", "procesando tarjeta...");
 			BDD dbh = new BDD(getActivity().getApplicationContext(),"kupay",null,1);
 	        SQLiteDatabase db= dbh.getWritableDatabase();
 	        Log.v("app", "tarjeta id: "+Integer.toString(indiceTarjeta));
@@ -416,7 +425,7 @@ public class Deposito extends Fragment implements OnItemSelectedListener {
             	 }
             else{ 
                  pin = Integer.parseInt(Password.getEditableText().toString()) ;
-                 progress = ProgressDialog.show(getActivity(), "Transacción en proceso", "Obteniendo codigo de barras...");
+                 progress = ProgressDialog.show(getActivity(), "Transacción en proceso", "Obteniendo código de barras...");
          		JSONObject dats = new JSONObject();
          		try {
          			dats.put("usr", MiUsuario());

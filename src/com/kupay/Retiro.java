@@ -62,7 +62,6 @@ public class Retiro extends Fragment implements OnItemSelectedListener {
 					if (spinner.getSelectedItemPosition() == 0){
 						listartarjetas();
 					}else if (spinner.getSelectedItemPosition() == 1){
-						Toast.makeText(getActivity(), "Proximamente", Toast.LENGTH_LONG).show();
 						Intent inT = new Intent(getActivity(),RetiroSpei.class);
 						inT.putExtra("monto", cantidad.getText().toString());
 						
@@ -84,13 +83,12 @@ public class Retiro extends Fragment implements OnItemSelectedListener {
 					progress.dismiss();
 					try {
 						if(response.getString("RESULTADO").equals("EXITO")){
-							Toast.makeText(getActivity(), "RETIRO exitoso!", Toast.LENGTH_LONG).show();
+							DialogoRetiroExitoso();
 						}else if(response.getString("RESULTADO").equals("FALLA")){
 							Log.v("app", "error en mensaje");
 							JSONObject datos = response.getJSONObject("DATOS");
 							errorEnlaze(datos.getString("MENSAJE").toString());
-							
-							Toast.makeText(getActivity(), "Abono fallido!", Toast.LENGTH_LONG).show();
+							//Toast.makeText(getActivity(), "Abono fallido!", Toast.LENGTH_LONG).show();
 						}
 					} catch (JSONException e) {
 						// TODO Auto-generated catch block
@@ -138,7 +136,7 @@ public class Retiro extends Fragment implements OnItemSelectedListener {
 	public void listartarjetas() {
 		AlertDialog.Builder builderSingle = new AlertDialog.Builder(
 				this.getActivity());
-		builderSingle.setTitle("Seecciona una tarjeta");
+		builderSingle.setTitle("Slecciona una tarjeta");
 		final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
 				this.getActivity(), android.R.layout.select_dialog_item);
 		arrayAdapter.add("+ NUEVA TARJETA");
@@ -194,7 +192,7 @@ public class Retiro extends Fragment implements OnItemSelectedListener {
 		
 		AlertDialog.Builder adb = new AlertDialog.Builder(this.getActivity());
 		adb.setTitle("Confirma tu tarjeta");
-		adb.setMessage("Seguro que deseas retirar $"+cantidad.getText().toString()+" con la tarjeta '"+c.getString(1)+"'");
+		adb.setMessage("Deseas retirar $"+cantidad.getText().toString()+" con la tarjeta '"+c.getString(1)+"'\n(Aplica una comisión de $8.0)");
 		adb.setNeutralButton("Cancelar", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
             	dialog.dismiss();
@@ -255,7 +253,7 @@ private void pinYtarjeta(final int Tarjetaid){
 	
 private void procesarTarjeta(int indiceTarjeta) {
 	if (indiceTarjeta != -1){
-		progress = ProgressDialog.show(getActivity(), "Transaccion en proceso", "procesando tarjeta...");
+		progress = ProgressDialog.show(getActivity(), "Transacción en proceso", "Procesando tarjeta...");
 		BDD dbh = new BDD(getActivity().getApplicationContext(),"kupay",null,1);
         SQLiteDatabase db= dbh.getWritableDatabase();
         Log.v("app", "tarjeta id: "+Integer.toString(indiceTarjeta));
@@ -343,6 +341,20 @@ private String MiUsuario(){
 		ad.show();
 	}
 	
+	private void DialogoRetiroExitoso(){
+		AlertDialog.Builder adb = new AlertDialog.Builder(this.getActivity());
+		adb.setTitle("Retiro exitoso");
+		adb.setMessage("El retiro de saldo a tu tarjeta ha sido realizado con éxito.\nPuedes confirmarlo en tu registro de movimientos, pero toma en cuenta que esto podría demorar un tiempo en verse reflejado");
+		adb.setNeutralButton("Aceptar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+            	dialog.dismiss();
+            }
+        });
+		
+		AlertDialog ad = adb.create();
+		ad.show();
+	}
+   
 }
 
 
