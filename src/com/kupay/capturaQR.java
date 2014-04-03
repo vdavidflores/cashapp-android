@@ -405,7 +405,7 @@ public class capturaQR extends DecoderActivity  {
 
 				@Override
 		         protected void onPreExecute() {
-					progress = ProgressDialog.show(getActivity(), "Transaccion en proceso", "procesando transacción...");
+					progress = ProgressDialog.show(getActivity(), "Transacción en proceso", "procesando transacción...");
 					
 		          }
 		         
@@ -546,7 +546,7 @@ public class capturaQR extends DecoderActivity  {
 					}
 		    		AlertDialog.Builder builder_ = new AlertDialog.Builder(getActivity());	
 		    		builder_.setIcon(R.drawable.ku72);
-		    		builder_.setTitle("Tranaccion no realizada");
+		    		builder_.setTitle("Transacción no realizada");
 		    		
 		    		if (USUARIO_INVALIDO.toString().equals(causaFalla)){
 		    			builder_.setMessage("EL usuario ingresado es invalido");
