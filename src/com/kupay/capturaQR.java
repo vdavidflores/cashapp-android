@@ -33,7 +33,9 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +44,8 @@ public class capturaQR extends DecoderActivity  {
 
 	int pin;
 	String qr;
+	String datosExta = "";
+	Boolean aDomicilio = false;
 	private AlertDialog dialog;
 
 		   private static final String TAG = "app";
@@ -206,15 +210,37 @@ public class capturaQR extends DecoderActivity  {
 		        private void operacionActiva(JSONObject datos) {
 		        	
 		        	AlertDialog.Builder builder_ = new AlertDialog.Builder(getActivity());
+		        	final EditText emailOtel = new EditText(getActivity());
+					final EditText direccion = new EditText(getActivity());
+					
 					try {
 						if (CARGO_A_QUIEN_DETECTA.toString().equals(datos.getString("TIPO").toString())){
 							builder_.setTitle("Cargo");
 							builder_.setMessage("Monto a pagar: $"+datos.getString("MONTO")+" \n"+
 							"Concepto: "+datos.getString("CONCEPTO"));
+							aDomicilio = false;
 						}else if (ABONO_A_QUIEN_DETECTA.toString().equals(datos.getString("TIPO").toString())){
 							builder_.setTitle("Abono");
 							builder_.setMessage("Monto a ingresar: "+datos.getString("MONTO")+" \n"+
 							"Concepto: "+datos.getString("CONCEPTO"));
+							aDomicilio = false;
+						}else if (datos.getString("TIPO").equals("VENTA_A_DOMICILIO")){
+							aDomicilio = true;
+							builder_.setTitle("Venta a domicilio");
+							builder_.setMessage("Monto a pagar: $"+datos.getString("MONTO")+" \n"+
+							"Concepto: "+datos.getString("CONCEPTO")+"\n\nAviso:\nEs importante que proporciones un email de contacto o teléfono asi como tu dirección y datos suficientes para que el vendedor pueda hacerte llegar tu producto/servicio.");
+							
+							LinearLayout lila1= new LinearLayout(getActivity());
+							lila1.setOrientation(LinearLayout.VERTICAL);
+							lila1.setGravity(Gravity.CENTER);
+							lila1.addView(emailOtel);
+							lila1.addView(direccion);
+				    		emailOtel.setHint("Teléfono o email de contacto");
+				    		
+				    		direccion.setHint("Dirección y datos para la entrega");
+				    		direccion.setWidth(200);
+				    		emailOtel.setWidth(200);
+				    		builder_.setView(lila1);
 						}
 					} catch (JSONException e) {
 						// TODO Auto-generated catch block
@@ -224,7 +250,17 @@ public class capturaQR extends DecoderActivity  {
 						@Override
 						public void onClick(DialogInterface dialog,
 								int which) {
-							pin();
+							if (!aDomicilio ){
+								pin();
+							}else{
+								if (!emailOtel.getText().toString().equals("")&&!direccion.getText().toString().equals("")){
+									pin();
+									datosExta = "Contacto: "+emailOtel.getText().toString()+" Direccion:"+direccion.getText().toString();
+								}else{
+									restartCam();
+									Toast.makeText(getActivity(), "Faltan datos de contacto y entrega", Toast.LENGTH_LONG).show();
+								}
+							}
 						}
 					});
 					builder_.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -381,6 +417,7 @@ public class capturaQR extends DecoderActivity  {
 		    			data.put("imei", MiImei());
 		    			data.put("pin", pin);
 		    			data.put("qr", qr);
+		    			data.put("extra", datosExta);
 		    			
 		    			} catch (JSONException e) {
 		    				// TODO Auto-generated catch block
@@ -422,7 +459,7 @@ public class capturaQR extends DecoderActivity  {
 		        	try {
 					 String resultado = response.getString("RESULTADO");
 					 datos = response.getJSONObject("DATOS");
-		      		if (TRANSACCION_EXITOSA.toString().equals(resultado) ){
+		      		if (resultado.equals("EXITO") ){
 		      	       Log.v("app", "pst-2");
 		  				Log.v("app","Datos: "+ datos.toString());
 		  				//cc = (TextView) getActivity().findViewById(R.id.cantidad);
@@ -432,7 +469,7 @@ public class capturaQR extends DecoderActivity  {
 		  				builder.setTitle("Transacción exitosa");
 		  				
 		  				TextView publicidad = new TextView(getActivity());
-		  				publicidad.setText("Publicidad KUPAY \n"+
+		  				publicidad.setText("Publicidad\n"+
 		  				"Espacio reservado para publicidad dirigida");
 		  				publicidad.setTextSize(14);
 		  				publicidad.setGravity(Gravity.CENTER);
@@ -475,18 +512,16 @@ public class capturaQR extends DecoderActivity  {
 		  				
 
 		  				
-		      		}else if(TRANSACCION_FALLIDA.toString().equals(resultado)||resultado.equals("OPERACION_FALLIDA")){
+		      		}else if(resultado.equals("FALLA")){
 		      	       Log.v("app", "pst-3");
 		      			
 		      			Log.v("app", "pst-4");
-		      			if (datos.has("CAUSA_FALLA")){
-		      			transaccionFallida(datos.getString("CAUSA_FALLA").toString());
-		      			} else if (datos.has("CAUSA")) {
-		      				transaccionFallida(datos.getString("CAUSA").toString());
+		      			if (datos.has("CAUSA_FALLA") || datos.has("CAUSA")){
+		      				transaccionFallida(datos);
 						} else {
 							 Toast mensaje=Toast.makeText(getActivity(), "error desconosido", Toast.LENGTH_LONG);
-			                  mensaje.show();
-			                  restartCam();
+			                 mensaje.show();
+			                 restartCam();
 						}
 		      		}else{
 		      			int duracion=Toast.LENGTH_SHORT;
@@ -500,8 +535,15 @@ public class capturaQR extends DecoderActivity  {
 					}
 		        }
 		        
-		    	private void transaccionFallida(String causaFalla){
+		    	private void transaccionFallida(JSONObject datos){
 		    		
+		    		String causaFalla = null;
+					try {
+						causaFalla = datos.getString("CAUSA_FALLA").toString();
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 		    		AlertDialog.Builder builder_ = new AlertDialog.Builder(getActivity());	
 		    		builder_.setIcon(R.drawable.ku72);
 		    		builder_.setTitle("Tranaccion no realizada");
@@ -511,8 +553,17 @@ public class capturaQR extends DecoderActivity  {
 		    		}else if(FONDOS_INUFICIENTES.toString().equals(causaFalla)){
 		    			builder_.setMessage("No dipones de saldo suficiente para realizar esta transacción");
 		    		}else{
-		    			builder_.setMessage("Error desconocido, intenta nuevamente mas tarde o contacta a tu acesor Ku-pay" +
-		    					" al 01800-222-359-9661");
+		    		  if (datos.has("MENSAJE")) {
+		    			  try {
+							builder_.setMessage(datos.getString("MENSAJE"));
+						} catch (JSONException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+		    		  }else {
+		    		  
+		    			builder_.setMessage("Error desconocido, intenta nuevamente mas tarde o contactanos en contacto@codigoku.com");
+		    		  }
 		    		}
 		    		
 		        	builder_.setNeutralButton("Aceptar", new DialogInterface.OnClickListener() {
