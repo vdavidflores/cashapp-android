@@ -42,7 +42,6 @@ import android.widget.Toast;
 public class MainActivity extends Fragment {
 	ProgressDialog	progress;
 	TabHost mTabHost;
-	Button actCC;
 	Button navicon;
 	Activity actividad;
 	 ActualizarCC cc;
@@ -65,7 +64,6 @@ public class MainActivity extends Fragment {
 		Log.v("app", "1");
 		  mTabHost = (TabHost) mRoot.findViewById (android.R.id.tabhost);
 		  mTabHost.setup();
-		  actCC = (Button)  mRoot.findViewById(R.id.actCC); 
 		  navicon = (Button)  mRoot.findViewById(R.id.navicon);
 		
 
@@ -144,20 +142,6 @@ public class MainActivity extends Fragment {
 			}
 		});
         
-      actCC.setOnClickListener(new OnClickListener() {
-          public void onClick(View view) { 
-        	  Log.v("app", "actualizar cc..");
-        	  ActualizarCC cc = new ActualizarCC(actividad);
-        	 cc.execute();
-        	 
-        	 
-        	 int duracion=Toast.LENGTH_SHORT;
-             Toast mensaje=Toast.makeText(getActivity(), "¡Saldo Actualizado!", duracion);
-             mensaje.show();
-             mensaje.setGravity(Gravity.TOP|Gravity.RIGHT, 0, 0);
-        	 
-        	 
-          }} );
       
       
       navicon.setOnClickListener(new OnClickListener() {
