@@ -4,12 +4,18 @@ package com.kupay;
 
 
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+import com.kupay.Post.OnResponseAsync;
 
 
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -40,6 +46,7 @@ public class MainActivity extends Fragment {
 	Button navicon;
 	Activity actividad;
 	 ActualizarCC cc;
+	 Post monitorCC;
 	private boolean camaraCargada = false;
 	
 	private View mRoot;
@@ -62,9 +69,14 @@ public class MainActivity extends Fragment {
 		  navicon = (Button)  mRoot.findViewById(R.id.navicon);
 		
 
-		 Eventos();
-		 cc = new ActualizarCC(actividad);
+		
+		 /*cc = new ActualizarCC(actividad);
 		 cc.execute();
+		 */
+		 monitorCC = new Post();
+
+		  Eventos();
+		 
 		 tabs();
 	    return mRoot;
 	  }
@@ -73,6 +85,64 @@ public class MainActivity extends Fragment {
 	
     public void Eventos(){
    //cambia el estado        
+    	
+    	
+    	monitorCC.setOnResponseAsync(new OnResponseAsync() {
+			
+			@Override
+			public void onResponseAsync(JSONObject response) {
+				// TODO Auto-generated method stub
+				
+				try {
+			    	//	progress.dismiss();
+						 String resultado = response.getString("RESULTADO");
+						Log.v("app","RESult: "+ resultado.toString());
+						JSONObject datos = response.getJSONObject("DATOS");
+			     		if (resultado.equals("ACTUALIZACION_CC_EXITOSA") ){
+			     			
+			     			
+			 				Log.v("app","Datos: "+ datos.toString());
+			 				TextView cc = (TextView) getActivity().findViewById(R.id.cantidad);
+			 				cc.setText("$"+Double.toString(datos.getDouble("SALDO")));
+			 				//AnimaSaldo actcc = new AnimaSaldo(context);
+			 				//actcc.equals(datos.getInt("SALDO"));
+			 				
+			     		}else if(resultado.equals("ACTUALIZACION_CC_FALLIDA")){
+			     			Log.v("app", "Actulaizacion fallida");
+			     			int duracion=Toast.LENGTH_SHORT;
+			                Toast mensaje=Toast.makeText(getActivity(), "error en actualización", duracion);
+			                mensaje.show();
+			     		}else if(resultado.equals("CONEXION_FALLIDA")){
+			     			Log.v("app", "Conexion fallida");
+			     			int duracion=Toast.LENGTH_SHORT;
+			                Toast mensaje=Toast.makeText(getActivity(), "error en conexion", duracion);
+			                mensaje.show();
+			     		}else{
+			     			Log.v("app", "Error desconosido");
+			     			int duracion=Toast.LENGTH_SHORT;
+			                 Toast mensaje=Toast.makeText(getActivity(), "error desconosido", duracion);
+			                 mensaje.show();
+			     		}
+			       	} catch (JSONException e) {
+							// TODO Auto-generated catch block
+							
+							}
+				
+				
+				
+				
+				  JSONObject data = new JSONObject();
+				  try {
+					data.put("emisor", MiUsuario());
+					data.put("imei", MiImei());
+					monitorCC.setData(5, data);
+					monitorCC.execAsync(getActivity());
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
         
       actCC.setOnClickListener(new OnClickListener() {
           public void onClick(View view) { 
@@ -114,22 +184,46 @@ public class MainActivity extends Fragment {
 		.replace(R.id.tab_2, new transferencia(), "transferir")
 		.commit();
 		mTabHost.setCurrentTab(1);
+		
+		
+		
 	}
     
     @Override
     public void onPause(){
+    	monitorCC.stopAsync();
     	super.onPause();
+    }
+    
+    @Override
+    public void onResume(){
+    	JSONObject data = new JSONObject();
+		  try {
+			data.put("emisor", MiUsuario());
+			data.put("imei", MiImei());
+			
+			monitorCC.setData(5, data);
+			Log.v("app", "2");
+			monitorCC.execAsync(getActivity().getApplicationContext());
+			Log.v("app", "3-a");
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		  
+		  super.onResume();
     }
   
     @Override
     public void onDestroy() {
-        
+    	
         Log.v("app", " MAIN ACTIVITIE onDestroy()");
+        monitorCC.stopAsync();
         capturaQR fragment = (capturaQR) getFragmentManager().findFragmentById(R.id.tab_1);
         if(camaraCargada){
 			fragment.stopCamera();
 			}
-        cc.cancel(true);
+        //cc.cancel(true);
    super.onDestroy();
     }
 
@@ -266,6 +360,30 @@ public class MainActivity extends Fragment {
 	///////////////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////////
 
-	
+	private String MiUsuario(){
+    	String usr = null;
+        BDD dbh = new BDD(getActivity(),"kupay",null,1);
+        SQLiteDatabase db= dbh.getReadableDatabase();
+        Cursor reg = db.query("kupay",new String[]{"usr"},null,null,null,null,null,"1");
+        if(reg.moveToFirst()){
+            usr=reg.getString(0);
+           
+        
+        }
+	 return usr;
+    }
+    
+    private String MiImei(){
+    	String imei = null;
+        BDD dbh = new BDD(getActivity(),"kupay",null,1);
+        SQLiteDatabase db= dbh.getReadableDatabase();
+        Cursor reg = db.query("kupay",new String[]{"imei"},null,null,null,null,null,"1");
+        if(reg.moveToFirst()){
+            imei=reg.getString(0);
+           
+        
+        }
+	 return imei;
+    }
 
 }
