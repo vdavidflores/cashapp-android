@@ -254,6 +254,9 @@ public class Consulta extends Fragment {
 	        	case 7:
 	            	weather_data[i] =  new OperacionRow(R.drawable.compm, "Retiro de "+polo+"$"+monto+"\n"+fecha+"\n"+concepto, concepto, idkey);
 	            break;
+	        	case 8:
+	            	weather_data[i] =  new OperacionRow(R.drawable.compm, "Comisión de "+polo+"$"+monto+"\n"+fecha+"\n"+concepto, concepto, idkey);
+	            break;
 	        	default:
 	        	weather_data[i] =  new OperacionRow(R.drawable.mdm, "Movimiento desconocido "+polo+"$"+monto+"\n"+fecha+"\n"+concepto, concepto, idkey);
 	        	break;
