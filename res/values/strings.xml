@@ -46,7 +46,7 @@
         <item>España</item>
     </string-array>
 
-    <string name="fpago">forma de pago</string>
+    <string name="fpago">Forma de pago</string>
 
     <string-array name="formas_pago">
         <item>OXXO</item>
