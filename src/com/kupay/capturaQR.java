@@ -516,9 +516,11 @@ public class capturaQR extends DecoderActivity  {
 		      	       Log.v("app", "pst-3");
 		      			
 		      			Log.v("app", "pst-4");
-		      			if (datos.has("CAUSA_FALLA") || datos.has("CAUSA")){
+		      			if (datos.has("CAUSA_FALLA")){
 		      				transaccionFallida(datos);
-						} else {
+		      			} else if (datos.has("CAUSA")) {
+		      				transaccionFallida(datos);
+						}  else {
 							 Toast mensaje=Toast.makeText(getActivity(), "error desconosido", Toast.LENGTH_LONG);
 			                 mensaje.show();
 			                 restartCam();
@@ -561,7 +563,6 @@ public class capturaQR extends DecoderActivity  {
 							e.printStackTrace();
 						}
 		    		  }else {
-		    		  
 		    			builder_.setMessage("Error desconocido, intenta nuevamente mas tarde o contactanos en contacto@codigoku.com");
 		    		  }
 		    		}
