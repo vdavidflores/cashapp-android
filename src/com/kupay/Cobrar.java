@@ -96,10 +96,10 @@ private void eventos() {
 					in.putExtra("OPERACION", datos.getString("OPERACION").toString());
 					startActivity(in);
 					
-				}else{
+				}else if (resultado.equals("FALLA")){
 					AlertDialog.Builder adb = new AlertDialog.Builder(getActivity());
 					adb.setTitle("Error al crear el cargo");
-					adb.setMessage("Lo sentimos.\nNo se ha creado tu cargo, verifica tu conexión e intenta nuevamente");
+					adb.setMessage(datos.getString("MENSAJE").toString());
 					adb.setNeutralButton("Acepar", null);
 					AlertDialog ad = adb.create();
 					ad.show();
