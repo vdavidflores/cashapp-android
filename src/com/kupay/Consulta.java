@@ -13,6 +13,7 @@ import org.json.JSONObject;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -28,10 +29,13 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
+
+import com.kupay.Post.OnResponseAsync;
 import com.markupartist.android.widget.PullToRefreshListView;
 import com.markupartist.android.widget.PullToRefreshListView.OnRefreshListener;
 
@@ -43,6 +47,9 @@ public class Consulta extends Fragment {
 	 OperacionRow weather_data[];
 	 PullToRefreshListView lv ;
 	 Serch  serch;
+	 Post facturar;
+	 ProgressDialog facturando;
+	 String op;
   @Override
   public void onActivityCreated(Bundle savedInstanceState) { 
 	  super.onActivityCreated(savedInstanceState);
@@ -62,9 +69,43 @@ public class Consulta extends Fragment {
 			Bundle savedInstanceState) {
 		View c = View.inflate(getActivity().getApplicationContext(), R.layout.consulta_listview,null);
 		lv = (PullToRefreshListView) c.findViewById(R.id.listView1);
+		facturar = new Post();
+		facturar.setOnResponseAsync(new OnResponseAsync() {
+			
+			@Override
+			public void onResponseAsync(JSONObject response) {
+				// TODO Auto-generated method stub
+				facturando.dismiss();
+				String resultado;
+				try {
+					resultado = response.getString("RESULTADO");
+				
+				JSONObject datos = response.getJSONObject("DATOS");
+					if (resultado.equals("EXITO")){
+						AlertDialog.Builder adb = new AlertDialog.Builder(getActivity());
+						adb.setTitle("Exito");
+						adb.setMessage(datos.getString("MENSAJE").toString());
+						adb.setNeutralButton("Acepar", null);
+						AlertDialog ad = adb.create();
+						ad.show();				
+					}else if (resultado.equals("FALLA")){
+						AlertDialog.Builder adb = new AlertDialog.Builder(getActivity());
+						adb.setTitle("Error");
+						adb.setMessage(datos.getString("MENSAJE").toString());
+						adb.setNeutralButton("Acepar", null);
+						AlertDialog ad = adb.create();
+						ad.show();
+					}
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+		
 		lv.setOnItemClickListener(new OnItemClickListener() {
 			@Override
-			public void onItemClick(AdapterView<?>parent, View v, int position, long id) {			
+			public void onItemClick(AdapterView<?>parent, View v, int position, final long id) {			
 				// TODO Auto-generated method stub
 				
 				TextView myView = new TextView(getActivity().getApplicationContext());
@@ -78,15 +119,23 @@ public class Consulta extends Fragment {
 				    alert.setView(myView);
 				    alert.setMessage("Concepto: "+weather_data[(int)id].concepto);
 				  
-				    alert.setPositiveButton("OK",
+				    alert.setNeutralButton("OK",
 				            new DialogInterface.OnClickListener() {
 				                @Override
 				                public void onClick(DialogInterface dialog, int which) {
-				                    // TODO Auto-generated method stub
-
 				                    dialog.dismiss();
 				                }
 				            });
+				   
+						 alert.setPositiveButton("Solicitar factura", new DialogInterface.OnClickListener() {
+							
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								// TODO Auto-generated method stub
+							pedirFactura(weather_data[(int)id].idkey);
+							
+							}
+						});
 
 				    alert.show();		
 			}
@@ -106,6 +155,57 @@ public class Consulta extends Fragment {
 		
 		return c;
   }
+  
+  
+  private void  pedirFactura(String op_) {
+	  
+	  
+	  this.op = op_;
+	  
+	  AlertDialog.Builder ad = new AlertDialog.Builder(getActivity());
+	  
+	  final EditText datos = new EditText(getActivity());
+		
+		ad.setView(datos);
+		datos.setGravity(Gravity.CENTER);
+		datos.setHint("Nombre,RFC, Dirección, etc.");
+		datos.setWidth(200);
+	  ad.setTitle("Datos fiscales");
+	  ad.setMessage("Ingresa tus datos fiscales");
+	  ad.setNeutralButton("Cancelar", null);
+	  ad.setPositiveButton("Aceptar", new OnClickListener() {
+		
+		@Override
+		public void onClick(DialogInterface dialog, int which) {
+			// TODO Auto-generated method stub
+			
+			JSONObject data = new JSONObject();
+			if (!datos.getText().toString().equals("")){
+				try {
+					data.put("oper", op);
+					data.put("imei",MiImei());
+					data.put("datos", datos.getText().toString());
+					data.put("usr", MiUsuario());
+				
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				facturar.setData(24, data);
+				facturar.execAsync(getActivity());
+				facturando = ProgressDialog.show(getActivity(), "Facturando", "Procesando factura");
+			}else{
+				Toast.makeText(getActivity(), "Datos fiscales no ingrasados", Toast.LENGTH_LONG).show();
+			}
+		}
+	});
+	  AlertDialog alert = ad.create();
+	  alert.show();
+	  
+		
+	
+}
+  
   @Override
 	public void onResume() {
   	 
@@ -255,7 +355,14 @@ public class Consulta extends Fragment {
 	            	weather_data[i] =  new OperacionRow(R.drawable.compm, "Retiro de "+polo+"$"+monto+"\n"+fecha+"\n"+concepto, concepto, idkey);
 	            break;
 	        	case 8:
-	            	weather_data[i] =  new OperacionRow(R.drawable.compm, "Comisión de "+polo+"$"+monto+"\n"+fecha+"\n"+concepto, concepto, idkey);
+	        		if(polo.equals("-")){
+	        			weather_data[i] =  new OperacionRow(R.drawable.compm, "Compra (dom) de "+polo+"$"+monto+"\n"+fecha+"\n"+concepto, concepto, idkey);
+	        		}else{
+	        			weather_data[i] =  new OperacionRow(R.drawable.compm, "Venta (dom) de "+polo+"$"+monto+"\n"+fecha+"\n"+concepto, concepto, idkey);
+	        		}
+	        	break;
+	        	case 9:
+	            	weather_data[i] =  new OperacionRow(R.drawable.compm, "Comición de "+polo+"$"+monto+"\n"+fecha+"\n"+concepto, concepto, idkey);
 	            break;
 	        	default:
 	        	weather_data[i] =  new OperacionRow(R.drawable.mdm, "Movimiento desconocido "+polo+"$"+monto+"\n"+fecha+"\n"+concepto, concepto, idkey);
@@ -273,29 +380,29 @@ public class Consulta extends Fragment {
 	        }
        lv.onRefreshComplete();
       }
-      private String MiUsuario(){
-      	String usr = null;
-          BDD dbh = new BDD(getActivity(),"kupay",null,1);
-          SQLiteDatabase db= dbh.getReadableDatabase();
-          Cursor reg = db.query("kupay",new String[]{"usr"},null,null,null,null,null,"1");
-          if(reg.moveToFirst()){
-              usr=reg.getString(0);   
-          }
-  	 return usr;
-      }
-      private String MiImei(){
-      	String imei = null;
-          BDD dbh = new BDD(getActivity(),"kupay",null,1);
-          SQLiteDatabase db= dbh.getReadableDatabase();
-          Cursor reg = db.query("kupay",new String[]{"imei"},null,null,null,null,null,"1");
-          if(reg.moveToFirst()){
-              imei=reg.getString(0);
-             
-          
-          }
-  	 return imei;
-      }
+
   }
-  
+  private String MiUsuario(){
+    	String usr = null;
+        BDD dbh = new BDD(getActivity(),"kupay",null,1);
+        SQLiteDatabase db= dbh.getReadableDatabase();
+        Cursor reg = db.query("kupay",new String[]{"usr"},null,null,null,null,null,"1");
+        if(reg.moveToFirst()){
+            usr=reg.getString(0);   
+        }
+	 return usr;
+    }
+    private String MiImei(){
+    	String imei = null;
+        BDD dbh = new BDD(getActivity(),"kupay",null,1);
+        SQLiteDatabase db= dbh.getReadableDatabase();
+        Cursor reg = db.query("kupay",new String[]{"imei"},null,null,null,null,null,"1");
+        if(reg.moveToFirst()){
+            imei=reg.getString(0);
+           
+        
+        }
+	 return imei;
+    }
 } 
 
