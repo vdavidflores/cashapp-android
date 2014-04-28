@@ -69,7 +69,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="18dp"
-            android:text="El Código de acceso es una clave dinámica para acceder a los servicios Cashapp fuera de tu móvil, cambia cada que es generada, así que cada vez que se requiera se tendrá que generar una nueva."
+            android:text="El Código de acceso es una clave dinámica para acceder a los servicios Cashapp fuera de tu móvil, así que cada vez que se requiera se tendrá que generar una nueva."
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="#FFFFFF" />
 

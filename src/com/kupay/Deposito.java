@@ -160,7 +160,7 @@ public class Deposito extends Fragment implements OnItemSelectedListener {
 						JSONObject datos = response.getJSONObject("DATOS");
 						errorEnlaze(datos.getString("MENSAJE").toString());
 						
-						Toast.makeText(getActivity(), "Abono fallido!", Toast.LENGTH_LONG).show();
+						Toast.makeText(getActivity(), "Depósito fallido!", Toast.LENGTH_LONG).show();
 					}
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
@@ -184,8 +184,8 @@ public class Deposito extends Fragment implements OnItemSelectedListener {
 	
 	private void DialogoDepositoExitoso(){
 		AlertDialog.Builder adb = new AlertDialog.Builder(this.getActivity());
-		adb.setTitle("Abono exitoso");
-		adb.setMessage("El abono de saldo con tu tarjeta ha sido realizado con éxito.\nPuedes confirmarlo en tu registro de movimientos.");
+		adb.setTitle("Depósito exitoso");
+		adb.setMessage("El depósito de saldo con tu tarjeta ha sido realizado con éxito.\nPuedes confirmarlo en tu registro de movimientos.");
 		adb.setNeutralButton("Aceptar", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
             	dialog.dismiss();
@@ -247,7 +247,7 @@ public class Deposito extends Fragment implements OnItemSelectedListener {
 	public void listartarjetas() {
 		AlertDialog.Builder builderSingle = new AlertDialog.Builder(
 				this.getActivity());
-		builderSingle.setTitle("Seecciona una tarjeta");
+		builderSingle.setTitle("Selecciona una tarjeta");
 		final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
 				this.getActivity(), android.R.layout.select_dialog_item);
 		arrayAdapter.add("+ NUEVA TARJETA");

@@ -152,7 +152,7 @@
         <Button
             android:id="@+id/enviar"
             android:layout_width="109dip"
-            android:layout_height="79dip"
+            android:layout_height="74dip"
             android:background="@drawable/benviar" />
 
     </LinearLayout>

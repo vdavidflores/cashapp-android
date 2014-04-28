@@ -84,14 +84,17 @@ class ActualizarCC extends AsyncTask<Void, Integer, JSONObject>{
  				//actcc.equals(datos.getInt("SALDO"));
  				
      		}else if(ACTUALIZACION_CC_FALLIDA.toString().equals(resultado)){
+     			Log.v("app", "Actulaizacion fallida");
      			int duracion=Toast.LENGTH_SHORT;
                 Toast mensaje=Toast.makeText(context, "error en actualización", duracion);
                 mensaje.show();
      		}else if(CONEXION_FALLIDA.toString().equals(resultado)){
+     			Log.v("app", "Conexion fallida");
      			int duracion=Toast.LENGTH_SHORT;
                 Toast mensaje=Toast.makeText(context, "error en conexion", duracion);
                 mensaje.show();
      		}else{
+     			Log.v("app", "Error desconosido");
      			int duracion=Toast.LENGTH_SHORT;
                  Toast mensaje=Toast.makeText(context, "error desconosido", duracion);
                  mensaje.show();

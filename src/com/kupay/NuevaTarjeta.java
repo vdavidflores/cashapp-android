@@ -293,7 +293,7 @@ public class NuevaTarjeta extends Activity {
 	private void  errorMSJ(String mensaje) {
 		AlertDialog.Builder builder_ = new AlertDialog.Builder(this);	
 		builder_.setIcon(R.drawable.ku72);
-		builder_.setTitle("No se registro la tarjeta");
+		builder_.setTitle("No se registró la tarjeta");
 		
 				builder_.setMessage(mensaje);
 		

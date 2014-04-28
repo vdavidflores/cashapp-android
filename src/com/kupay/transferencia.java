@@ -86,7 +86,7 @@ public class transferencia extends Fragment{
             			 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                  		builder.setIcon(R.drawable.ku72);
                  		builder.setTitle("Transferencia");
-                 		builder.setMessage("Deseas transferir $"+cantidad.getText()+" a "+para.getText());
+                 		builder.setMessage("Deseas transferir $"+cantidad.getText()+" a;\n"+para.getText());
                  		builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                  			
                              public void onClick(DialogInterface dialog, int id) {
@@ -113,7 +113,7 @@ public class transferencia extends Fragment{
             		 
             		 
             	 }else {
-					Toast.makeText(getActivity(), "email invalido", Toast.LENGTH_LONG).show();
+					Toast.makeText(getActivity(), "email inválido", Toast.LENGTH_LONG).show();
 					cantidad.setBackgroundColor(Color.WHITE);
 					para.requestFocus();
 					para.setBackgroundColor(Color.YELLOW);

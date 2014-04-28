@@ -106,7 +106,7 @@ public class Enlazar extends Activity {
     private void  errorEnvio(String mensaje) {
     	AlertDialog.Builder builder_ = new AlertDialog.Builder(this);	
 		builder_.setIcon(R.drawable.ku72);
-		builder_.setTitle("Imposible enviar llave de acceso");
+		builder_.setTitle("Imposible enviar Código de Acceso");
 		builder_.setMessage(mensaje);
 		
 		builder_.setNeutralButton("Aceptar", null);
@@ -118,7 +118,7 @@ public class Enlazar extends Activity {
     private void  preguntaEnvio() {
     	AlertDialog.Builder builder_ = new AlertDialog.Builder(this);	
 		builder_.setIcon(R.drawable.ku72);
-		builder_.setTitle("Enviar llave de acceso");
+		builder_.setTitle("Enviar Código de Acceso");
 		builder_.setMessage("Deseas enviar un nuevo código de acceso a "+correo.getEditableText().toString());
 		builder_.setNegativeButton("Cancelar", new OnClickListener() {
 			
@@ -135,7 +135,7 @@ public class Enlazar extends Activity {
 				// TODO Auto-generated method stub
 				//enviarBtn.setActivated(false);	
 				JSONObject datallave = new JSONObject();
-				progress = ProgressDialog.show(Enlazar.this, "Enviando", "Se esta enviando un nuevo código de acceso.");
+				progress = ProgressDialog.show(Enlazar.this, "Enviando", "Se está enviando un nuevo Código de Acceso.");
 				try {
 					datallave.put("usr", correo.getText().toString());
 					enviarLlave.setData(15, datallave);
@@ -162,7 +162,7 @@ public class Enlazar extends Activity {
 			try {
 				if(response.getString("RESULTADO").equals("EXITO")){
 				
-					Toast.makeText(getApplicationContext(), "código de acceso enviado!", Toast.LENGTH_LONG).show();
+					Toast.makeText(getApplicationContext(), "Código de Acceso enviado!", Toast.LENGTH_LONG).show();
 				}else{
 					JSONObject datos = response.getJSONObject("DATOS");
 					errorEnvio(datos.getString("MENSAJE"));

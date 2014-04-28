@@ -13,8 +13,7 @@ public final class RandomString
 
   private final char[] buf;
 
-  public RandomString(int length)
-  {
+  public RandomString(int length){
     if (length < 1)
       throw new IllegalArgumentException("length < 1: " + length);
     buf = new char[length];
