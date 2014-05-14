@@ -8,23 +8,149 @@
 package com.kupay;
 
 public final class R {
+    public static final class array {
+        public static final int Paises=0x7f080001;
+        public static final int countries_array=0x7f080003;
+        public static final int formas_de_depsito=0x7f080000;
+        public static final int formas_pago=0x7f080002;
+    }
     public static final class attr {
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int behindOffset=0x7f010003;
+        /** <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int behindScrollScale=0x7f010005;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int behindWidth=0x7f010004;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int buttonBarButtonStyle=0x7f01000f;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int buttonBarStyle=0x7f01000e;
+        /** <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int fadeDegree=0x7f01000b;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int fadeEnabled=0x7f01000a;
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>left</code></td><td>0</td><td></td></tr>
+<tr><td><code>right</code></td><td>1</td><td></td></tr>
+</table>
+         */
+        public static final int mode=0x7f010000;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int selectorDrawable=0x7f01000d;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int selectorEnabled=0x7f01000c;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int shadowDrawable=0x7f010008;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int shadowWidth=0x7f010009;
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>margin</code></td><td>0</td><td></td></tr>
+<tr><td><code>fullscreen</code></td><td>1</td><td></td></tr>
+</table>
+         */
+        public static final int touchModeAbove=0x7f010006;
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>margin</code></td><td>0</td><td></td></tr>
+<tr><td><code>fullscreen</code></td><td>1</td><td></td></tr>
+</table>
+         */
+        public static final int touchModeBehind=0x7f010007;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int viewAbove=0x7f010001;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int viewBehind=0x7f010002;
     }
     public static final class color {
-        public static final int contents_text=0x7f040001;
-        public static final int encode_view=0x7f040002;
-        public static final int possible_result_points=0x7f040003;
-        public static final int result_image_border=0x7f040004;
-        public static final int result_minor_text=0x7f040005;
-        public static final int result_points=0x7f040006;
-        public static final int result_text=0x7f040007;
-        public static final int result_view=0x7f040008;
-        public static final int status_text=0x7f04000a;
-        public static final int status_view=0x7f040009;
-        public static final int transparent=0x7f040000;
-        public static final int viewfinder_frame=0x7f04000b;
-        public static final int viewfinder_laser=0x7f04000c;
-        public static final int viewfinder_mask=0x7f04000d;
+        public static final int black_overlay=0x7f06000e;
+        public static final int contents_text=0x7f060001;
+        public static final int encode_view=0x7f060002;
+        public static final int possible_result_points=0x7f060003;
+        public static final int result_image_border=0x7f060004;
+        public static final int result_minor_text=0x7f060005;
+        public static final int result_points=0x7f060006;
+        public static final int result_text=0x7f060007;
+        public static final int result_view=0x7f060008;
+        public static final int status_text=0x7f06000a;
+        public static final int status_view=0x7f060009;
+        public static final int transparent=0x7f060000;
+        public static final int viewfinder_frame=0x7f06000b;
+        public static final int viewfinder_laser=0x7f06000c;
+        public static final int viewfinder_mask=0x7f06000d;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -33,119 +159,269 @@ public final class R {
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f050000;
-        public static final int activity_vertical_margin=0x7f050001;
+        public static final int activity_horizontal_margin=0x7f070000;
+        public static final int activity_vertical_margin=0x7f070001;
     }
     public static final class drawable {
-        public static final int benviar=0x7f020000;
-        public static final int blanco=0x7f020001;
-        public static final int ccbg=0x7f020002;
-        public static final int comp=0x7f020003;
-        public static final int comp2=0x7f020004;
-        public static final int compm=0x7f020005;
-        public static final int fondocam=0x7f020006;
-        public static final int home=0x7f020007;
-        public static final int ic_launcher=0x7f020008;
-        public static final int ku=0x7f020009;
-        public static final int ku72=0x7f02000a;
-        public static final int kucolor=0x7f02000b;
-        public static final int mdm=0x7f02000c;
-        public static final int opciones=0x7f02000d;
-        public static final int pin=0x7f02000e;
-        public static final int refresh=0x7f02000f;
-        public static final int tran=0x7f020010;
-        public static final int tran2=0x7f020011;
-        public static final int tranm=0x7f020012;
-        public static final int venm=0x7f020013;
-        public static final int vent=0x7f020014;
-        public static final int vent2=0x7f020015;
+        public static final int aceptar=0x7f020000;
+        public static final int background=0x7f020001;
+        public static final int background_button=0x7f020002;
+        public static final int benviar=0x7f020003;
+        public static final int blanco=0x7f020004;
+        public static final int boton_blanco_bg=0x7f020005;
+        public static final int ccbg=0x7f020006;
+        public static final int cobr=0x7f020007;
+        public static final int cobr2=0x7f020008;
+        public static final int comp=0x7f020009;
+        public static final int comp2=0x7f02000a;
+        public static final int compm=0x7f02000b;
+        public static final int datosq=0x7f02000c;
+        public static final int datosw=0x7f02000d;
+        public static final int deposito=0x7f02000e;
+        public static final int desenlazar=0x7f02000f;
+        public static final int desenlazarboton=0x7f020010;
+        public static final int edit_text_design=0x7f020011;
+        public static final int enlaceq=0x7f020012;
+        public static final int enlacew=0x7f020013;
+        public static final int fondo_acept_cancel=0x7f020014;
+        public static final int fondocam=0x7f020015;
+        public static final int generarboton=0x7f020016;
+        public static final int home=0x7f020017;
+        public static final int ic_launcher=0x7f020018;
+        public static final int ic_pulltorefresh_arrow=0x7f020019;
+        public static final int icon=0x7f02001a;
+        public static final int info=0x7f02001b;
+        public static final int ku=0x7f02001c;
+        public static final int ku72=0x7f02001d;
+        public static final int kucolor=0x7f02001e;
+        public static final int llaveboton=0x7f02001f;
+        public static final int llavek=0x7f020020;
+        public static final int mdm=0x7f020021;
+        public static final int no=0x7f020022;
+        public static final int normal=0x7f020023;
+        public static final int opciones=0x7f020024;
+        public static final int pin=0x7f020025;
+        public static final int pleca=0x7f020026;
+        public static final int pressed=0x7f020027;
+        public static final int pull_to_refresh_header_background=0x7f020028;
+        public static final int refresh=0x7f020029;
+        public static final int retiro=0x7f02002a;
+        public static final int seguridadq=0x7f02002b;
+        public static final int seguridadw=0x7f02002c;
+        public static final int shadow=0x7f02002d;
+        public static final int si=0x7f02002e;
+        public static final int slash_cashapp=0x7f02002f;
+        public static final int slash_kupay=0x7f020030;
+        public static final int tran=0x7f020031;
+        public static final int tran2=0x7f020032;
+        public static final int tranm=0x7f020033;
+        public static final int venm=0x7f020034;
+        public static final int vent=0x7f020035;
+        public static final int vent2=0x7f020036;
     }
     public static final class id {
-        public static final int actCC=0x7f06000a;
-        public static final int action_settings=0x7f06001c;
+        public static final int Alerta=0x7f04005b;
+        public static final int ImageView01=0x7f040059;
+        public static final int ImageView02=0x7f040038;
+        public static final int QR=0x7f040024;
+        public static final int Retiro=0x7f04005d;
+        public static final int TextView01=0x7f040026;
+        public static final int aceptar_ntarjeta=0x7f040023;
+        public static final int aceptar_r=0x7f040040;
+        public static final int aceptar_retiro=0x7f040060;
+        public static final int aceptar_spei=0x7f04002c;
+        public static final int actCC=0x7f040017;
+        public static final int action_settings=0x7f040069;
+        public static final int apellido_registro=0x7f040054;
         /**  Messages IDs 
          */
-        public static final int auto_focus=0x7f060000;
-        public static final int cantidad=0x7f060009;
-        public static final int decode=0x7f060001;
-        public static final int decode_failed=0x7f060002;
-        public static final int decode_succeeded=0x7f060003;
-        public static final int editando=0x7f060015;
-        public static final int enviar=0x7f06001b;
-        public static final int fitCamera=0x7f06000c;
-        public static final int headerq=0x7f060007;
-        public static final int imgIcon=0x7f060010;
-        public static final int inputCantidad=0x7f06001a;
-        public static final int inputPara=0x7f060018;
-        public static final int listView1=0x7f060013;
-        public static final int navicon=0x7f060008;
-        public static final int preview_view=0x7f06000e;
-        public static final int quit=0x7f060004;
-        public static final int realtabcontent=0x7f06000b;
-        public static final int restart_preview=0x7f060005;
-        public static final int return_scan_result=0x7f060006;
-        public static final int status_view=0x7f06000f;
-        public static final int tabsLayout=0x7f060014;
-        public static final int text=0x7f060016;
-        public static final int textView1=0x7f060017;
-        public static final int textView2=0x7f060019;
-        public static final int txtTitle=0x7f060011;
-        public static final int txtTitle2=0x7f060012;
-        public static final int viewfinder_view=0x7f06000d;
+        public static final int auto_focus=0x7f040005;
+        public static final int beneficiario_nombre=0x7f040029;
+        public static final int buttonFecha=0x7f040056;
+        public static final int cancelar_ntarjeta=0x7f040022;
+        public static final int cancelar_spei=0x7f04002b;
+        public static final int cantidad=0x7f040016;
+        public static final int cantidad_deposito=0x7f040031;
+        public static final int checkBox1=0x7f040057;
+        public static final int clabe=0x7f04002a;
+        public static final int codigoAcceso=0x7f04003c;
+        public static final int concept=0x7f040068;
+        public static final int concepto=0x7f040012;
+        public static final int conceptoTX=0x7f040011;
+        public static final int contrasenia=0x7f04003d;
+        public static final int correo_i=0x7f04003b;
+        public static final int cvv=0x7f040021;
+        public static final int decode=0x7f040006;
+        public static final int decode_failed=0x7f040007;
+        public static final int decode_succeeded=0x7f040008;
+        public static final int deposito=0x7f04001c;
+        public static final int deposito_aceptar=0x7f040033;
+        public static final int desenlazar=0x7f040034;
+        public static final int desenlazebtn=0x7f040035;
+        public static final int dummy_button=0x7f04000e;
+        public static final int editando=0x7f040063;
+        public static final int enviar=0x7f040013;
+        public static final int estatus=0x7f040025;
+        public static final int fechabtn=0x7f040020;
+        public static final int fitCamera=0x7f04002d;
+        public static final int fragment_container=0x7f040036;
+        public static final int fullscreen=0x7f040003;
+        public static final int fullscreen_content=0x7f04000c;
+        public static final int fullscreen_content_controls=0x7f04000d;
+        public static final int getllave=0x7f040047;
+        public static final int headerq=0x7f040014;
+        public static final int imageView1=0x7f04004b;
+        public static final int imgIcon=0x7f040043;
+        public static final int imgmark=0x7f040037;
+        public static final int info=0x7f040042;
+        public static final int iniciar=0x7f040041;
+        public static final int inputCantidad=0x7f040066;
+        public static final int inputPara=0x7f040065;
+        public static final int left=0x7f040000;
+        public static final int listView1=0x7f04002f;
+        public static final int llaveq=0x7f040048;
+        public static final int mail_navicon=0x7f040049;
+        public static final int mail_registro=0x7f040055;
+        public static final int margin=0x7f040002;
+        public static final int monto=0x7f040010;
+        public static final int monto_view=0x7f040028;
+        public static final int navicon=0x7f040015;
+        public static final int navicon_dep=0x7f040030;
+        public static final int nega=0x7f04004d;
+        public static final int nombre_registro=0x7f040053;
+        public static final int nombre_tarjeta=0x7f04001d;
+        public static final int pin_dos=0x7f04003f;
+        public static final int pin_i=0x7f04003e;
+        public static final int pin_uno=0x7f04005a;
+        public static final int posi=0x7f04004c;
+        public static final int puk_rs=0x7f04005c;
+        public static final int pull_to_refresh_header=0x7f04004e;
+        public static final int pull_to_refresh_image=0x7f040050;
+        public static final int pull_to_refresh_progress=0x7f04004f;
+        public static final int pull_to_refresh_text=0x7f040051;
+        public static final int pull_to_refresh_updated_at=0x7f040052;
+        public static final int quit=0x7f040009;
+        public static final int restart_preview=0x7f04000a;
+        public static final int retiro_cantidad=0x7f04005e;
+        public static final int return_scan_result=0x7f04000b;
+        public static final int right=0x7f040001;
+        public static final int scrollView1=0x7f040039;
+        public static final int selected_view=0x7f040004;
+        public static final int sideMenuList=0x7f04004a;
+        public static final int slidingmenumain=0x7f040061;
+        public static final int spinner1=0x7f040032;
+        public static final int spinnerR=0x7f04005f;
+        public static final int tab_1=0x7f040018;
+        public static final int tab_2=0x7f040019;
+        public static final int tab_3=0x7f04001a;
+        public static final int tab_4=0x7f04001b;
+        public static final int tabsLayout=0x7f040062;
+        public static final int tarjeta_numero=0x7f04001f;
+        public static final int termsTX=0x7f040058;
+        public static final int text=0x7f040064;
+        public static final int textView1=0x7f04000f;
+        public static final int textView2=0x7f040027;
+        public static final int textView3=0x7f04003a;
+        public static final int textViewre=0x7f040067;
+        public static final int titular_nombre=0x7f04001e;
+        public static final int titulo=0x7f040046;
+        public static final int txtTitle=0x7f040044;
+        public static final int txtTitle2=0x7f040045;
+        public static final int viewfinder_view=0x7f04002e;
     }
     public static final class layout {
-        public static final int activity_main=0x7f030000;
-        public static final int bgcomp=0x7f030001;
-        public static final int capture=0x7f030002;
-        public static final int comp=0x7f030003;
-        public static final int consulta=0x7f030004;
-        public static final int decoder=0x7f030005;
-        public static final int listview_item_row=0x7f030006;
-        public static final int main=0x7f030007;
-        public static final int tabs_bg=0x7f030008;
-        public static final int test=0x7f030009;
-        public static final int textcomp=0x7f03000a;
-        public static final int tran=0x7f03000b;
-        public static final int transferencia=0x7f03000c;
+        public static final int activity_bar_code=0x7f030000;
+        public static final int activity_cobrar=0x7f030001;
+        public static final int activity_main=0x7f030002;
+        public static final int activity_nueva_tarjeta=0x7f030003;
+        public static final int activity_operacion_qr=0x7f030004;
+        public static final int activity_retiro_spei=0x7f030005;
+        public static final int bgcomp=0x7f030006;
+        public static final int capture=0x7f030007;
+        public static final int cobrotab=0x7f030008;
+        public static final int compratab=0x7f030009;
+        public static final int consulta_listview=0x7f03000a;
+        public static final int consultatab=0x7f03000b;
+        public static final int deposito=0x7f03000c;
+        public static final int desenlazar=0x7f03000d;
+        public static final int enlazar=0x7f03000e;
+        public static final int info=0x7f03000f;
+        public static final int listview_item_row=0x7f030010;
+        public static final int listview_item_row_menu=0x7f030011;
+        public static final int llaveku=0x7f030012;
+        public static final int main_conteiner=0x7f030013;
+        public static final int menu_frame=0x7f030014;
+        public static final int pregunta=0x7f030015;
+        public static final int pull_to_refresh_header=0x7f030016;
+        public static final int registro=0x7f030017;
+        public static final int registro_seguridad=0x7f030018;
+        public static final int retiro=0x7f030019;
+        public static final int slash_kupay=0x7f03001a;
+        public static final int slidingmenumain=0x7f03001b;
+        public static final int tabs_bg=0x7f03001c;
+        public static final int test=0x7f03001d;
+        public static final int textcomp=0x7f03001e;
+        public static final int transferencia=0x7f03001f;
+        public static final int transferitab=0x7f030020;
     }
     public static final class menu {
-        public static final int main=0x7f090000;
+        public static final int cobrar=0x7f0a0000;
+        public static final int main=0x7f0a0001;
+        public static final int nueva_tarjeta=0x7f0a0002;
+        public static final int operacion_qr=0x7f0a0003;
+        public static final int retiro_spei=0x7f0a0004;
     }
     public static final class string {
-        public static final int action_settings=0x7f070001;
-        public static final int app_name=0x7f070000;
-        public static final int barcode_image=0x7f070021;
-        public static final int capture_name=0x7f070003;
-        public static final int contents_contact=0x7f070006;
-        public static final int contents_email=0x7f070007;
-        public static final int contents_location=0x7f070008;
-        public static final int contents_phone=0x7f070009;
-        public static final int contents_sms=0x7f07000a;
-        public static final int contents_text=0x7f07000b;
-        public static final int decoder_name=0x7f070005;
-        public static final int encoder_name=0x7f070004;
-        public static final int hello_world=0x7f070002;
-        public static final int msg_default_contents=0x7f07000c;
-        public static final int msg_default_format=0x7f07000d;
-        public static final int msg_default_meta=0x7f07000e;
-        public static final int msg_default_mms_subject=0x7f07000f;
-        public static final int msg_default_status=0x7f070010;
-        public static final int msg_default_time=0x7f070011;
-        public static final int msg_default_type=0x7f070012;
-        public static final int result_address_book=0x7f070013;
-        public static final int result_calendar=0x7f070014;
-        public static final int result_email_address=0x7f070015;
-        public static final int result_geo=0x7f070016;
-        public static final int result_isbn=0x7f070017;
-        public static final int result_product=0x7f070018;
-        public static final int result_sms=0x7f070019;
-        public static final int result_tel=0x7f07001a;
-        public static final int result_text=0x7f07001b;
-        public static final int result_uri=0x7f07001c;
-        public static final int result_wifi=0x7f07001d;
-        public static final int wifi_changing_network=0x7f07001e;
-        public static final int wifi_ssid_label=0x7f07001f;
-        public static final int wifi_type_label=0x7f070020;
+        public static final int action_settings=0x7f050005;
+        public static final int app_name=0x7f050000;
+        public static final int barcode_image=0x7f050025;
+        public static final int capture_name=0x7f050007;
+        public static final int contents_contact=0x7f05000a;
+        public static final int contents_email=0x7f05000b;
+        public static final int contents_location=0x7f05000c;
+        public static final int contents_phone=0x7f05000d;
+        public static final int contents_sms=0x7f05000e;
+        public static final int contents_text=0x7f05000f;
+        public static final int decoder_name=0x7f050009;
+        public static final int dummy_button=0x7f05002c;
+        public static final int dummy_content=0x7f05002d;
+        public static final int encoder_name=0x7f050008;
+        public static final int fpago=0x7f050029;
+        public static final int hello_world=0x7f050006;
+        public static final int msg_default_contents=0x7f050010;
+        public static final int msg_default_format=0x7f050011;
+        public static final int msg_default_meta=0x7f050012;
+        public static final int msg_default_mms_subject=0x7f050013;
+        public static final int msg_default_status=0x7f050014;
+        public static final int msg_default_time=0x7f050015;
+        public static final int msg_default_type=0x7f050016;
+        public static final int pais=0x7f050028;
+        public static final int pull_to_refresh_pull_label=0x7f050001;
+        public static final int pull_to_refresh_refreshing_label=0x7f050003;
+        public static final int pull_to_refresh_release_label=0x7f050002;
+        public static final int pull_to_refresh_tap_label=0x7f050004;
+        public static final int regNombrePista=0x7f050026;
+        public static final int result_address_book=0x7f050017;
+        public static final int result_calendar=0x7f050018;
+        public static final int result_email_address=0x7f050019;
+        public static final int result_geo=0x7f05001a;
+        public static final int result_isbn=0x7f05001b;
+        public static final int result_product=0x7f05001c;
+        public static final int result_sms=0x7f05001d;
+        public static final int result_tel=0x7f05001e;
+        public static final int result_text=0x7f05001f;
+        public static final int result_uri=0x7f050020;
+        public static final int result_wifi=0x7f050021;
+        public static final int terminos=0x7f050031;
+        public static final int title_activity_bar_code=0x7f05002b;
+        public static final int title_activity_cobrar=0x7f050030;
+        public static final int title_activity_nueva_tarjeta=0x7f05002a;
+        public static final int title_activity_operacion_qr=0x7f05002f;
+        public static final int title_activity_retiro_spei=0x7f05002e;
+        public static final int tranaccionNoRealizada=0x7f050027;
+        public static final int wifi_changing_network=0x7f050022;
+        public static final int wifi_ssid_label=0x7f050023;
+        public static final int wifi_type_label=0x7f050024;
     }
     public static final class style {
         /** 
@@ -158,10 +434,293 @@ public final class R {
             backward-compatibility can go here.
         
          */
-        public static final int AppBaseTheme=0x7f080000;
+        public static final int AppBaseTheme=0x7f090000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f080001;
+        public static final int AppTheme=0x7f090001;
+        public static final int ButtonBar=0x7f090003;
+        public static final int ButtonBarButton=0x7f090004;
+        public static final int FullscreenActionBarStyle=0x7f090005;
+        public static final int FullscreenTheme=0x7f090002;
     }
+    public static final class styleable {
+        /** 
+         Declare custom theme attributes that allow changing which styles are
+         used for button bars depending on the API level.
+         ?android:attr/buttonBarStyle is new as of API 11 so this is
+         necessary to support previous API levels.
+    
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #ButtonBarContainerTheme_buttonBarButtonStyle com.kupay:buttonBarButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #ButtonBarContainerTheme_buttonBarStyle com.kupay:buttonBarStyle}</code></td><td></td></tr>
+           </table>
+           @see #ButtonBarContainerTheme_buttonBarButtonStyle
+           @see #ButtonBarContainerTheme_buttonBarStyle
+         */
+        public static final int[] ButtonBarContainerTheme = {
+            0x7f01000e, 0x7f01000f
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.kupay.R.attr#buttonBarButtonStyle}
+          attribute's value can be found in the {@link #ButtonBarContainerTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.kupay:buttonBarButtonStyle
+        */
+        public static final int ButtonBarContainerTheme_buttonBarButtonStyle = 1;
+        /**
+          <p>This symbol is the offset where the {@link com.kupay.R.attr#buttonBarStyle}
+          attribute's value can be found in the {@link #ButtonBarContainerTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.kupay:buttonBarStyle
+        */
+        public static final int ButtonBarContainerTheme_buttonBarStyle = 0;
+        /** Attributes that can be used with a SlidingMenu.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #SlidingMenu_behindOffset com.kupay:behindOffset}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_behindScrollScale com.kupay:behindScrollScale}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_behindWidth com.kupay:behindWidth}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_fadeDegree com.kupay:fadeDegree}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_fadeEnabled com.kupay:fadeEnabled}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_mode com.kupay:mode}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_selectorDrawable com.kupay:selectorDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_selectorEnabled com.kupay:selectorEnabled}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_shadowDrawable com.kupay:shadowDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_shadowWidth com.kupay:shadowWidth}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_touchModeAbove com.kupay:touchModeAbove}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_touchModeBehind com.kupay:touchModeBehind}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_viewAbove com.kupay:viewAbove}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_viewBehind com.kupay:viewBehind}</code></td><td></td></tr>
+           </table>
+           @see #SlidingMenu_behindOffset
+           @see #SlidingMenu_behindScrollScale
+           @see #SlidingMenu_behindWidth
+           @see #SlidingMenu_fadeDegree
+           @see #SlidingMenu_fadeEnabled
+           @see #SlidingMenu_mode
+           @see #SlidingMenu_selectorDrawable
+           @see #SlidingMenu_selectorEnabled
+           @see #SlidingMenu_shadowDrawable
+           @see #SlidingMenu_shadowWidth
+           @see #SlidingMenu_touchModeAbove
+           @see #SlidingMenu_touchModeBehind
+           @see #SlidingMenu_viewAbove
+           @see #SlidingMenu_viewBehind
+         */
+        public static final int[] SlidingMenu = {
+            0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003,
+            0x7f010004, 0x7f010005, 0x7f010006, 0x7f010007,
+            0x7f010008, 0x7f010009, 0x7f01000a, 0x7f01000b,
+            0x7f01000c, 0x7f01000d
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.kupay.R.attr#behindOffset}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.kupay:behindOffset
+        */
+        public static final int SlidingMenu_behindOffset = 3;
+        /**
+          <p>This symbol is the offset where the {@link com.kupay.R.attr#behindScrollScale}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.kupay:behindScrollScale
+        */
+        public static final int SlidingMenu_behindScrollScale = 5;
+        /**
+          <p>This symbol is the offset where the {@link com.kupay.R.attr#behindWidth}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.kupay:behindWidth
+        */
+        public static final int SlidingMenu_behindWidth = 4;
+        /**
+          <p>This symbol is the offset where the {@link com.kupay.R.attr#fadeDegree}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.kupay:fadeDegree
+        */
+        public static final int SlidingMenu_fadeDegree = 11;
+        /**
+          <p>This symbol is the offset where the {@link com.kupay.R.attr#fadeEnabled}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.kupay:fadeEnabled
+        */
+        public static final int SlidingMenu_fadeEnabled = 10;
+        /**
+          <p>This symbol is the offset where the {@link com.kupay.R.attr#mode}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>left</code></td><td>0</td><td></td></tr>
+<tr><td><code>right</code></td><td>1</td><td></td></tr>
+</table>
+          @attr name com.kupay:mode
+        */
+        public static final int SlidingMenu_mode = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.kupay.R.attr#selectorDrawable}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.kupay:selectorDrawable
+        */
+        public static final int SlidingMenu_selectorDrawable = 13;
+        /**
+          <p>This symbol is the offset where the {@link com.kupay.R.attr#selectorEnabled}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.kupay:selectorEnabled
+        */
+        public static final int SlidingMenu_selectorEnabled = 12;
+        /**
+          <p>This symbol is the offset where the {@link com.kupay.R.attr#shadowDrawable}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.kupay:shadowDrawable
+        */
+        public static final int SlidingMenu_shadowDrawable = 8;
+        /**
+          <p>This symbol is the offset where the {@link com.kupay.R.attr#shadowWidth}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.kupay:shadowWidth
+        */
+        public static final int SlidingMenu_shadowWidth = 9;
+        /**
+          <p>This symbol is the offset where the {@link com.kupay.R.attr#touchModeAbove}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>margin</code></td><td>0</td><td></td></tr>
+<tr><td><code>fullscreen</code></td><td>1</td><td></td></tr>
+</table>
+          @attr name com.kupay:touchModeAbove
+        */
+        public static final int SlidingMenu_touchModeAbove = 6;
+        /**
+          <p>This symbol is the offset where the {@link com.kupay.R.attr#touchModeBehind}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>margin</code></td><td>0</td><td></td></tr>
+<tr><td><code>fullscreen</code></td><td>1</td><td></td></tr>
+</table>
+          @attr name com.kupay:touchModeBehind
+        */
+        public static final int SlidingMenu_touchModeBehind = 7;
+        /**
+          <p>This symbol is the offset where the {@link com.kupay.R.attr#viewAbove}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.kupay:viewAbove
+        */
+        public static final int SlidingMenu_viewAbove = 1;
+        /**
+          <p>This symbol is the offset where the {@link com.kupay.R.attr#viewBehind}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.kupay:viewBehind
+        */
+        public static final int SlidingMenu_viewBehind = 2;
+    };
 }

@@ -45,7 +45,8 @@ public class MainActivity extends Fragment {
 	Button navicon;
 	Activity actividad;
 	 ActualizarCC cc;
-	 Post monitorCC;
+	 Button actCC;
+	 //Post monitorCC;
 	private boolean camaraCargada = false;
 	
 	private View mRoot;
@@ -65,13 +66,28 @@ public class MainActivity extends Fragment {
 		  mTabHost = (TabHost) mRoot.findViewById (android.R.id.tabhost);
 		  mTabHost.setup();
 		  navicon = (Button)  mRoot.findViewById(R.id.navicon);
-		
+		  actCC = (Button)  mRoot.findViewById(R.id.actCC); 
 
 		
-		 /*cc = new ActualizarCC(actividad);
+		 cc = new ActualizarCC(actividad);
 		 cc.execute();
-		 */
-		 monitorCC = new Post();
+		 
+		    actCC.setOnClickListener(new OnClickListener() {
+		    	          public void onClick(View view) { 
+		    	        	  Log.v("app", "actualizar cc..");
+		    	        	  ActualizarCC cc = new ActualizarCC(actividad);
+		    	        	 cc.execute();
+		    	        	 
+		    	        	 
+		    	        	 int duracion=Toast.LENGTH_SHORT;
+		    	             Toast mensaje=Toast.makeText(getActivity(), "¡Saldo Actualizado!", duracion);
+		    	             mensaje.show();
+		    	             mensaje.setGravity(Gravity.TOP|Gravity.RIGHT, 0, 0);
+		    	        	 
+		    	        	 
+		    	          }} );
+		  
+		// monitorCC = new Post();
 
 		  Eventos();
 		 
@@ -84,7 +100,7 @@ public class MainActivity extends Fragment {
     public void Eventos(){
    //cambia el estado        
     	
-    	
+    /*	
     	monitorCC.setOnResponseAsync(new OnResponseAsync() {
 			
 			@Override
@@ -142,7 +158,7 @@ public class MainActivity extends Fragment {
 			}
 		});
         
-      
+    */  
       
       navicon.setOnClickListener(new OnClickListener() {
           public void onClick(View view) { 
@@ -175,7 +191,7 @@ public class MainActivity extends Fragment {
     
     @Override
     public void onPause(){
-    	monitorCC.stopAsync();
+    	//monitorCC.stopAsync();
     	super.onPause();
     }
     
@@ -186,9 +202,9 @@ public class MainActivity extends Fragment {
 			data.put("emisor", MiUsuario());
 			data.put("imei", MiImei());
 			
-			monitorCC.setData(5, data);
+			//monitorCC.setData(5, data);
 			Log.v("app", "2");
-			monitorCC.execAsync(getActivity().getApplicationContext());
+			//monitorCC.execAsync(getActivity().getApplicationContext());
 			Log.v("app", "3-a");
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
@@ -202,7 +218,7 @@ public class MainActivity extends Fragment {
     public void onDestroy() {
     	
         Log.v("app", " MAIN ACTIVITIE onDestroy()");
-        monitorCC.stopAsync();
+        //monitorCC.stopAsync();
         capturaQR fragment = (capturaQR) getFragmentManager().findFragmentById(R.id.tab_1);
         if(camaraCargada){
 			fragment.stopCamera();
