@@ -73,7 +73,7 @@ public class Post {
 			HttpClient httpclient = sslClient(new DefaultHttpClient());
 			
 		  	Log.v("post", "2");
-		    HttpPost httppost = new HttpPost("https://kupay.tk/kuCloudAppDev/index.php");
+		    HttpPost httppost = new HttpPost("https://cashapp.mx/kuCloudApp/index.php");
 		  //	 HttpPost httppost = new HttpPost("http://10.1.17.237/kuCloudApp/index.php"); 
 		  	pares = new ArrayList<NameValuePair>(2);
 		     Log.v("post", "3");

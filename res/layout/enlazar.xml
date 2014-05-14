@@ -137,7 +137,6 @@
                         android:background="#fff"
                         android:text="Enviar Código de Acceso a tu Correo Electrónico"
                         android:textColor="#c51f50" />
-
                 </LinearLayout>
                 
                  <LinearLayout
