@@ -61,13 +61,13 @@
         <ScrollView
             android:id="@+id/scrollView1"
             android:layout_width="fill_parent"
-            android:layout_height="400dp"
-            android:layout_weight="0.42"
+            android:layout_height="fill_parent"
+      
             android:background="#c51f50" >
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="787dp"
                 android:layout_weight="0"
                 android:orientation="vertical" >
 
@@ -229,37 +229,36 @@
                         android:textAppearance="?android:attr/textAppearanceMedium" />
                     
                     </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="62dp"
+                    android:layout_weight="1"
+                    android:background="#e4205a"
+                    android:orientation="horizontal" >
+
+                    <Button
+                        android:id="@+id/aceptar_r"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/fondo_acept_cancel"
+                        android:text="Aceptar"
+                        android:textColor="#ffffff" />
+
+                    <Button
+                        android:id="@+id/iniciar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/fondo_acept_cancel"
+                        android:text="Cancelar"
+                        android:textColor="#ffffff" />
+                </LinearLayout>
+
             </LinearLayout>
 
         </ScrollView>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="62dp"
-            android:background="#e4205a"
-            android:layout_weight="0"
-            android:orientation="horizontal"
-             >
-
-<Button
-    android:id="@+id/aceptar_r"
-    android:layout_weight="1"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/fondo_acept_cancel"
-    android:text="Aceptar"
-    android:textColor="#ffffff" />
-
-<Button
-    android:id="@+id/iniciar"
-    android:layout_weight="1"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/fondo_acept_cancel"
-    android:text="Cancelar"
-    android:textColor="#ffffff" />
-
-        </LinearLayout>
     </LinearLayout>
     
     

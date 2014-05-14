@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="Pide a tu cliente escane esta imagen con su apliación Cashapp"
+        android:text="Pide a tu cliente escanee esta imagen con su apliación Cashapp"
         android:textColor="#fff" />
 
     <TextView

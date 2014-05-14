@@ -118,7 +118,7 @@ private void eventos() {
 
 private void  mensajeExito(String msj) {
 	AlertDialog.Builder adb = new AlertDialog.Builder(this);
-	adb.setTitle("Retiro exitososo");
+	adb.setTitle("Retiro exitoso");
 	//"El saldo ha sido retirado exitosamente de tu cuenta kupay y en brebe sera transferido a tu cuenta de banco (2 dias aprox)"
 	adb.setMessage(msj);
 	adb.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
