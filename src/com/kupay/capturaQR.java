@@ -189,7 +189,7 @@ public class capturaQR extends DecoderActivity  {
 							operacionInactiva();
 							break;
 						case 3:
-							operacionInactiva();
+							operacionActiva(datos);
 							break;
 						default:
 							operacionInactiva();
