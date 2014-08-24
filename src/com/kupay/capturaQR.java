@@ -93,14 +93,17 @@ public class capturaQR extends DecoderActivity  {
 		    // Put up our own UI for how to handle the decodBarcodeFormated contents.
 		    private void handleDecodeInternally(Result rawResult, ResultHandler resultHandler, Bitmap barcode) {
 		        stopCamera();
-		        CharSequence qrDetectado = resultHandler.getDisplayContents();
-		        Log.v("app", qrDetectado.toString());
+		        Log.v("app","algo se encontro");
+		        CharSequence textoDetectado = resultHandler.getDisplayContents();
+		        Log.v("app", textoDetectado.toString());
 				
 	    			
 	    			//JSONObject data = new JSONObject();
-	    			
-	    			qr = qrDetectado.toString();
-	    			
+		        if(textoDetectado.toString().contains("=")){
+		         qr = textoDetectado.toString().substring(textoDetectado.toString().indexOf("=")+1);
+		        }else{
+	    		 qr = textoDetectado.toString();
+		        }
 	    			
 				ChechQR checkQR = new ChechQR();
 				checkQR.execute();

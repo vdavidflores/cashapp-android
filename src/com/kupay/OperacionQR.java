@@ -35,7 +35,7 @@ public class OperacionQR extends Activity {
 		operacion = in.getExtras().getString("OPERACION").toString();
 		Bitmap qrBitmap = null;
 		Log.v("app","4");
-		QRCodeEncoder code  = new QRCodeEncoder(operacion, 320);
+		QRCodeEncoder code  = new QRCodeEncoder("https://cashapp.mx/"+getApplicationContext().getString(R.string.appAPI)+"/pagoenlinea/pagos.php?qr="+operacion, 320);
 		Log.v("app","5");
 		try {
 			 qrBitmap = code.encodeAsBitmap();

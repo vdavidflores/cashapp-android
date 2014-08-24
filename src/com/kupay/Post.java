@@ -36,6 +36,7 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Base64;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -70,10 +71,10 @@ public class Post {
 		 if (HayConexion(c)){
 			 Log.v("post", "2");
 			  
-			HttpClient httpclient = sslClient(new DefaultHttpClient());
+			HttpClient httpclient = new DefaultHttpClient();
 			
 		  	Log.v("post", "2");
-		    HttpPost httppost = new HttpPost("https://cashapp.mx/kuCloudApp/index.php");
+		    HttpPost httppost = new HttpPost("https://cashapp.mx/"+c.getString(R.string.appAPI)+"/index.php");
 		  //	 HttpPost httppost = new HttpPost("http://10.1.17.237/kuCloudApp/index.php"); 
 		  	pares = new ArrayList<NameValuePair>(2);
 		     Log.v("post", "3");
@@ -84,6 +85,9 @@ public class Post {
 		       
 		      
 		    	httppost.setHeader("Content-Type", "application/x-www-form-urlencoded");
+		    	String credentials = "cashapp" + ":" + "@Ganimedes648722883456995328";
+		    	String base64EncodedCredentials = Base64.encodeToString(credentials.getBytes(), Base64.NO_WRAP);  
+		    	httppost.addHeader("Authorization", "Basic " + base64EncodedCredentials);
 				
 				try {
 					httppost.setEntity(new UrlEncodedFormEntity(pares));
@@ -124,31 +128,6 @@ public class Post {
 	        else return false;
 	    }
 	  
-	  private HttpClient sslClient(HttpClient client) {
-		    try {
-		        X509TrustManager tm = new X509TrustManager() { 
-		            public void checkClientTrusted(X509Certificate[] xcs, String string) throws CertificateException {
-		            }
-
-		            public void checkServerTrusted(X509Certificate[] xcs, String string) throws CertificateException {
-		            }
-
-		            public X509Certificate[] getAcceptedIssuers() {
-		                return null;
-		            }
-		        };
-		        SSLContext ctx = SSLContext.getInstance("TLS");
-		        ctx.init(null, new TrustManager[]{tm}, null);
-		        SSLSocketFactory ssf = new MySoketSSLFactory(ctx);
-		        ssf.setHostnameVerifier(SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
-		        ClientConnectionManager ccm = client.getConnectionManager();
-		        SchemeRegistry sr = ccm.getSchemeRegistry();
-		        sr.register(new Scheme("https", ssf, 443));
-		        return new DefaultHttpClient(ccm, client.getParams());
-		    } catch (Exception ex) {
-		        return null;
-		    }
-		}
 	  
 	  OnResponseAsync mListener;
 	  public interface OnResponseAsync{

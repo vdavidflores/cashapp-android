@@ -56,11 +56,7 @@
             android:includeFontPadding="false"
             android:inputType="textEmailAddress"
            
-            android:scrollHorizontally="true"
-           
- >
-
-         
+            android:scrollHorizontally="true" >
         </EditText>
 
     </LinearLayout>

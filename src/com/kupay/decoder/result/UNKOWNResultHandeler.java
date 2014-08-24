@@ -23,6 +23,7 @@ import com.kupay.R;
 
 
 
+
 import android.app.Activity;
 
 /**
@@ -39,7 +40,11 @@ public final class UNKOWNResultHandeler extends ResultHandler {
 
     @Override
     public CharSequence getDisplayContents() {
-        	return "codigo desconosido";
+    	Result result = (Result) getRawResult();
+        StringBuilder contents = new StringBuilder(100);
+        ParsedResult.maybeAppend(result.getText(), contents);
+        contents.trimToSize();
+        return contents.toString();
     }
 
     @Override
