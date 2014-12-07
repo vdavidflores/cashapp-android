@@ -32,7 +32,12 @@ public class MainConteiner extends FragmentActivity  {
 	ListView sidemenu;
 	SlidingMenu menu;
 	TextView usuario;
+	TextView MontoSaldo;
 	OperacionRow menurow[];
+	
+	ActualizarCC cc;
+	
+	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_conteiner);
@@ -51,7 +56,7 @@ public class MainConteiner extends FragmentActivity  {
 		
 		menu = new SlidingMenu(this);
 		menu.setMode(SlidingMenu.LEFT);
-		menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+		menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);
 		menu.setShadowWidth(5);
 		menu.setFadeDegree(0.0f);
 		menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
@@ -68,13 +73,19 @@ public class MainConteiner extends FragmentActivity  {
 		
 		menu.setMenu(R.layout.menu_frame);
 		
+		
 
 		usuario = (AutoResizeTextView) menu.findViewById(R.id.mail_navicon);
+		MontoSaldo = (TextView) menu.findViewById(R.id.montoSaldo);
+		 cc = new ActualizarCC(this);
+		 cc.execute();
+		
+		
 		usuario.setText(MiUsuario());
 		
 		sidemenu = (ListView) menu.findViewById(R.id.sideMenuList);
 		menurow = new OperacionRow[6];
-		menurow[0]= new OperacionRow(R.drawable.mdm, "INICIO",null,null);
+		menurow[0]= new OperacionRow(R.drawable.mdm, "Operaciones",null,null);
 		menurow[1]= new OperacionRow(R.drawable.deposito, "Depósito",null,null);
 		menurow[2]= new OperacionRow(R.drawable.retiro, "Retiro",null,null);
 		menurow[3]= new OperacionRow(R.drawable.llavek, "Código de Acceso",null,null);
@@ -167,6 +178,10 @@ public class MainConteiner extends FragmentActivity  {
     
 	public void togle() {
 		menu.toggle();
+		 ActualizarCC cc = new ActualizarCC(this);
+    	 cc.execute();
+    	 
+    	
 	}
 	
 	private String MiUsuario(){

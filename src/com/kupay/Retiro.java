@@ -43,7 +43,7 @@ public class Retiro extends Fragment implements OnItemSelectedListener {
 	 @Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-		 View view = View.inflate(this.getActivity(), R.layout.retiro,null);
+		 View view = View.inflate(getActivity(), R.layout.retiro,null);
 		 
 		 retiroTarjeta = new Post();
 		 
@@ -58,7 +58,6 @@ public class Retiro extends Fragment implements OnItemSelectedListener {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				if (!cantidad.getText().toString().equals("")){
-					cantidad.setBackgroundColor(Color.WHITE);
 					if (spinner.getSelectedItemPosition() == 0){
 						listartarjetas();
 					}else if (spinner.getSelectedItemPosition() == 1){
@@ -70,7 +69,6 @@ public class Retiro extends Fragment implements OnItemSelectedListener {
 					}
 				}else{
 					Toast.makeText(getActivity(), "Espesifica la catidad", Toast.LENGTH_LONG).show();
-					cantidad.setBackgroundColor(Color.YELLOW);
 				}
 			}
 		});
@@ -100,7 +98,7 @@ public class Retiro extends Fragment implements OnItemSelectedListener {
 		 
 		 String [] values = {"Tarjeta de débito","Cuenta de banco"};
 		 spinner = (Spinner) view.findViewById(R.id.spinnerR);
-		 ArrayAdapter<String> LTRadapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, values);
+		 ArrayAdapter<String> LTRadapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, values);
 		 LTRadapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
 		 spinner.setAdapter(LTRadapter);
 		 
@@ -192,7 +190,7 @@ public class Retiro extends Fragment implements OnItemSelectedListener {
 		
 		AlertDialog.Builder adb = new AlertDialog.Builder(this.getActivity());
 		adb.setTitle("Confirma tu tarjeta");
-		adb.setMessage("Deseas retirar $"+cantidad.getText().toString()+" con la tarjeta '"+c.getString(1)+"'\n(Aplica una comisión de $8.0)");
+		adb.setMessage("Deseas retirar $"+cantidad.getText().toString()+" con la tarjeta '"+c.getString(1));
 		adb.setNeutralButton("Cancelar", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
             	dialog.dismiss();

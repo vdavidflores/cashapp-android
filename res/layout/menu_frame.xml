@@ -1,34 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="#989898"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+  
+    
+     >
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1.14"
-        android:orientation="vertical"
-        android:background="#727272" >
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Saldo:"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#fff"
+        android:textSize="16dp" />
 
-        <com.kupay.AutoResizeTextView
-            android:id="@+id/mail_navicon"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:textSize="100sp"
-            android:gravity="center"
+    <TextView
+        android:id="@+id/montoSaldo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$100.00"
+        android:layout_gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#fff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:text="email:"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#fff"
+        android:textSize="16dp" />
+
+    <com.kupay.AutoResizeTextView
+        android:id="@+id/mail_navicon"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginBottom="15dp"
+        android:gravity="center"
         android:maxLines="1"
-            android:text="Kupay@kupay.com"
-            android:textColor="#989898" />
+        android:text="Kupay@kupay.com"
+        android:textColor="#fff"
+        android:textSize="100sp" />
 
-    </LinearLayout>
 
     <ListView
         android:id="@+id/sideMenuList"
-        android:layout_width="fill_parent"
-        android:layout_height="446dp" >
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:fadingEdgeLength="18dp" 
+        android:cacheColorHint="#4b4b4b"
+        android:layout_weight="1">
     </ListView>
 
 </LinearLayout>

@@ -44,8 +44,7 @@ public class MainActivity extends Fragment {
 	TabHost mTabHost;
 	Button navicon;
 	Activity actividad;
-	 ActualizarCC cc;
-	 Button actCC;
+
 	 //Post monitorCC;
 	private boolean camaraCargada = false;
 	
@@ -66,28 +65,8 @@ public class MainActivity extends Fragment {
 		  mTabHost = (TabHost) mRoot.findViewById (android.R.id.tabhost);
 		  mTabHost.setup();
 		  navicon = (Button)  mRoot.findViewById(R.id.navicon);
-		  actCC = (Button)  mRoot.findViewById(R.id.actCC); 
+	
 
-		
-		 cc = new ActualizarCC(actividad);
-		 cc.execute();
-		 
-		    actCC.setOnClickListener(new OnClickListener() {
-		    	          public void onClick(View view) { 
-		    	        	  Log.v("app", "actualizar cc..");
-		    	        	  ActualizarCC cc = new ActualizarCC(actividad);
-		    	        	 cc.execute();
-		    	        	 
-		    	        	 
-		    	        	 int duracion=Toast.LENGTH_SHORT;
-		    	             Toast mensaje=Toast.makeText(getActivity(), "¡Saldo Actualizado!", duracion);
-		    	             mensaje.show();
-		    	             mensaje.setGravity(Gravity.TOP|Gravity.RIGHT, 0, 0);
-		    	        	 
-		    	        	 
-		    	          }} );
-		  
-		// monitorCC = new Post();
 
 		  Eventos();
 		 
@@ -99,66 +78,6 @@ public class MainActivity extends Fragment {
 	
     public void Eventos(){
    //cambia el estado        
-    	
-    /*	
-    	monitorCC.setOnResponseAsync(new OnResponseAsync() {
-			
-			@Override
-			public void onResponseAsync(JSONObject response) {
-				// TODO Auto-generated method stub
-				
-				try {
-			    	//	progress.dismiss();
-						 String resultado = response.getString("RESULTADO");
-						Log.v("app","RESult: "+ resultado.toString());
-						JSONObject datos = response.getJSONObject("DATOS");
-			     		if (resultado.equals("ACTUALIZACION_CC_EXITOSA") ){
-			     			
-			     			
-			 				Log.v("app","Datos: "+ datos.toString());
-			 				TextView cc = (TextView) getActivity().findViewById(R.id.cantidad);
-			 				cc.setText("$"+Double.toString(datos.getDouble("SALDO")));
-			 				//AnimaSaldo actcc = new AnimaSaldo(context);
-			 				//actcc.equals(datos.getInt("SALDO"));
-			 				
-			     		}else if(resultado.equals("ACTUALIZACION_CC_FALLIDA")){
-			     			Log.v("app", "Actulaizacion fallida");
-			     			int duracion=Toast.LENGTH_SHORT;
-			                Toast mensaje=Toast.makeText(getActivity(), "error en actualización", duracion);
-			                mensaje.show();
-			     		}else if(resultado.equals("CONEXION_FALLIDA")){
-			     			Log.v("app", "Conexion fallida");
-			     			int duracion=Toast.LENGTH_SHORT;
-			                Toast mensaje=Toast.makeText(getActivity(), "error en conexion", duracion);
-			                mensaje.show();
-			     		}else{
-			     			Log.v("app", "Error desconosido");
-			     			int duracion=Toast.LENGTH_SHORT;
-			                 Toast mensaje=Toast.makeText(getActivity(), "error desconosido", duracion);
-			                 mensaje.show();
-			     		}
-			       	} catch (JSONException e) {
-							// TODO Auto-generated catch block
-							
-							}
-				
-				
-				
-				
-				  JSONObject data = new JSONObject();
-				  try {
-					data.put("emisor", MiUsuario());
-					data.put("imei", MiImei());
-					monitorCC.setData(5, data);
-					monitorCC.execAsync(getActivity());
-				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		});
-        
-    */  
       
       navicon.setOnClickListener(new OnClickListener() {
           public void onClick(View view) { 

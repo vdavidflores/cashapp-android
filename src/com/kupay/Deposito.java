@@ -1,5 +1,7 @@
 package com.kupay;
 
+import java.net.Socket;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -13,6 +15,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.InputType;
@@ -28,7 +31,10 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListPopupWindow;
+import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,24 +45,33 @@ public class Deposito extends Fragment implements OnItemSelectedListener {
 	EditText cantidad;
 	Spinner spinner;
 	Post procesT;
-	Post getBarCode;
+	Post getTiendaCodigo;
 	Post abonoSpei;
+	TextView outputText;
+	ProgressBar loader;
+	LinearLayout inputCantidad;
 	int pin;
 	ProgressDialog progress;
 	@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-		 View view = View.inflate(this.getActivity(), R.layout.deposito,null);
+		 View view = View.inflate(getActivity(), R.layout.deposito,null);
+		 
+		 loader = (ProgressBar) view.findViewById(R.id.loader);
+		 outputText = (TextView) view.findViewById(R.id.output_text);
+		 inputCantidad = (LinearLayout) view.findViewById(R.id.input_cantidad);
 		 
 		 //Spiner de forma de pago
-		 String [] values = {"Tienda de conveniencia","Tarjeta bancaria","SPEI"};
+		 String [] values = {"Tarjeta bancaria","Transferencia bancaria","Tienda de conveniencia"};
 		 spinner = (Spinner) view.findViewById(R.id.spinner1);
-		 ArrayAdapter<String> LTRadapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, values);
+		 ArrayAdapter<String> LTRadapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, values);
 		 LTRadapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
 		 spinner.setAdapter(LTRadapter);
 		    procesT = new Post();
-		    getBarCode = new Post();
+		    getTiendaCodigo = new Post();
 		    abonoSpei = new Post();
+		    
+		    spinner.setOnItemSelectedListener(this);
 		
 		  navicon = (Button)  view.findViewById(R.id.navicon_dep);
 		  aceptar = (Button)  view.findViewById(R.id.deposito_aceptar);
@@ -77,20 +92,20 @@ public class Deposito extends Fragment implements OnItemSelectedListener {
 			public void onClick(View v) {
 				
 				if (!cantidad.getText().toString().equals("")){
-					cantidad.setBackgroundColor(Color.WHITE);
-					if (spinner.getSelectedItemPosition() == 1){
+					//cantidad.setBackgroundColor(Color.WHITE);
+					if (spinner.getSelectedItemPosition() == 0){
 						listartarjetas();
-					}else if (spinner.getSelectedItemPosition() == 0){
+					}else if (spinner.getSelectedItemPosition() == 2){
 						//Toast.makeText(getActivity(), "Proximamente", Toast.LENGTH_LONG).show();
 						// aqui va lo que se hace cuando se deposita por oxxo
 						obtenerBarCode();
 						
-					}else if(spinner.getSelectedItemPosition() == 2){
+					}else if(spinner.getSelectedItemPosition() == 1){
 						depositoSpei();
 					}
 				}else{
 					Toast.makeText(getActivity(), "Espesifica la catidad", Toast.LENGTH_LONG).show();
-					cantidad.setBackgroundColor(Color.YELLOW);
+					//cantidad.setBackgroundColor(Color.YELLOW);
 				}
 			}
 		});
@@ -103,16 +118,16 @@ public class Deposito extends Fragment implements OnItemSelectedListener {
 			@Override
 			public void onResponseAsync(JSONObject response) {
 				// TODO Auto-generated method stub
-				progress.dismiss();
+				
 				try{
 				if(response.getString("RESULTADO").equals("EXITO")){
-					Toast.makeText(getActivity(), "Abono exitoso!", Toast.LENGTH_LONG).show();
 					mostrarDatosSpei(response.getJSONObject("DATOS"));
 					
 				}else if(response.getString("RESULTADO").equals("FALLA")){
+					loader.setVisibility(View.GONE);
+					outputText.setVisibility(View.VISIBLE);
+					outputText.setText("No es posible obtener tus datos para tranferir a tu cuenta Cashapp. Intenta más trade");
 					
-					
-					Toast.makeText(getActivity(), "Abono fallido!", Toast.LENGTH_LONG).show();
 				}
 				}catch(JSONException e){}
 			}
@@ -143,12 +158,11 @@ public class Deposito extends Fragment implements OnItemSelectedListener {
 			}
 		});
 		  
-		  getBarCode.setOnResponseAsync(new OnResponseAsync() {
+		  getTiendaCodigo.setOnResponseAsync(new OnResponseAsync() {
 			
 			@Override
 			public void onResponseAsync(JSONObject response) {
 				// TODO Auto-generated method stub
-				progress.dismiss();
 				try {
 					if(response.getString("RESULTADO").equals("EXITO")){
 						JSONObject datos = response.getJSONObject("DATOS");
@@ -176,11 +190,76 @@ public class Deposito extends Fragment implements OnItemSelectedListener {
 	@Override
 	public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
 			long arg3) {
+		switch (arg2) {
+		case 0:
+			inputCantidad.setVisibility(View.VISIBLE);
+			loader.setVisibility(View.GONE);
+			outputText.setVisibility(View.GONE);
+			aceptar.setVisibility(View.VISIBLE);
+				
+			
+			break;
+		case 1:
+			inputCantidad.setVisibility(View.GONE);
+			loader.setVisibility(View.VISIBLE);
+			outputText.setVisibility(View.GONE);
+			aceptar.setVisibility(View.GONE);
+			mostrarIDtransferenciaBancaria();
+			break;
+		case 2:
+			inputCantidad.setVisibility(View.GONE);
+			loader.setVisibility(View.VISIBLE);
+			outputText.setVisibility(View.GONE);
+			aceptar.setVisibility(View.GONE);
+			mostrarIDtienda();
+			break;
+					
+		default:
+			break;
+		}
+		
 	}
 	@Override
 	public void onNothingSelected(AdapterView<?> arg0) {
 		Log.v("app", "nada seleccionado");
 	}
+	
+	
+	private void mostrarIDtransferenciaBancaria() {
+		JSONObject dats = new JSONObject();
+		try {
+ 			dats.put("usr", MiUsuario());
+ 			dats.put("imei", MiImei());
+ 		} catch (JSONException e) {
+ 			// TODO Auto-generated catch block
+ 			e.printStackTrace();
+ 		}
+ 		abonoSpei.setData(21, dats);
+ 		abonoSpei.execAsync(getActivity());
+		
+		
+	}
+	private void mostrarIDtienda() {
+		
+		/*JSONObject dats = new JSONObject();
+ 		try {
+ 			dats.put("usr", MiUsuario());
+ 			dats.put("imei", MiImei());
+ 			dats.put("pin", pin);
+ 			dats.put("monto", cantidad.getText().toString());
+ 		} catch (JSONException e) {
+ 			// TODO Auto-generated catch block
+ 			e.printStackTrace();
+ 		}
+ 		getTiendaCodigo.setData(20, dats);
+ 		getTiendaCodigo.execAsync(getActivity());*/
+		
+		loader.setVisibility(View.GONE);
+		outputText.setVisibility(View.VISIBLE);
+		outputText.setText("Esta opción no esta disponible temporalmente");
+		
+	}
+	
 	
 	private void DialogoDepositoExitoso(){
 		AlertDialog.Builder adb = new AlertDialog.Builder(this.getActivity());
@@ -197,22 +276,16 @@ public class Deposito extends Fragment implements OnItemSelectedListener {
 	}
 	
 	private void mostrarDatosSpei(JSONObject datos) {
-		try{
-		AlertDialog.Builder adb = new AlertDialog.Builder(this.getActivity());
-		adb.setTitle("Abono de saldo SPEI");
-		adb.setMessage(
-				"Tu numero de cuenta (CLABE) es:\n" +datos.getString("clabe")+"\n\n"+
-				"Del banco:\n"+datos.getString("bank")+"\n\n" +
-				"Transfiere:\n$"+cantidad.getText().toString()+"(o lo que nesecites) \n\n" +		
-				"Con la referencia (opcional):\n"+datos.getString("ref"));
-		adb.setNeutralButton("Finalizar", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-            	dialog.dismiss();
-            }
-        });
 		
-		AlertDialog ad = adb.create();
-		ad.show();
+		
+		try{
+			outputText.setVisibility(View.VISIBLE);
+			loader.setVisibility(View.GONE);
+			outputText.setText("Tu numero de cuenta (CLABE) es:\n" +
+			datos.getString("clabe")+"\n"+
+			"Del banco:\n"+
+			datos.getString("bank")+"\n\n"+
+			"Transfere desde la 'banca en linea' de cualquier banco y se vera reflejado en tu saldo Cashapp.");
 		}
 		catch(JSONException e){}
 	
@@ -228,7 +301,7 @@ public class Deposito extends Fragment implements OnItemSelectedListener {
 		
 		AlertDialog.Builder adb = new AlertDialog.Builder(this.getActivity());
 		adb.setTitle("Confirma tu tarjeta");
-		adb.setMessage("Deseas abonar $"+cantidad.getText().toString()+" con la tarjeta '"+c.getString(1)+"'\n(Aplica una comisión de $2.5 pesos)");
+		adb.setMessage("Deseas abonar $"+cantidad.getText().toString()+" con la tarjeta '"+c.getString(1));
 		adb.setNeutralButton("Cancelar", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
             	dialog.dismiss();
@@ -373,18 +446,8 @@ public class Deposito extends Fragment implements OnItemSelectedListener {
             else{ 
                  pin = Integer.parseInt(Password.getEditableText().toString()) ;
                  progress = ProgressDialog.show(getActivity(), "Transacción en proceso", "Generando deposito SPEI...");
-         		JSONObject dats = new JSONObject();
-         		try {
-         			dats.put("usr", MiUsuario());
-         			dats.put("imei", MiImei());
-         			dats.put("pin", pin);
-         			dats.put("monto", cantidad.getText().toString());
-         		} catch (JSONException e) {
-         			// TODO Auto-generated catch block
-         			e.printStackTrace();
-         		}
-         		abonoSpei.setData(21, dats);
-         		abonoSpei.execAsync(getActivity());
+         		
+         		
             	
             }
             }
@@ -436,8 +499,8 @@ public class Deposito extends Fragment implements OnItemSelectedListener {
          			// TODO Auto-generated catch block
          			e.printStackTrace();
          		}
-         		getBarCode.setData(20, dats);
-         		getBarCode.execAsync(getActivity());
+         		getTiendaCodigo.setData(20, dats);
+         		getTiendaCodigo.execAsync(getActivity());
             	
             }
             }

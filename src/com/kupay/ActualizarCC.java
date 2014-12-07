@@ -78,7 +78,7 @@ class ActualizarCC extends AsyncTask<Void, Integer, JSONObject>{
      			
      			
  				Log.v("app","Datos: "+ datos.toString());
- 				TextView cc = (TextView) context.findViewById(R.id.cantidad);
+ 				TextView cc = (TextView) context.findViewById(R.id.montoSaldo);
  				cc.setText("$"+Double.toString(datos.getDouble("SALDO")));
  				//AnimaSaldo actcc = new AnimaSaldo(context);
  				//actcc.equals(datos.getInt("SALDO"));

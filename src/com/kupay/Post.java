@@ -85,7 +85,16 @@ public class Post {
 		       
 		      
 		    	httppost.setHeader("Content-Type", "application/x-www-form-urlencoded");
+		    	
+		    	
+		    	/*int Cuarto = 288;
+		    	hider hi = new hider(3456/2);
+		    	holder ho = new holder(c);
+		    	ho.setSegundo(hi.tercero(6));
+		    	String textoYprimero = ho.gettextoMenosL8(hi.letra(0), hi.letra(1),hi.letra(2))+"e"+hi.letra(3)+Integer.toString(6);
+		    	String credentials = "cashapp" + ":" + "@"+textoYprimero+Integer.toString(ho.segundo)+Integer.toString(hi.tercero(6))+Cuarto+Integer.toString(hi.quintoMenosPrimero+6)+Integer.toString(hi.sexto(6));*/
 		    	String credentials = "cashapp" + ":" + "@Ganimedes648722883456995328";
+		    	Log.v("app", credentials);
 		    	String base64EncodedCredentials = Base64.encodeToString(credentials.getBytes(), Base64.NO_WRAP);  
 		    	httppost.addHeader("Authorization", "Basic " + base64EncodedCredentials);
 				

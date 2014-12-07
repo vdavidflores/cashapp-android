@@ -46,101 +46,73 @@
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="29dp" >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="53dp"
+        android:layout_margin="20dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="¿En qué cuenta quieres recibir el dinero retirado de Cashapp?"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#FFFFFF"
+        android:textSize="15dp" />
 
+    <Spinner
+        android:id="@+id/spinnerR"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:entries="@array/formas_pago"
+        android:prompt="@string/fpago" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:paddingRight="20dp"
+        android:text="Cantidad"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#FFFFFF" />
+
+    <EditText
+        android:id="@+id/retiro_cantidad"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:ems="10"
+        android:hint="$"
+         android:background="@drawable/edit_text_design"
+        android:textColorHint="#fff"
+        android:textColor="#fff"
+        android:inputType="numberDecimal"
+        android:singleLine="true" >
+
+        <requestFocus />
+    </EditText>
+      <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="62dp"
+                    android:layout_weight="1"
+                   
+                    android:layout_gravity="bottom"
+                    android:orientation="horizontal" >
         
 
-    </LinearLayout>
-
-    <LinearLayout
+    <Button
+        android:id="@+id/aceptar_retiro"
         android:layout_width="match_parent"
-        android:layout_height="60dp" >
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingRight="20dp"
-             android:paddingLeft="20dp"
-             android:layout_gravity="bottom"
-            android:text="Cantidad"
-            android:textColor="#FFFFFF"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-
+        android:layout_height="62dp"
+        android:layout_weight="1"
+        android:layout_gravity="bottom"      
+         android:background="@drawable/fondo_acept_cancel"
+        android:text="Aceptar"
+        android:textColor="#fff"
+         />
+    
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp" >
-
-        <EditText
-            android:id="@+id/retiro_cantidad"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-             android:layout_marginLeft="20dp"
-             android:layout_marginRight="20dp"
-             android:layout_gravity="center_vertical"
-             android:singleLine="true"
-             android:hint="$"
-           android:ems="10"
-            android:inputType="numberDecimal" >
-
-           
-        </EditText>
-        
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-           android:layout_gravity="bottom"
-        android:layout_height="84dp" >
-
-        <TextView
-            android:id="@+id/TextView01"
-            android:layout_width="wrap_content"
-            android:layout_height="53dp"
-            android:layout_gravity="bottom"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:text="¿En qué cuenta quieres recibir el dinero retirado de Cashapp?"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="#FFFFFF"
-            android:textSize="15dp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp" >
-
-        <Spinner
-            android:id="@+id/spinnerR"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_weight="1"
-            android:entries="@array/formas_pago"
-            android:prompt="@string/fpago" />
-    </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-         >
-
-        <Button
-            android:id="@+id/aceptar_retiro"
-            android:layout_width="110dp"
-            android:layout_height="70dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-           
-            android:text="Aceptar" />
-
-    </RelativeLayout>
 
 </LinearLayout>

@@ -1,102 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >   
-    
-      
-   <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical" >
 
-        <LinearLayout
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:padding="0dp"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_weight="0"
-            android:background="#ffffff" >
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="0.04"
-                android:orientation="vertical" >
-
-                <ImageView
-                    android:id="@+id/imgmark"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/datosq" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="0.04"
-                android:orientation="vertical" >
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="0.04"
-                android:orientation="vertical" >
-
-                <ImageView
-                    android:id="@+id/ImageView02"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/enlacew" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <ScrollView
-            android:id="@+id/scrollView1"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-      
+            android:layout_height="match_parent"
+      		android:fillViewport="true"
             android:background="#c51f50" >
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="787dp"
+                android:layout_height="fill_parent"
                 android:layout_weight="0"
+                android:gravity="bottom"
                 android:orientation="vertical" >
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical" >
+            
 
                     <TextView
                         android:id="@+id/textView3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
+                        android:layout_margin="20dp"
+                        android:layout_gravity="center"
                         android:text="Captura de datos"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="#ffffff" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" >
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical" >
+             
+              
 
                         <EditText
                             android:id="@+id/nombre_registro"
@@ -113,12 +43,7 @@
                             android:singleLine="true"
                             android:textColor="#ffffff"
                             android:textColorHint="#ffffff" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical" >
+                  
 
                         <EditText
                             android:id="@+id/apellido_registro"
@@ -135,13 +60,7 @@
                             android:singleLine="true"
                             android:textColor="#ffffff"
                             android:textColorHint="#ffffff" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" >
+                
 
                     <EditText
                         android:id="@+id/mail_registro"
@@ -158,56 +77,34 @@
                         android:singleLine="true"
                         android:textColor="#ffffff"
                         android:textColorHint="#ffffff" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_weight="0.80"
-                    android:orientation="vertical" >
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="10dp"
-                        android:layout_weight="0.64" >
-
+              
                         <TextView
                             android:id="@+id/textView1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_marginLeft="15dp"
+                            android:textSize="18sp"
+                            android:layout_marginTop="20dp"
                             android:gravity="center_horizontal"
                             android:text="Fecha de nacimiento"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:textColor="#ffffff" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_gravity="center_horizontal"
-                        >
+                   
 
                         <Button
                             android:id="@+id/buttonFecha"
                             android:layout_width="216dp"
                             android:layout_height="35dp"
                             android:background="#fff"
+                            android:layout_gravity="center"
                             android:text="Haz click para seleccionar"
                             android:textColor="#c51f50" />
 
-                    </LinearLayout>
-                </LinearLayout>
                 
-                
-                
-                <LinearLayout
+                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:layout_weight="0.80"
+                    android:layout_height="wrap_content"
+                    
                     android:orientation="horizontal" >
 
                     <CheckBox
@@ -225,23 +122,25 @@
                         android:layout_marginLeft="15dp"
                         android:textColor="#fff"
                         android:textColorLink="#fff"
+                        android:text="LOQUE SERA LINK"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium" />
-                    
-                    </LinearLayout>
-
+                   
+				</LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="62dp"
                     android:layout_weight="1"
-                    android:background="#e4205a"
+                    
+                    android:layout_gravity="bottom"
                     android:orientation="horizontal" >
 
                     <Button
                         android:id="@+id/aceptar_r"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="62dp"
                         android:layout_weight="1"
+                        android:layout_gravity="bottom"
                         android:background="@drawable/fondo_acept_cancel"
                         android:text="Aceptar"
                         android:textColor="#ffffff" />
@@ -249,7 +148,8 @@
                     <Button
                         android:id="@+id/iniciar"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="62dp"
+                        android:layout_gravity="bottom"
                         android:layout_weight="1"
                         android:background="@drawable/fondo_acept_cancel"
                         android:text="Cancelar"
@@ -259,9 +159,6 @@
             </LinearLayout>
 
         </ScrollView>
-    </LinearLayout>
-    
-    
-      </LinearLayout>
+
 
 
