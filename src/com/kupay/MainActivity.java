@@ -97,7 +97,6 @@ public class MainActivity extends Fragment {
 		setRetainInstance(true);
 		FragmentManager fm = getFragmentManager();
 		fm.beginTransaction()
-		.replace(R.id.tab_4, new Consulta(), "consultar")
 		.replace(R.id.tab_3, new Cobrar(), "cobrar")
 		.replace(R.id.tab_1, new capturaQR(), "comprar")
 		.replace(R.id.tab_2, new transferencia(), "transferir")
@@ -116,20 +115,8 @@ public class MainActivity extends Fragment {
     
     @Override
     public void onResume(){
-    	JSONObject data = new JSONObject();
-		  try {
-			data.put("emisor", MiUsuario());
-			data.put("imei", MiImei());
+
 			
-			//monitorCC.setData(5, data);
-			Log.v("app", "2");
-			//monitorCC.execAsync(getActivity().getApplicationContext());
-			Log.v("app", "3-a");
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		  
 		  super.onResume();
     }
   
@@ -138,10 +125,7 @@ public class MainActivity extends Fragment {
     	
         Log.v("app", " MAIN ACTIVITIE onDestroy()");
         //monitorCC.stopAsync();
-        capturaQR fragment = (capturaQR) getFragmentManager().findFragmentById(R.id.tab_1);
-        if(camaraCargada){
-			fragment.stopCamera();
-			}
+        
         //cc.cancel(true);
    super.onDestroy();
     }
@@ -181,16 +165,7 @@ public class MainActivity extends Fragment {
 		mTabHost.getTabWidget().setStripEnabled(false);
 		
 		
-	Log.v("app", "7");
-		
-		b = new Bundle();
-		b.putString("key", "consultar");
-		mTabHost.addTab(mTabHost.newTabSpec("consultar").setIndicator("",getResources().getDrawable(R.layout.consultatab)).setContent(R.id.tab_4));
-		mTabHost.getTabWidget().getChildAt(3).setBackgroundResource(R.layout.bgcomp);
-		mTabHost.getTabWidget().getChildAt(3).getLayoutParams().height =  LayoutParams.MATCH_PARENT;
-		mTabHost.getTabWidget().getChildAt(3).getLayoutParams().width = LayoutParams.MATCH_PARENT;
-		mTabHost.getTabWidget().setStripEnabled(false);
-		
+	
 		
 		mTabHost.setOnTabChangedListener(new OnTabChangeListener() {
 			
@@ -246,18 +221,6 @@ public class MainActivity extends Fragment {
 							camaraPointer.restartCam();
 						}
 						camaraCargada = true;
-				}else if(tabId.equals("consultar")) {
-					if (fm.findFragmentByTag(tabId) == null) {
-						fm.beginTransaction()
-						.replace(R.id.tab_4, new Consulta(), tabId)
-						.commit();
-					}
-					capturaQR camaraPointer = (capturaQR) getFragmentManager().findFragmentById(R.id.tab_1);
-					if(camaraCargada ){
-						Log.v("app", "Apagando camara");
-						camaraPointer.stopCamera(); 
-					}
-					
 				}
 				
 				

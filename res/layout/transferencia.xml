@@ -15,150 +15,99 @@
     android:focusableInTouchMode="false"
     android:orientation="vertical" >
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="0.36" >
-    </LinearLayout>
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:text="Para:"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#ffffff"
+        android:textStyle="bold" />
 
-    <LinearLayout
+    <AutoCompleteTextView
+        android:id="@+id/inputPara"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" 
-        android:layout_marginTop="20dp">
+        android:layout_height="40dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_weight="0.32"
+        android:dropDownHeight="100dp"
+        android:ems="9"
+         android:background="@drawable/edit_text_design"
+        android:hint="alguien@example.com"
+        android:includeFontPadding="false"
+        android:textColor="#fff"
+        android:textColorHint="#fff"
+        android:inputType="textEmailAddress"
+         android:imeOptions="actionNext"
+        android:scrollHorizontally="true" >
 
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="10dp"
-            android:text="Para:"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="#ffffff"
-            android:textStyle="bold" />
+        <requestFocus />
+    </AutoCompleteTextView>
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="0.34" >
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:text="Cantidad:"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#ffffff"
+        android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/inputPara"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_weight="0.32"
-            android:ems="9"
-            android:hint="alguien@example.com"
-            android:includeFontPadding="false"
-            android:inputType="textEmailAddress"
-           
-            android:scrollHorizontally="true" >
-        </EditText>
-
-    </LinearLayout>
-
-    <LinearLayout
+    <EditText
+        android:id="@+id/inputCantidad"
         android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_weight="1"
+         android:background="@drawable/edit_text_design"
+                 android:textColor="#fff"
+        android:textColorHint="#fff"
+        android:ems="9"
+        android:hint="$"
+        android:imeOptions="actionNext"
+        android:inputType="numberDecimal" />
+
+    <TextView
+        android:id="@+id/textViewre"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp" >
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:text="Concepto:"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#ffffff"
+        android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="10dp"
-            android:text="Cantidad:"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="#ffffff"
-            android:textStyle="bold" />
-
-    </LinearLayout>
-
-    <LinearLayout
+    <EditText
+        android:id="@+id/concept"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.39" >
+        android:layout_height="40dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_weight="0.32"
+        android:ems="9"
+        android:hint="opcional"
+        android:includeFontPadding="false"
+         android:background="@drawable/edit_text_design"
+                 android:textColor="#fff"
+        android:textColorHint="#fff"
+        android:inputType="text"
+        android:maxLength="20"
+        android:scrollHorizontally="true" />
 
-        <EditText
-            android:id="@+id/inputCantidad"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:ems="9"
-            android:hint="$"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:inputType="numberDecimal" 
-            android:imeOptions="actionNext"/>
-
-    </LinearLayout>
-    
-        <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp" >
-
-        <TextView
-            android:id="@+id/textViewre"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="10dp"
-            android:text="Concepto:"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="#ffffff"
-            android:textStyle="bold" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.39" >
-
-         <EditText
-            android:id="@+id/concept"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_weight="0.32"
-            android:ems="9"
-            android:hint="opcional"
-            android:includeFontPadding="false"
-            android:inputType="text"
-           android:maxLength="20"
-            android:scrollHorizontally="true"></EditText>
-           
-
-    </LinearLayout>
-    
-
-    <LinearLayout
-        android:layout_width="112dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center" 
-        android:layout_marginTop="20dp">
-
-        <Button
-            android:id="@+id/enviar"
-            android:layout_width="109dip"
-            android:layout_height="74dip"
-            android:background="@drawable/benviar" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:layout_weight="0.58"
-         >
-    </LinearLayout>
+    <Button
+        android:id="@+id/enviar"
+        android:layout_width="109dip"
+        android:layout_height="74dip"
+        android:layout_margin="20dp"
+        android:layout_gravity="center"
+        android:background="@drawable/benviar" />
 
 </LinearLayout>
 </ScrollView>

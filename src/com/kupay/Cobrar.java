@@ -59,9 +59,7 @@ private void eventos() {
 		public void onClick(View v) {
 		
 			 if (!monto.getText().toString().equals("")){
-        		 monto.setBackgroundColor(Color.WHITE);
         		 if(!concepto.getText().toString().equals("")){
-        			 concepto.setBackgroundColor(Color.WHITE);
         			 pin();
         		 }else {
 						Toast.makeText(getActivity(), "Indica el concepto", Toast.LENGTH_LONG).show();
@@ -71,9 +69,7 @@ private void eventos() {
 
          	 }else {
 					Toast.makeText(getActivity(), "Indica el monto", Toast.LENGTH_LONG).show();
-					concepto.setBackgroundColor(Color.WHITE);
 					monto.requestFocus();
-					monto.setBackgroundColor(Color.YELLOW);
 				}
 		}
 	});

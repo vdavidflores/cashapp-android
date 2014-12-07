@@ -6,12 +6,18 @@ package com.kupay;
 
 
 import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.regex.Pattern;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.kupay.Post.OnResponseAsync;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -27,6 +33,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -40,7 +48,7 @@ public class Enlazar extends Activity {
 	Button cancel;
 
 
-	EditText correo;
+	AutoCompleteTextView correo;
 	EditText pin;
 	EditText pin2;
 	EditText puk;
@@ -51,6 +59,8 @@ public class Enlazar extends Activity {
 	Post enviarLlave;
 	Post enviarNuevaConfirmacion;
 	Button enviarBtn;
+	private static final Pattern EMAIL_PATTERN = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$", Pattern.CASE_INSENSITIVE);
+	
 	private ProgressDialog progress;
 	
 	
@@ -72,7 +82,18 @@ public class Enlazar extends Activity {
    Log.v("inicio", "2.0");  
 
    Log.v("inicio", "2.1");
-   correo = (EditText) findViewById(R.id.correo_i);
+   correo = (AutoCompleteTextView) findViewById(R.id.correo_i);
+   Account[] accounts = AccountManager.get(this).getAccounts();
+   Set<String> emailSet = new HashSet<String>();
+   for (Account account : accounts) {
+   	if (EMAIL_PATTERN.matcher(account.name).matches()) {
+   		emailSet.add(account.name);
+   	}
+   }
+   correo.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, new ArrayList<String>(emailSet)));
+   
+   
+   
    Log.v("inicio", "2.2");
    pin = (EditText) findViewById(R.id.pin_i);
    Log.v("inicio", "2.3");

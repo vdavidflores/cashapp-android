@@ -1,30 +1,44 @@
 package com.kupay;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.regex.Pattern;
+
 import org.apache.http.ParseException;
 import org.apache.http.client.ClientProtocolException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
+import android.content.DialogInterface.OnKeyListener;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.telephony.TelephonyManager;
 import android.text.InputType;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;   
@@ -32,7 +46,7 @@ import android.widget.Toast;
 
 public class transferencia extends Fragment{
 	Button enviar;
-	TextView para;
+	AutoCompleteTextView para;
 	TextView cantidad;
 	TextView cc;
 	EditText concepto;
@@ -50,7 +64,8 @@ public class transferencia extends Fragment{
 	final String FONDOS_INUFICIENTES  = "FONDOS_INUFICIENTES";
 	final String USUARIO_INVALIDO = "USUARIO_INVALIDO";
 	
-	
+	private static final Pattern EMAIL_PATTERN = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$", Pattern.CASE_INSENSITIVE);
+
 	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,7 +74,34 @@ public class transferencia extends Fragment{
 		
         	View view = inflater.inflate(R.layout.transferencia, container, false);
              enviar = (Button) view.findViewById(R.id.enviar);
-             para = (TextView) view.findViewById(R.id.inputPara);
+             para = (AutoCompleteTextView) view.findViewById(R.id.inputPara);
+           
+         
+             
+             ArrayList<String> emailAddressCollection = new ArrayList<String>();
+
+             ContentResolver cr = getActivity().getContentResolver();
+
+             Cursor emailCur = cr.query(ContactsContract.CommonDataKinds.Email.CONTENT_URI, null, null, null, null);
+
+             while (emailCur.moveToNext())
+             {
+                 String email = emailCur.getString(emailCur.getColumnIndex(ContactsContract.CommonDataKinds.Email.DATA));
+                         emailAddressCollection.add(email);
+             }
+             emailCur.close();
+
+             String[] emailAddresses = new String[emailAddressCollection.size()];
+             emailAddressCollection.toArray(emailAddresses);
+
+             ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
+                          R.layout.simple_dropdown_item_1line_custom, emailAddresses);
+             
+             
+          
+             para.setAdapter(adapter);
+
+
    		     cantidad = (TextView) view.findViewById(R.id.inputCantidad);
    		  concepto = (EditText) view.findViewById(R.id.concept);
    
@@ -79,9 +121,7 @@ public class transferencia extends Fragment{
             	 String EMAIL_REGEX = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
             	 
             	 if (para.getText().toString().matches(EMAIL_REGEX)){
-            		 para.setBackgroundColor(Color.WHITE);
             		 if(!cantidad.getText().toString().equals("")){
-            			 cantidad.setBackgroundColor(Color.WHITE);
             			 
             			 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                  		builder.setIcon(R.drawable.ku72);
@@ -107,16 +147,13 @@ public class transferencia extends Fragment{
             		 }else {
 						Toast.makeText(getActivity(), "Cantad vacia", Toast.LENGTH_LONG).show();
 						cantidad.requestFocus();
-						cantidad.setBackgroundColor(Color.YELLOW);
 					}
             		 
             		 
             		 
             	 }else {
 					Toast.makeText(getActivity(), "email inválido", Toast.LENGTH_LONG).show();
-					cantidad.setBackgroundColor(Color.WHITE);
 					para.requestFocus();
-					para.setBackgroundColor(Color.YELLOW);
 				}
             	
             	
@@ -303,8 +340,7 @@ public class transferencia extends Fragment{
       	       Log.v("app", "pst-2");
   				Log.v("app","Datos: "+ datos.toString());
   				
-  				AnimaSaldo actcc = new AnimaSaldo(getActivity());
-  				actcc.execute(datos.getDouble("SALDO_POST_TRASACCION"));
+  				mensajeExito();
   				//cc.setText("$"+Integer.toString(datos.getInt("SALDO_POST_TRASACCION")));
       		}else if(TRANSACCION_FALLIDA.toString().equals(resultado)){
       	       Log.v("app", "pst-3");
@@ -326,6 +362,46 @@ public class transferencia extends Fragment{
       	
         	
         }
+        
+        private void mensajeExito() {
+        	AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+				builder.setTitle("Transacción exitosa");
+				
+				TextView publicidad = new TextView(getActivity());
+				publicidad.setText("Publicidad\n"+
+				"Espacio reservado para publicidad dirigida");
+				publicidad.setTextSize(14);
+				publicidad.setGravity(Gravity.CENTER);
+				
+				builder.setView(publicidad);
+				
+				builder.setPositiveButton("Aceptar", new OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					// TODO Auto-generated method stub
+	  				dialog.dismiss();
+	  			
+				}
+			});
+				
+				builder.setOnKeyListener(new OnKeyListener() {
+
+                @Override
+                public boolean onKey(DialogInterface arg0, int keyCode,
+                        KeyEvent event) {
+                    // TODO Auto-generated method stub
+                    if (keyCode == KeyEvent.KEYCODE_BACK) {
+                      
+                        dialog.dismiss();
+                    }
+                    return true;
+                }
+            });
+				
+				AlertDialog dilaogoAceptar = builder.create();
+				dilaogoAceptar.show();
+		}
         
         private String MiUsuario(){
         	String usr = null;

@@ -23,7 +23,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="#ffffff" />
 
-                <EditText
+                <AutoCompleteTextView
                     android:id="@+id/correo_i"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"

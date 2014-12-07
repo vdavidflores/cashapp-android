@@ -3,14 +3,45 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
+    <LinearLayout
+        android:id="@+id/headerq"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/ccbg"
+        android:baselineAligned="false"
+        android:orientation="horizontal" >
+
+
+            <Button
+                android:id="@+id/navicon_his"
+                android:layout_width="75dp"
+                android:layout_height="fill_parent"
+                android:background="@drawable/opciones" />
+
+            <TextView
+                android:id="@+id/deposito"
+                android:layout_width="182dp"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:text="Historial"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#ffffff" />
+
+            <ProgressBar
+                android:id="@+id/progressBarHist"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_weight="1"
+                android:layout_margin="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+    </LinearLayout>
     
  <com.markupartist.android.widget.PullToRefreshListView
-            
-        android:id="@+id/listView1"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" 
-        android:fadingEdgeLength="0dp"
-        />
-    
+     android:id="@+id/listView1"
+     android:layout_width="fill_parent"
+     android:layout_height="428dp"
+     android:fadingEdgeLength="0dp"
+      android:background="#c51e4f" />
     
 </LinearLayout>

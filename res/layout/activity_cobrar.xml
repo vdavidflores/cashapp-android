@@ -45,7 +45,10 @@
             android:hint="$"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:inputType="numberDecimal" 
+            android:inputType="numberDecimal"
+             android:background="@drawable/edit_text_design"
+                 android:textColor="#fff"
+        android:textColorHint="#fff" 
             android:imeOptions="actionNext"/>
 
     </LinearLayout>
@@ -79,6 +82,9 @@
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:layout_weight="0.32"
+             android:background="@drawable/edit_text_design"
+                 android:textColor="#fff"
+        android:textColorHint="#fff"
             android:ems="9"
             android:hint="producto o servicio"
             android:includeFontPadding="false"

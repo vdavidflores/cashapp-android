@@ -10,10 +10,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+
+
+
 import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -30,6 +33,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,6 +48,9 @@ public class Consulta extends Fragment {
 	
 
 	Boolean hayLista = false;
+	Button navicon;
+	ProgressBar loader;
+
 	 OperacionRow weather_data[];
 	 PullToRefreshListView lv ;
 	 Serch  serch;
@@ -68,6 +75,22 @@ public class Consulta extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View c = View.inflate(getActivity().getApplicationContext(), R.layout.consulta_listview,null);
+		 
+		loader = (ProgressBar) c.findViewById(R.id.progressBarHist);
+		navicon = (Button)  c.findViewById(R.id.navicon_his);
+		 navicon.setOnClickListener(new android.view.View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				 Activity act = getActivity();
+
+	        	  if(act instanceof MainConteiner) {
+	        	      ((MainConteiner) act).togle();
+	        	  }
+			}
+		});
+
 		lv = (PullToRefreshListView) c.findViewById(R.id.listView1);
 		facturar = new Post();
 		facturar.setOnResponseAsync(new OnResponseAsync() {
@@ -173,7 +196,7 @@ public class Consulta extends Fragment {
 	  ad.setTitle("Datos fiscales");
 	  ad.setMessage("Ingresa tus datos fiscales");
 	  ad.setNeutralButton("Cancelar", null);
-	  ad.setPositiveButton("Aceptar", new OnClickListener() {
+	  ad.setPositiveButton("Aceptar", new android.content.DialogInterface.OnClickListener() {
 		
 		@Override
 		public void onClick(DialogInterface dialog, int which) {
@@ -205,6 +228,9 @@ public class Consulta extends Fragment {
 		
 	
 }
+  
+  
+ 
   
   @Override
 	public void onResume() {
@@ -379,6 +405,7 @@ public class Consulta extends Fragment {
 	        	lv.setAdapter(lv.getAdapter());
 	        }
        lv.onRefreshComplete();
+       loader.setVisibility(View.INVISIBLE);
       }
 
   }
