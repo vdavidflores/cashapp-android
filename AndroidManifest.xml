@@ -15,12 +15,12 @@
     <uses-feature
         android:name="android.hardware.touchscreen"
         android:required="false" />
-    
-    <supports-screens android:smallScreens="true"  
-                    android:normalScreens="true"
-                    android:largeScreens="false"
-                    android:xlargeScreens="false"
-                     />  
+
+    <supports-screens
+        android:largeScreens="false"
+        android:normalScreens="true"
+        android:smallScreens="true"
+        android:xlargeScreens="false" />
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -28,17 +28,28 @@
     </uses-permission>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
-      <uses-permission android:name="android.permission.READ_CONTACTS" />
-       <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-     
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+    <permission
+        android:name="com.kupay.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.kupay.permission.C2D_MESSAGE" />
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ku"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
         <activity
-            android:name="com.kupay.SplashScreen"
+            android:name=".SplashScreen"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|adjustResize" >
@@ -49,101 +60,117 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.kupay.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|adjustResize" >
         </activity>
         <activity
-            android:name="com.kupay.MainConteiner"
+            android:name=".MainConteiner"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|adjustResize" >
         </activity>
         <activity
-            android:name="com.kupay.Enlazar"
+            android:name=".Enlazar"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" >
         </activity>
         <activity
-            android:name="com.kupay.Registro_seguridad"
+            android:name=".Registro_seguridad"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|adjustResize" >
         </activity>
         <activity
-            android:name="com.kupay.Pregunta"
+            android:name=".Pregunta"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|adjustResize" >
         </activity>
         <activity
-            android:name="com.kupay.Registro"
+            android:name=".Registro"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" >
         </activity>
         <activity
-            android:name="com.kupay.transferencia"
+            android:name=".transferencia"
             android:clearTaskOnLaunch="true"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|adjustResize" >
         </activity>
         <activity
-            android:name="com.kupay.capturaQR"
+            android:name=".capturaQR"
             android:clearTaskOnLaunch="true"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|adjustResize" >
         </activity>
         <activity
-            android:name="com.kupay.venta"
+            android:name=".venta"
             android:clearTaskOnLaunch="true"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|adjustResize" >
         </activity>
         <activity
-            android:name="com.kupay.ventaw"
+            android:name=".ventaw"
             android:clearTaskOnLaunch="true"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|adjustResize" >
         </activity>
         <activity
-            android:name="com.kupay.WeatherAdapter"
+            android:name=".WeatherAdapter"
             android:clearTaskOnLaunch="true"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|adjustResize" >
         </activity>
         <activity
-            android:name="com.kupay.NuevaTarjeta"
+            android:name=".NuevaTarjeta"
             android:label="@string/title_activity_nueva_tarjeta"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.kupay.BarCode"
+            android:name=".BarCode"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_bar_code"
             android:screenOrientation="landscape"
             android:theme="@style/FullscreenTheme" >
         </activity>
         <activity
-            android:name="com.kupay.RetiroSpei"
+            android:name=".RetiroSpei"
             android:label="@string/title_activity_retiro_spei" >
         </activity>
         <activity
-            android:name="com.kupay.OperacionQR"
+            android:name=".OperacionQR"
             android:label="@string/title_activity_operacion_qr"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.kupay.Cobrar"
+            android:name=".Cobrar"
             android:label="@string/title_activity_cobrar" >
         </activity>
+
+        <receiver
+            android:name=".KUReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+
+                <category android:name="com.kupay" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".GcmIntentService"
+            android:enabled="true"
+            android:exported="true" >
+        </service>
     </application>
 
 </manifest>
