@@ -24,22 +24,22 @@ public class KUReceiver extends BroadcastReceiver {
 		
 		// TODO: This method is called when the BroadcastReceiver is receiving
 		// an Intent broadcast.
-		/*this.context = context;
+		this.context = context;
 		 Bundle extras = intent.getExtras();
-		GoogleCloudMessaging gcm = GoogleCloudMessaging.getInstance(context);
+		/*GoogleCloudMessaging gcm = GoogleCloudMessaging.getInstance(context);
         // The getMessageType() intent parameter must be the intent you received
         // in your BroadcastReceiver.
         String messageType = gcm.getMessageType(intent);
 		Log.v("app",messageType);
 		Log.v("app",GoogleCloudMessaging.
                 MESSAGE_TYPE_MESSAGE);
-	     sendNotification("Received: " + extras.toString());
-            Log.v("app", "Received: " + extras.toString());*/
-        
+	     
+          */ 
+        sendNotification(extras.getString("evento"),extras.getString("data"));
 		//throw new UnsupportedOperationException("Not yet implemented");
 	}
 	
-	 private void sendNotification(String msg) {
+	 private void sendNotification(String evento, String msg) {
 		 NotificationManager mNotificationManager = (NotificationManager)
 	                this.context.getSystemService(this.context.NOTIFICATION_SERVICE);
 
@@ -49,7 +49,7 @@ public class KUReceiver extends BroadcastReceiver {
 	        NotificationCompat.Builder mBuilder =
 	                new NotificationCompat.Builder(this.context)
 	        .setSmallIcon(R.drawable.home)
-	        .setContentTitle("GCM Notification")
+	        .setContentTitle(evento)
 	        .setStyle(new NotificationCompat.BigTextStyle()
 	        .bigText(msg))
 	        .setContentText(msg);
