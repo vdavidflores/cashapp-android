@@ -1,18 +1,14 @@
 package com.kupay;
 
-import com.google.android.gms.gcm.GoogleCloudMessaging;
-
 import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.WakefulBroadcastReceiver;
 import android.util.Log;
 
-public class KUReceiver extends BroadcastReceiver {
+public class KUReceiver extends WakefulBroadcastReceiver {
 	private Context context;
 	public KUReceiver() {
 	}
