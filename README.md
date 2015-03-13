@@ -1,7 +1,7 @@
 # cashapp-android
 Cashapp - Android
 www.cashapp.mx
-This application connects to the Cashapp server and processes transactions for the user. 
+This application connects to the Cashapp server and process transactions for the user. 
 It`s compiled version is available on 
 You are free to study, hack and upgrade the software but the images, arts, logos, UI and brand is forbidden to unauthorized use.
 
