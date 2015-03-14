@@ -1,4 +1,3 @@
-# cashapp-android
 Cashapp - Android
 www.cashapp.mx
 This application connects to the Cashapp server and processes transactions for the user. 
